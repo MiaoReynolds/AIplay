@@ -13,13 +13,11 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - Breadboard + jumper wires
 - 3.7V Li-ion battery + switch module
 
-<p align="center">
-  <img src="docs/assets/images/pomodo_timer_2.jpg" alt="Pomodoro Timer Hardware" width="400">
-</p>
+![Pomodoro Timer Hardware](assets/images/pomodo_timer_2.jpg)
 
 ---
 
-Prompt for the Code:
+GPT Prompt for the Code:
 In this project, we built a Pomodoro timer using an Arduino Nano, a 1.3-inch I2C OLED display (SH1106-based), an EC11 rotary encoder with a push button, and a low-level triggered passive buzzer module.
 
 The timer features a scrollable menu interface, allowing users to select from the following options:
