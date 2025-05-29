@@ -13,7 +13,7 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - Breadboard + jumper wires
 - 3.7V Li-ion battery + switch module
 
-![Pomodoro Timer Hardware](assets/images/pomodo_timer_2.jpg)
+![Pomodoro Timer Hardware](docs/assets/images/pomodo_timer_2.jpg)
 
 ---
 
