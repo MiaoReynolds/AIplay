@@ -14,7 +14,7 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - 3.7V Li-ion battery + switch module
 
 <p align="center">
-  <img src="assets/images/led-to-terminator.pn" alt="Pomodoro Timer Hardware" width="400">
+  <img src="docs/assets/images/pomodo_timer_2.jpg" alt="Pomodoro Timer Hardware" width="400">
 </p>
 
 ---
