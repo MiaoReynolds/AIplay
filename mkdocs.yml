@@ -24,6 +24,7 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
+# ==== Future development routes (not published yet) ====
 nav:
   - Home: index.md
   - About: about.md
@@ -31,21 +32,21 @@ nav:
       - AI Course: projects/ai-course.md
       - Smart Display Device:
           - Overview: projects/screen-project.md
-          - Hardware Design: projects/screen-project/design.md
-          - Firmware Code: projects/screen-project/code.md
-          - Build Steps: projects/screen-project/build.md
+          # - Hardware Design: projects/screen-project/design.md
+          # - Firmware Code: projects/screen-project/code.md
+          # - Build Steps: projects/screen-project/build.md
           - Pomodoro Timer: projects/screen-project/timer.md
-          - System Monitor: projects/screen-project/system-monitor.md
-          - Cloud Terminal: projects/screen-project/cloud-terminal.md
+          # - System Monitor: projects/screen-project/system-monitor.md
+          # - Cloud Terminal: projects/screen-project/cloud-terminal.md
           - Generative Graphics: projects/screen-project/generative-graphics.md
-          - Voice Animator: projects/screen-project/voice-animator.md
+          # - Voice Animator: projects/screen-project/voice-animator.md
       - LeRobot Arm: projects/lerobot.md
       - Quadruped Robot: projects/quadruped.md
-  - Tutorials:
-      - Getting Started with AI: tutorials/ai-course-basic.md
-      - Building the Display Device: tutorials/screen-howto.md
-      - Setting Up LeRobot: tutorials/lerobot-setup.md
-  - Videos: videos.md
+  # - Tutorials:
+      # - Getting Started with AI: tutorials/ai-course-basic.md
+      # - Building the Display Device: tutorials/screen-howto.md
+      # - Setting Up LeRobot: tutorials/lerobot-setup.md
+  # - Videos: videos.md
   - Contact: contact.md
 
 plugins:
