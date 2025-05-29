@@ -183,7 +183,45 @@ void flashDone() {
 }
 
 ```
+---
+Now, once your code is running, you can replace the handleSelection function to the follow to change the Pomodo time interval.
 
+```cpp
+void handleSelection(int index) {
+  if (index >= 1 && index <= 4) {
+    int minutes[] = {10, 15, 20, 25};
+    int seconds = minutes[index - 1] * 60; // This 60 is the key for unit change.
+
+    for (int i = seconds; i >= 0; i--) {
+      u8g2.clearBuffer();
+      u8g2.setFont(u8g2_font_logisoso32_tr);
+
+      int min = i / 60;
+      int sec = i % 60;
+      char timeStr[6];
+      sprintf(timeStr, "%02d:%02d", min, sec);
+
+      int textWidth = u8g2.getStrWidth(timeStr);
+      u8g2.setCursor((128 - textWidth) / 2, 45);
+      u8g2.print(timeStr);
+      u8g2.sendBuffer();
+      delay(1000);
+    }
+    flashDone();
+    beep3Times();
+  } else if (index == 5) {
+    u8g2.clearBuffer();
+    u8g2.setFont(u8g2_font_6x10_tr);
+    u8g2.setCursor(10, 25);
+    u8g2.print("Made by Miao");
+    u8g2.setCursor(10, 40);
+    u8g2.print("2025-05-15");
+    u8g2.sendBuffer();
+    delay(3000);
+  }
+}
+
+```
 ---
 
 ## 🎬 Video Demonstrations
