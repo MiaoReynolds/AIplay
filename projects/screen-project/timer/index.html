@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/screen-project/timer/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../../..">
       
       
-        <link rel="next" href="../generative-graphics/">
+        <link rel="next" href="../../lerobot/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -228,32 +228,13 @@
   
   
   
-  
-    <li class="md-tabs__item">
-      <a href="../../../about/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  About
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
     
   
   
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../ai-course/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -343,28 +324,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    About
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -384,10 +343,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -400,101 +359,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Projects
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../ai-course/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    AI Course
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Smart Display Device
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            Smart Display Device
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -606,37 +476,6 @@
     </ul>
   
 </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../generative-graphics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Generative Graphics
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -824,9 +663,24 @@
 <li>3.7V Li-ion battery + switch module</li>
 </ul>
 <p align="center">
-  <img src="../../assets/images/pomodo_timer_2.jpg" alt="Pomodoro Timer Hardware" width="400">
+  <img src="assets/images/led-to-terminator.pn" alt="Pomodoro Timer Hardware" width="400">
 </p>
 
+<hr />
+<p>Prompt for the Code:
+In this project, we built a Pomodoro timer using an Arduino Nano, a 1.3-inch I2C OLED display (SH1106-based), an EC11 rotary encoder with a push button, and a low-level triggered passive buzzer module.</p>
+<p>The timer features a scrollable menu interface, allowing users to select from the following options:</p>
+<p>Pomodoro 10s
+Pomodoro 15s
+Pomodoro 20s
+Pomodoro 25s
+Info</p>
+<p>Only four menu items are shown on screen at a time, and the encoder is used to scroll through the options. The selected menu item is highlighted with inverted colors using the U8g2 graphics library, which also handles all display rendering.</p>
+<p>Pressing the encoder button triggers an action:</p>
+<p>For Pomodoro options: A countdown begins, displayed in large digits at the center of the screen using a bold font. After the countdown ends, a “Done!” message flashes several times, and the passive buzzer beeps three times.</p>
+<p>For the "Info" option: A brief information page is displayed (e.g., author name and date).</p>
+<p>All encoder input is handled with digitalRead polling (no interrupts), and the menu scrolls smoothly within the bounds of available options. The buzzer is triggered by sending LOW signals to match its low-level activation design.</p>
+<p>This compact project demonstrates interactive UI handling, I2C display control, rotary encoder input, and timed output events—all within the Arduino ecosystem.</p>
 <hr />
 <h2 id="key-code-snippet">🧠 Key Code Snippet</h2>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;U8g2lib.h&gt;</span>
