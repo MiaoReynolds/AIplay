@@ -185,7 +185,7 @@ void flashDone() {
 }
 
 ```
-
+</details>
 ---
 
 Now, once your code is running, you can replace the handleSelection function to the follow to change the Pomodo time interval.
@@ -228,7 +228,7 @@ void handleSelection(int index) {
 }
 
 ```
-
+</details>
 ---
 
 ## 🎬 Video Demonstrations
