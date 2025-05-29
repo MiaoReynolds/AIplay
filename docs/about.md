@@ -1,8 +1,8 @@
-# About 万物AI
+# About AIplay
 
-This site is built by Miao to document personal experiments in AI, robotics, and educational tech.
+This site is built by Reynolds Miao to document personal experiments in AI, robotics, and educational tech.
 
 | Role | Description |
 |------|-------------|
-| Creator | Miao |
+| Creator | Reynolds Miao |
 | Goals | Share open knowledge, empower DIY AI creations |
