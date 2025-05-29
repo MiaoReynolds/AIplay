@@ -46,6 +46,8 @@ This compact project demonstrates interactive UI handling, I2C display control, 
 
 ## 🧠 Key Code Snippet
 
+<details>
+<summary>Click to expand full code</summary>
 ```cpp
 #include <U8g2lib.h>
 #include <Wire.h>
@@ -186,6 +188,8 @@ void flashDone() {
 ---
 Now, once your code is running, you can replace the handleSelection function to the follow to change the Pomodo time interval.
 
+<details>
+<summary>Click to expand full code</summary>
 ```cpp
 void handleSelection(int index) {
   if (index >= 1 && index <= 4) {
