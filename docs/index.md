@@ -1,17 +1,18 @@
 # Welcome to AIplay
 
-Explore my AI and robotics projects:
+Explore some of my projects:
 
 <style>
 .project-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 2rem;
   margin-top: 2rem;
 }
 
 .project-card {
+  flex: 1 1 200px;
   text-align: center;
   max-width: 220px;
 }
