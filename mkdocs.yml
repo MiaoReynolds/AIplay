@@ -1,6 +1,6 @@
-site_name: 万物AI
-site_url: https://yourusername.github.io/ai-lab/
-site_author: Miao
+site_name: AIplay
+site_url: https://github.com/MiaoReynolds/AIplay.git
+site_author: Reynolds
 
 theme:
   name: material

@@ -1,4 +1,4 @@
-# Welcome to 万物AI
+# Welcome to AIplay
 
 Explore my AI and robotics projects:
 
