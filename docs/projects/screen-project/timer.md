@@ -14,8 +14,33 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - 3.7V Li-ion battery + switch module
 
 <p align="center">
-  <img src="../../assets/images/pomodo_timer_2.jpg" alt="Pomodoro Timer Hardware" width="400">
+  <img src="assets/images/led-to-terminator.pn" alt="Pomodoro Timer Hardware" width="400">
 </p>
+
+---
+
+Prompt for the Code:
+In this project, we built a Pomodoro timer using an Arduino Nano, a 1.3-inch I2C OLED display (SH1106-based), an EC11 rotary encoder with a push button, and a low-level triggered passive buzzer module.
+
+The timer features a scrollable menu interface, allowing users to select from the following options:
+
+Pomodoro 10s
+Pomodoro 15s
+Pomodoro 20s
+Pomodoro 25s
+Info
+
+Only four menu items are shown on screen at a time, and the encoder is used to scroll through the options. The selected menu item is highlighted with inverted colors using the U8g2 graphics library, which also handles all display rendering.
+
+Pressing the encoder button triggers an action:
+
+For Pomodoro options: A countdown begins, displayed in large digits at the center of the screen using a bold font. After the countdown ends, a “Done!” message flashes several times, and the passive buzzer beeps three times.
+
+For the "Info" option: A brief information page is displayed (e.g., author name and date).
+
+All encoder input is handled with digitalRead polling (no interrupts), and the menu scrolls smoothly within the bounds of available options. The buzzer is triggered by sending LOW signals to match its low-level activation design.
+
+This compact project demonstrates interactive UI handling, I2C display control, rotary encoder input, and timed output events—all within the Arduino ecosystem.
 
 ---
 
