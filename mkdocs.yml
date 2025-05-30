@@ -27,7 +27,7 @@ theme:
 # ==== Future development routes (not published yet) ====
 nav:
   - Home: index.md
-  - Test Page: test_index.md
+  # - Test Page: test_index.md
   - Projects:
       # - AI Course: projects/ai-course.md
       # - Smart Display Device:
