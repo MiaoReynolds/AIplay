@@ -27,7 +27,6 @@ theme:
 # ==== Future development routes (not published yet) ====
 nav:
   - Home: index.md
-  # - About: about.md
   - Projects:
       # - AI Course: projects/ai-course.md
       # - Smart Display Device:
@@ -47,6 +46,7 @@ nav:
       # - Building the Display Device: tutorials/screen-howto.md
       # - Setting Up LeRobot: tutorials/lerobot-setup.md
   # - Videos: videos.md
+  - About: about.md
   - Contact: contact.md
 
 plugins:
