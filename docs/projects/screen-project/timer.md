@@ -6,9 +6,8 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 
 ## 🧰 Hardware Components
 
-- ESP32-C3 SuperMini development board
-- 0.91" I2C OLED display
-- EC11 rotary encoder (with button)
+- Arduino nano development board
+- 1.3" I2C OLED display embedded with EC11 encoder
 - Passive buzzer module
 - Breadboard + jumper wires
 - 3.7V Li-ion battery + switch module
@@ -231,12 +230,6 @@ void handleSelection(int index) {
 
 ## 🎬 Video Demonstrations
 
-### Version 1: Basic Functionality Overview
-
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/8o0xLZvq88A" frameborder="0" allowfullscreen></iframe>
-
----
-
-### Version 2: Rotary Control + Buzzer Feedback
+### Rotary Control + Buzzer Feedback
 
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/vNcMjf2bBhE" frameborder="0" allowfullscreen></iframe>
