@@ -36,6 +36,7 @@ nav:
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
       - Pomodoro Timer: projects/screen-project/timer.md
+      - Pomodoro Timer 0.91 OLED : projects/screen-project/timer_091OLED.md
           # - System Monitor: projects/screen-project/system-monitor.md
           # - Cloud Terminal: projects/screen-project/cloud-terminal.md
           # - Generative Graphics: projects/screen-project/generative-graphics.md
