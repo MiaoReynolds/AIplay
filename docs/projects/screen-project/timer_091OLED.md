@@ -11,7 +11,7 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - EC11 rotary encoder (with button)
 - Breadboard + jumper wires
 
-![Pomodoro Timer Hardware](pomodo_timer_091OLEDV2.jpg.jpg)
+![Pomodoro Timer Hardware](pomodo_timer_091OLEDV2.jpg)
 
 ---
 
