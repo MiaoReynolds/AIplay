@@ -37,6 +37,7 @@ nav:
           # - Build Steps: projects/screen-project/build.md
       - Pomodoro Timer 1.3 OLED: projects/screen-project/timer.md
       - Pomodoro Timer 0.91 OLED : projects/screen-project/timer_091OLED.md
+      - Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB : projects/screen-project/timer_091OLED_V3.md
           # - System Monitor: projects/screen-project/system-monitor.md
           # - Cloud Terminal: projects/screen-project/cloud-terminal.md
           # - Generative Graphics: projects/screen-project/generative-graphics.md
