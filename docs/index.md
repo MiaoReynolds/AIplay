@@ -54,4 +54,11 @@ Explore some of my projects:
     </a>
   </div>
 
+  <div class="project-card">
+    <a href="projects/screen-project/timer_091OLED_V3">
+      <img src="assets/images/pomodo_timer_091OLED_V3.jpg" alt="ESP32 Pomodo">
+      <strong>Quadruped</strong>
+    </a>
+  </div>
+
 </div>

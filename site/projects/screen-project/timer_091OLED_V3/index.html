@@ -10,13 +10,13 @@
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/screen-project/timer_091OLED/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/screen-project/timer_091OLED_V3/">
       
       
-        <link rel="prev" href="../timer/">
+        <link rel="prev" href="../timer_091OLED/">
       
       
-        <link rel="next" href="../timer_091OLED_V3/">
+        <link rel="next" href="../../lerobot/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Pomodoro Timer 0.91 OLED - AIplay</title>
+        <title>Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB - AIplay</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pomodoro Timer 0.91 OLED
+              Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB
             
           </span>
         </div>
@@ -412,6 +412,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../timer_091OLED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pomodoro Timer 0.91 OLED
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -429,7 +452,7 @@
   
   
   <span class="md-ellipsis">
-    Pomodoro Timer 0.91 OLED
+    Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB
     
   </span>
   
@@ -442,7 +465,7 @@
   
   
   <span class="md-ellipsis">
-    Pomodoro Timer 0.91 OLED
+    Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB
     
   </span>
   
@@ -501,15 +524,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#version-2-timer-bar-blocks-bigger-end-text" class="md-nav__link">
-    <span class="md-ellipsis">
-      Version 2: Timer Bar Blocks + Bigger End Text
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -519,29 +533,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../timer_091OLED_V3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -707,15 +698,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#version-2-timer-bar-blocks-bigger-end-text" class="md-nav__link">
-    <span class="md-ellipsis">
-      Version 2: Timer Bar Blocks + Bigger End Text
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -744,22 +726,43 @@
 <ul>
 <li>ESP32-C3 SuperMini development board</li>
 <li>0.91" I2C OLED display</li>
+<li>buzzer</li>
+<li>WS2812 RGB LED</li>
 <li>EC11 rotary encoder (with button)</li>
 <li>Breadboard + jumper wires</li>
 </ul>
-<p><img alt="Pomodoro Timer Hardware" src="../pomodo_timer_091OLEDV2.jpg" /></p>
+<p><img alt="Pomodoro Timer Hardware" src="../pomodo_timer_091OLED_V3.jpg" /></p>
 <hr />
 <p>GPT Prompt for the Code:
-I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2C interface), and an EC11 rotary encoder (without a soldered push button, but can be wired).</p>
-<p>I want to implement a Pomodoro timer prototype using Arduino code with the following behavior:</p>
-<p>When rotating the EC11 encoder clockwise, the OLED screen displays a horizontal progress bar from left to right, increasing one block per tick. When rotating counterclockwise, the bar shortens from the right.</p>
-<p>The progress bar is made up of small vertical blocks that are 4 pixels wide, with 1 pixel spacing between each block (total 5 pixels per block). The blocks occupy the full height of the 32-pixel OLED screen.</p>
-<p>If there is no interaction for 2 seconds, the entire bar flashes 5 times (alternating on and off every 200 ms).</p>
-<p>After flashing, the timer automatically shrinks the bar from right to left, removing one block per second.</p>
-<p>Each block being removed flashes 3 times (i.e., 6 toggles) before it disappears, to make the countdown visually clear.</p>
-<p>When the progress bar is fully empty, the screen displays “Done!” in a large font that fills the vertical height of the screen (32 pixels) using the u8g2_font_logisoso32_tf font.</p>
-<p>The code uses the U8g2 graphics library for OLED display control and the Encoder library for rotary encoder input. The encoder's A and B phase pins are connected to GPIO2 and GPIO3.</p>
-<p>The entire behavior is in test/demo mode — each tick of the encoder corresponds to a 1-block change, and countdown occurs at 1 block per second for visualization purposes.</p>
+I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2C interface), a single EC11 rotary encoder (without a soldered button), a passive buzzer connected to GPIO1, and a single WS2812 RGB LED connected to GPIO0.</p>
+<p>I want to build a visual Pomodoro-style timer using Arduino. Please implement the following behavior using the U8g2 library for OLED, the Encoder library for the rotary encoder, and the Adafruit_NeoPixel library for the WS2812 LED:</p>
+<p>Display &amp; Timer Behavior
+The screen shows a horizontal progress bar composed of evenly spaced blocks.</p>
+<p>Each block is 8 pixels wide, with 2 pixels spacing between blocks.</p>
+<p>Each block has its four corners cut, like a 3-pixel right-angle triangle, removing three pixels in each corner to create a high-tech cut-corner visual effect.</p>
+<p>When rotating the encoder:</p>
+<p>Clockwise: one block is added (up to screen width);</p>
+<p>Counterclockwise: one block is removed from the right.</p>
+<p>Inactivity Response
+If no interaction happens for 2 seconds, the entire progress bar flashes 5 times (on/off every 200ms).</p>
+<p>After flashing, the progress bar automatically shrinks, one block at a time from right to left.</p>
+<p>Each block flashes in a “half-flash” pattern before disappearing:</p>
+<p>Only half of the pixels inside the block are lit (checkerboard pattern);</p>
+<p>The block corners remain unlit during the flash, preserving the cut-corner look.</p>
+<p>End State
+When all blocks are gone:</p>
+<p>The screen displays “Done!” in large 32-pixel font (u8g2_font_logisoso32_tf), centered.</p>
+<p>The buzzer (GPIO1) beeps 3 times (short pulse).</p>
+<p>The WS2812 LED (GPIO0) is turned off.</p>
+<p>After 5 seconds, the display is cleared and the LED remains off.</p>
+<p>LED Color Feedback
+As the encoder rotates, the WS2812 LED cycles through hues in the RGB color wheel.</p>
+<p>Clockwise = forward through hues, counterclockwise = backward.</p>
+<p>The LED should show smooth color transitions and update in real-time with the encoder.</p>
+<p>Notes
+Use U8g2lib.h, Encoder.h, and Adafruit_NeoPixel.h.</p>
+<p>OLED screen should be updated efficiently.</p>
+<p>All visual and interactive transitions should feel responsive and smooth.</p>
 <hr />
 <h2 id="key-code-snippet">🧠 Key Code Snippet</h2>
 <details>
@@ -767,20 +770,26 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;U8g2lib.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Encoder.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Adafruit_NeoPixel.h&gt;</span>
 
 <span class="cp">#define SCREEN_WIDTH 128</span>
 <span class="cp">#define SCREEN_HEIGHT 32</span>
-<span class="cp">#define BLOCK_WIDTH 4</span>
-<span class="cp">#define BLOCK_SPACING 1</span>
+<span class="cp">#define BLOCK_WIDTH 8</span>
+<span class="cp">#define BLOCK_SPACING 2</span>
 <span class="cp">#define BLOCK_TOTAL_WIDTH (BLOCK_WIDTH + BLOCK_SPACING)</span>
 <span class="cp">#define MAX_BLOCKS (SCREEN_WIDTH / BLOCK_TOTAL_WIDTH)</span>
 
 <span class="cp">#define ENCODER_PIN_A 2</span>
 <span class="cp">#define ENCODER_PIN_B 3</span>
+<span class="cp">#define BUZZER_PIN 1</span>
+<span class="cp">#define LED_PIN 0</span>
+<span class="cp">#define LED_COUNT 1</span>
 
 <span class="n">U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C</span><span class="w"> </span><span class="nf">u8g2</span><span class="p">(</span><span class="n">U8G2_R0</span><span class="p">);</span>
 <span class="n">Encoder</span><span class="w"> </span><span class="nf">knob</span><span class="p">(</span><span class="n">ENCODER_PIN_A</span><span class="p">,</span><span class="w"> </span><span class="n">ENCODER_PIN_B</span><span class="p">);</span>
+<span class="n">Adafruit_NeoPixel</span><span class="w"> </span><span class="nf">pixel</span><span class="p">(</span><span class="n">LED_COUNT</span><span class="p">,</span><span class="w"> </span><span class="n">LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">NEO_GRB</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">NEO_KHZ800</span><span class="p">);</span>
 
+<span class="c1">// Status Variables</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">lastPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastInteraction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -790,27 +799,98 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastFlashTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">shrinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 
-<span class="c1">// Shrinking flash for each block</span>
+<span class="c1">// Blinking Variables</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">blinkCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">blinkVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastBlinkTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxBlinkCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">drawBar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">blocks</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blinkIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">blinkOn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// Color Variables</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">hueValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">// Finishing Screen Control</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">doneTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="c1">// ========================= Functions =========================</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">updateColor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pixel</span><span class="p">.</span><span class="n">setPixelColor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">pixel</span><span class="p">.</span><span class="n">ColorHSV</span><span class="p">(</span><span class="n">hueValue</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">256</span><span class="p">));</span>
+<span class="w">  </span><span class="n">pixel</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">playBuzzer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">times</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">times</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 绘制带直角三角切角的格子</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">drawCutCornerBlock</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawBox</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 清除角落像素（三角形）</span>
+
+<span class="w">  </span><span class="c1">// 左上</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 右上</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 左下</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 右下</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">drawBar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">blocks</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blinkIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">blinkOn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">halfFlash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blocks</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_logisoso32_tf</span><span class="p">);</span><span class="w">  </span><span class="c1">// height 32 pixals</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_logisoso32_tf</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawStr</span><span class="p">((</span><span class="n">SCREEN_WIDTH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="s">&quot;Done!&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Done!&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">blocks</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">blinkIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blinkOn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawBox</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BLOCK_TOTAL_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">BLOCK_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="p">);</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BLOCK_TOTAL_WIDTH</span><span class="p">;</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">blinkIndex</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">blinkOn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">halfFlash</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">BLOCK_WIDTH</span><span class="p">;</span><span class="w"> </span><span class="n">dx</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="p">;</span><span class="w"> </span><span class="n">dy</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="kt">int</span><span class="w"> </span><span class="n">px</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+
+<span class="w">              </span><span class="c1">// 跳过四个角落的三个像素（三角形）</span>
+<span class="w">              </span><span class="kt">bool</span><span class="w"> </span><span class="n">skipCorner</span><span class="w"> </span><span class="o">=</span>
+<span class="w">                </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BLOCK_WIDTH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BLOCK_WIDTH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">skipCorner</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">dx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="n">px</span><span class="p">,</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawBox</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BLOCK_TOTAL_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">BLOCK_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">drawCutCornerBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">BLOCK_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="p">);</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -818,9 +898,17 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
 <span class="p">}</span>
 
+<span class="c1">// ========================= 主流程 =========================</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">  </span><span class="n">pixel</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">  </span><span class="n">pixel</span><span class="p">.</span><span class="n">setBrightness</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class="w">  </span><span class="n">updateColor</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+
 <span class="w">  </span><span class="n">drawBar</span><span class="p">(</span><span class="n">numBlocks</span><span class="p">);</span>
 <span class="w">  </span><span class="n">lastInteraction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 <span class="p">}</span>
@@ -828,7 +916,7 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 
-<span class="w">  </span><span class="c1">// --- Handle Encoder ---</span>
+<span class="w">  </span><span class="c1">// 旋钮输入处理</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">knob</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">lastPosition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastPosition</span><span class="p">;</span>
@@ -838,14 +926,21 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numBlocks</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numBlocks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_BLOCKS</span><span class="p">)</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAX_BLOCKS</span><span class="p">;</span>
 
+<span class="w">    </span><span class="c1">// 色彩渐变</span>
+<span class="w">    </span><span class="n">hueValue</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hueValue</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">hueValue</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hueValue</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="n">hueValue</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span>
+<span class="w">    </span><span class="n">updateColor</span><span class="p">();</span>
+
 <span class="w">    </span><span class="n">drawBar</span><span class="p">(</span><span class="n">numBlocks</span><span class="p">);</span>
 <span class="w">    </span><span class="n">lastInteraction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">;</span>
 <span class="w">    </span><span class="n">flashing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">    </span><span class="n">shrinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">    </span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// --- Flashing before shrink ---</span>
+<span class="w">  </span><span class="c1">// 无操作2秒后闪烁整条</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flashing</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">shrinking</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastInteraction</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2000</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">flashing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="n">flashCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -865,7 +960,7 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// --- Shrinking with blinking ---</span>
+<span class="w">  </span><span class="c1">// 自动消减，每块闪烁</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">shrinking</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -879,17 +974,32 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <span class="w">      </span><span class="n">lastBlinkTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">;</span>
 <span class="w">      </span><span class="n">blinkCount</span><span class="o">++</span><span class="p">;</span>
 
-<span class="w">      </span><span class="n">drawBar</span><span class="p">(</span><span class="n">numBlocks</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">blinkingBlockIndex</span><span class="p">,</span><span class="w"> </span><span class="n">blinkVisible</span><span class="p">);</span>
+<span class="w">      </span><span class="n">drawBar</span><span class="p">(</span><span class="n">numBlocks</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">blinkingBlockIndex</span><span class="p">,</span><span class="w"> </span><span class="n">blinkVisible</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
 
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blinkCount</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">maxBlinkCount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">numBlocks</span><span class="o">--</span><span class="p">;</span>
 <span class="w">        </span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numBlocks</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="n">drawBar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
 <span class="w">          </span><span class="n">shrinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">          </span><span class="n">playBuzzer</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">          </span><span class="n">pixel</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">          </span><span class="n">pixel</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+<span class="w">          </span><span class="n">doneTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">          </span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Done 显示 5 秒后清空</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">doneTime</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pixel</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pixel</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+<span class="w">    </span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -899,11 +1009,9 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 <hr />
 <h2 id="video-demonstrations">🎬 Video Demonstrations</h2>
 <h3 id="version-1-basic-functionality-overview">Version 1: Basic Functionality Overview</h3>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/8o0xLZvq88A" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/My10i8K1-sc" frameborder="0" allowfullscreen></iframe>
 
 <hr />
-<h3 id="version-2-timer-bar-blocks-bigger-end-text">Version 2: Timer Bar Blocks + Bigger End Text</h3>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/6zQn1S9BfKk" frameborder="0" allowfullscreen></iframe>
 
 
 
