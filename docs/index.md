@@ -42,8 +42,8 @@ Explore some of my projects:
 
   <div class="project-card">
     <a href="projects/lerobot">
-      <img src="assets/images/lerobot-arm.jpg" alt="LeRobot">
-      <strong>LeRobot</strong>
+      <img src="assets/images/lerobot-arm.jpg" alt="LeRobot"><br>
+      <div><strong>LeRobot</strong></div>
     </a>
   </div>
 
