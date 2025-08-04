@@ -2,5 +2,5 @@
 
 You can reach me at:
 
-- GitHub: [MiaoReynolds](https://github.com/MiaoReynolds)
-- Email: bin.miao@ntu.edu.sg
+* GitHub: [MiaoReynolds](https://github.com/MiaoReynolds)
+* Email: support@aionelab.com
