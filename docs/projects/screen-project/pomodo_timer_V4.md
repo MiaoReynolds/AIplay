@@ -1,4 +1,4 @@
-# Pomodoro Timer Project
+# Pomodoro with 1.3 inch OLED, Knob Encoder, Buttons
 
 This project showcases a simple yet effective Pomodoro timer built with an ESP32 and an integrated 1.3 OLED display with knob and buttons. It can be used for more interesting projects as well
 
