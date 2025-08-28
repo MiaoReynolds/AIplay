@@ -63,7 +63,7 @@ Explore some of my projects:
 
   <div class="project-card">
     <a href="projects/screen-project/pomodo_timer_V4">
-      <img src="assets/images/esp32knob13OLED.png" alt="Screen Project">
+      <img src="assets/images/esp32knob13OLED.png" alt="Screen Project V4">
       <strong>Pomodo with case</strong>
     </a>
   </div>
