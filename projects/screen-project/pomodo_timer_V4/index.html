@@ -753,6 +753,53 @@
 <li>A Back button on GPIO16 (used to exit countdown and return to main menu)</li>
 </ul>
 <p><img alt="Pomodoro Timer Hardware" src="../esp32knob13OLED.png" /></p>
+<p>The pinout is as follow:</p>
+<table>
+<thead>
+<tr>
+<th>OLED Pin</th>
+<th>GPIO</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confirm</td>
+<td>22</td>
+<td>Panel button</td>
+</tr>
+<tr>
+<td>SDA</td>
+<td>19</td>
+<td>OLED</td>
+</tr>
+<tr>
+<td>SCL</td>
+<td>23</td>
+<td>OLED</td>
+</tr>
+<tr>
+<td>Push</td>
+<td>18</td>
+<td>Encoder button</td>
+</tr>
+<tr>
+<td>TRA</td>
+<td>5</td>
+<td>EC11 Encoder</td>
+</tr>
+<tr>
+<td>TRB</td>
+<td>17</td>
+<td>EC11 Encoder</td>
+</tr>
+<tr>
+<td>Back</td>
+<td>16</td>
+<td>Panel button</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <p>GPT Prompt for the Code:
 Generate Arduino C++ code for an ESP32-based Pomodoro timer using the following hardware setup:</p>
