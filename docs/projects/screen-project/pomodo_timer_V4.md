@@ -25,6 +25,9 @@ The pinout is as follow:
 | TRB | 17 | EC11 Encoder |
 | Back | 16 | Panel button |
 
+The assembled timer from different views:
+![Manu Page](esp32knob13OLED_2.png)
+![Side View](esp32knob13OLED_3.png)
 
 ---
 
