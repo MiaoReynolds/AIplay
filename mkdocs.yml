@@ -35,7 +35,7 @@ nav:
           # - Hardware Design: projects/screen-project/design.md
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
-      - Pomodoro Timer 1.3 OLED with knob and all buttons: projects/screen-project/pomodo_timer_V4.md     
+      - Pomodoro Timer 1.3 OLED with knob and all buttons: projects/screen-project/pomodo_timer_V4.md
       - Pomodoro Timer 1.3 OLED: projects/screen-project/timer.md
       - Pomodoro Timer 0.91 OLED : projects/screen-project/timer_091OLED.md
       - Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB : projects/screen-project/timer_091OLED_V3.md
