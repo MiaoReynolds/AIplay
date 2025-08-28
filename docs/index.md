@@ -34,9 +34,16 @@ Explore some of my projects:
 <div class="project-grid">
 
   <div class="project-card">
-    <a href="projects/screen-project/timer/">
+    <a href="projects/screen-project/timer">
       <img src="assets/images/knob_pomodo.jpg" alt="Screen Project">
       <strong>Screen Project</strong>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <a href="projects/screen-project/pomodo_timer_V4">
+      <img src="assets/images/esp32knob13OLED.png" alt="Screen Project V4">
+      <strong>Pomodo with case</strong>
     </a>
   </div>
 
@@ -61,11 +68,6 @@ Explore some of my projects:
     </a>
   </div>
 
-  <div class="project-card">
-    <a href="projects/screen-project/pomodo_timer_V4">
-      <img src="assets/images/esp32knob13OLED.png" alt="Screen Project V4">
-      <strong>Pomodo with case</strong>
-    </a>
-  </div>
+
 
 </div>
