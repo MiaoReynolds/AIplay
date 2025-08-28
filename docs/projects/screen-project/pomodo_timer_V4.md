@@ -13,6 +13,19 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 
 ![Pomodoro Timer Hardware](esp32knob13OLED.png)
 
+The pinout is as follow:
+
+| OLED Pin | GPIO | Remark |
+|--------|---------|---------|
+| Confirm |22 | Panel button |
+| SDA | 19 | OLED |
+| SCL | 23 | OLED |
+| Push | 18 | Encoder button |
+| TRA | 5 | EC11 Encoder |
+| TRB | 17 | EC11 Encoder |
+| Back | 16 | Panel button |
+
+
 ---
 
 GPT Prompt for the Code:
