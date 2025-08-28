@@ -27,7 +27,7 @@ The pinout is as follow:
 
 The assembled timer from different views:
 ![Manu Page](esp32knob13OLED_2.png)
-![Side View](esp32knob13OLED_3.png)
+![Side View](esp32knob13OLED_3.jpg)
 
 ---
 
