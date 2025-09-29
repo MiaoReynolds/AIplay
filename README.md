@@ -1,91 +1,93 @@
 # 🌐 AIPlay - Web Introduction
 
-欢迎来到 **AIPlay** 页面！  
-主要整理了一些我个人对于AI领域的边玩边学的进度记录和思考。
-欢迎参与讨论
+Welcome to the **AIPlay** page!  
+This project mainly organizes my personal progress notes and reflections while learning and experimenting with AI.  
+Feel free to join the discussion!
 
 ---
 
-## 📑 目录
-- [项目简介](#项目简介)
-- [网页链接](#网页链接)
+## 📑 Table of Contents
+- [Project Introduction](#project-introduction)
+- [Website Link](#website-link)
 <!--
-- [主要功能](#主要功能)
-- [使用说明](#使用说明)
-- [展示图片](#展示图片)
-- [未来计划](#未来计划)
+- [Main Features](#main-features)
+- [Usage Instructions](#usage-instructions)
+- [Showcase Images](#showcase-images)
+- [Future Plans](#future-plans)
 -->
 ---
 
-## 📝 项目简介
-AIPlay 是一个聚焦于 **AI 应用探索** 的网页项目。  
-目前停留在一些小零件和小玩具的开发探索阶段，而最终目标则是制作更复杂更有趣的玩具。眼下的目标是将一些开源项目进行落地复现，随后再基于这些能动起来的玩意儿进行一些拓展。
-探索的大致方向如下：
-- 🤖 **桌面屏幕摆件**
-- 🤖 **各种LED灯的小玩意儿**
-- 🤖 **能动的可以遥控，并且网友可以自主制作出来的小车，坦克**
-- 🤖 **机器手，机械臂，机器狗或机器蜘蛛之类的复杂玩具**
-- 🤖 **图传系统，并逐渐拓展到较清晰，耐干扰的远程遥控玩意儿**
-- 🤖 **视觉处理，视频处理**
-- 🤖 **AI agent解决日常生活中的自动化问题**
+## 📝 Project Introduction
+AIPlay is a web project focusing on **AI application exploration**.  
+Currently, it is in the stage of developing small components and toys, with the ultimate goal of building more complex and interesting creations. The current objective is to reproduce some open-source projects and then extend them based on these working prototypes.  
 
-🔗 [返回目录](#📑-目录)
+The general directions of exploration are as follows:
+- 🖥️ **Desktop screen gadgets**
+- 📟 **Various LED-based little devices**
+- 🚗 **Remote-controlled cars or tanks that can be built by anyone**
+- 🦾 **Robotic hands, arms, robot dogs, or spider-like complex toys**
+- 🌆 **Visual processing, video processing, and AI-generated images**
+- ⚙️ **AI agents to solve automation problems in daily life**
+- 🛠 **AI tool explore**
+
+🔗 [Back to Table of Contents](#📑-table-of-contents)
 
 ---
 
-## 🔗 网页链接
-👉 点击进入 [AIPlay Web](https://miaoreynolds.github.io/AIplay/)  
+## 🔗 Website Link
+👉 Visit [AIPlay Web](https://miaoreynolds.github.io/AIplay/)  
 
-🔗 [返回目录](#📑-目录)
+🔗 [Back to Table of Contents](#📑-table-of-contents)
+
 <!--
 ---
 
-## ⚡ 主要功能
-- 🤖 **AI交互**：体验实时对话与创意输出  
-- 🎨 **图像生成**：通过提示词快速生成高质量图片  
-- 📚 **学习与教学**：适用于教育和课程演示  
-- 🔧 **模块化扩展**：可轻松拓展新功能  
+## ⚡ Main Features
+- 🤖 **AI Interaction**: Experience real-time dialogue and creative outputs  
+- 🎨 **Image Generation**: Generate high-quality images from prompts  
+- 📚 **Learning & Teaching**: Suitable for education and course demonstrations  
+- 🔧 **Modular Extensions**: Easily expand with new features  
 
-🔗 [返回目录](#📑-目录)
-
----
-
-## 🛠 使用说明
-1. 打开网页 [AIPlay](https://your-ai-play-link.com)  
-2. 输入你的提示词或选择预设功能  
-3. 立即体验 AI 生成结果  
-4. 可下载或分享内容  
-
-🔗 [返回目录](#📑-目录)
+🔗 [Back to Table of Contents](#📑-table-of-contents)
 
 ---
 
-## 🖼 展示图片
+## 🛠 Usage Instructions
+1. Open the webpage [AIPlay](https://your-ai-play-link.com)  
+2. Enter your prompt or select a preset function  
+3. Experience AI-generated results instantly  
+4. Download or share the content  
 
-| 图片1 | 图片2 |
-|-------|-------|
+🔗 [Back to Table of Contents](#📑-table-of-contents)
+
+---
+
+## 🖼 Showcase Images
+
+| Image 1 | Image 2 |
+|---------|---------|
 | ![Alt text](images/sample1.png) | ![Alt text](images/sample2.png) |
 
-| 图片3 | 图片4 |
-|-------|-------|
+| Image 3 | Image 4 |
+|---------|---------|
 | ![Alt text](images/sample3.png) | ![Alt text](images/sample4.png) |
 
-（表格可自由拓展行与列，插入更多图片）
+(This table can be freely extended with more rows and columns to insert additional images.)
 
-🔗 [返回目录](#📑-目录)
+🔗 [Back to Table of Contents](#📑-table-of-contents)
 
 ---
 
-## 🚀 未来计划
-- [ ] 增加更多 AI 工具模块  
-- [ ] 支持多语言交互  
-- [ ] 增加用户自定义工作区  
-- [ ] 推出移动端适配版本  
+## 🚀 Future Plans
+- [ ] Add more AI tool modules  
+- [ ] Support multilingual interaction  
+- [ ] Add user-customized workspace  
+- [ ] Launch a mobile-friendly version  
 
-🔗 [返回目录](#📑-目录)
+🔗 [Back to Table of Contents](#📑-table-of-contents)
 
 ---
 
 ## 📜 License
-本项目遵循 [MIT License](LICENSE)。  
+This project is licensed under the [MIT License](LICENSE).  
 -->
