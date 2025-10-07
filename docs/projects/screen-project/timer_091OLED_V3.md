@@ -14,7 +14,6 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - Breadboard + jumper wires
 
 ![Pomodoro Timer Hardware](pomodo_timer_091OLED_V3.jpg)
-
 ---
 
 GPT Prompt for the Code:
@@ -209,7 +208,7 @@ void drawBar(int blocks, bool visible = true, int blinkIndex = -1, bool blinkOn 
   u8g2.sendBuffer();
 }
 
-// ========================= 主流程 =========================
+// ========================= Main Loop =========================
 
 void setup() {
   u8g2.begin();
@@ -227,7 +226,7 @@ void setup() {
 void loop() {
   unsigned long now = millis();
 
-  // 旋钮输入处理
+  // 
   int position = knob.read() / 4;
   if (position != lastPosition) {
     int delta = position - lastPosition;
@@ -251,7 +250,7 @@ void loop() {
     doneDisplayed = false;
   }
 
-  // 无操作2秒后闪烁整条
+  // 
   if (!flashing && !shrinking && (now - lastInteraction > 2000) && numBlocks > 0) {
     flashing = true;
     flashCount = 0;
@@ -271,7 +270,7 @@ void loop() {
     }
   }
 
-  // 自动消减，每块闪烁
+  // 
   if (shrinking) {
     if (blinkingBlockIndex == -1 && numBlocks > 0) {
       blinkingBlockIndex = numBlocks - 1;
@@ -304,7 +303,7 @@ void loop() {
     }
   }
 
-  // Done 显示 5 秒后清空
+  // Done 
   if (doneDisplayed && millis() - doneTime > 5000) {
     u8g2.clear();
     u8g2.sendBuffer();

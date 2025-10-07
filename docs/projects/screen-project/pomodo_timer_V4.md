@@ -11,7 +11,16 @@ This project showcases a simple yet effective Pomodoro timer built with an ESP32
 - A Confirm button on GPIO22 (functions the same as the rotary push button)
 - A Back button on GPIO16 (used to exit countdown and return to main menu)
 
+
 ![Pomodoro Timer Hardware](esp32knob13OLED.png)
+
+---
+
+- Rechargeable Battery
+
+![Pomodoro Timer Hardware Battery Version](esp32knob13OLED_Battery.jpg)
+
+---
 
 The pinout is as follow:
 
@@ -236,4 +245,10 @@ void flashDone() {
 
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/vJ-HOkglA-o" frameborder="0" allowfullscreen></iframe>
 
+---
+## 🎬 Video Demonstrations
+
+### Version 2: Battery Version
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/XvZo0MEnAaU" frameborder="0" allowfullscreen></iframe>
 ---
