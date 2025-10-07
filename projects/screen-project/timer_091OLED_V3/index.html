@@ -520,6 +520,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#key-code-snippet" class="md-nav__link">
     <span class="md-ellipsis">
       🧠 Key Code Snippet
@@ -694,6 +703,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#key-code-snippet" class="md-nav__link">
     <span class="md-ellipsis">
       🧠 Key Code Snippet
@@ -754,8 +772,7 @@
 <li>EC11 rotary encoder (with button)</li>
 <li>Breadboard + jumper wires</li>
 </ul>
-<p><img alt="Pomodoro Timer Hardware" src="../pomodo_timer_091OLED_V3.jpg" /></p>
-<hr />
+<h2 id="_1"><img alt="Pomodoro Timer Hardware" src="../pomodo_timer_091OLED_V3.jpg" /></h2>
 <p>GPT Prompt for the Code:
 I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2C interface), a single EC11 rotary encoder (without a soldered button), a passive buzzer connected to GPIO1, and a single WS2812 RGB LED connected to GPIO0.</p>
 <p>I want to build a visual Pomodoro-style timer using Arduino. Please implement the following behavior using the U8g2 library for OLED, the Encoder library for the rotary encoder, and the Adafruit_NeoPixel library for the WS2812 LED:</p>
@@ -921,7 +938,7 @@ Use U8g2lib.h, Encoder.h, and Adafruit_NeoPixel.h.</p>
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="c1">// ========================= 主流程 =========================</span>
+<span class="c1">// ========================= Main Loop =========================</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
@@ -939,7 +956,7 @@ Use U8g2lib.h, Encoder.h, and Adafruit_NeoPixel.h.</p>
 <span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 
-<span class="w">  </span><span class="c1">// 旋钮输入处理</span>
+<span class="w">  </span><span class="c1">// </span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">knob</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">lastPosition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastPosition</span><span class="p">;</span>
@@ -963,7 +980,7 @@ Use U8g2lib.h, Encoder.h, and Adafruit_NeoPixel.h.</p>
 <span class="w">    </span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// 无操作2秒后闪烁整条</span>
+<span class="w">  </span><span class="c1">// </span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flashing</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">shrinking</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastInteraction</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2000</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">flashing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="n">flashCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -983,7 +1000,7 @@ Use U8g2lib.h, Encoder.h, and Adafruit_NeoPixel.h.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// 自动消减，每块闪烁</span>
+<span class="w">  </span><span class="c1">// </span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">shrinking</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">blinkingBlockIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -1016,7 +1033,7 @@ Use U8g2lib.h, Encoder.h, and Adafruit_NeoPixel.h.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Done 显示 5 秒后清空</span>
+<span class="w">  </span><span class="c1">// Done </span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doneDisplayed</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">doneTime</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
