@@ -8,9 +8,10 @@
   background-blend-mode: multiply;
 }
 
-/* 可选：覆盖默认蓝色背景色，避免干扰 */
+/* 可选：覆盖默认蓝色背景色，避免干扰 
 .md-header__inner {
   height: 100%;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.2);
 }
+*/
