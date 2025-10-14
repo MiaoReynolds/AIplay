@@ -1,254 +1,41 @@
-# Pomodoro with 1.3 inch OLED, Knob Encoder, Buttons
-
-This project showcases a simple yet effective Pomodoro timer built with an ESP32 and an integrated 1.3 OLED display with knob and buttons. It can be used for more interesting projects as well
+# Raspberry-Pi-with-screen-and-keyboard-3D-print
+A complete 3D print case that integrate Raspberry Pi with a screen and keyboard.
+- Home made
+- Low cost
+- Easy to carry
+- Ready to use
 
 ---
 
 ## 🧰 Hardware Components
 
-- A 1.3-inch SH1106 OLED display connected via I2C (SDA=GPIO19, SCL=GPIO23)
-- An EC11 rotary encoder (A=GPIO5, B=GPIO17, Push=GPIO18)
-- A Confirm button on GPIO22 (functions the same as the rotary push button)
-- A Back button on GPIO16 (used to exit countdown and return to main menu)
+- Raspberry Pi 4/5
+- 5 inch touch-screen display
+- Wireless keyboard
+- Battery case and batteries
 
 
-![Pomodoro Timer Hardware](esp32knob13OLED.png)
+![Complete Setup](RPi4Case.jpg)
 
----
+👉 Other Parts can be found in the link below
 
-- Rechargeable Battery
-
-![Pomodoro Timer Hardware Battery Version](esp32knob13OLED_Battery.jpg)
-
----
-
-The pinout is as follow:
-
-| OLED Pin | GPIO | Remark |
-|--------|---------|---------|
-| Confirm |22 | Panel button |
-| SDA | 19 | OLED |
-| SCL | 23 | OLED |
-| Push | 18 | Encoder button |
-| TRA | 5 | EC11 Encoder |
-| TRB | 17 | EC11 Encoder |
-| Back | 16 | Panel button |
-
-The assembled timer from different views:
-![Manu Page](esp32knob13OLED_2.png)
-![Side View](esp32knob13OLED_3.jpg)
+| Parts | Link |
+|--------|------|
+| Screen | Link: [5-inch Display](https://www.aliexpress.com/item/1005009083388577.html?spm=a2g0o.productlist.main.43.5b6aejqCejqC9D&algo_pvid=85049312-102b-4edb-82c9-c52b5db7d6c6&algo_exp_id=85049312-102b-4edb-82c9-c52b5db7d6c6-42&pdp_ext_f=%7B%22order%22%3A%227%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21SGD%2166.72%2133.36%21%21%21357.00%21178.50%21%402140e03217599911388737318e0137%2112000047855464859%21sea%21SG%210%21ABX%211%210%21n_tag%3A-29910%3Bd%3A81e889cd%3Bm03_new_user%3A-29895&curPageLogUid=ixymnuZWOhgI&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009083388577%7C_p_origin_prod%3A) |
+| Keyboard | Link: [49keys Portable Wireless Keyboard](https://example.com/some/very/very/long/link?with=query&params=too) |
+| Battery 21700 | Link: [21700 Dyson Battery Case, No soldering](https://www.aliexpress.com/item/1005009213466865.html?spm=a2g0o.productlist.main.3.621b9po39po3B0&algo_pvid=835a0427-b517-4576-ae5f-813f403dd737&algo_exp_id=835a0427-b517-4576-ae5f-813f403dd737-2&pdp_ext_f=%7B%22order%22%3A%226%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21SGD%2110.64%215.85%21%21%217.98%214.39%21%402151e66217599897254311970e0587%2112000048333787743%21sea%21SG%210%21ABX%211%210%21n_tag%3A-29910%3Bd%3A81e889cd%3Bm03_new_user%3A-29895&curPageLogUid=L6VxJWp8umJy&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009213466865%7C_p_origin_prod%3A) |
+| Battery 18650 | Link: [18650 Battery Case, No soldering](https://www.aliexpress.com/item/1005008484271476.html?spm=a2g0o.productlist.main.2.30e8486cqWLEl7&algo_pvid=6b3516ee-2f07-46d5-8407-6a2eb8158299&algo_exp_id=6b3516ee-2f07-46d5-8407-6a2eb8158299-1&pdp_ext_f=%7B%22order%22%3A%2234%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21SGD%2113.37%216.95%21%21%2171.52%2137.19%21%402151e66217599898783202250e0587%2112000045347844093%21sea%21SG%210%21ABX%211%210%21n_tag%3A-29910%3Bd%3A81e889cd%3Bm03_new_user%3A-29895&curPageLogUid=VvEvx8R1K2VI&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005008484271476%7C_p_origin_prod%3A)|
 
 ---
 
-GPT Prompt for the Code:
-Generate Arduino C++ code for an ESP32-based Pomodoro timer using the following hardware setup:
+👉 [Download the 3DP file](https://github.com/MiaoReynolds/Raspberry-Pi-with-screen-and-keyboard-3D-print/raw/main/3DPfile/)
 
-- A 1.3-inch SH1106 OLED display connected via I2C (SDA=GPIO19, SCL=GPIO23)
-- An EC11 rotary encoder (A=GPIO5, B=GPIO17, Push=GPIO18)
-- A Confirm button on GPIO22 (functions the same as the rotary push button)
-- A Back button on GPIO16 (used to exit countdown and return to main menu)
-
-Requirements:
-1. Display a scrollable menu of five options: "Pomodoro 10 min", "Pomodoro 15 min", "Pomodoro 20 min", "Pomodoro 25 min", and "Info".
-2. Show 4 menu items on screen at a time, and highlight the currently selected one.
-3. Use the rotary encoder to scroll through the menu, and use either the rotary push button or the Confirm button to start a Pomodoro countdown.
-4. During countdown, display the remaining time in mm:ss format in large centered digits.
-5. Pressing the Back button at any time during the countdown returns to the main menu.
-6. Selecting "Info" displays author information for 3 seconds before returning to the menu.
-7. Do not include any buzzer or sound feedback.
-8. Use the U8g2 library and appropriate fonts for the OLED screen.
----
-
-## 🧠 Key Code Snippet
-
-<details>
-<summary>Click to expand full code</summary>
-```cpp
-#include <U8g2lib.h>
-#include <Wire.h>
-// Screen（SH1106 OLED）
-#define OLED_SDA 19
-#define OLED_SCL 23
-// EC11 encoder
-#define ROTARY_A     5
-#define ROTARY_B     17
-#define ROTARY_PUSH  18
-// button
-#define BTN_CONFIRM  22
-#define BTN_BACK     16
-// buzzer
-#define BUZZER_PIN   21  
-// manu
-const int menuCount = 5;
-const char* menuItems[menuCount] = {
-  "Pomodoro 10 min",
-  "Pomodoro 15 min",
-  "Pomodoro 20 min",
-  "Pomodoro 25 min",
-  "Info"
-};
-// variable status
-int menuIndex = 1;
-int lastCLK = HIGH;
-bool inCountdown = false;
-U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
-// ====== SETUP ======
-void setup() {
-  pinMode(ROTARY_A, INPUT_PULLUP);
-  pinMode(ROTARY_B, INPUT_PULLUP);
-  pinMode(ROTARY_PUSH, INPUT_PULLUP);
-  pinMode(BTN_CONFIRM, INPUT_PULLUP);
-  pinMode(BTN_BACK, INPUT_PULLUP);
-  pinMode(BUZZER_PIN, OUTPUT);
-  //digitalWrite(BUZZER_PIN, HIGH); // 不响（低电平才响）
-  Wire.begin(OLED_SDA, OLED_SCL);
-  u8g2.begin();
-  drawMenu();
-}
-// ====== LOOP ======
-void loop() {
-  if (inCountdown) {
-    // 倒计时中仅监听退出
-    if (digitalRead(BTN_BACK) == LOW) {
-      delay(200);
-      inCountdown = false;
-      drawMenu();
-    }
-    return;
-  }
-  handleRotary();
-  // 开始倒计时（旋钮按下或Confirm）
-  if (digitalRead(ROTARY_PUSH) == LOW || digitalRead(BTN_CONFIRM) == LOW) {
-    delay(200);
-    handleSelection(menuIndex);
-    drawMenu();
-  }
-  // Back 返回主菜单
-  if (digitalRead(BTN_BACK) == LOW) {
-    delay(200);
-    drawMenu();
-  }
-}
-// ====== HANDLE ROTARY ======
-void handleRotary() {
-  int currentCLK = digitalRead(ROTARY_A);
-  if (currentCLK != lastCLK && currentCLK == LOW) {
-    if (digitalRead(ROTARY_B) != currentCLK) {
-      menuIndex++;
-    } else {
-      menuIndex--;
-    }
-    if (menuIndex < 1) menuIndex = 1;
-    if (menuIndex > menuCount) menuIndex = menuCount;
-    drawMenu();
-  }
-  lastCLK = currentCLK;
-}
-// ====== DRAW MENU ======
-void drawMenu() {
-  u8g2.clearBuffer();
-  u8g2.setFont(u8g2_font_6x10_tr);
-  const int visibleCount = 4;
-  int startIdx = menuIndex - 1;
-  if (startIdx < 1) startIdx = 1;
-  if (startIdx > menuCount - visibleCount + 1)
-    startIdx = menuCount - visibleCount + 1;
-  for (int i = 0; i < visibleCount; i++) {
-    int idx = startIdx + i;
-    if (idx > menuCount) break;
-    int y = i * 16 + 14;
-    if (idx == menuIndex) {
-      u8g2.drawBox(0, i * 16, 128, 16);
-      u8g2.setDrawColor(0);
-    } else {
-      u8g2.setDrawColor(1);
-    }
-    u8g2.setCursor(10, y);
-    u8g2.print(menuItems[idx - 1]);
-  }
-  u8g2.setDrawColor(1);
-  u8g2.sendBuffer();
-}
-// ====== HANDLE SELECTION ======
-void handleSelection(int index) {
-  if (index >= 1 && index <= 4) {
-    int minutes[] = {10, 15, 20, 25};
-    int seconds = minutes[index - 1] * 60;
-    inCountdown = true;
-    for (int i = seconds; i >= 0 && inCountdown; i--) {
-      u8g2.clearBuffer();
-      u8g2.setFont(u8g2_font_logisoso32_tr);
-      int min = i / 60;
-      int sec = i % 60;
-      char timeStr[6];
-      sprintf(timeStr, "%02d:%02d", min, sec);
-      int textWidth = u8g2.getStrWidth(timeStr);
-      u8g2.setCursor((128 - textWidth) / 2, 45);
-      u8g2.print(timeStr);
-      u8g2.sendBuffer();
-      delay(1000);
-    }
-    if (inCountdown) {
-      flashDone();
-      beep3Times();
-    }
-    inCountdown = false;
-  } else if (index == 5) {
-    u8g2.clearBuffer();
-    u8g2.setFont(u8g2_font_6x10_tr);
-    u8g2.setCursor(10, 25);
-    u8g2.print("Made by Miao");
-    u8g2.setCursor(10, 40);
-    u8g2.print("ESP32 Pomodoro Timer");
-    u8g2.sendBuffer();
-    delay(3000);
-  }
-}
-// ====== BEEP FUNCTION ======
-void beep3Times() {
-  for (int i = 0; i < 3; i++) {
-    digitalWrite(BUZZER_PIN, LOW);
-    delay(200);
-    digitalWrite(BUZZER_PIN, HIGH);
-    delay(200);
-  }
-}
-// ====== FLASH DONE ======
-void flashDone() {
-  for (int i = 0; i < 4; i++) {
-    u8g2.clearBuffer();
-    u8g2.setFont(u8g2_font_ncenB14_tr);
-    const char* text = "Done!";
-    int w = u8g2.getStrWidth(text);
-    u8g2.setCursor((128 - w) / 2, 40);
-    u8g2.setDrawColor(1);
-    u8g2.print(text);
-    u8g2.sendBuffer();
-    delay(300);
-    u8g2.clearBuffer();
-    u8g2.drawBox(0, 0, 128, 64);
-    u8g2.setDrawColor(0);
-    u8g2.setCursor((128 - w) / 2, 40);
-    u8g2.print(text);
-    u8g2.sendBuffer();
-    delay(300);
-  }
-  u8g2.setDrawColor(1);
-}
-```
-</details>
 ---
 
 ## 🎬 Video Demonstrations
 
-### 1.3' Pomodo with a knob
+### Setup Introduction
 
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/vJ-HOkglA-o" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/71jX_gyv_Hk" frameborder="0" allowfullscreen></iframe>
 
----
-## 🎬 Video Demonstrations
-
-### Version 2: Battery Version
-
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/XvZo0MEnAaU" frameborder="0" allowfullscreen></iframe>
 ---

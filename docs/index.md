@@ -50,7 +50,7 @@ Explore some of my projects:
   <div class="project-card">
     <a href="projects/respberrypi-project/raspberrypi-page">
       <img src="assets/images/RPi4Case.jpg" alt="Raspberry Pi Integration">
-      <strong>RPi</strong>
+      <strong>Raspberry Pi Integration</strong>
     </a>
   </div>
 
