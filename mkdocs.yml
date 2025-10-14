@@ -40,17 +40,13 @@ nav:
       - Pomodoro Timer 1.3 OLED with knob and all buttons: projects/screen-project/pomodo_timer_V4.md
       - Pomodoro Timer 0.91 OLED : projects/screen-project/timer_091OLED.md
       - Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB : projects/screen-project/timer_091OLED_V3.md
-          # - System Monitor: projects/screen-project/system-monitor.md
-          # - Cloud Terminal: projects/screen-project/cloud-terminal.md
-          # - Generative Graphics: projects/screen-project/generative-graphics.md
-          # - Voice Animator: projects/screen-project/voice-animator.md
+      - Raspberry Pi Screen: projects/raspberrypi-project/raspberrypi-page.md
       - LeRobot Arm: projects/lerobot.md
       - Quadruped Robot: projects/quadruped.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
       # - Setting Up LeRobot: tutorials/lerobot-setup.md
-  # - Videos: videos.md
   - About: about.md
   - Contact: contact.md
 
