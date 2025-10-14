@@ -20,7 +20,7 @@
     
     
       
-        <title>Pomodoro with 1.3 inch OLED, Knob Encoder, Buttons - AIplay</title>
+        <title>Raspberry-Pi-with-screen-and-keyboard-3D-print - AIplay</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pomodoro-with-13-inch-oled-knob-encoder-buttons" class="md-skip">
+        <a href="#raspberry-pi-with-screen-and-keyboard-3d-print" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pomodoro with 1.3 inch OLED, Knob Encoder, Buttons
+              Raspberry-Pi-with-screen-and-keyboard-3D-print
             
           </span>
         </div>
@@ -599,15 +599,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-code-snippet" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Key Code Snippet
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#video-demonstrations" class="md-nav__link">
     <span class="md-ellipsis">
       🎬 Video Demonstrations
@@ -618,33 +609,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#13-pomodo-with-a-knob" class="md-nav__link">
+  <a href="#setup-introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      1.3' Pomodo with a knob
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#video-demonstrations_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎬 Video Demonstrations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🎬 Video Demonstrations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version-2-battery-version" class="md-nav__link">
-    <span class="md-ellipsis">
-      Version 2: Battery Version
+      Setup Introduction
     </span>
   </a>
   
@@ -671,277 +638,55 @@
 
 
 
-<h1 id="pomodoro-with-13-inch-oled-knob-encoder-buttons">Pomodoro with 1.3 inch OLED, Knob Encoder, Buttons</h1>
-<p>This project showcases a simple yet effective Pomodoro timer built with an ESP32 and an integrated 1.3 OLED display with knob and buttons. It can be used for more interesting projects as well</p>
+<h1 id="raspberry-pi-with-screen-and-keyboard-3d-print">Raspberry-Pi-with-screen-and-keyboard-3D-print</h1>
+<p>A complete 3D print case that integrate Raspberry Pi with a screen and keyboard.
+- Home made
+- Low cost
+- Easy to carry
+- Ready to use</p>
 <hr />
 <h2 id="hardware-components">🧰 Hardware Components</h2>
 <ul>
-<li>A 1.3-inch SH1106 OLED display connected via I2C (SDA=GPIO19, SCL=GPIO23)</li>
-<li>An EC11 rotary encoder (A=GPIO5, B=GPIO17, Push=GPIO18)</li>
-<li>A Confirm button on GPIO22 (functions the same as the rotary push button)</li>
-<li>A Back button on GPIO16 (used to exit countdown and return to main menu)</li>
+<li>Raspberry Pi 4/5</li>
+<li>5 inch touch-screen display</li>
+<li>Wireless keyboard</li>
+<li>Battery case and batteries</li>
 </ul>
-<p><img alt="Pomodoro Timer Hardware" src="esp32knob13OLED.png" /></p>
-<hr />
-<ul>
-<li>Rechargeable Battery</li>
-</ul>
-<p><img alt="Pomodoro Timer Hardware Battery Version" src="esp32knob13OLED_Battery.jpg" /></p>
-<hr />
-<p>The pinout is as follow:</p>
+<p><img alt="Complete Setup" src="../RPi4Case.jpg" /></p>
+<p>👉 Other Parts can be found in the link below</p>
 <table>
 <thead>
 <tr>
-<th>OLED Pin</th>
-<th>GPIO</th>
-<th>Remark</th>
+<th>Parts</th>
+<th>Link</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Confirm</td>
-<td>22</td>
-<td>Panel button</td>
+<td>Screen</td>
+<td>Link: <a href="https://www.aliexpress.com/item/1005009083388577.html?spm=a2g0o.productlist.main.43.5b6aejqCejqC9D&amp;algo_pvid=85049312-102b-4edb-82c9-c52b5db7d6c6&amp;algo_exp_id=85049312-102b-4edb-82c9-c52b5db7d6c6-42&amp;pdp_ext_f=%7B%22order%22%3A%227%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&amp;pdp_npi=6%40dis%21SGD%2166.72%2133.36%21%21%21357.00%21178.50%21%402140e03217599911388737318e0137%2112000047855464859%21sea%21SG%210%21ABX%211%210%21n_tag%3A-29910%3Bd%3A81e889cd%3Bm03_new_user%3A-29895&amp;curPageLogUid=ixymnuZWOhgI&amp;utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009083388577%7C_p_origin_prod%3A">5-inch Display</a></td>
 </tr>
 <tr>
-<td>SDA</td>
-<td>19</td>
-<td>OLED</td>
+<td>Keyboard</td>
+<td>Link: <a href="https://example.com/some/very/very/long/link?with=query&amp;params=too">49keys Portable Wireless Keyboard</a></td>
 </tr>
 <tr>
-<td>SCL</td>
-<td>23</td>
-<td>OLED</td>
+<td>Battery 21700</td>
+<td>Link: <a href="https://www.aliexpress.com/item/1005009213466865.html?spm=a2g0o.productlist.main.3.621b9po39po3B0&amp;algo_pvid=835a0427-b517-4576-ae5f-813f403dd737&amp;algo_exp_id=835a0427-b517-4576-ae5f-813f403dd737-2&amp;pdp_ext_f=%7B%22order%22%3A%226%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&amp;pdp_npi=6%40dis%21SGD%2110.64%215.85%21%21%217.98%214.39%21%402151e66217599897254311970e0587%2112000048333787743%21sea%21SG%210%21ABX%211%210%21n_tag%3A-29910%3Bd%3A81e889cd%3Bm03_new_user%3A-29895&amp;curPageLogUid=L6VxJWp8umJy&amp;utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009213466865%7C_p_origin_prod%3A">21700 Dyson Battery Case, No soldering</a></td>
 </tr>
 <tr>
-<td>Push</td>
-<td>18</td>
-<td>Encoder button</td>
-</tr>
-<tr>
-<td>TRA</td>
-<td>5</td>
-<td>EC11 Encoder</td>
-</tr>
-<tr>
-<td>TRB</td>
-<td>17</td>
-<td>EC11 Encoder</td>
-</tr>
-<tr>
-<td>Back</td>
-<td>16</td>
-<td>Panel button</td>
+<td>Battery 18650</td>
+<td>Link: <a href="https://www.aliexpress.com/item/1005008484271476.html?spm=a2g0o.productlist.main.2.30e8486cqWLEl7&amp;algo_pvid=6b3516ee-2f07-46d5-8407-6a2eb8158299&amp;algo_exp_id=6b3516ee-2f07-46d5-8407-6a2eb8158299-1&amp;pdp_ext_f=%7B%22order%22%3A%2234%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&amp;pdp_npi=6%40dis%21SGD%2113.37%216.95%21%21%2171.52%2137.19%21%402151e66217599898783202250e0587%2112000045347844093%21sea%21SG%210%21ABX%211%210%21n_tag%3A-29910%3Bd%3A81e889cd%3Bm03_new_user%3A-29895&amp;curPageLogUid=VvEvx8R1K2VI&amp;utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005008484271476%7C_p_origin_prod%3A">18650 Battery Case, No soldering</a></td>
 </tr>
 </tbody>
 </table>
-<p>The assembled timer from different views:
-<img alt="Manu Page" src="esp32knob13OLED_2.png" />
-<img alt="Side View" src="esp32knob13OLED_3.jpg" /></p>
 <hr />
-<p>GPT Prompt for the Code:
-Generate Arduino C++ code for an ESP32-based Pomodoro timer using the following hardware setup:</p>
-<ul>
-<li>A 1.3-inch SH1106 OLED display connected via I2C (SDA=GPIO19, SCL=GPIO23)</li>
-<li>An EC11 rotary encoder (A=GPIO5, B=GPIO17, Push=GPIO18)</li>
-<li>A Confirm button on GPIO22 (functions the same as the rotary push button)</li>
-<li>A Back button on GPIO16 (used to exit countdown and return to main menu)</li>
-</ul>
-<p>Requirements:
-1. Display a scrollable menu of five options: "Pomodoro 10 min", "Pomodoro 15 min", "Pomodoro 20 min", "Pomodoro 25 min", and "Info".
-2. Show 4 menu items on screen at a time, and highlight the currently selected one.
-3. Use the rotary encoder to scroll through the menu, and use either the rotary push button or the Confirm button to start a Pomodoro countdown.
-4. During countdown, display the remaining time in mm:ss format in large centered digits.
-5. Pressing the Back button at any time during the countdown returns to the main menu.
-6. Selecting "Info" displays author information for 3 seconds before returning to the menu.
-7. Do not include any buzzer or sound feedback.
-8. Use the U8g2 library and appropriate fonts for the OLED screen.</p>
-<hr />
-<h2 id="key-code-snippet">🧠 Key Code Snippet</h2>
-<details>
-<summary>Click to expand full code</summary>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;U8g2lib.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span>
-<span class="c1">// Screen（SH1106 OLED）</span>
-<span class="cp">#define OLED_SDA 19</span>
-<span class="cp">#define OLED_SCL 23</span>
-<span class="c1">// EC11 encoder</span>
-<span class="cp">#define ROTARY_A     5</span>
-<span class="cp">#define ROTARY_B     17</span>
-<span class="cp">#define ROTARY_PUSH  18</span>
-<span class="c1">// button</span>
-<span class="cp">#define BTN_CONFIRM  22</span>
-<span class="cp">#define BTN_BACK     16</span>
-<span class="c1">// buzzer</span>
-<span class="cp">#define BUZZER_PIN   21  </span>
-<span class="c1">// manu</span>
-<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">menuCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">menuItems</span><span class="p">[</span><span class="n">menuCount</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 10 min&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 15 min&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 20 min&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 25 min&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;Info&quot;</span>
-<span class="p">};</span>
-<span class="c1">// variable status</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">menuIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">lastCLK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">inCountdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="n">U8G2_SH1106_128X64_NONAME_F_HW_I2C</span><span class="w"> </span><span class="nf">u8g2</span><span class="p">(</span><span class="n">U8G2_R0</span><span class="p">,</span><span class="w"> </span><span class="cm">/* reset=*/</span><span class="w"> </span><span class="n">U8X8_PIN_NONE</span><span class="p">);</span>
-<span class="c1">// ====== SETUP ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ROTARY_A</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ROTARY_B</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ROTARY_PUSH</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_CONFIRM</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_BACK</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">//digitalWrite(BUZZER_PIN, HIGH); // 不响（低电平才响）</span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">OLED_SDA</span><span class="p">,</span><span class="w"> </span><span class="n">OLED_SCL</span><span class="p">);</span>
-<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-<span class="w">  </span><span class="n">drawMenu</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="c1">// ====== LOOP ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inCountdown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 倒计时中仅监听退出</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_BACK</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-<span class="w">      </span><span class="n">inCountdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">      </span><span class="n">drawMenu</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">handleRotary</span><span class="p">();</span>
-<span class="w">  </span><span class="c1">// 开始倒计时（旋钮按下或Confirm）</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ROTARY_PUSH</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_CONFIRM</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-<span class="w">    </span><span class="n">handleSelection</span><span class="p">(</span><span class="n">menuIndex</span><span class="p">);</span>
-<span class="w">    </span><span class="n">drawMenu</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="c1">// Back 返回主菜单</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_BACK</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-<span class="w">    </span><span class="n">drawMenu</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">// ====== HANDLE ROTARY ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">handleRotary</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">currentCLK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ROTARY_A</span><span class="p">);</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentCLK</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">lastCLK</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">currentCLK</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ROTARY_B</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">currentCLK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">menuIndex</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">menuIndex</span><span class="o">--</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">menuIndex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">menuIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">menuIndex</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">menuCount</span><span class="p">)</span><span class="w"> </span><span class="n">menuIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">menuCount</span><span class="p">;</span>
-<span class="w">    </span><span class="n">drawMenu</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">lastCLK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentCLK</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// ====== DRAW MENU ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">drawMenu</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
-<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_6x10_tr</span><span class="p">);</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">visibleCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">startIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">menuIndex</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startIdx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">startIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startIdx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">menuCount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">visibleCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">    </span><span class="n">startIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">menuCount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">visibleCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">visibleCount</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startIdx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">menuCount</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">14</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">menuIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawBox</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">menuItems</span><span class="p">[</span><span class="n">idx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="c1">// ====== HANDLE SELECTION ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">handleSelection</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minutes</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minutes</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
-<span class="w">    </span><span class="n">inCountdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seconds</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">inCountdown</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_logisoso32_tr</span><span class="p">);</span>
-<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
-<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
-<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="n">timeStr</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
-<span class="w">      </span><span class="n">sprintf</span><span class="p">(</span><span class="n">timeStr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%02d:%02d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">sec</span><span class="p">);</span>
-<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">textWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="n">timeStr</span><span class="p">);</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">((</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">textWidth</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">);</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">timeStr</span><span class="p">);</span>
-<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
-<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inCountdown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">flashDone</span><span class="p">();</span>
-<span class="w">      </span><span class="n">beep3Times</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">inCountdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_6x10_tr</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Made by Miao&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;ESP32 Pomodoro Timer&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">// ====== BEEP FUNCTION ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">beep3Times</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BUZZER_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">// ====== FLASH DONE ======</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">flashDone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_ncenB14_tr</span><span class="p">);</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Done!&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">((</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawBox</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">((</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
+<p>👉 <a href="https://github.com/MiaoReynolds/Raspberry-Pi-with-screen-and-keyboard-3D-print/raw/main/3DPfile/">Download the 3DP file</a></p>
 <hr />
 <h2 id="video-demonstrations">🎬 Video Demonstrations</h2>
-<h3 id="13-pomodo-with-a-knob">1.3' Pomodo with a knob</h3>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/vJ-HOkglA-o" frameborder="0" allowfullscreen></iframe>
+<h3 id="setup-introduction">Setup Introduction</h3>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/71jX_gyv_Hk" frameborder="0" allowfullscreen></iframe>
 
-<hr />
-<h2 id="video-demonstrations_1">🎬 Video Demonstrations</h2>
-<h3 id="version-2-battery-version">Version 2: Battery Version</h3>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/XvZo0MEnAaU" frameborder="0" allowfullscreen></iframe>
 <hr />
 
 
