@@ -35,7 +35,7 @@ Explore some of my projects:
 
   <div class="project-card">
     <a href="projects/screen-project/timer">
-      <img src="assets/images/knob_pomodo.jpg" alt="Screen Project">
+      <img src="assets/images/knob_pomodo.jpg" alt="Screen Menu System">
       <strong>Screen Project</strong>
     </a>
   </div>
@@ -44,6 +44,13 @@ Explore some of my projects:
     <a href="projects/screen-project/pomodo_timer_V4">
       <img src="assets/images/esp32knob13OLED.png" alt="Screen Project V4">
       <strong>Pomodo with case</strong>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <a href="projects/respberrypi-project/raspberrypi-page">
+      <img src="assets/images/RPi4Case.jpg" alt="Raspberry Pi Integration">
+      <strong>RPi</strong>
     </a>
   </div>
 
