@@ -48,7 +48,7 @@ Explore some of my projects:
   </div>
 
   <div class="project-card">
-    <a href="projects/respberrypi-project/raspberrypi-page">
+    <a href="projects/raspberrypi-project/raspberrypi-page">
       <img src="assets/images/RPi4Case.jpg" alt="Raspberry Pi Integration">
       <strong>Raspberry Pi Integration</strong>
     </a>
