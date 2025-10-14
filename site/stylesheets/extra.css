@@ -1,0 +1,15 @@
+/* 添加背景图到顶部 header 区域 */
+.md-header {
+  height: 160px;  /* 或 200px，根据你图片比例调整 */
+  background-image: url('../assets/images/bayside.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+/* 可选：覆盖默认蓝色背景色，避免干扰 */
+.md-header__inner {
+  height: 100%;
+  align-items: center;
+}
