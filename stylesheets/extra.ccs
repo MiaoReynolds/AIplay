@@ -1,0 +1,13 @@
+/* 添加背景图到顶部 header 区域 */
+.md-header {
+  background-image: url('../assets/images/bayside.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+/* 可选：覆盖默认蓝色背景色，避免干扰 */
+.md-header__inner {
+  background-color: rgba(0, 0, 0, 0.3); /* 加一层半透明黑色遮罩以增强可读性 */
+}
