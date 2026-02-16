@@ -1,17 +1,13 @@
-/* 添加背景图到顶部 header 区域 */
+/* 首页置顶：使用原图作为 header 背景，不叠加变暗效果 */
 .md-header {
-  height: 160px;  /* 或 200px，根据你图片比例调整 */
+  height: 160px;
   background-image: url('../assets/images/bayside.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-blend-mode: multiply;
 }
 
-/* 可选：覆盖默认蓝色背景色，避免干扰 
+/* 去掉主题自带的半透明遮罩，让背景图原色显示 */
 .md-header__inner {
-  height: 100%;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: transparent !important;
 }
-*/
