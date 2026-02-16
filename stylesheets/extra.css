@@ -1,7 +1,7 @@
 /* 首页置顶：使用原图作为 header 背景，不叠加变暗效果 */
 .md-header {
   height: 160px;
-  background-image: url('../assets/images/bayside.jpg');
+  background-image: url('../assets/images/banner_1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
