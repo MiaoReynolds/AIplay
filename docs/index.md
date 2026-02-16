@@ -83,9 +83,9 @@ Explore some of my projects:
   </div>
 
   <div class="project-card">
-    <a href="projects/screen-project/voice-animator">
-      <img src="assets/images/banner_1.png" alt="Voice Animator">
-      <strong>Voice Animator</strong>
+    <a href="projects/screen-project/timer_091OLED">
+      <img src="projects/screen-project/pomodo_timer_091OLEDV2.jpg" alt="Pomodoro 0.91 OLED">
+      <strong>Pomodoro 0.91 OLED</strong>
     </a>
   </div>
 
