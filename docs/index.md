@@ -75,6 +75,27 @@ Explore some of my projects:
     </a>
   </div>
 
+  <div class="project-card">
+    <a href="projects/ai-course">
+      <img src="assets/images/ai_agent.png" alt="AI Agent Course">
+      <strong>AI Agent Course</strong>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <a href="projects/screen-project/voice-animator">
+      <img src="assets/images/banner_1.png" alt="Voice Animator">
+      <strong>Voice Animator</strong>
+    </a>
+  </div>
+
+  <div class="project-card">
+    <a href="projects/screen-project/system-monitor">
+      <img src="assets/images/banner_1.png" alt="System Monitor">
+      <strong>System Monitor</strong>
+    </a>
+  </div>
+
 
 
 </div>
