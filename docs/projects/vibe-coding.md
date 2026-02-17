@@ -1,4 +1,4 @@
-# Vibe Coding
+# Codex Hello World
 
 A short intro to **Vibe Coding**: coding by describing what you want in natural language and letting AI assistants generate or edit code, so you focus on intent and flow rather than typing every line.
 
@@ -30,7 +30,9 @@ You stay in the flow; the machine handles a lot of the typing and routine implem
 
 ## 🎬 Example Video
 
-A short demo of vibe coding in practice:
+![Codex Vibe Coding](../assets/images/Codex_vibe_coding.png)
+
+This video shows using **Codex on Mac** to add a selectable menu for a Pomodoro timer on an existing embedded screen project. The goal is to quickly get a working project running and give beginners a fun, hands-on programming experience.
 
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/hDiIDZnVa6c" frameborder="0" allowfullscreen></iframe>
 
