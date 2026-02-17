@@ -18,9 +18,10 @@ Explore some of my projects:
 }
 
 .project-card img {
+  width: 100%;
   height: 160px;
-  width: auto;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   border-radius: 6px;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   transition: transform 0.2s;
@@ -90,9 +91,9 @@ Explore some of my projects:
   </div>
 
   <div class="project-card">
-    <a href="projects/screen-project/system-monitor">
-      <img src="assets/images/banner_1.png" alt="System Monitor">
-      <strong>System Monitor</strong>
+    <a href="projects/vibe-coding">
+      <img src="assets/images/banner_1.png" alt="Vibe Coding">
+      <strong>Vibe Coding</strong>
     </a>
   </div>
 
