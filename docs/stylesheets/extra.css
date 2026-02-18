@@ -7,7 +7,79 @@
   background-position: center;
 }
 
-/* 去掉主题自带的半透明遮罩，让背景图原色显示 */
+/* 顶部横条：半透明主题色背景延伸至屏幕全宽 */
 .md-header__inner {
+  position: relative;
   background-color: transparent !important;
+}
+.md-header__inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(63, 81, 181, 0.82);
+  z-index: -1;
+}
+
+/* 站点标题 AIplay：稍大字号、加粗 */
+.md-header__title {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+}
+
+/* ========== 全宽布局：标题栏、tabs、侧边栏与主内容贴至浏览器左右边缘 ========== */
+
+/* 最外层容器占满宽 */
+.md-container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 主布局网格占满视口宽 */
+.md-grid {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 顶部 header 内层（标题 + 搜索）占满宽，内容可贴左右 */
+.md-header__inner {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 0.8rem !important;
+  padding-right: 0.8rem !important;
+  box-sizing: border-box !important;
+}
+
+/* 顶部 tabs 占满宽 */
+.md-tabs {
+  width: 100% !important;
+}
+.md-tabs__inner {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 0.8rem !important;
+  padding-right: 0.8rem !important;
+  box-sizing: border-box !important;
+}
+
+/* 主容器与主内容区占满可用宽 */
+.md-main {
+  max-width: none !important;
+  width: 100% !important;
+}
+.md-main__inner {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 侧边栏与主内容在网格内平分/按比例使用全宽 */
+.md-content {
+  max-width: none !important;
+}
+.md-sidebar--primary,
+.md-sidebar--secondary {
+  max-width: none !important;
 }
