@@ -2,6 +2,8 @@
 
 <div class="homepage-layout"></div>
 
+<div class="home-hero"></div>
+
 Explore some of my projects:
 
 <style>
