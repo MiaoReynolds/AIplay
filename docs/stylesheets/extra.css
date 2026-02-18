@@ -83,3 +83,26 @@
 .md-sidebar--secondary {
   max-width: none !important;
 }
+
+/* ========== 首页特殊布局：隐藏侧边栏，卡片内容占满全宽 ========== */
+
+/* 针对首页：通过 .homepage-layout 标识隐藏左右侧边栏 */
+body:has(.homepage-layout) .md-sidebar--primary,
+body:has(.homepage-layout) .md-sidebar--secondary {
+  display: none !important;
+}
+
+/* 首页主内容区占满全宽 */
+body:has(.homepage-layout) .md-content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 1.2rem !important;
+  padding-right: 1.2rem !important;
+}
+
+/* 首页网格布局调整：让内容区占满全宽（移除侧边栏列） */
+body:has(.homepage-layout) .md-grid {
+  grid-template-columns: 0 1fr 0 !important;
+}

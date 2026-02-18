@@ -1,4 +1,6 @@
-# Welcome to AIplay
+# Project Gallery
+
+<div class="homepage-layout"></div>
 
 Explore some of my projects:
 
@@ -12,14 +14,14 @@ Explore some of my projects:
 }
 
 .project-card {
-  flex: 1 1 200px;
+  flex: 1 1 280px;
   text-align: center;
-  max-width: 220px;
+  max-width: 320px;
 }
 
 .project-card img {
   width: 100%;
-  height: 160px;
+  height: 200px;
   object-fit: cover;
   object-position: center;
   border-radius: 6px;
