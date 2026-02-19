@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ai-course" class="md-skip">
+        <a href="#n8n-workflow" class="md-skip">
           Skip to content
         </a>
       
@@ -541,6 +541,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AI Agent Course
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -552,6 +565,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-docker-setup-for-n8n" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Quick Docker setup for n8n
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📸 Project 1 – 大头照背景替换小站
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Project 2 – 学生作业批改 &amp; 练习推荐系统
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -675,6 +734,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-docker-setup-for-n8n" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Quick Docker setup for n8n
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📸 Project 1 – 大头照背景替换小站
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Project 2 – 学生作业批改 &amp; 练习推荐系统
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -689,30 +783,66 @@
 
 
 
-<h1 id="ai-course">AI Course</h1>
-<p>This course includes:</p>
-<table>
-<thead>
-<tr>
-<th>Module</th>
-<th>Content</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Basics</td>
-<td>What is AI, History, Trends</td>
-</tr>
-<tr>
-<td>Tools</td>
-<td>Python, Colab, GPT, etc.</td>
-</tr>
-<tr>
-<td>Examples</td>
-<td>Prompts, use-cases</td>
-</tr>
-</tbody>
-</table>
+<h1 id="n8n-workflow">n8n Workflow</h1>
+<p>This page collects notes about my <strong>n8n</strong> workflows and how I’m using them in small automation projects.</p>
+<hr />
+<h2 id="quick-docker-setup-for-n8n">🚀 Quick Docker setup for n8n</h2>
+<p>The easiest way to try n8n locally is with Docker.<a href="https://docs.n8n.io/hosting/installation/docker">1</a> Here’s a minimal setup that keeps your data persistent:</p>
+<ol>
+<li><strong>Create a data volume</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>n8n_data
+</code></pre></div>
+<ol>
+<li><strong>Run n8n</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>n8n<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5678</span>:5678<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>n8n_data:/home/node/.n8n<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>docker.n8n.io/n8nio/n8n
+</code></pre></div>
+<p>然后在浏览器打开 <code>http://localhost:5678</code>，完成首次初始化向导即可开始搭建 workflow。<a href="https://docs.n8n.io/hosting/installation/docker">1</a><a href="https://hub.docker.com/r/n8nio/n8n">5</a></p>
+<blockquote>
+<p>生产环境中，官方推荐使用 Docker Compose + PostgreSQL 来获得更好的性能与数据管理。<a href="https://docs.n8n.io/hosting/installation/docker">1</a></p>
+</blockquote>
+<hr />
+<h2 id="project-1">📸 Project 1 – 大头照背景替换小站</h2>
+<p><strong>想法</strong>：搭一个实体拍照小站，用户在现场拍摄大头照，由 n8n workflow 把人像抠图并替换为 <strong>世界各地著名景点背景</strong>，最后输出一张“旅游纪念风格”的大头照。</p>
+<p><strong>硬件 &amp; 场景</strong>
+- 固定相机 / iPad 作为拍照端<br />
+- 小屏幕或显示器给用户预览<br />
+- 后端一台小服务器（树莓派 / 小主机）运行 n8n + 背景替换服务</p>
+<p><strong>n8n workflow 思路</strong>
+- 触发方式：<br />
+  - Webhook 接收前端上传的用户照片，或<br />
+  - Watch 文件夹（新照片文件触发 workflow）
+- 处理步骤：<br />
+  - 调用背景去除 / 抠图服务（第三方 API 或本地模型）<br />
+  - 根据用户选择的城市/景点（巴黎铁塔、纽约天际线等）合成背景<br />
+  - 生成最终大头照并保存到输出目录或发回前端</p>
+<p>可以参考类似 <strong>AI 头像 / 头照相亭</strong> 的形态，例如下图类型的拍照小站（示意）：<br />
+<a href="https://unsplash.com/photos/a-photobooth-is-ready-for-people-to-take-photos-QqX8Z6qvM1o">示例大头照小站照片 – Unsplash</a><a href="https://snapbar.com/snapshot/headshot-photo-booth">2</a></p>
+<hr />
+<h2 id="project-2">📝 Project 2 – 学生作业批改 &amp; 练习推荐系统</h2>
+<p>第二个 n8n 项目是一个 <strong>学生作业批改系统</strong>：</p>
+<p><strong>目标</strong>
+- 学生拍下作业（纸质作业、练习题）上传<br />
+- 系统自动识别题目与答案，给出批改意见<br />
+- 根据错误类型，再给出几道 <strong>相似练习题</strong>，帮助巩固薄弱点</p>
+<p><strong>n8n workflow 思路</strong>
+- 触发：学生通过表单 / Webhook 上传作业照片
+- 处理链路：
+  1. OCR / 视觉模型识别题目和学生作答内容<br />
+  2. 调用大模型（例如 GPT 家族）对照标准答案进行批改与解析<br />
+  3. 根据错误知识点，从题库或大模型生成 <strong>3–5 道相似练习题</strong><br />
+  4. 把批改意见 + 讲解 + 新练习题组合成一份反馈，通过邮件或前端页面返回</p>
+<p><strong>适合做成什么样的产品？</strong>
+- 单机版：老师个人使用的小工具（拍照→批改→生成练习 PDF）<br />
+- 网页版：学生自助上传，实时得到“批改 + 练习题”反馈<br />
+- 与现有 LMS / 作业系统集成：通过 n8n 的 HTTP / API 节点接到现有系统里</p>
+<hr />
+<p>后续我会在这里继续补充具体的 n8n 节点配置截图和 JSON 导出文件，方便你直接导入 workflow 复用。<strong><em> End Patch</em></strong>}...</p>
 
 
 
