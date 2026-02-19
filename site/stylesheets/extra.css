@@ -1,10 +1,18 @@
-/* 首页置顶：使用原图作为 header 背景，不叠加变暗效果 */
+/* 首页置顶 banner 改为内容区域 hero，header 不再承载大图 */
 .md-header {
-  height: 160px;
+  height: auto;
+  background-image: none;
+}
+
+/* 首页 hero：作为内容区顶端的背景图块，随页面一起上滚并被内容遮住 */
+.home-hero {
+  width: 100%;
+  height: 200px;
   background-image: url('../assets/images/banner_1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin-bottom: 1.5rem;
 }
 
 /* 顶部横条：半透明主题色背景延伸至屏幕全宽 */
@@ -53,7 +61,7 @@
   box-sizing: border-box !important;
 }
 
-/* 顶部 tabs 占满宽 */
+/* 顶部 tabs 占满宽（行仍在 header 下方，由主题控制滚动行为） */
 .md-tabs {
   width: 100% !important;
 }
