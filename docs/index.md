@@ -96,7 +96,7 @@ Explore some of my projects:
 
   <div class="project-card">
     <a href="projects/vibe-coding">
-      <img src="assets/images/Codex_vibe_coding.png" alt="Vibe Coding">
+      <img src="assets/images/codex_hello.png" alt="Vibe Coding">
       <strong>Vibe Coding</strong>
     </a>
   </div>
