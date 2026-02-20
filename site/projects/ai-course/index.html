@@ -24,7 +24,7 @@
     
     
       
-        <title>AI Agent Course - AIplay</title>
+        <title>n8n Concepts Workflow - AIplay</title>
       
     
     
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AI Agent Course
+              n8n Concepts Workflow
             
           </span>
         </div>
@@ -546,7 +546,7 @@
   
   
   <span class="md-ellipsis">
-    AI Agent Course
+    n8n Concepts Workflow
     
   </span>
   
@@ -559,7 +559,7 @@
   
   
   <span class="md-ellipsis">
-    AI Agent Course
+    n8n Concepts Workflow
     
   </span>
   
@@ -591,18 +591,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-1" class="md-nav__link">
+  <a href="#project-1-headshot-background-replacement-booth" class="md-nav__link">
     <span class="md-ellipsis">
-      📸 Project 1 – 大头照背景替换小站
+      📸 Project 1 – Headshot Background Replacement Booth
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-2" class="md-nav__link">
+  <a href="#project-2-student-assignment-grading-exercise-recommendation-system" class="md-nav__link">
     <span class="md-ellipsis">
-      📝 Project 2 – 学生作业批改 &amp; 练习推荐系统
+      📝 Project 2 – Student Assignment Grading &amp; Exercise Recommendation System
     </span>
   </a>
   
@@ -750,18 +750,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-1" class="md-nav__link">
+  <a href="#project-1-headshot-background-replacement-booth" class="md-nav__link">
     <span class="md-ellipsis">
-      📸 Project 1 – 大头照背景替换小站
+      📸 Project 1 – Headshot Background Replacement Booth
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-2" class="md-nav__link">
+  <a href="#project-2-student-assignment-grading-exercise-recommendation-system" class="md-nav__link">
     <span class="md-ellipsis">
-      📝 Project 2 – 学生作业批改 &amp; 练习推荐系统
+      📝 Project 2 – Student Assignment Grading &amp; Exercise Recommendation System
     </span>
   </a>
   
@@ -802,47 +802,47 @@
 <span class="w">  </span>-v<span class="w"> </span>n8n_data:/home/node/.n8n<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>docker.n8n.io/n8nio/n8n
 </code></pre></div>
-<p>然后在浏览器打开 <code>http://localhost:5678</code>，完成首次初始化向导即可开始搭建 workflow。<a href="https://docs.n8n.io/hosting/installation/docker">1</a><a href="https://hub.docker.com/r/n8nio/n8n">5</a></p>
+<p>Then open <code>http://localhost:5678</code> in your browser and complete the initial setup wizard to start building your workflows.<a href="https://docs.n8n.io/hosting/installation/docker">1</a><a href="https://hub.docker.com/r/n8nio/n8n">5</a></p>
 <blockquote>
-<p>生产环境中，官方推荐使用 Docker Compose + PostgreSQL 来获得更好的性能与数据管理。<a href="https://docs.n8n.io/hosting/installation/docker">1</a></p>
+<p>For production environments, the official recommendation is to use Docker Compose + PostgreSQL for better performance and data management.<a href="https://docs.n8n.io/hosting/installation/docker">1</a></p>
 </blockquote>
 <hr />
-<h2 id="project-1">📸 Project 1 – 大头照背景替换小站</h2>
-<p><strong>想法</strong>：搭一个实体拍照小站，用户在现场拍摄大头照，由 n8n workflow 把人像抠图并替换为 <strong>世界各地著名景点背景</strong>，最后输出一张“旅游纪念风格”的大头照。</p>
-<p><strong>硬件 &amp; 场景</strong>
-- 固定相机 / iPad 作为拍照端<br />
-- 小屏幕或显示器给用户预览<br />
-- 后端一台小服务器（树莓派 / 小主机）运行 n8n + 背景替换服务</p>
-<p><strong>n8n workflow 思路</strong>
-- 触发方式：<br />
-  - Webhook 接收前端上传的用户照片，或<br />
-  - Watch 文件夹（新照片文件触发 workflow）
-- 处理步骤：<br />
-  - 调用背景去除 / 抠图服务（第三方 API 或本地模型）<br />
-  - 根据用户选择的城市/景点（巴黎铁塔、纽约天际线等）合成背景<br />
-  - 生成最终大头照并保存到输出目录或发回前端</p>
-<p>可以参考类似 <strong>AI 头像 / 头照相亭</strong> 的形态，例如下图类型的拍照小站（示意）：<br />
-<a href="https://unsplash.com/photos/a-photobooth-is-ready-for-people-to-take-photos-QqX8Z6qvM1o">示例大头照小站照片 – Unsplash</a><a href="https://snapbar.com/snapshot/headshot-photo-booth">2</a></p>
+<h2 id="project-1-headshot-background-replacement-booth">📸 Project 1 – Headshot Background Replacement Booth</h2>
+<p><strong>Idea</strong>: Build a physical photo booth where users take headshots, and an n8n workflow removes the background, replacing it with <strong>famous landmarks around the world</strong>, finally outputting a "tourist souvenir style" headshot.</p>
+<p><strong>Hardware &amp; Setup</strong>
+- Fixed camera / iPad as the photo capture device<br />
+- Small screen or monitor for user preview<br />
+- A small backend server (Raspberry Pi / mini PC) running n8n + background replacement service</p>
+<p><strong>n8n Workflow Idea</strong>
+- Trigger methods:<br />
+  - Webhook to receive user photos uploaded from the frontend, or<br />
+  - Watch Folder (new photo files trigger the workflow)
+- Processing steps:<br />
+  - Call background removal / matting service (third-party API or local model)<br />
+  - Composite the background based on the user's selected city/landmark (Eiffel Tower, New York skyline, etc.)<br />
+  - Generate the final headshot and save it to the output directory or send it back to the frontend</p>
+<p>You can refer to similar <strong>AI Avatar / Photo Booths</strong>. Here is an example of such a photo booth setup:<br />
+<img alt="AI Avatar / AI selfie booth" src="../../assets/AI%20selfie%20booth.png" /></p>
 <hr />
-<h2 id="project-2">📝 Project 2 – 学生作业批改 &amp; 练习推荐系统</h2>
-<p>第二个 n8n 项目是一个 <strong>学生作业批改系统</strong>：</p>
-<p><strong>目标</strong>
-- 学生拍下作业（纸质作业、练习题）上传<br />
-- 系统自动识别题目与答案，给出批改意见<br />
-- 根据错误类型，再给出几道 <strong>相似练习题</strong>，帮助巩固薄弱点</p>
-<p><strong>n8n workflow 思路</strong>
-- 触发：学生通过表单 / Webhook 上传作业照片
-- 处理链路：
-  1. OCR / 视觉模型识别题目和学生作答内容<br />
-  2. 调用大模型（例如 GPT 家族）对照标准答案进行批改与解析<br />
-  3. 根据错误知识点，从题库或大模型生成 <strong>3–5 道相似练习题</strong><br />
-  4. 把批改意见 + 讲解 + 新练习题组合成一份反馈，通过邮件或前端页面返回</p>
-<p><strong>适合做成什么样的产品？</strong>
-- 单机版：老师个人使用的小工具（拍照→批改→生成练习 PDF）<br />
-- 网页版：学生自助上传，实时得到“批改 + 练习题”反馈<br />
-- 与现有 LMS / 作业系统集成：通过 n8n 的 HTTP / API 节点接到现有系统里</p>
+<h2 id="project-2-student-assignment-grading-exercise-recommendation-system">📝 Project 2 – Student Assignment Grading &amp; Exercise Recommendation System</h2>
+<p>The second n8n project is a <strong>student assignment grading system</strong>:</p>
+<p><strong>Goal</strong>
+- Students take photos of their assignments (paper homework, exercises) and upload them.
+- The system automatically recognizes the questions and answers, and provides grading feedback.
+- Based on the types of errors, it recommends a few <strong>similar exercises</strong> to help reinforce weak areas.</p>
+<p><strong>n8n Workflow Idea</strong>
+- Trigger: Students upload homework photos via a form / Webhook.
+- Processing pipeline:
+  1. OCR / Vision model recognizes the questions and the student's answers.
+  2. Call a large language model (e.g., GPT family) to grade and analyze against the standard answers.
+  3. Based on the knowledge gaps, generate <strong>3–5 similar exercises</strong> from a question bank or the LLM.
+  4. Combine the grading feedback + explanations + new exercises into a report, returning it via email or a frontend page.</p>
+<p><strong>What kind of product should this be?</strong>
+- Standalone: A small tool for personal use by teachers (photo → grading → generate PDF of exercises).
+- Web version: Students self-upload and get real-time "grading + exercises" feedback.
+- Integrated with existing LMS / homework systems: Connect via n8n's HTTP / API nodes into existing systems.</p>
 <hr />
-<p>后续我会在这里继续补充具体的 n8n 节点配置截图和 JSON 导出文件，方便你直接导入 workflow 复用。<strong><em> End Patch</em></strong>}...</p>
+<p>I will continue to add specific n8n node configuration screenshots and exported JSON files here later, so you can easily import and reuse the workflows.<strong><em> End Patch</em></strong>}...</p>
 
 
 

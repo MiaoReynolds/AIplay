@@ -6,49 +6,37 @@ This page collects notes about my **n8n** workflows and how I’m using them in 
 
 ## 🚀 Quick Docker setup for n8n
 
-The easiest way to try n8n locally is with Docker.[1](https://docs.n8n.io/hosting/installation/docker) Here’s a minimal setup that keeps your data persistent:
+Follow this graphical installation flow to set up n8n quickly using Docker:
 
-1. **Create a data volume**
+**Step 1:** After Docker installation, go to "images" search for n8n, and pull the image.
+![Step 1](../assets/n8n_1.png)
 
-   ```bash
-   docker volume create n8n_data
-   ```
+**Step 2:** Check the pulled image.
+![Step 2](../assets/n8n_2.png)
 
-2. **Run n8n**
+**Step 3:** Go to "Volumes" and "Create a Volume".
+![Step 3](../assets/n8n_3.png)
 
-   ```bash
-   docker run -it --rm \
-     --name n8n \
-     -p 5678:5678 \
-     -v n8n_data:/home/node/.n8n \
-     docker.n8n.io/n8nio/n8n
-   ```
+**Step 4:** Check the created volume.
+![Step 4](../assets/n8n_4.png)
 
-   Then open `http://localhost:5678` in your browser and complete the initial setup wizard to start building your workflows.[1](https://docs.n8n.io/hosting/installation/docker)[5](https://hub.docker.com/r/n8nio/n8n)
+**Step 5:** Run the new container with the n8n loaded inside by clicking the "Run" button.
+![Step 5](../assets/n8n_5.png)
 
-> For production environments, the official recommendation is to use Docker Compose + PostgreSQL for better performance and data management.[1](https://docs.n8n.io/hosting/installation/docker)
+**Step 6:** Now you are inside n8n and click the "Create Workflow" to start.
+![Step 6](../assets/n8n_6.png)
+
+**Step 7:** Here is a basic structure of n8n workflow. From here you can start your workflow creation.
+![Step 7](../assets/n8n_7.png)
+
+After finishing these steps, open `http://localhost:5678` in your browser and complete the initial setup wizard to start building your workflows.
 
 ---
 
-## 📸 Project 1 – Headshot Background Replacement Booth
+## 📸 Project 1 – AI Background Replacement and Selfie Booth
 
-**Idea**: Build a physical photo booth where users take headshots, and an n8n workflow removes the background, replacing it with **famous landmarks around the world**, finally outputting a "tourist souvenir style" headshot.
+An AI selfie booth that takes photos of users and generates any background, or transforms the user into any famous character. The image shows a passerby taking a photo in front of an open-style selfie booth. The front screen (acting like a mirror) displays a real-time image of the passerby transformed into Captain America.
 
-**Hardware & Setup**
-- Fixed camera / iPad as the photo capture device  
-- Small screen or monitor for user preview  
-- A small backend server (Raspberry Pi / mini PC) running n8n + background replacement service
-
-**n8n Workflow Idea**
-- Trigger methods:  
-  - Webhook to receive user photos uploaded from the frontend, or  
-  - Watch Folder (new photo files trigger the workflow)
-- Processing steps:  
-  - Call background removal / matting service (third-party API or local model)  
-  - Composite the background based on the user's selected city/landmark (Eiffel Tower, New York skyline, etc.)  
-  - Generate the final headshot and save it to the output directory or send it back to the frontend
-
-You can refer to similar **AI Avatar / Photo Booths**. Here is an example of such a photo booth setup:  
 ![AI Avatar / AI selfie booth](../assets/AI selfie booth.png)
 
 ---
