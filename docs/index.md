@@ -82,7 +82,7 @@ Explore some of my projects:
 
   <div class="project-card">
     <a href="projects/ai-course">
-      <img src="assets/images/ai_agent.png" alt="n8n Concepts Workflow">
+      <img src="assets/images/n8n_.png" alt="n8n Concepts Workflow">
       <strong>n8n Concepts Workflow</strong>
     </a>
   </div>

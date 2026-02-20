@@ -591,9 +591,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-1-headshot-background-replacement-booth" class="md-nav__link">
+  <a href="#project-1-ai-background-replacement-and-selfie-booth" class="md-nav__link">
     <span class="md-ellipsis">
-      📸 Project 1 – Headshot Background Replacement Booth
+      📸 Project 1 – AI Background Replacement and Selfie Booth
     </span>
   </a>
   
@@ -750,9 +750,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-1-headshot-background-replacement-booth" class="md-nav__link">
+  <a href="#project-1-ai-background-replacement-and-selfie-booth" class="md-nav__link">
     <span class="md-ellipsis">
-      📸 Project 1 – Headshot Background Replacement Booth
+      📸 Project 1 – AI Background Replacement and Selfie Booth
     </span>
   </a>
   
@@ -787,42 +787,26 @@
 <p>This page collects notes about my <strong>n8n</strong> workflows and how I’m using them in small automation projects.</p>
 <hr />
 <h2 id="quick-docker-setup-for-n8n">🚀 Quick Docker setup for n8n</h2>
-<p>The easiest way to try n8n locally is with Docker.<a href="https://docs.n8n.io/hosting/installation/docker">1</a> Here’s a minimal setup that keeps your data persistent:</p>
-<ol>
-<li><strong>Create a data volume</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>n8n_data
-</code></pre></div>
-<ol>
-<li><strong>Run n8n</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="w"> </span>n8n<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-p<span class="w"> </span><span class="m">5678</span>:5678<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span>n8n_data:/home/node/.n8n<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>docker.n8n.io/n8nio/n8n
-</code></pre></div>
-<p>Then open <code>http://localhost:5678</code> in your browser and complete the initial setup wizard to start building your workflows.<a href="https://docs.n8n.io/hosting/installation/docker">1</a><a href="https://hub.docker.com/r/n8nio/n8n">5</a></p>
-<blockquote>
-<p>For production environments, the official recommendation is to use Docker Compose + PostgreSQL for better performance and data management.<a href="https://docs.n8n.io/hosting/installation/docker">1</a></p>
-</blockquote>
+<p>Follow this graphical installation flow to set up n8n quickly using Docker:</p>
+<p><strong>Step 1:</strong> After Docker installation, go to "images" search for n8n, and pull the image.
+<img alt="Step 1" src="../../assets/n8n_1.png" /></p>
+<p><strong>Step 2:</strong> Check the pulled image.
+<img alt="Step 2" src="../../assets/n8n_2.png" /></p>
+<p><strong>Step 3:</strong> Go to "Volumes" and "Create a Volume".
+<img alt="Step 3" src="../../assets/n8n_3.png" /></p>
+<p><strong>Step 4:</strong> Check the created volume.
+<img alt="Step 4" src="../../assets/n8n_4.png" /></p>
+<p><strong>Step 5:</strong> Run the new container with the n8n loaded inside by clicking the "Run" button.
+<img alt="Step 5" src="../../assets/n8n_5.png" /></p>
+<p><strong>Step 6:</strong> Now you are inside n8n and click the "Create Workflow" to start.
+<img alt="Step 6" src="../../assets/n8n_6.png" /></p>
+<p><strong>Step 7:</strong> Here is a basic structure of n8n workflow. From here you can start your workflow creation.
+<img alt="Step 7" src="../../assets/n8n_7.png" /></p>
+<p>After finishing these steps, open <code>http://localhost:5678</code> in your browser and complete the initial setup wizard to start building your workflows.</p>
 <hr />
-<h2 id="project-1-headshot-background-replacement-booth">📸 Project 1 – Headshot Background Replacement Booth</h2>
-<p><strong>Idea</strong>: Build a physical photo booth where users take headshots, and an n8n workflow removes the background, replacing it with <strong>famous landmarks around the world</strong>, finally outputting a "tourist souvenir style" headshot.</p>
-<p><strong>Hardware &amp; Setup</strong>
-- Fixed camera / iPad as the photo capture device<br />
-- Small screen or monitor for user preview<br />
-- A small backend server (Raspberry Pi / mini PC) running n8n + background replacement service</p>
-<p><strong>n8n Workflow Idea</strong>
-- Trigger methods:<br />
-  - Webhook to receive user photos uploaded from the frontend, or<br />
-  - Watch Folder (new photo files trigger the workflow)
-- Processing steps:<br />
-  - Call background removal / matting service (third-party API or local model)<br />
-  - Composite the background based on the user's selected city/landmark (Eiffel Tower, New York skyline, etc.)<br />
-  - Generate the final headshot and save it to the output directory or send it back to the frontend</p>
-<p>You can refer to similar <strong>AI Avatar / Photo Booths</strong>. Here is an example of such a photo booth setup:<br />
-<img alt="AI Avatar / AI selfie booth" src="../../assets/AI%20selfie%20booth.png" /></p>
+<h2 id="project-1-ai-background-replacement-and-selfie-booth">📸 Project 1 – AI Background Replacement and Selfie Booth</h2>
+<p>An AI selfie booth that takes photos of users and generates any background, or transforms the user into any famous character. The image shows a passerby taking a photo in front of an open-style selfie booth. The front screen (acting like a mirror) displays a real-time image of the passerby transformed into Captain America.</p>
+<p><img alt="AI Avatar / AI selfie booth" src="../../assets/AI%20selfie%20booth.png" /></p>
 <hr />
 <h2 id="project-2-student-assignment-grading-exercise-recommendation-system">📝 Project 2 – Student Assignment Grading &amp; Exercise Recommendation System</h2>
 <p>The second n8n project is a <strong>student assignment grading system</strong>:</p>
