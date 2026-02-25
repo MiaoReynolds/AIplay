@@ -5,9 +5,9 @@ hide:
 ---
 
 <style>
-/* Base overrides for index page to simulate dark background */
+/* ===== DARK MODE (slate) - default look ===== */
 .md-content {
-  background-color: #09090b !important; /* zinc-950 */
+  background-color: #09090b !important;
 }
 .md-main__inner {
   margin: 0;
@@ -61,7 +61,7 @@ hide:
 
 .bento-card {
   position: relative;
-  background-color: rgba(24, 24, 27, 0.5); /* zinc-900/50 */
+  background-color: rgba(24, 24, 27, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
   padding: 2rem;
@@ -76,10 +76,9 @@ hide:
 .bento-card:hover {
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  background-color: rgba(39, 39, 42, 0.5); /* zinc-800/50 */
+  background-color: rgba(39, 39, 42, 0.5);
 }
 
-/* Background glow effect for hover */
 .bento-card::before {
   content: "";
   position: absolute;
@@ -163,6 +162,51 @@ hide:
 /* Hide only the auto-generated MkDocs page title, not our hero h1 */
 .md-typeset > h1:first-child { display: none; }
 .hero-section .hero-title { display: block !important; visibility: visible !important; }
+
+/* ===== LIGHT MODE (default scheme) overrides ===== */
+[data-md-color-scheme="default"] .md-content {
+  background-color: #f8fafc !important;
+}
+[data-md-color-scheme="default"] .home-container {
+  color: #1e293b;
+}
+[data-md-color-scheme="default"] .hero-section {
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+}
+[data-md-color-scheme="default"] .hero-title {
+  color: #0f172a;
+}
+[data-md-color-scheme="default"] .hero-gradient-text {
+  background-image: linear-gradient(to right, #2563eb, #7c3aed);
+}
+[data-md-color-scheme="default"] .hero-desc {
+  color: #64748b;
+}
+[data-md-color-scheme="default"] .bento-card {
+  background-color: #fff;
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+[data-md-color-scheme="default"] .bento-card:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+[data-md-color-scheme="default"] .bento-tag {
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+[data-md-color-scheme="default"] .bento-title {
+  color: #0f172a;
+}
+[data-md-color-scheme="default"] .bento-desc {
+  color: #64748b;
+}
+[data-md-color-scheme="default"] .bento-image-wrapper {
+  background-color: #f1f5f9;
+}
+[data-md-color-scheme="default"] .bento-image-wrapper::after {
+  background: linear-gradient(to top, rgba(248, 250, 252, 0.6), transparent);
+}
 </style>
 
 <div class="home-container">
