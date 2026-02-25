@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-
-        .input-group:focus-within label {
-            color: #3b82f6;
-        }
-
-        .calculated-field {
-            background-color: #f0fdf4;
-            border-color: #22c55e;
-            border-width: 2px;
-        }
-
-        .card-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        .input-group:focus-within label { color: #3b82f6; }
+        .calculated-field { background-color: #f0fdf4; border-color: #22c55e; border-width: 2px; }
+        .card-shadow { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-
 <body class="bg-slate-50 min-h-screen p-4 md:p-8">
 
     <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
@@ -37,82 +21,60 @@
         <div class="bg-slate-900 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
                 <h1 class="text-2xl font-bold flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                     </svg>
                     Professional TVM Calculator
                 </h1>
                 <p class="text-slate-400 text-sm mt-1">Precise Local Calculation · Dynamic Visualization</p>
             </div>
             <div class="hidden md:flex gap-2">
-                <span
-                    class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">PV</span>
-                <span
-                    class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">FV</span>
-                <span
-                    class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">PMT</span>
+                <span class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">PV</span>
+                <span class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">FV</span>
+                <span class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">PMT</span>
             </div>
         </div>
 
         <div class="p-6 md:p-8">
             <!-- Message Box -->
-            <div id="message-box"
-                class="hidden mb-6 p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm"></div>
+            <div id="message-box" class="hidden mb-6 p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm"></div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <!-- Left Panel: Inputs -->
                 <div class="lg:col-span-4 space-y-4">
                     <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                        <h4
-                            class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2 uppercase tracking-wider">
+                        <h4 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2 uppercase tracking-wider">
                             <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Input Parameters
                         </h4>
                         <div class="space-y-4">
                             <div class="input-group">
-                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Present Value
-                                    (PV)</label>
-                                <input type="number" id="pv" placeholder="Leave blank to calculate"
-                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Present Value (PV)</label>
+                                <input type="number" id="pv" placeholder="Leave blank to calculate" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Future Value
-                                    (FV)</label>
-                                <input type="number" id="fv" placeholder="Leave blank to calculate"
-                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Future Value (FV)</label>
+                                <input type="number" id="fv" placeholder="Leave blank to calculate" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Annuity
-                                    (PMT)</label>
-                                <input type="number" id="av" placeholder="Leave blank to calculate"
-                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Annuity (PMT)</label>
+                                <input type="number" id="av" placeholder="Leave blank to calculate" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Annual Rate (i) -
-                                    %</label>
-                                <input type="number" step="0.01" id="rate" placeholder="Leave blank to calculate"
-                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Annual Rate (i) - %</label>
+                                <input type="number" step="0.01" id="rate" placeholder="Leave blank to calculate" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Periods (n) -
-                                    Years</label>
-                                <input type="number" id="years" value="10"
-                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all bg-white">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Periods (n) - Years</label>
+                                <input type="number" id="years" value="10" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all bg-white">
                             </div>
                         </div>
-                        <button onclick="calculate()"
-                            class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                    clip-rule="evenodd" />
+                        <button onclick="calculate()" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                             </svg>
                             Calculate
                         </button>
-                        <button onclick="resetFields()"
-                            class="w-full mt-3 text-slate-400 hover:text-slate-600 text-xs font-medium transition-colors">
+                        <button onclick="resetFields()" class="w-full mt-3 text-slate-400 hover:text-slate-600 text-xs font-medium transition-colors">
                             Reset All Data
                         </button>
                     </div>
@@ -124,48 +86,33 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
                             <div class="p-3 bg-blue-100 rounded-lg text-blue-600">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                    </path>
-                                </svg>
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </div>
                             <div>
-                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total
-                                    Invested</div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Invested</div>
                                 <div id="summary-invested" class="text-xl font-bold text-slate-800">$0.00</div>
                             </div>
                         </div>
                         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
                             <div class="p-3 bg-green-100 rounded-lg text-green-600">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                                </svg>
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                             </div>
                             <div>
-                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Future Value
-                                    (FV)</div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Future Value (FV)</div>
                                 <div id="summary-fv" class="text-xl font-bold text-slate-800">$0.00</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Main Result Card -->
-                    <div id="result-card"
-                        class="bg-slate-900 text-white rounded-xl p-8 shadow-xl relative overflow-hidden">
+                    <div id="result-card" class="bg-slate-900 text-white rounded-xl p-8 shadow-xl relative overflow-hidden">
                         <div class="absolute top-0 right-0 p-8 opacity-10">
-                            <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
-                            </svg>
+                            <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
                         </div>
                         <div id="result-display" class="relative z-10 text-center md:text-left">
-                            <div class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-2">Calculation
-                                Result</div>
+                            <div class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-2">Calculation Result</div>
                             <div id="main-result-value" class="text-5xl font-black mb-2">$ 0.00</div>
-                            <div id="result-label" class="text-slate-400 text-sm italic font-medium">Enter three values
-                                and click calculate...</div>
+                            <div id="result-label" class="text-slate-400 text-sm italic font-medium">Enter three values and click calculate...</div>
                         </div>
                     </div>
 
@@ -173,19 +120,13 @@
                     <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                         <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-2">
                             <h3 class="font-bold text-slate-800 flex items-center gap-2">
-                                <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1-0 01-1-1V4z" />
-                                </svg>
+                                <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1-0 01-1-1V4z"/></svg>
                                 Asset Growth Composition
                             </h3>
                             <div class="flex gap-4 text-[10px] font-bold uppercase tracking-tighter">
-                                <span class="flex items-center gap-1"><span
-                                        class="w-2.5 h-2.5 bg-blue-500 rounded-full"></span> Principal</span>
-                                <span class="flex items-center gap-1"><span
-                                        class="w-2.5 h-2.5 bg-blue-300 rounded-full"></span> Deposits</span>
-                                <span class="flex items-center gap-1"><span
-                                        class="w-2.5 h-2.5 bg-green-500 rounded-full"></span> Interest</span>
+                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-blue-500 rounded-full"></span> Principal</span>
+                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-blue-300 rounded-full"></span> Deposits</span>
+                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-green-500 rounded-full"></span> Interest</span>
                             </div>
                         </div>
                         <div class="h-[300px] w-full">
@@ -195,7 +136,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Footer -->
         <div class="bg-slate-50 border-t border-slate-200 p-4 text-center">
             <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest leading-loose">
@@ -254,8 +195,8 @@
         function calculate() {
             showMessage('');
             const pvInput = document.getElementById('pv'), fvInput = document.getElementById('fv'),
-                avInput = document.getElementById('av'), rateInput = document.getElementById('rate'),
-                yearsInput = document.getElementById('years');
+                  avInput = document.getElementById('av'), rateInput = document.getElementById('rate'),
+                  yearsInput = document.getElementById('years');
 
             let PV = parseFloat(pvInput.value), FV = parseFloat(fvInput.value),
                 AV = parseFloat(avInput.value), i = parseFloat(rateInput.value) / 100,
@@ -295,7 +236,7 @@
                 }
 
                 target.el.classList.add('calculated-field');
-
+                
                 const finalPV = parseFloat(pvInput.value) || 0;
                 const finalFV = parseFloat(fvInput.value) || 0;
                 const finalAV = parseFloat(avInput.value) || 0;
@@ -304,9 +245,9 @@
                 const resultValue = target.key === 'rate' ? rateInput.value + '%' : '$ ' + parseFloat(target.el.value).toLocaleString();
                 document.getElementById('main-result-value').innerText = resultValue;
                 document.getElementById('result-label').innerText = `Calculated ${target.name} successfully`;
-
-                document.getElementById('summary-invested').innerText = '$' + (finalPV + (finalAV * n)).toLocaleString(undefined, { maximumFractionDigits: 2 });
-                document.getElementById('summary-fv').innerText = '$' + finalFV.toLocaleString(undefined, { maximumFractionDigits: 2 });
+                
+                document.getElementById('summary-invested').innerText = '$' + (finalPV + (finalAV * n)).toLocaleString(undefined, {maximumFractionDigits:2});
+                document.getElementById('summary-fv').innerText = '$' + finalFV.toLocaleString(undefined, {maximumFractionDigits:2});
 
                 updateChart(finalPV, finalAV, finalRate, n);
 
@@ -359,5 +300,4 @@
         };
     </script>
 </body>
-
 </html>
