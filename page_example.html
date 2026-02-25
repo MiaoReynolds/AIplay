@@ -1,0 +1,211 @@
+import React, { useState } from 'react';
+import { 
+  Terminal, 
+  Cpu, 
+  BookOpen, 
+  ArrowRight, 
+  Workflow, 
+  ShieldCheck, 
+  Zap, 
+  ChevronRight,
+  Github,
+  Twitter,
+  Mail
+} from 'lucide-react';
+
+// --- Components ---
+
+const Navbar = () => (
+  <nav className="fixed w-full z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between h-16 items-center">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <Cpu className="text-white w-5 h-5" />
+          </div>
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+            AIOne Lab
+          </span>
+        </div>
+        <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+          <a href="#services" className="hover:text-white transition-colors">Solutions</a>
+          <a href="#cases" className="hover:text-white transition-colors">Case Studies</a>
+          <a href="#courses" className="hover:text-white transition-colors">Courses</a>
+          <button className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-all font-semibold">
+            Get Started
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+);
+
+const Hero = () => (
+  <section className="relative pt-32 pb-20 overflow-hidden">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full -z-10"></div>
+    <div className="max-w-7xl mx-auto px-4 text-center">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-blue-400 mb-6 font-medium tracking-wide">
+        <Zap size={14} /> LEADING AI AUTOMATION DEPLOYMENT 2025
+      </div>
+      <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        Reinvent Business Logic <br />
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+          Bridging AI and Reality
+        </span>
+      </h1>
+      <p className="max-w-2xl mx-auto text-gray-400 text-lg mb-10 leading-relaxed">
+        We specialize in n8n workflow automation, enterprise-grade AI Agent deployment, and hands-on AI courses built on real-world case studies.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <button className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20">
+          Explore Solutions <ArrowRight size={20} />
+        </button>
+        <button className="px-8 py-4 bg-white/5 text-white border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-all">
+          Book a Free Trial
+        </button>
+      </div>
+    </div>
+  </section>
+);
+
+const BentoCard = ({ title, desc, icon: Icon, image, tag, color }) => (
+  <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/50 p-8 hover:border-white/20 transition-all">
+    <div className={`absolute top-0 right-0 w-32 h-32 bg-${color}-500/10 blur-3xl -z-10`}></div>
+    <div className="flex flex-col h-full">
+      <div className="flex justify-between items-start mb-4">
+        <div className={`p-3 rounded-2xl bg-${color}-500/10 text-${color}-400`}>
+          <Icon size={24} />
+        </div>
+        <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold border border-white/10 px-2 py-1 rounded">
+          {tag}
+        </span>
+      </div>
+      <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
+      <p className="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">{desc}</p>
+      <div className="relative mt-4 aspect-video rounded-xl overflow-hidden bg-zinc-800">
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent z-10"></div>
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"; }}
+        />
+      </div>
+    </div>
+  </div>
+);
+
+const Services = () => (
+  <section id="services" className="py-24 max-w-7xl mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl font-bold text-white mb-4">Our Core Solutions</h2>
+      <p className="text-gray-400">Empowering enterprises from process automation to cognitive intelligence.</p>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <BentoCard 
+        tag="Automation"
+        title="n8n Workflow Automation"
+        desc="Build 24/7 non-stop enterprise automation hubs by orchestrating nodes and connecting 400+ SaaS applications seamlessly."
+        icon={Workflow}
+        color="blue"
+        image=""
+      />
+      <BentoCard 
+        tag="Intelligence"
+        title="Custom AI Agent Deployment"
+        desc="Deeply customized agents based on Gemini/Claude models with tool-calling, RAG, and self-iterative capabilities."
+        icon={Terminal}
+        color="purple"
+        image=""
+      />
+      <BentoCard 
+        tag="Education"
+        title="Hands-on AI Courses"
+        desc="No fluff. 10+ real-world case studies guiding you to build production-ready AI applications from scratch."
+        icon={BookOpen}
+        color="emerald"
+        image=""
+      />
+    </div>
+  </section>
+);
+
+const CaseStudies = () => {
+  const cases = [
+    { name: "Omnichannel Auto-CS", tech: "n8n + GPT-4o", result: "90% Faster Response" },
+    { name: "Private Knowledge RAG", tech: "Pinecone + LangChain", result: "Zero-Hallucination QA" },
+    { name: "Auto-Marketing Engine", tech: "n8n + Midjourney", result: "5x Content Velocity" },
+  ];
+
+  return (
+    <section id="cases" className="py-24 bg-white/5 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-2">Case Studies</h2>
+            <p className="text-gray-400">Concrete proof of our expertise in delivering high-impact AI solutions.</p>
+          </div>
+          <button className="text-blue-400 flex items-center gap-2 hover:underline font-medium">
+            View All Cases <ChevronRight size={16} />
+          </button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {cases.map((item, idx) => (
+            <div key={idx} className="p-6 rounded-2xl border border-white/10 hover:bg-white/5 transition-all cursor-pointer group">
+              <div className="text-xs font-mono text-blue-400 mb-2">{item.tech}</div>
+              <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{item.name}</h4>
+              <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold">
+                <Zap size={14} /> {item.result}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => (
+  <footer className="py-12 border-t border-white/10">
+    <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+      <div className="text-center md:text-left">
+        <div className="text-xl font-bold text-white mb-2">AIOne Lab</div>
+        <p className="text-gray-500 text-sm">© 2025 AIOne Lab. All rights reserved.</p>
+      </div>
+      <div className="flex gap-6 text-gray-400">
+        <Github className="hover:text-white cursor-pointer transition-colors" />
+        <Twitter className="hover:text-white cursor-pointer transition-colors" />
+        <Mail className="hover:text-white cursor-pointer transition-colors" />
+      </div>
+    </div>
+  </footer>
+);
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-black text-gray-100 selection:bg-blue-500/30 font-sans">
+      <Navbar />
+      <Hero />
+      <Services />
+      <CaseStudies />
+      
+      {/* CTA Section */}
+      <section id="courses" className="py-24 max-w-7xl mx-auto px-4 text-center">
+        <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-[40px] p-12 border border-white/10 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent)] pointer-events-none"></div>
+          <h2 className="text-4xl font-bold text-white mb-6 relative z-10">Ready to Accelerate Your AI Transformation?</h2>
+          <p className="text-gray-400 mb-10 max-w-xl mx-auto text-lg relative z-10">
+            Join our "Hands-on AI" bootcamp and gain access to exclusive n8n templates and Agent source code.
+          </p>
+          <div className="flex justify-center relative z-10">
+            <button className="bg-white text-black px-10 py-4 rounded-2xl font-bold hover:scale-105 transition-transform shadow-xl">
+              Book a 1:1 Consultation
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

@@ -15,11 +15,22 @@
   margin-bottom: 1.5rem;
 }
 
-/* 顶部横条：半透明主题色背景延伸至屏幕全宽 */
+/* 顶部横条：半透明主题色背景延伸至屏幕全宽，确保始终在最上层 */
+.md-header {
+  z-index: 100 !important;
+  position: sticky !important;
+}
+
+.md-tabs {
+  z-index: 99 !important;
+  position: sticky !important;
+}
+
 .md-header__inner {
   position: relative;
   background-color: transparent !important;
 }
+
 .md-header__inner::before {
   content: '';
   position: absolute;
@@ -65,6 +76,7 @@
 .md-tabs {
   width: 100% !important;
 }
+
 .md-tabs__inner {
   max-width: none !important;
   width: 100% !important;
@@ -78,6 +90,7 @@
   max-width: none !important;
   width: 100% !important;
 }
+
 .md-main__inner {
   max-width: none !important;
   width: 100% !important;
@@ -87,6 +100,7 @@
 .md-content {
   max-width: none !important;
 }
+
 .md-sidebar--primary,
 .md-sidebar--secondary {
   max-width: none !important;
