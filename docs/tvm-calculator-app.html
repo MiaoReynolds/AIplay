@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 增强版金融时间价值计算器</title>
+    <title>金融时间价值 (TVM) 计算器</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -22,26 +22,6 @@
             background-color: #f0fdf4;
             border-color: #22c55e;
         }
-
-        .ai-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-        }
-
-        @keyframes pulse-soft {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-        }
-
-        .loading-ai {
-            animation: pulse-soft 2s infinite;
-        }
     </style>
 </head>
 
@@ -49,22 +29,11 @@
 
     <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
         <!-- 头部 -->
-        <div class="bg-slate-900 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-bold flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                    智能金融时间价值 (TVM) 计算器
-                </h1>
-                <p class="text-slate-400 text-sm mt-1">集成了 Gemini AI 的专业理财决策助手</p>
-            </div>
-            <div class="flex items-center bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
-                <span class="text-xs text-blue-400 mr-2">Powered by</span>
-                <span class="font-bold text-sm tracking-tight">Gemini 2.5 Flash</span>
-            </div>
+        <div class="bg-slate-900 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold">
+                金融时间价值 (TVM) 计算器
+            </h1>
+            <p class="text-slate-400 text-sm mt-2">留空需要计算的项，填入已知参数即可</p>
         </div>
 
         <div class="p-6 md:p-8">
@@ -76,7 +45,7 @@
                 <div class="lg:col-span-1 space-y-4">
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4">
                         <h4 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                            <span class="text-blue-500">Step 1:</span> 输入参数
+                            <span class="text-blue-500">参数输入</span>
                         </h4>
                         <div class="space-y-3">
                             <div class="input-group">
@@ -111,64 +80,14 @@
                             </div>
                         </div>
                         <button onclick="calculate()"
-                            class="w-full mt-4 bg-slate-900 hover:bg-black text-white font-bold py-3 rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
-                            计算数据
+                            class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
+                            计算
                         </button>
                     </div>
                 </div>
 
-                <!-- 中间：AI 助手与结果 -->
+                <!-- 右侧结果与图表展示 -->
                 <div class="lg:col-span-2 space-y-6">
-                    <!-- AI 交互区 -->
-                    <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-6 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 opacity-10">
-                            <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2L14.4 9.6H22L15.8 14.4L18.2 22L12 17.2L5.8 22L8.2 14.4L2 9.6H9.6L12 2Z" />
-                            </svg>
-                        </div>
-
-                        <h3 class="font-bold text-indigo-900 mb-4 flex items-center gap-2">
-                            <span class="flex items-center justify-center bg-indigo-600 text-white p-1 rounded">✨</span>
-                            AI 财务目标助手
-                        </h3>
-
-                        <div class="flex gap-2 mb-4">
-                            <input type="text" id="ai-goal-input" placeholder="例如: 我想在15年后存够50万美金退休..."
-                                class="flex-1 px-4 py-2 border border-indigo-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-sm">
-                            <button onclick="askAIGoal()" id="ai-goal-btn"
-                                class="ai-gradient hover:opacity-90 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm flex items-center gap-2 whitespace-nowrap">
-                                ✨ 规划目标
-                            </button>
-                        </div>
-
-                        <div id="ai-insight-box"
-                            class="bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-indigo-100 min-h-[100px] text-sm text-slate-700 relative">
-                            <div id="ai-status"
-                                class="hidden absolute inset-0 flex items-center justify-center bg-white/60 rounded-lg z-10">
-                                <div class="flex items-center gap-2 text-indigo-600 font-semibold loading-ai">
-                                    <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                            stroke-width="4" fill="none"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                    Gemini 正在思考...
-                                </div>
-                            </div>
-                            <div id="ai-content">
-                                <p class="text-slate-400 italic">在此输入您的财务目标，或在完成计算后点击下方按钮获取深度解读。</p>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 flex gap-2">
-                            <button onclick="getAIInsight()" id="ai-insight-btn"
-                                class="bg-white border border-indigo-200 text-indigo-700 px-4 py-2 rounded-lg text-xs font-bold hover:bg-indigo-50 transition-colors flex items-center gap-2">
-                                ✨ 获取当前计算的深度解读
-                            </button>
-                        </div>
-                    </div>
-
                     <!-- 结果展示 -->
                     <div id="result-card"
                         class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
@@ -177,40 +96,39 @@
                         </div>
                         <div class="flex gap-4">
                             <div class="text-center px-4 py-2 bg-blue-50 rounded-lg">
-                                <div class="text-[10px] text-blue-600 font-bold uppercase">初始本金</div>
+                                <div class="text-[10px] text-blue-600 font-bold uppercase">初始本金 (PV)</div>
                                 <div id="summary-pv" class="text-lg font-bold text-slate-800">$0</div>
                             </div>
                             <div class="text-center px-4 py-2 bg-green-50 rounded-lg">
-                                <div class="text-[10px] text-green-600 font-bold uppercase">预期终值</div>
+                                <div class="text-[10px] text-green-600 font-bold uppercase">预期终值 (FV)</div>
                                 <div id="summary-fv" class="text-lg font-bold text-slate-800">$0</div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- 图表区 -->
-            <div class="mt-10 pt-6 border-t border-slate-200">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                    <h3 class="font-bold text-slate-800">资产增长可视化</h3>
-                    <div class="flex gap-4 text-xs font-medium">
-                        <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-500 rounded-sm"></span>
-                            初始本金</span>
-                        <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-300 rounded-sm"></span>
-                            累计年金</span>
-                        <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-500 rounded-sm"></span>
-                            复利收益</span>
+                    <!-- 图表区 -->
+                    <div class="pt-2">
+                        <div class="flex flex-col md:flex-row justify-between items-center mb-4">
+                            <h3 class="font-bold text-slate-800">资产增长可视化</h3>
+                            <div class="flex gap-4 text-xs font-medium">
+                                <span class="flex items-center gap-1"><span
+                                        class="w-3 h-3 bg-blue-500 rounded-sm"></span> 初始本金</span>
+                                <span class="flex items-center gap-1"><span
+                                        class="w-3 h-3 bg-blue-300 rounded-sm"></span> 累计年金</span>
+                                <span class="flex items-center gap-1"><span
+                                        class="w-3 h-3 bg-green-500 rounded-sm"></span> 复利收益</span>
+                            </div>
+                        </div>
+                        <div class="h-[400px] w-full bg-slate-50 border border-slate-100 rounded-xl p-4">
+                            <canvas id="financeChart"></canvas>
+                        </div>
                     </div>
-                </div>
-                <div class="h-[400px] w-full bg-white rounded-xl p-2">
-                    <canvas id="financeChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const apiKey = "";
         let myChart;
 
         // 初始化
@@ -265,7 +183,7 @@
             ];
 
             const emptyInputs = inputs.filter(inp => isNaN(inp.value));
-            if (emptyInputs.length !== 1) return showMessage("请保留且仅保留一个空格进行计算。");
+            if (emptyInputs.length !== 1) return showMessage("请保留且仅保留一个空格以求此解。");
 
             const target = emptyInputs[0].name;
             inputs.forEach(inp => inp.el.classList.remove('calculated-field'));
@@ -335,121 +253,10 @@
             myChart.update();
         }
 
-        // --- Gemini API 集成 ---
-
-        async function callGemini(prompt, systemInstruction = "你是一个专业的财务规划顾问。") {
-            const setStatus = (show) => document.getElementById('ai-status').classList.toggle('hidden', !show);
-            setStatus(true);
-
-            let retries = 0;
-            const maxRetries = 5;
-
-            while (retries < maxRetries) {
-                try {
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: prompt }] }],
-                            systemInstruction: { parts: [{ text: systemInstruction }] }
-                        })
-                    });
-                    const data = await response.json();
-                    setStatus(false);
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
-                } catch (e) {
-                    retries++;
-                    await new Promise(r => setTimeout(r, Math.pow(2, retries) * 1000));
-                }
-            }
-            setStatus(false);
-            return "AI 暂时无法连接，请稍后再试。";
-        }
-
-        // ✨ AI 功能 1: 获取财务深度解读
-        async function getAIInsight() {
-            const pv = document.getElementById('pv').value;
-            const fv = document.getElementById('fv').value;
-            const av = document.getElementById('av').value;
-            const rate = document.getElementById('rate').value;
-            const n = document.getElementById('years').value;
-
-            if (!fv || !rate) {
-                document.getElementById('ai-content').innerHTML = "<p class='text-red-500'>请先点击'计算数据'生成结果后再获取解读。</p>";
-                return;
-            }
-
-            const prompt = `分析以下财务数据：现值(PV)为${pv}，终值(FV)为${fv}，年金(AV)为${av}，年利率为${rate}%，投资期限为${n}年。请用简洁的语言提供投资建议，解释复利的影响，并评估这个理财计划的合理性（如通货膨胀影响、风险等）。字数控制在200字以内。`;
-            const result = await callGemini(prompt);
-            document.getElementById('ai-content').innerHTML = `<div class="prose prose-sm text-slate-700 leading-relaxed">${result.replace(/\n/g, '<br>')}</div>`;
-        }
-
-        // ✨ AI 功能 2: 目标助手 (Structured JSON)
-        async function askAIGoal() {
-            const goalText = document.getElementById('ai-goal-input').value;
-            if (!goalText) return;
-
-            const systemPrompt = `你是一个财务机器人。用户会告诉你一个理财目标。请根据常识推算合理的 PV, FV, AV, Rate(i), Years(n) 参数。
-            规则：
-            - FV 必须是目标金额。
-            - Rate 应该是 3-10% 之间的合理数值。
-            - 必须以 JSON 格式返回。
-            - 如果用户没给时间，默认 10 年。
-            - 必须把 PV, FV, AV, rate, years 这五个字段填满。
-            - 同时返回一段简短的执行建议 (advice)。`;
-
-            const payload = {
-                contents: [{ parts: [{ text: goalText }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "OBJECT",
-                        properties: {
-                            pv: { type: "NUMBER" },
-                            fv: { type: "NUMBER" },
-                            av: { type: "NUMBER" },
-                            rate: { type: "NUMBER" },
-                            years: { type: "NUMBER" },
-                            advice: { type: "STRING" }
-                        }
-                    }
-                }
-            };
-
-            document.getElementById('ai-status').classList.remove('hidden');
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    body: JSON.stringify(payload)
-                });
-                const data = await response.json();
-                const json = JSON.parse(data.candidates[0].content.parts[0].text);
-
-                // 填充输入框
-                document.getElementById('pv').value = json.pv;
-                document.getElementById('fv').value = json.fv;
-                document.getElementById('av').value = json.av;
-                document.getElementById('rate').value = json.rate;
-                document.getElementById('years').value = json.years;
-
-                document.getElementById('ai-content').innerHTML = `
-                    <div class="text-indigo-800 font-bold mb-1">目标规划建议：</div>
-                    <div class="text-slate-600">${json.advice}</div>
-                    <div class="mt-2 text-xs text-indigo-500 font-medium italic">* 参数已自动填入左侧，点击“计算数据”查看详情图表。</div>
-                `;
-                calculate();
-            } catch (e) {
-                document.getElementById('ai-content').innerText = "规划失败，请尝试更详细的描述。";
-            } finally {
-                document.getElementById('ai-status').classList.add('hidden');
-            }
-        }
-
         window.onload = () => {
             initChart();
-            document.getElementById('pv').value = 1000;
-            document.getElementById('av').value = 100;
+            document.getElementById('pv').value = 10000;
+            document.getElementById('av').value = 1000;
             document.getElementById('rate').value = 7;
             calculate();
         };
