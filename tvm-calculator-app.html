@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金融时间价值 (TVM) 计算器</title>
+    <title>Professional TVM Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,6 +21,11 @@
         .calculated-field {
             background-color: #f0fdf4;
             border-color: #22c55e;
+            border-width: 2px;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -28,110 +33,180 @@
 <body class="bg-slate-50 min-h-screen p-4 md:p-8">
 
     <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
-        <!-- 头部 -->
-        <div class="bg-slate-900 p-6 text-white text-center">
-            <h1 class="text-2xl font-bold">
-                金融时间价值 (TVM) 计算器
-            </h1>
-            <p class="text-slate-400 text-sm mt-2">留空需要计算的项，填入已知参数即可</p>
+        <!-- Header -->
+        <div class="bg-slate-900 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    Professional TVM Calculator
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">Precise Local Calculation · Dynamic Visualization</p>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <span
+                    class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">PV</span>
+                <span
+                    class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">FV</span>
+                <span
+                    class="px-3 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">PMT</span>
+            </div>
         </div>
 
         <div class="p-6 md:p-8">
+            <!-- Message Box -->
             <div id="message-box"
                 class="hidden mb-6 p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm"></div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- 左侧输入区 -->
-                <div class="lg:col-span-1 space-y-4">
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4">
-                        <h4 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                            <span class="text-blue-500">参数输入</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left Panel: Inputs -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h4
+                            class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2 uppercase tracking-wider">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Input Parameters
                         </h4>
-                        <div class="space-y-3">
+                        <div class="space-y-4">
                             <div class="input-group">
-                                <label class="block text-xs font-semibold text-slate-500 mb-1 uppercase">现值 (PV) -
-                                    $</label>
-                                <input type="number" id="pv" placeholder="今天的资金"
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Present Value
+                                    (PV)</label>
+                                <input type="number" id="pv" placeholder="Leave blank to calculate"
+                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-semibold text-slate-500 mb-1 uppercase">终值 (FV) -
-                                    $</label>
-                                <input type="number" id="fv" placeholder="未来的金额"
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Future Value
+                                    (FV)</label>
+                                <input type="number" id="fv" placeholder="Leave blank to calculate"
+                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-semibold text-slate-500 mb-1 uppercase">年金 (AV/PMT) -
-                                    $</label>
-                                <input type="number" id="av" placeholder="每期投入"
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Annuity
+                                    (PMT)</label>
+                                <input type="number" id="av" placeholder="Leave blank to calculate"
+                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-semibold text-slate-500 mb-1 uppercase">年利率 (i) -
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Annual Rate (i) -
                                     %</label>
-                                <input type="number" step="0.01" id="rate" placeholder="年回报率"
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                                <input type="number" step="0.01" id="rate" placeholder="Leave blank to calculate"
+                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
                             </div>
                             <div class="input-group">
-                                <label class="block text-xs font-semibold text-slate-500 mb-1 uppercase">年限 (n) -
-                                    Year</label>
+                                <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Periods (n) -
+                                    Years</label>
                                 <input type="number" id="years" value="10"
-                                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all bg-white">
+                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all bg-white">
                             </div>
                         </div>
                         <button onclick="calculate()"
-                            class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
-                            计算
+                            class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Calculate
+                        </button>
+                        <button onclick="resetFields()"
+                            class="w-full mt-3 text-slate-400 hover:text-slate-600 text-xs font-medium transition-colors">
+                            Reset All Data
                         </button>
                     </div>
                 </div>
 
-                <!-- 右侧结果与图表展示 -->
-                <div class="lg:col-span-2 space-y-6">
-                    <!-- 结果展示 -->
-                    <div id="result-card"
-                        class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div id="result-display" class="text-center md:text-left">
-                            <span class="text-slate-400 italic text-sm">待计算...</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="text-center px-4 py-2 bg-blue-50 rounded-lg">
-                                <div class="text-[10px] text-blue-600 font-bold uppercase">初始本金 (PV)</div>
-                                <div id="summary-pv" class="text-lg font-bold text-slate-800">$0</div>
+                <!-- Right Panel: Results & Chart -->
+                <div class="lg:col-span-8 space-y-6">
+                    <!-- Summary Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
+                            <div class="p-3 bg-blue-100 rounded-lg text-blue-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
+                                </svg>
                             </div>
-                            <div class="text-center px-4 py-2 bg-green-50 rounded-lg">
-                                <div class="text-[10px] text-green-600 font-bold uppercase">预期终值 (FV)</div>
-                                <div id="summary-fv" class="text-lg font-bold text-slate-800">$0</div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total
+                                    Invested</div>
+                                <div id="summary-invested" class="text-xl font-bold text-slate-800">$0.00</div>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
+                            <div class="p-3 bg-green-100 rounded-lg text-green-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Future Value
+                                    (FV)</div>
+                                <div id="summary-fv" class="text-xl font-bold text-slate-800">$0.00</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 图表区 -->
-                    <div class="pt-2">
-                        <div class="flex flex-col md:flex-row justify-between items-center mb-4">
-                            <h3 class="font-bold text-slate-800">资产增长可视化</h3>
-                            <div class="flex gap-4 text-xs font-medium">
+                    <!-- Main Result Card -->
+                    <div id="result-card"
+                        class="bg-slate-900 text-white rounded-xl p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-8 opacity-10">
+                            <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                        </div>
+                        <div id="result-display" class="relative z-10 text-center md:text-left">
+                            <div class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-2">Calculation
+                                Result</div>
+                            <div id="main-result-value" class="text-5xl font-black mb-2">$ 0.00</div>
+                            <div id="result-label" class="text-slate-400 text-sm italic font-medium">Enter three values
+                                and click calculate...</div>
+                        </div>
+                    </div>
+
+                    <!-- Chart Area -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                        <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-2">
+                            <h3 class="font-bold text-slate-800 flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1-0 01-1-1V4z" />
+                                </svg>
+                                Asset Growth Composition
+                            </h3>
+                            <div class="flex gap-4 text-[10px] font-bold uppercase tracking-tighter">
                                 <span class="flex items-center gap-1"><span
-                                        class="w-3 h-3 bg-blue-500 rounded-sm"></span> 初始本金</span>
+                                        class="w-2.5 h-2.5 bg-blue-500 rounded-full"></span> Principal</span>
                                 <span class="flex items-center gap-1"><span
-                                        class="w-3 h-3 bg-blue-300 rounded-sm"></span> 累计年金</span>
+                                        class="w-2.5 h-2.5 bg-blue-300 rounded-full"></span> Deposits</span>
                                 <span class="flex items-center gap-1"><span
-                                        class="w-3 h-3 bg-green-500 rounded-sm"></span> 复利收益</span>
+                                        class="w-2.5 h-2.5 bg-green-500 rounded-full"></span> Interest</span>
                             </div>
                         </div>
-                        <div class="h-[400px] w-full bg-slate-50 border border-slate-100 rounded-xl p-4">
+                        <div class="h-[300px] w-full">
                             <canvas id="financeChart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 border-t border-slate-200 p-4 text-center">
+            <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest leading-loose">
+                Time Value of Money (TVM) Calculator · Formula: $FV = PV(1+i)^n + PMT[\frac{(1+i)^n - 1}{i}]$
+            </p>
+        </div>
     </div>
 
     <script>
         let myChart;
 
-        // 初始化
         function initChart() {
             const ctx = document.getElementById('financeChart').getContext('2d');
             myChart = new Chart(ctx, {
@@ -139,9 +214,9 @@
                 data: {
                     labels: [],
                     datasets: [
-                        { label: '初始现值 (PV)', data: [], backgroundColor: '#3b82f6', borderRadius: 4 },
-                        { label: '累计年金投入', data: [], backgroundColor: '#93c5fd', borderRadius: 4 },
-                        { label: '累计利息增值', data: [], backgroundColor: '#22c55e', borderRadius: 4 }
+                        { label: 'Principal (PV)', data: [], backgroundColor: '#3b82f6', borderRadius: 4, barThickness: 20 },
+                        { label: 'Cumulative PMT', data: [], backgroundColor: '#93c5fd', borderRadius: 4, barThickness: 20 },
+                        { label: 'Cumulative Interest', data: [], backgroundColor: '#22c55e', borderRadius: 4, barThickness: 20 }
                     ]
                 },
                 options: {
@@ -150,7 +225,7 @@
                     plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
                     scales: {
                         x: { stacked: true, grid: { display: false } },
-                        y: { stacked: true, ticks: { callback: value => '$' + value.toLocaleString() } }
+                        y: { stacked: true, ticks: { callback: value => '$' + value.toLocaleString() }, grid: { borderDash: [2, 2] } }
                     }
                 }
             });
@@ -162,7 +237,20 @@
             else { box.classList.add('hidden'); }
         }
 
-        // 核心计算
+        function resetFields() {
+            ['pv', 'fv', 'av', 'rate'].forEach(id => {
+                const el = document.getElementById(id);
+                el.value = '';
+                el.classList.remove('calculated-field');
+            });
+            document.getElementById('main-result-value').innerText = '$ 0.00';
+            document.getElementById('result-label').innerText = 'Enter three values and click calculate...';
+            document.getElementById('summary-invested').innerText = '$0.00';
+            document.getElementById('summary-fv').innerText = '$0.00';
+            updateChart(0, 0, 0, 10);
+            showMessage('');
+        }
+
         function calculate() {
             showMessage('');
             const pvInput = document.getElementById('pv'), fvInput = document.getElementById('fv'),
@@ -173,62 +261,68 @@
                 AV = parseFloat(avInput.value), i = parseFloat(rateInput.value) / 100,
                 n = parseInt(yearsInput.value);
 
-            if (isNaN(n) || n <= 0) return showMessage("请输入有效年限");
+            if (isNaN(n) || n <= 0) return showMessage("Please enter a valid term (n > 0)");
 
             const inputs = [
-                { name: 'PV', value: PV, el: pvInput },
-                { name: 'FV', value: FV, el: fvInput },
-                { name: 'AV', value: AV, el: avInput },
-                { name: 'i', value: i, el: rateInput }
+                { name: 'Present Value (PV)', key: 'pv', value: PV, el: pvInput },
+                { name: 'Future Value (FV)', key: 'fv', value: FV, el: fvInput },
+                { name: 'Annuity (PMT)', key: 'av', value: AV, el: avInput },
+                { name: 'Interest Rate (i)', key: 'rate', value: i, el: rateInput }
             ];
 
             const emptyInputs = inputs.filter(inp => isNaN(inp.value));
-            if (emptyInputs.length !== 1) return showMessage("请保留且仅保留一个空格以求此解。");
 
-            const target = emptyInputs[0].name;
+            if (emptyInputs.length !== 1) {
+                return showMessage(`Please leave exactly one field empty to calculate. Currently empty: ${emptyInputs.length}.`);
+            }
+
+            const target = emptyInputs[0];
             inputs.forEach(inp => inp.el.classList.remove('calculated-field'));
 
             try {
-                if (target === 'FV') {
+                if (target.key === 'fv') {
                     FV = PV * Math.pow(1 + i, n) + AV * (Math.pow(1 + i, n) - 1) / i;
                     fvInput.value = FV.toFixed(2);
-                } else if (target === 'PV') {
+                } else if (target.key === 'pv') {
                     PV = (FV - AV * (Math.pow(1 + i, n) - 1) / i) / Math.pow(1 + i, n);
                     pvInput.value = PV.toFixed(2);
-                } else if (target === 'AV') {
+                } else if (target.key === 'av') {
                     AV = (FV - PV * Math.pow(1 + i, n)) / ((Math.pow(1 + i, n) - 1) / i);
                     avInput.value = AV.toFixed(2);
-                } else if (target === 'i') {
+                } else if (target.key === 'rate') {
                     i = solveForRate(PV, FV, AV, n);
                     rateInput.value = (i * 100).toFixed(4);
                 }
 
-                document.getElementById(target.toLowerCase()).classList.add('calculated-field');
+                target.el.classList.add('calculated-field');
 
-                const finalPV = parseFloat(pvInput.value);
-                const finalFV = parseFloat(fvInput.value);
+                const finalPV = parseFloat(pvInput.value) || 0;
+                const finalFV = parseFloat(fvInput.value) || 0;
+                const finalAV = parseFloat(avInput.value) || 0;
+                const finalRate = (parseFloat(rateInput.value) / 100) || 0;
 
-                document.getElementById('result-display').innerHTML = `
-                    <div class="text-xs font-bold text-blue-600 mb-1">计算成功 (${target})</div>
-                    <div class="text-4xl font-black text-slate-900">$ ${parseFloat(document.getElementById(target.toLowerCase() === 'i' ? 'rate' : target.toLowerCase()).value).toLocaleString()}</div>
-                `;
+                const resultValue = target.key === 'rate' ? rateInput.value + '%' : '$ ' + parseFloat(target.el.value).toLocaleString();
+                document.getElementById('main-result-value').innerText = resultValue;
+                document.getElementById('result-label').innerText = `Calculated ${target.name} successfully`;
 
-                document.getElementById('summary-pv').innerText = '$' + finalPV.toLocaleString(undefined, { maximumFractionDigits: 0 });
-                document.getElementById('summary-fv').innerText = '$' + finalFV.toLocaleString(undefined, { maximumFractionDigits: 0 });
+                document.getElementById('summary-invested').innerText = '$' + (finalPV + (finalAV * n)).toLocaleString(undefined, { maximumFractionDigits: 2 });
+                document.getElementById('summary-fv').innerText = '$' + finalFV.toLocaleString(undefined, { maximumFractionDigits: 2 });
 
-                updateChart(finalPV, parseFloat(avInput.value) || 0, (parseFloat(rateInput.value) / 100) || 0, n);
+                updateChart(finalPV, finalAV, finalRate, n);
 
-            } catch (err) { showMessage("计算失败，数值不符合逻辑。"); }
+            } catch (err) {
+                showMessage("Calculation failed. Please check if the values are logically consistent.");
+            }
         }
 
         function solveForRate(pv, fv, av, n) {
             let r = 0.05;
-            for (let j = 0; j < 50; j++) {
+            for (let j = 0; j < 100; j++) {
                 let p = Math.pow(1 + r, n);
                 let f = pv * p + av * (p - 1) / r - fv;
                 let df = n * pv * Math.pow(1 + r, n - 1) + av * (n * r * Math.pow(1 + r, n - 1) - p + 1) / (r * r);
                 let nextR = r - f / df;
-                if (Math.abs(nextR - r) < 1e-8) return nextR;
+                if (Math.abs(nextR - r) < 1e-10) return nextR;
                 r = nextR;
             }
             return r;
@@ -237,15 +331,18 @@
         function updateChart(pv, av, rate, years) {
             const labels = [], pvData = [], avData = [], interestData = [];
             for (let t = 0; t <= years; t++) {
-                labels.push('Y' + t);
-                const curPV = pv * Math.pow(1 + rate, t);
-                const curAV = t === 0 ? 0 : av * (Math.pow(1 + rate, t) - 1) / rate;
+                labels.push('Year ' + t);
+                const curPVVal = pv * Math.pow(1 + rate, t);
+                const curAVVal = t === 0 ? 0 : av * (Math.pow(1 + rate, t) - 1) / rate;
+                const totalValue = curPVVal + curAVVal;
                 const totalInvested = pv + (av * t);
-                const totalValue = curPV + curAV;
+                const totalInterest = Math.max(0, totalValue - totalInvested);
+
                 pvData.push(pv.toFixed(2));
                 avData.push((av * t).toFixed(2));
-                interestData.push(Math.max(0, totalValue - totalInvested).toFixed(2));
+                interestData.push(totalInterest.toFixed(2));
             }
+
             myChart.data.labels = labels;
             myChart.data.datasets[0].data = pvData;
             myChart.data.datasets[1].data = avData;
@@ -255,9 +352,9 @@
 
         window.onload = () => {
             initChart();
-            document.getElementById('pv').value = 10000;
-            document.getElementById('av').value = 1000;
-            document.getElementById('rate').value = 7;
+            document.getElementById('pv').value = 5000;
+            document.getElementById('av').value = 200;
+            document.getElementById('rate').value = 6.5;
             calculate();
         };
     </script>
