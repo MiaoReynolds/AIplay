@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom scrollbar for category tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center py-8 px-4 font-sans text-slate-900">
+
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+        <!-- Header -->
+        <div class="bg-indigo-600 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold mb-1">Unit Converter</h1>
+            <p class="text-indigo-100 text-sm">Simple, Precise & Fast</p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div id="category-tabs" class="flex overflow-x-auto no-scrollbar border-b border-slate-100 bg-white sticky top-0 z-10">
+            <!-- Tabs will be rendered by JS -->
+        </div>
+
+        <!-- Converter Body -->
+        <div class="p-6 space-y-6">
+            <!-- From Section -->
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">From</label>
+                <div class="flex flex-col space-y-2">
+                    <div class="relative">
+                        <select id="unit1" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none text-slate-700 font-medium cursor-pointer">
+                            <!-- Options rendered by JS -->
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <input id="val1" type="number" step="any" value="1" placeholder="Enter value" class="w-full text-3xl font-bold text-indigo-600 bg-transparent px-2 py-1 border-b-2 border-slate-100 focus:border-indigo-400 focus:outline-none transition-colors">
+                </div>
+            </div>
+
+            <!-- Swap Button -->
+            <div class="flex justify-center -my-3 relative z-10">
+                <button id="swap-btn" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 active:scale-95 transition-all transform hover:rotate-180" title="Swap Units">
+                    <i data-lucide="arrow-left-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- To Section -->
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">To</label>
+                <div class="flex flex-col space-y-2">
+                    <div class="relative">
+                        <select id="unit2" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none text-slate-700 font-medium cursor-pointer">
+                            <!-- Options rendered by JS -->
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <div id="val2" class="w-full text-3xl font-bold text-slate-800 px-2 py-1 min-h-[3rem] break-all cursor-text select-all">
+                        0
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="px-6 pb-8 text-center border-t border-slate-50 pt-4">
+            <p class="text-slate-400 text-[10px] leading-relaxed">
+                Calculations are based on standard conversion ratios.<br/>
+                Supports absolute zero compensation for temperature.<br/>
+                Rounded to 8 significant figures.
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick Access Info Card -->
+    <div class="mt-6 max-w-md w-full bg-indigo-50 rounded-2xl p-4 border border-indigo-100">
+        <h3 class="text-indigo-800 text-sm font-bold mb-2 flex items-center">
+            <i data-lucide="zap" class="w-3.5 h-3.5 mr-1"></i> UX Optimized
+        </h3>
+        <ul class="text-indigo-700 text-xs space-y-1 list-disc list-inside">
+            <li>Categories automatically load common default units.</li>
+            <li>The 'To' dropdown filters out the unit already selected in 'From'.</li>
+            <li>Temperature is pre-set to 100°F conversion.</li>
+        </ul>
+    </div>
+
+    <script>
+        const UNIT_DATA = {
+            length: {
+                label: 'Length',
+                icon: 'ruler',
+                defaults: { u1: 'meter', u2: 'foot', v1: '1' },
+                units: {
+                    millimeter: { name: 'Millimeter (mm)', ratio: 0.001 },
+                    centimeter: { name: 'Centimeter (cm)', ratio: 0.01 },
+                    meter: { name: 'Meter (m)', ratio: 1 },
+                    kilometer: { name: 'Kilometer (km)', ratio: 1000 },
+                    inch: { name: 'Inch (in)', ratio: 0.0254 },
+                    foot: { name: 'Foot (ft)', ratio: 0.3048 },
+                    yard: { name: 'Yard (yd)', ratio: 0.9144 },
+                    mile: { name: 'Mile (mi)', ratio: 1609.344 },
+                }
+            },
+            weight: {
+                label: 'Weight',
+                icon: 'scale',
+                defaults: { u1: 'pound', u2: 'kilogram', v1: '1' },
+                units: {
+                    milligram: { name: 'Milligram (mg)', ratio: 0.000001 },
+                    gram: { name: 'Gram (g)', ratio: 0.001 },
+                    kilogram: { name: 'Kilogram (kg)', ratio: 1 },
+                    ton: { name: 'Ton (t)', ratio: 1000 },
+                    ounce: { name: 'Ounce (oz)', ratio: 0.0283495 },
+                    pound: { name: 'Pound (lb)', ratio: 0.453592 },
+                }
+            },
+            energy: {
+                label: 'Energy',
+                icon: 'zap',
+                defaults: { u1: 'kilowatt_hour', u2: 'kilojoule', v1: '1' },
+                units: {
+                    joule: { name: 'Joule (J)', ratio: 1 },
+                    kilojoule: { name: 'Kilojoule (kJ)', ratio: 1000 },
+                    calorie: { name: 'Calorie (cal)', ratio: 4.184 },
+                    kilocalorie: { name: 'Kilocalorie (kcal)', ratio: 4184 },
+                    watt_hour: { name: 'Watt-hour (Wh)', ratio: 3600 },
+                    kilowatt_hour: { name: 'Kilowatt-hour (kWh)', ratio: 3600000 },
+                }
+            },
+            area: {
+                label: 'Area',
+                icon: 'maximize',
+                defaults: { u1: 'acre', u2: 'square_meter', v1: '1' },
+                units: {
+                    square_millimeter: { name: 'Sq. Millimeter', ratio: 0.000001 },
+                    square_centimeter: { name: 'Sq. Centimeter', ratio: 0.0001 },
+                    square_meter: { name: 'Sq. Meter', ratio: 1 },
+                    hectare: { name: 'Hectare', ratio: 10000 },
+                    square_kilometer: { name: 'Sq. Kilometer', ratio: 1000000 },
+                    acre: { name: 'Acre', ratio: 4046.856 },
+                }
+            },
+            pressure: {
+                label: 'Pressure',
+                icon: 'gauge',
+                defaults: { u1: 'psi', u2: 'kilopascal', v1: '1' },
+                units: {
+                    pascal: { name: 'Pascal (Pa)', ratio: 1 },
+                    kilopascal: { name: 'Kilopascal (kPa)', ratio: 1000 },
+                    bar: { name: 'Bar', ratio: 100000 },
+                    atmosphere: { name: 'Atmosphere (atm)', ratio: 101325 },
+                    psi: { name: 'PSI (lb/in²)', ratio: 6894.76 },
+                }
+            },
+            temperature: {
+                label: 'Temperature',
+                icon: 'thermometer',
+                special: true,
+                defaults: { u1: 'fahrenheit', u2: 'celsius', v1: '100' },
+                units: {
+                    celsius: { name: 'Celsius (°C)' },
+                    fahrenheit: { name: 'Fahrenheit (°F)' },
+                    kelvin: { name: 'Kelvin (K)' },
+                }
+            }
+        };
+
+        // State Management
+        let activeCategory = 'length';
+        let unit1 = '';
+        let unit2 = '';
+
+        // DOM Elements
+        const categoryTabs = document.getElementById('category-tabs');
+        const selectUnit1 = document.getElementById('unit1');
+        const selectUnit2 = document.getElementById('unit2');
+        const inputVal1 = document.getElementById('val1');
+        const displayVal2 = document.getElementById('val2');
+        const swapBtn = document.getElementById('swap-btn');
+
+        // Initialization
+        function init() {
+            renderCategories();
+            setCategory('length');
+            
+            // Listeners
+            inputVal1.addEventListener('input', updateResult);
+            selectUnit1.addEventListener('change', (e) => {
+                const oldU1 = unit1;
+                unit1 = e.target.value;
+                // If u1 becomes u2, move u2 to the old u1 or first available
+                if (unit1 === unit2) {
+                    const available = Object.keys(UNIT_DATA[activeCategory].units).filter(u => u !== unit1);
+                    unit2 = available[0];
+                }
+                renderSelects();
+                updateResult();
+            });
+            selectUnit2.addEventListener('change', (e) => {
+                unit2 = e.target.value;
+                updateResult();
+            });
+            swapBtn.addEventListener('click', handleSwap);
+
+            // Lucide icons init
+            lucide.createIcons();
+        }
+
+        function renderCategories() {
+            categoryTabs.innerHTML = '';
+            Object.entries(UNIT_DATA).forEach(([key, data]) => {
+                const btn = document.createElement('button');
+                btn.className = `category-btn flex flex-col items-center min-w-[70px] py-4 px-2 transition-all ${activeCategory === key ? 'text-indigo-600 border-b-2 border-indigo-600 bg-indigo-50/50' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'}`;
+                btn.dataset.category = key;
+                btn.innerHTML = `
+                    <i data-lucide="${data.icon}" class="w-5 h-5"></i>
+                    <span class="text-xs mt-1 font-medium">${data.label}</span>
+                `;
+                btn.onclick = () => setCategory(key);
+                categoryTabs.appendChild(btn);
+            });
+            lucide.createIcons();
+        }
+
+        function setCategory(key) {
+            activeCategory = key;
+            const config = UNIT_DATA[key].defaults;
+            unit1 = config.u1;
+            unit2 = config.u2;
+            inputVal1.value = config.v1;
+            
+            // Update UI styles
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if(btn.dataset.category === key) {
+                    btn.classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600', 'bg-indigo-50/50');
+                    btn.classList.remove('text-slate-400');
+                } else {
+                    btn.classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600', 'bg-indigo-50/50');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+
+            renderSelects();
+            updateResult();
+        }
+
+        function renderSelects() {
+            const units = UNIT_DATA[activeCategory].units;
+            
+            // Render Unit 1
+            selectUnit1.innerHTML = '';
+            Object.entries(units).forEach(([uKey, uData]) => {
+                const opt = new Option(uData.name, uKey);
+                opt.selected = (uKey === unit1);
+                selectUnit1.add(opt);
+            });
+
+            // Render Unit 2 (Filtered)
+            selectUnit2.innerHTML = '';
+            Object.entries(units).forEach(([uKey, uData]) => {
+                if (uKey === unit1) return; // Hide current selection from Unit 1
+                const opt = new Option(uData.name, uKey);
+                opt.selected = (uKey === unit2);
+                selectUnit2.add(opt);
+            });
+        }
+
+        function calculate(value, fromUnit, toUnit, categoryKey) {
+            const num = parseFloat(value);
+            if (isNaN(num)) return '';
+
+            const category = UNIT_DATA[categoryKey];
+
+            if (category.special) {
+                let celsius;
+                if (fromUnit === 'celsius') celsius = num;
+                else if (fromUnit === 'fahrenheit') celsius = (num - 32) * 5 / 9;
+                else if (fromUnit === 'kelvin') celsius = num - 273.15;
+
+                if (toUnit === 'celsius') return celsius.toFixed(4);
+                if (toUnit === 'fahrenheit') return (celsius * 9 / 5 + 32).toFixed(4);
+                if (toUnit === 'kelvin') return (celsius + 273.15).toFixed(4);
+                return '';
+            }
+
+            const fromRatio = category.units[fromUnit].ratio;
+            const toRatio = category.units[toUnit].ratio;
+            const result = (num * fromRatio) / toRatio;
+
+            if (Math.abs(result) < 0.000001 && result !== 0) return result.toExponential(4);
+            return parseFloat(result.toFixed(8)).toString();
+        }
+
+        function updateResult() {
+            const res = calculate(inputVal1.value, unit1, unit2, activeCategory);
+            displayVal2.textContent = res || '0';
+        }
+
+        function handleSwap() {
+            const oldU1 = unit1;
+            const oldU2 = unit2;
+            const currentRes = displayVal2.textContent;
+            
+            unit1 = oldU2;
+            unit2 = oldU1;
+            inputVal1.value = currentRes;
+
+            renderSelects();
+            updateResult();
+        }
+
+        // Run
+        window.onload = init;
+    </script>
+</body>
+</html>
