@@ -46,6 +46,7 @@ nav:
       - LeRobot Arm: projects/lerobot.md
       - Quadruped Robot: projects/quadruped.md
   - Time Value of Money: tvm-calculator.md
+  - Unit Converter: unit-converter.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md

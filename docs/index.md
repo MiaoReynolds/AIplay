@@ -254,6 +254,27 @@ hide:
       </div>
     </a>
 
+    <a href="tvm-calculator" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Finance</span>
+        <h3 class="bento-title">Time Value of Money</h3>
+        <p class="bento-desc">Interactive TVM calculator for present value, future value, annuities, and amortization schedules.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/TVM.png" alt="Time Value of Money">
+        </div>
+      </div>
+    </a>
+
+    <a href="unit-converter" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Utility</span>
+        <h3 class="bento-title">Unit Converter</h3>
+        <p class="bento-desc">Fast unit conversion across length, weight, energy, area, pressure, and temperature.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/UC.png" alt="Unit Converter">
+        </div>
+      </div>
+    </a>
     <a href="projects/screen-project/timer" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">UI/UX</span>
