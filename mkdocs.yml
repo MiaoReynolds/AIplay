@@ -38,6 +38,8 @@ nav:
       
       - Vibe Coding: projects/vibe-coding.md
       - n8n Concepts Workflow: projects/ai-course.md
+      - Time Value of Money: tvm-calculator.md
+      - Unit Converter: unit-converter.md
       - Raspberry Pi Screen: projects/raspberrypi-project/raspberrypi-page.md
       - Pomodoro Timer 1.3 OLED: projects/screen-project/timer.md
       - Pomodoro Timer 1.3 OLED with knob and all buttons: projects/screen-project/pomodo_timer_V4.md
@@ -46,12 +48,11 @@ nav:
       - LeRobot Arm: projects/lerobot.md
       - Quadruped Robot: projects/quadruped.md
   - AIGC Prompt: aigc-prompt.md
-  - Time Value of Money: tvm-calculator.md
-  - Unit Converter: unit-converter.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
       # - Setting Up LeRobot: tutorials/lerobot-setup.md
+  - Prompt Generator: prompt-generator.md
   - About: about.md
   - Contact: contact.md
 

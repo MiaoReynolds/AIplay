@@ -322,6 +322,17 @@ hide:
     </div>
 
     <div class="aigc-card"
+         data-img="../assets/images/fuji_mountain.png"
+         data-prompt="A 4:1 panoramic photo of Fuji mountain and foreground city street view from drone height"
+         data-title="Fuji Mountain Panoramic"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/fuji_mountain.png" alt="Fuji Mountain Panoramic">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Fuji Mountain Panoramic</h3>
+      </div>
+    </div>
+
+    <div class="aigc-card"
          data-img="../assets/images/ORR_reaction_2.png"
          data-prompt="A high-resolution scientific illustration showing the oxygen reduction reaction (ORR) mechanism at the cathode of a PEM fuel cell.
 The image focuses on a platinum nanoparticle catalyst supported on carbon (Pt/C) surface. Oxygen molecules (O₂) adsorb onto the Pt active sites and undergo stepwise proton-electron coupled reactions.
@@ -421,6 +432,96 @@ Style Requirements: Use a professional color palette (e.g., deep blues, teals, a
       <img class="aigc-card-img" src="../assets/images/transformer_all_you_need.png" alt="Attention Is All You Need">
       <div class="aigc-card-body">
         <h3 class="aigc-card-title">Attention Is All You Need</h3>
+      </div>
+    </div>
+
+    <div class="aigc-card"
+         data-img="../assets/images/isometric_miniature_scene.png"
+         data-prompt="Present a clear 45° top-down view of a vertical (9:16) isometric miniature 3D cartoon scene featuring the major iconic landmarks of Singapore, centered in the composition to showcase precise and delicate modeling.
+
+The scene prominently includes:
+
+Marina Bay Sands with its rooftop SkyPark
+Merlion statue at Merlion Park
+Supertree Grove structures from Gardens by the Bay
+Singapore Flyer
+Esplanade – Theatres on the Bay (durian-shaped dome)
+A subtle skyline hint of the Central Business District
+
+All landmarks should be stylized in a unified chibi/isometric miniature aesthetic while maintaining recognizable architectural identity and proportional harmony.
+
+The scene features soft, refined textures with realistic PBR materials and gentle, lifelike lighting and shadow effects. Materials should feel tangible and slightly toy-like, yet physically accurate. Surfaces should include subtle reflections, smooth edges, and micro-details that enhance depth.
+
+Weather elements are creatively integrated into the architecture and environment. For example:
+
+Light rain falling across Marina Bay
+Soft clouds drifting behind the skyline
+Sunlight casting warm highlights on glass façades
+Mist surrounding the Merlion water spray
+Dynamic wind interacting with Supertree foliage
+
+The weather should feel immersive and organically connected to the city landscape rather than added separately.
+
+Use a clean, unified composition with minimalistic aesthetics and a soft, solid-colored gradient background that enhances focus on the landmarks. The overall visual style should feel fresh, soothing, modern, and slightly playful.
+
+At the top-center of the image:
+
+The city name 'Singapore' (large text, elegant sans-serif)
+Below it, a prominent weather icon
+Beneath the icon, the date (extra small text)
+Under the date, the temperature range (medium text)
+
+All weather text elements should have no background panel and may subtly overlap the upper skyline.
+
+The text language should match the input city's native language.
+
+Please retrieve current real-time weather conditions for Singapore before rendering and reflect accurate temperature range and weather icon accordingly."
+         data-title="Singapore Isometric Miniature"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/isometric_miniature_scene.png" alt="Singapore Isometric Miniature">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Singapore Isometric Miniature</h3>
+      </div>
+    </div>
+
+
+    <div class="aigc-card"
+         data-img="../assets/images/Tokyo.png"
+         data-prompt="Present a clear, 45° top-down view of a vertical (9:16) isometric miniature 3D cartoon scene of Tokyo, centered on its most iconic landmarks to showcase precise and delicate modeling.
+The composition should prominently feature:
+
+Tokyo Tower (red and white lattice structure)
+Tokyo Skytree (modern slender broadcasting tower)
+Senso-ji Temple with Kaminarimon gate
+Shibuya Crossing with tiny pedestrian figures
+Mount Fuji subtly visible in the distant background skyline
+Modern glass skyscrapers representing the Shinjuku district
+All landmarks are arranged harmoniously in a compact miniature city layout, with the architecture placed at the center of the frame.
+The scene features soft, refined textures with realistic PBR materials and gentle, lifelike lighting and shadow effects. Surfaces should feel tactile and carefully modeled, maintaining high-detail miniature craftsmanship.
+Weather elements are creatively integrated into the architecture — for example:
+
+Light rain droplets on Skytree
+Soft sunlight glow on Tokyo Tower
+Mist drifting around Mount Fuji
+Subtle wind effects through Shibuya Crossing
+These atmospheric elements interact dynamically with the urban environment to create an immersive weather ambiance.
+Use a clean, unified composition with minimalistic aesthetics and a soft, solid-colored background (pastel sky tone such as soft blue, light peach, or pale lavender) to highlight the main content.
+The overall visual style should be fresh, soothing, and slightly playful, while maintaining architectural accuracy.
+At the top-center:
+
+Display the city name '東京' (large text, Japanese)
+Directly below it, a prominent weather icon
+Beneath the icon:
+Date (x-small text)
+Temperature range (medium text)
+The weather information has no background panel and may subtly overlap with the landmark structures.
+Typography should be elegant and clean, matching Japanese design aesthetics.
+Please retrieve current weather conditions for Tokyo before rendering to ensure accurate date, icon, and temperature range."
+         data-title="Tokyo Isometric Miniature"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/Tokyo.png" alt="Tokyo Isometric Miniature">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Tokyo Isometric Miniature</h3>
       </div>
     </div>
 
