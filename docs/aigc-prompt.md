@@ -401,6 +401,29 @@ Professional academic tone"
       </div>
     </div>
 
+    <div class="aigc-card"
+         data-img="../assets/images/transformer_all_you_need.png"
+         data-prompt="Create a professional, high-resolution infographic summarizing the research paper [Insert Title, e.g., 'Attention Is All You Need']. The design should be modern, clean, and organized into the following sections:
+
+Header: The title of the paper and the primary innovation (e.g., The Transformer Architecture).
+
+Core Concept: A visual representation of the 'Multi-Head Attention' mechanism, showing how Queries, Keys, and Values interact.
+
+Architecture Overview: A simplified diagram of the Encoder-Decoder structure, highlighting the elimination of RNNs/CNNs in favor of parallel processing.
+
+Key Advantages: Use icons to show 'Faster Training,' 'Better Long-Range Dependencies,' and 'State-of-the-Art Performance.'
+
+Impact: A concluding section mentioning its role as the foundation for modern LLMs like GPT and BERT.
+
+Style Requirements: Use a professional color palette (e.g., deep blues, teals, and slate grey). Ensure the layout flows logically from top to bottom. Use clear labels and avoid cluttered text. The aesthetic should look like a technical summary for a data science conference."
+         data-title="Attention Is All You Need"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/transformer_all_you_need.png" alt="Attention Is All You Need">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Attention Is All You Need</h3>
+      </div>
+    </div>
+
   </div>
 </div>
 
