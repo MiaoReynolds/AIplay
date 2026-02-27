@@ -45,6 +45,7 @@ nav:
       - Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB : projects/screen-project/timer_091OLED_V3.md
       - LeRobot Arm: projects/lerobot.md
       - Quadruped Robot: projects/quadruped.md
+  - AIGC Prompt: aigc-prompt.md
   - Time Value of Money: tvm-calculator.md
   - Unit Converter: unit-converter.md
   # - Tutorials:

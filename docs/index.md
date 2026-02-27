@@ -61,8 +61,8 @@ hide:
 
 .bento-card {
   position: relative;
-  background-color: rgba(24, 24, 27, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(38, 38, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1.5rem;
   padding: 2rem;
   text-decoration: none !important;
@@ -141,11 +141,7 @@ hide:
   background-color: #27272a;
 }
 .bento-image-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(24, 24, 27, 0.8), transparent);
-  z-index: 10;
+  display: none;
 }
 
 .bento-image-wrapper img {
@@ -228,6 +224,17 @@ hide:
         <p class="bento-desc">Interactive programming and exploring the limits of AI-assisted coding.</p>
         <div class="bento-image-wrapper">
           <img src="assets/images/codex_hello.png" alt="Vibe Coding">
+        </div>
+      </div>
+    </a>
+
+    <a href="aigc-prompt" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">AIGC</span>
+        <h3 class="bento-title">AIGC Prompt Gallery</h3>
+        <p class="bento-desc">Curated collection of AI-generated content prompts with full images and copyable prompts.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/ORR_reaction_2.png" alt="AIGC Prompt Gallery">
         </div>
       </div>
     </a>
