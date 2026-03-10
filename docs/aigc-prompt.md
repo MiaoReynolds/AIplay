@@ -300,6 +300,27 @@ hide:
   <div class="aigc-grid">
 
     <div class="aigc-card"
+         data-img="../assets/images/riverside.png"
+         data-prompt="A cinematic view of a traditional Chinese riverside street at dusk. Ancient Jiangnan-style buildings with grey clay-tiled roofs and white plaster walls line the edge of a calm canal. The architecture features wooden balconies, dark wooden window frames, and intricate lattice railings. Bright red Chinese lanterns hang densely along the eaves and balconies, glowing warmly against the cool blue evening light.
+
+A restaurant with large glass windows faces the canal, its interior softly illuminated. A vertical neon sign with Chinese characters glows bright red on the building facade, adding a modern contrast to the traditional architecture. Outdoor tables with red tablecloths sit under the wooden eaves.
+
+A stone walkway runs along the canal, bordered by a low stone railing. Small planters and life rings are attached along the canal wall. The water reflects the lantern lights and buildings, creating gentle ripples and reflections.
+
+Camera angle: slightly elevated perspective looking diagonally along the canal, creating strong leading lines from the walkway and buildings into the distance.
+
+Lighting: soft twilight blue hour lighting with warm lantern glow and neon highlights.
+
+Atmosphere: calm, nostalgic, traditional Chinese water town ambiance (Jiangnan water town style), highly detailed textures, cinematic realism, 8k, ultra-detailed, sharp focus."
+         data-title="Traditional Chinese Riverside"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/riverside.png" alt="Traditional Chinese Riverside">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Traditional Chinese Riverside</h3>
+      </div>
+    </div>
+
+    <div class="aigc-card"
          data-img="../assets/images/panoramic_photo.png"
          data-prompt="A 4:1 panoramic photo I took on my phone, showing the view from my apartment, when the sunset looked perfect with rows of deep red cirrocumulus"
          data-title="Panoramic Sunset"
