@@ -209,7 +209,7 @@ hide:
   <section class="hero-section">
     <h1 class="hero-title">
       Reinvent Business Logic<br>
-      <span class="hero-gradient-text">Bridging AI and Reality</span>
+      <span class="hero-gradient-text">AI adoption partner for SMEs</span>
     </h1>
     <p class="hero-desc">
       We specialize in n8n workflow automation, enterprise-grade AI Agent deployment, and hands-on AI courses built on real-world case studies.

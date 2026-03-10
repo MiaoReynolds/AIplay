@@ -1,9 +1,11 @@
-site_name: AIplay
+site_name: AIone Lab
 site_url: https://github.com/MiaoReynolds/AIplay.git
 site_author: Reynolds
 
 theme:
   name: material
+  logo: assets/images/A_logo_cropped.png
+  favicon: assets/images/A_logo_cropped.png
   language: en
   features:
     - navigation.tabs
