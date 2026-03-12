@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM 基础使用教程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow: hidden;
+            background-color: #f1f5f9;
+        }
+
+        .slide-container {
+            perspective: 1000px;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            position: absolute;
+            width: 95%;
+            max-width: 1000px;
+            height: 650px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateX(100px) rotateY(-5deg);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0) rotateY(0deg);
+            pointer-events: all;
+            z-index: 10;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: translateX(-100px) rotateY(5deg);
+        }
+
+        /* UI Mockup Styles */
+        .ui-mockup {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            flex: 1;
+            margin-top: 20px;
+            display: flex;
+        }
+
+        /* Floating Arrow Animation */
+        .guide-arrow {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            z-index: 50;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            animation: pointing 1.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes pointing {
+            0%, 100% { transform: translate(0, 0) rotate(-45deg); }
+            50% { transform: translate(12px, 12px) rotate(-45deg); }
+        }
+
+        .gradient-primary {
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .progress-dot.active {
+            background: #1a73e8;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.2s;
+        }
+
+        .nav-button:hover { transform: translateY(-50%) scale(1.1); background: #f8fafc; }
+        .nav-button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* Handle missing images */
+        .image-placeholder {
+            background: #101214;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide { height: 85vh; padding: 20px; }
+            .ui-mockup, .real-ui-image { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container" id="container">
+        <!-- Slide 1: Welcome -->
+        <div class="slide active">
+            <div class="flex-1 flex flex-col justify-center items-center text-center">
+                <div class="w-20 h-20 gradient-primary rounded-3xl mb-6 flex items-center justify-center shadow-lg">
+                    <svg viewBox="0 0 24 24" class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">NotebookLM 交互指南</h1>
+                <p class="text-xl text-gray-600 max-w-lg mb-8">
+                    学习如何利用 Google 的 AI 笔记工具构建您的专属知识库。
+                </p>
+                <div class="flex gap-4">
+                    <div class="bg-blue-50 px-4 py-2 rounded-lg text-blue-600 text-sm font-medium">✨ 自动摘要</div>
+                    <div class="bg-green-50 px-4 py-2 rounded-lg text-green-600 text-sm font-medium">🎙️ 音频概览</div>
+                    <div class="bg-purple-50 px-4 py-2 rounded-lg text-purple-600 text-sm font-medium">🔗 原文引用</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Step 01 - Dashboard -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 01</span>
+                <h2 class="text-2xl font-bold text-gray-800">建立新的笔记本</h2>
+                <p class="text-gray-500 text-sm">点击首页的“Create new notebook”卡片，开启一段新的研究课题。</p>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure1.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <div class="guide-arrow" style="top: 55%; left: 14%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-12 h-12"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Step 02 - Add Sources (Using figure2.jpg) -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 02</span>
+                <h2 class="text-2xl font-bold text-gray-800">导入您的原始资料</h2>
+                <p class="text-gray-500 text-sm">在弹出的对话框中选择上传文件、粘贴链接或从 Google Drive 导入。</p>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure2.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <!-- Arrow pointing to the center 'Add Source' modal area -->
+                <div class="guide-arrow" style="top: 45%; left: 48%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-12 h-12"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Central Chat -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 03</span>
+                <h2 class="text-2xl font-bold text-gray-800">在中间窗口询问 AI</h2>
+                <p class="text-gray-500 text-sm">在底部输入框提问，AI 会根据您的资料进行总结并标注出处。</p>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure3_1.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <div class="guide-arrow" style="bottom: 6%; left: 45%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-10 h-10"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Right Panel -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 04</span>
+                <h2 class="text-2xl font-bold text-gray-800">将询问内容转为Note，并进一步转为新的source</h2>
+                <p class="text-gray-500 text-sm">点击图中的图钉按钮保存为便签，而后便会自动出现在您的学习卡片中。</p>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure4.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <!-- First Arrow pointing to the Note pin -->
+                <div class="guide-arrow" style="top: 75%; left: 38%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-10 h-10"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+                <!-- Second Arrow pointing to the Notebook Guide area -->
+                <div class="guide-arrow" style="top: calc(20% + 50px); right: 10%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-10 h-10"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Done -->
+        <div class="slide">
+            <div class="flex-1 flex flex-col justify-center items-center text-center">
+                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">掌握完毕！</h2>
+                <p class="text-lg text-gray-600 mb-10 max-w-md">现在就开始上传您的资料，让 NotebookLM 帮助您深度学习。</p>
+                <div class="flex gap-4">
+                    <a href="https://notebooklm.google.com/" target="_blank" class="px-8 py-4 gradient-primary text-white rounded-2xl font-bold shadow-lg hover:opacity-90 transition-all">立即体验</a>
+                    <button onclick="goToSlide(0)" class="px-8 py-4 border border-gray-200 rounded-2xl font-bold hover:bg-gray-50 transition-all">重看教程</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <button class="nav-button left-4 md:left-10" id="prevBtn" onclick="changeSlide(-1)">
+        <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button class="nav-button right-4 md:right-10" id="nextBtn" onclick="changeSlide(1)">
+        <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+
+    <!-- Progress Dots -->
+    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-50" id="progressBar"></div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progressBar');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+
+        function initProgress() {
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = `progress-dot ${i === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(i);
+                progressBar.appendChild(dot);
+            });
+        }
+
+        function updateUI() {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev');
+                if (i === currentSlide) slide.classList.add('active');
+                else if (i < currentSlide) slide.classList.add('prev');
+            });
+
+            document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+
+            prevBtn.style.opacity = currentSlide === 0 ? "0" : "1";
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? "0" : "1";
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(dir) {
+            currentSlide = Math.max(0, Math.min(slides.length - 1, currentSlide + dir));
+            updateUI();
+        }
+
+        function goToSlide(idx) {
+            currentSlide = idx;
+            updateUI();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        initProgress();
+        updateUI();
+    </script>
+</body>
+</html>
