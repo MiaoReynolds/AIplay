@@ -12,6 +12,23 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             overflow: hidden;
             background-color: #f1f5f9;
+            transition: background-color 0.3s;
+        }
+
+        /* Dark Mode overrides synced from parent MkDocs */
+        body[data-theme="dark"] {
+            background-color: #09090b;
+        }
+        body[data-theme="dark"] .nav-button {
+            background: #18181b;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        body[data-theme="dark"] .nav-button:hover {
+            background: #27272a;
+        }
+        body[data-theme="dark"] .nav-button svg {
+            color: #f3f4f6;
         }
 
         .slide-container {
@@ -338,6 +355,42 @@
 
         initProgress();
         updateUI();
+
+        // Sync dark mode from MkDocs parent frame
+        function syncDarkMode() {
+            try {
+                if (window.parent && window.parent.document && window.parent.document.body) {
+                    const parentBody = window.parent.document.body;
+                    
+                    const updateTheme = () => {
+                        const scheme = parentBody.getAttribute('data-md-color-scheme');
+                        if (scheme === 'slate') {
+                            document.body.setAttribute('data-theme', 'dark');
+                        } else {
+                            document.body.setAttribute('data-theme', 'light');
+                        }
+                    };
+                    
+                    // Initial sync
+                    updateTheme();
+                    
+                    // Observe any changes visually
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.attributeName === 'data-md-color-scheme') {
+                                updateTheme();
+                            }
+                        });
+                    });
+                    
+                    observer.observe(parentBody, { attributes: true });
+                }
+            } catch (e) {
+                console.log("Could not sync theme with parent window.");
+            }
+        }
+        
+        syncDarkMode();
     </script>
 </body>
 </html>
