@@ -55,6 +55,7 @@ nav:
       # - Building the Display Device: tutorials/screen-howto.md
       # - Setting Up LeRobot: tutorials/lerobot-setup.md
   - Prompt Generator: prompt-generator.md
+  - NotebookLM Tutorial: notebooklm-tutorial.md
   - About: about.md
   - Contact: contact.md
 
