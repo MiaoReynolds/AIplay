@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotebookLM 基础使用教程</title>
+    <title>NotebookLM Basic Tutorial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
@@ -94,7 +94,7 @@
         }
 
         .progress-dot.active {
-            background: #1a73e8;
+            background: #22c55e;
             width: 24px;
             border-radius: 4px;
         }
@@ -141,19 +141,17 @@
         <!-- Slide 1: Welcome -->
         <div class="slide active">
             <div class="flex-1 flex flex-col justify-center items-center text-center">
-                <div class="w-20 h-20 gradient-primary rounded-3xl mb-6 flex items-center justify-center shadow-lg">
-                    <svg viewBox="0 0 24 24" class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+                <div class="mb-6 flex items-center justify-center">
+                    <img src="notebookLM_logo.png" alt="NotebookLM Logo" class="h-20 w-auto object-contain" />
                 </div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">NotebookLM 交互指南</h1>
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">NotebookLM Interactive Guide</h1>
                 <p class="text-xl text-gray-600 max-w-lg mb-8">
-                    学习如何利用 Google 的 AI 笔记工具构建您的专属知识库。
+                    Learn how to use Google's AI note-taking tool to build your personal knowledge base.
                 </p>
                 <div class="flex gap-4">
-                    <div class="bg-blue-50 px-4 py-2 rounded-lg text-blue-600 text-sm font-medium">✨ 自动摘要</div>
-                    <div class="bg-green-50 px-4 py-2 rounded-lg text-green-600 text-sm font-medium">🎙️ 音频概览</div>
-                    <div class="bg-purple-50 px-4 py-2 rounded-lg text-purple-600 text-sm font-medium">🔗 原文引用</div>
+                    <div class="bg-blue-50 px-4 py-2 rounded-lg text-blue-600 text-sm font-medium">✨ Auto Summary</div>
+                    <div class="bg-green-50 px-4 py-2 rounded-lg text-green-600 text-sm font-medium">🎙️ Audio Overview</div>
+                    <div class="bg-purple-50 px-4 py-2 rounded-lg text-purple-600 text-sm font-medium">🔗 Source Citations</div>
                 </div>
             </div>
         </div>
@@ -162,8 +160,8 @@
         <div class="slide">
             <div class="mb-4">
                 <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 01</span>
-                <h2 class="text-2xl font-bold text-gray-800">建立新的笔记本</h2>
-                <p class="text-gray-500 text-sm">点击首页的“Create new notebook”卡片，开启一段新的研究课题。</p>
+                <h2 class="text-2xl font-bold text-gray-800">Create a new notebook</h2>
+                <p class="text-gray-500 text-sm">Click the "Create new notebook" card on the homepage to start a new research project.</p>
             </div>
             <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure1.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
                 <div class="guide-arrow" style="top: 55%; left: 14%;">
@@ -176,8 +174,8 @@
         <div class="slide">
             <div class="mb-4">
                 <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 02</span>
-                <h2 class="text-2xl font-bold text-gray-800">导入您的原始资料</h2>
-                <p class="text-gray-500 text-sm">在弹出的对话框中选择上传文件、粘贴链接或从 Google Drive 导入。</p>
+                <h2 class="text-2xl font-bold text-gray-800">Import your raw sources</h2>
+                <p class="text-gray-500 text-sm">Choose to upload files, paste links, or import from Google Drive in the popup dialog.</p>
             </div>
             <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure2.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
                 <!-- Arrow pointing to the center 'Add Source' modal area -->
@@ -191,8 +189,8 @@
         <div class="slide">
             <div class="mb-4">
                 <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 03</span>
-                <h2 class="text-2xl font-bold text-gray-800">在中间窗口询问 AI</h2>
-                <p class="text-gray-500 text-sm">在底部输入框提问，AI 会根据您的资料进行总结并标注出处。</p>
+                <h2 class="text-2xl font-bold text-gray-800">Ask AI in the central window</h2>
+                <p class="text-gray-500 text-sm">Ask questions in the bottom input box, and AI will summarize based on your sources with citations.</p>
             </div>
             <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure3_1.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
                 <div class="guide-arrow" style="bottom: 6%; left: 45%;">
@@ -205,8 +203,8 @@
         <div class="slide">
             <div class="mb-4">
                 <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 04</span>
-                <h2 class="text-2xl font-bold text-gray-800">将询问内容转为Note，并进一步转为新的source</h2>
-                <p class="text-gray-500 text-sm">点击图中的图钉按钮保存为便签，而后便会自动出现在您的学习卡片中。</p>
+                <h2 class="text-2xl font-bold text-gray-800">From Discussion to Note</h2>
+                <p class="text-gray-500 text-sm">Convert your query into a Note, and further into a new source</p>
             </div>
             <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure4.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
                 <!-- First Arrow pointing to the Note pin -->
@@ -220,17 +218,60 @@
             </div>
         </div>
 
-        <!-- Slide 6: Done -->
+        <!-- Slide 6: Step 05 -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 05</span>
+                <h2 class="text-2xl font-bold text-gray-800">From Note to Source</h2>
+                <p class="text-gray-500 text-sm">Add the saved Note to a new Source</p>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure5.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <!-- First Arrow -->
+                <div class="guide-arrow" style="top: 30%; left: 15%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-10 h-10"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+                <!-- Second Arrow -->
+                <div class="guide-arrow" style="top: 50%; right: 5%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-10 h-10"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Step 06 -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 06</span>
+                <h2 class="text-2xl font-bold text-gray-800">Generate Infographic from Source</h2>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure6.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <!-- Arrow pointing to top right corner -->
+                <div class="guide-arrow" style="top: 25%; right: 5%;">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" class="w-10 h-10"><path d="M24 22h-24l12-20z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Step 07 -->
+        <div class="slide">
+            <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Step 07</span>
+                <h2 class="text-2xl font-bold text-gray-800">Infographic generated from content</h2>
+            </div>
+            <div class="real-ui-image relative flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#0b0c0d]" style="background-image: url('figure7.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+            </div>
+        </div>
+
+        <!-- Slide 9: Done -->
         <div class="slide">
             <div class="flex-1 flex flex-col justify-center items-center text-center">
                 <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
                     <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">掌握完毕！</h2>
-                <p class="text-lg text-gray-600 mb-10 max-w-md">现在就开始上传您的资料，让 NotebookLM 帮助您深度学习。</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">You're all set!</h2>
+                <p class="text-lg text-gray-600 mb-10 max-w-md">Start uploading your sources now and let NotebookLM help you with deep learning.</p>
                 <div class="flex gap-4">
-                    <a href="https://notebooklm.google.com/" target="_blank" class="px-8 py-4 gradient-primary text-white rounded-2xl font-bold shadow-lg hover:opacity-90 transition-all">立即体验</a>
-                    <button onclick="goToSlide(0)" class="px-8 py-4 border border-gray-200 rounded-2xl font-bold hover:bg-gray-50 transition-all">重看教程</button>
+                    <a href="https://notebooklm.google.com/" target="_blank" class="px-8 py-4 gradient-primary text-white rounded-2xl font-bold shadow-lg hover:opacity-90 transition-all">Try it now</a>
+                    <button onclick="goToSlide(0)" class="px-8 py-4 border border-gray-200 rounded-2xl font-bold hover:bg-gray-50 transition-all">Replay Tutorial</button>
                 </div>
             </div>
         </div>
