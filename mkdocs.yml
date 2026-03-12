@@ -37,7 +37,7 @@ nav:
           # - Hardware Design: projects/screen-project/design.md
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
-      
+      - Prompt Generator: prompt-generator.md
       - Vibe Coding: projects/vibe-coding.md
       - n8n Concepts Workflow: projects/ai-course.md
       - Time Value of Money: tvm-calculator.md
@@ -54,7 +54,6 @@ nav:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
       # - Setting Up LeRobot: tutorials/lerobot-setup.md
-  - Prompt Generator: prompt-generator.md
   - NotebookLM Tutorial: notebooklm-tutorial.md
   - About: about.md
   - Contact: contact.md

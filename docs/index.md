@@ -239,6 +239,17 @@ hide:
       </div>
     </a>
 
+    <a href="prompt-generator" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">AI Tools</span>
+        <h3 class="bento-title">Prompt Generator</h3>
+        <p class="bento-desc">Instantly generate high-quality, customized AI prompts tailored to your specific needs.</p>
+        <div class="bento-image-wrapper">
+          <img src="Prompt_box.png" alt="Prompt Generator">
+        </div>
+      </div>
+    </a>
+
     <a href="projects/ai-course" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Automation</span>
