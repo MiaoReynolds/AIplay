@@ -217,16 +217,6 @@ hide:
   </section>
 
   <div class="bento-grid">
-    <a href="projects/vibe-coding" class="bento-card">
-      <div class="bento-content-wrapper">
-        <span class="bento-tag">Exploration</span>
-        <h3 class="bento-title">Vibe Coding</h3>
-        <p class="bento-desc">Interactive programming and exploring the limits of AI-assisted coding.</p>
-        <div class="bento-image-wrapper">
-          <img src="assets/images/codex_hello.png" alt="Vibe Coding">
-        </div>
-      </div>
-    </a>
 
     <a href="aigc-prompt" class="bento-card">
       <div class="bento-content-wrapper">
@@ -235,6 +225,17 @@ hide:
         <p class="bento-desc">Curated collection of AI-generated content prompts with full images and copyable prompts.</p>
         <div class="bento-image-wrapper">
           <img src="assets/images/ORR_reaction_2.png" alt="AIGC Prompt Gallery">
+        </div>
+      </div>
+    </a>
+
+    <a href="notebooklm-tutorial" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Tutorial</span>
+        <h3 class="bento-title">NotebookLM Guide</h3>
+        <p class="bento-desc">Learn how to use Google's AI note-taking tool to build your personal knowledge base.</p>
+        <div class="bento-image-wrapper" style="background-color: white;">
+          <img src="notebookLM_logo.png" alt="NotebookLM Tutorial" style="object-fit: contain; padding: 1rem;">
         </div>
       </div>
     </a>
@@ -257,6 +258,17 @@ hide:
         <p class="bento-desc">Build 24/7 non-stop enterprise automation hubs by orchestrating nodes and connecting applications.</p>
         <div class="bento-image-wrapper">
           <img src="assets/images/n8n_.png" alt="n8n Concepts Workflow">
+        </div>
+      </div>
+    </a>
+
+    <a href="projects/vibe-coding" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Exploration</span>
+        <h3 class="bento-title">Vibe Coding</h3>
+        <p class="bento-desc">Interactive programming and exploring the limits of AI-assisted coding.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/codex_hello.png" alt="Vibe Coding">
         </div>
       </div>
     </a>
