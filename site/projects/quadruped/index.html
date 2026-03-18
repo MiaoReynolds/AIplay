@@ -741,6 +741,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hardware-engineering-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware &amp; Engineering Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software &amp; Kinematics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-plans" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Plans
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -880,6 +907,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hardware-engineering-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware &amp; Engineering Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software &amp; Kinematics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-plans" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Plans
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -937,6 +991,21 @@
     </td>
   </tr>
 </table>
+
+<h2 id="hardware-engineering-design">Hardware &amp; Engineering Design</h2>
+<p>We have custom-designed an ultra-low-cost robotic dog based entirely on widely available SG90 micro servos. The core calculation unit is powered by either an ESP8266 or an ESP32 microcontroller, depending on the computational load. </p>
+<p>To maintain balance and acquire real-time postural data, we integrated an MPU6050 gyroscope and accelerometer. The 12 independent robot joints are driven by a dedicated 16-channel PCA9685 PWM driver board. </p>
+<p><strong>Power Challenge:</strong> Delivering sufficient and stable current to 12 servos simultaneously under load is a significant challenge. It requires a dedicated, robust voltage regulation controller to prevent brownouts and jittering.</p>
+<h2 id="software-kinematics">Software &amp; Kinematics</h2>
+<p>On the software side, the entire system is programmed in <strong>MicroPython</strong>. We developed a standalone custom <strong>Inverse Kinematics (IK)</strong> engine from scratch to calculate the precise joint angles required to position the robot's feet to desired coordinates in 3D space, which is critical for generating stable walking gaits.</p>
+<h2 id="future-plans">Future Plans</h2>
+<ul>
+<li><strong>Power Management:</strong> Implement a dedicated power control IC and an improved voltage regulator to handle peak servo current spikes effectively.</li>
+<li><strong>Upgraded Brain:</strong> Transition entirely to more powerful computing units (e.g., ESP32-S3 or better) to handle advanced algorithms natively.</li>
+<li><strong>AI-Driven Gait Synthesis:</strong> Let an AI Agent take over the design and optimization of the Inverse Kinematics and generate several standard walking gait algorithms dynamically. </li>
+<li><strong>Remote Control Integration:</strong> Add a dedicated handheld remote controller for easier testing and demonstration.</li>
+<li><strong>Vision Subsystem (Long-Term):</strong> Eventually add a camera for computer vision tasks (object tracking, obstacle avoidance). However, this must be carefully balanced against the additional power draw and weight.</li>
+</ul>
 
 
 

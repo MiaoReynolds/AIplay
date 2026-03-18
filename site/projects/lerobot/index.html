@@ -669,6 +669,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    LeRobot Arm
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -680,6 +693,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-assembly-linkage-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Assembly &amp; Linkage Verification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Assembly &amp; Linkage Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grasping-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grasping Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-slave-linkage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Master-Slave Linkage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teleoperation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teleoperation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-roadmap-vision-autonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Roadmap: Vision &amp; Autonomy
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -824,6 +907,65 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-assembly-linkage-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Assembly &amp; Linkage Verification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Assembly &amp; Linkage Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grasping-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grasping Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-slave-linkage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Master-Slave Linkage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teleoperation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teleoperation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-roadmap-vision-autonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Roadmap: Vision &amp; Autonomy
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -858,6 +1000,30 @@
 </tr>
 </tbody>
 </table>
+<h2 id="hardware-assembly-linkage-verification">Hardware Assembly &amp; Linkage Verification</h2>
+<p>We have successfully assembled the LeRobot hardware and established the foundational control systems. Our current milestone focused on the <strong>Master-Slave Linkage</strong> control mechanism. </p>
+<p>By manually manipulating the master arm, we continuously track its joint angles and transmit this data in real-time to the slave arm. The slave arm precisely mimics the master's movements, allowing for intuitive and fluid teleoperation.</p>
+<p>We performed several grasping verification tests, demonstrating fine-grained control over the end-effector. The linkage proves to be highly responsive, making it an excellent platform for gathering imitation learning datasets.</p>
+<p><img alt="Hardware Setup" src="../../assets/images/Lerobot_1.jpg" /></p>
+<hr />
+<h3 id="grasping-test">Grasping Test</h3>
+<p>The arm dynamically adjusts to different shapes and weights during grasping tests.</p>
+<p><img alt="Grasping Test" src="../../assets/images/Lerobot_2.jpg" /></p>
+<hr />
+<h3 id="master-slave-linkage">Master-Slave Linkage</h3>
+<p>The primary controller arm (master) and the actuated arm (slave) mirror each other in real-time.</p>
+<p><img alt="Master-Slave Linkage" src="../../assets/images/Lerobot_3.jpg" /></p>
+<hr />
+<h3 id="teleoperation">Teleoperation</h3>
+<p>Operators can easily manipulate the environment from a safe distance using the responsive master arm setup.</p>
+<p><img alt="Teleoperation" src="../../assets/images/Lerobot_4.jpg" /></p>
+<h2 id="future-roadmap-vision-autonomy">Future Roadmap: Vision &amp; Autonomy</h2>
+<p>Moving forward, our next major objective is to integrate environmental perception and autonomous capabilities.</p>
+<ul>
+<li><strong>Camera Integration:</strong> We plan to mount a camera on the robotic setup to capture real-time visual data of the workspace.</li>
+<li><strong>Image Recognition:</strong> Utilizing computer vision models to identify and locate target objects dynamically.</li>
+<li><strong>Autonomous Grasping:</strong> Transitioning from pure teleoperation to AI-driven autonomous grasping, where the robot can plan its own trajectories and manipulate objects based on visual input and learned policies.</li>
+</ul>
 
 
 
