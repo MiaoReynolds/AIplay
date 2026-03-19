@@ -1,0 +1,1233 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Reynolds">
+      
+      
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/local-rag/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../prompt-generator/">
+      
+      
+      <link rel="icon" href="../../assets/images/A_logo_cropped.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Local RAG - AIone Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#local-rag-deployment-practice" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AIone Lab" class="md-header__button md-logo" aria-label="AIone Lab" data-md-component="logo">
+      
+  <img src="../../assets/images/A_logo_cropped.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AIone Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Local RAG
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../aigc-prompt/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AIGC Prompt
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../notebooklm-tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  NotebookLM Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contact/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contact
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AIone Lab" class="md-nav__button md-logo" aria-label="AIone Lab" data-md-component="logo">
+      
+  <img src="../../assets/images/A_logo_cropped.png" alt="logo">
+
+    </a>
+    AIone Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Local RAG
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local RAG
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-power-of-local-rag-data-sovereignty" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Local RAG &amp; Data Sovereignty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-workflow-interface-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Workflow &amp; Interface Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Workflow &amp; Interface Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interface-layout-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Layout Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-and-vectorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing and Vectorization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-conversation-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical Conversation Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-and-future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion and Future Directions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion and Future Directions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#future-potential" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Potential
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#efficiency-and-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficiency and Privacy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vibe-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vibe Coding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-course/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    n8n Concepts Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tvm-calculator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Time Value of Money
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unit Converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../raspberrypi-project/raspberrypi-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Raspberry Pi Screen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen-project/timer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pomodoro Timer 1.3 OLED
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen-project/pomodo_timer_V4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pomodoro Timer 1.3 OLED with knob and all buttons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen-project/timer_091OLED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pomodoro Timer 0.91 OLED
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen-project/timer_091OLED_V3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lerobot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LeRobot Arm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quadruped/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quadruped Robot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aigc-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AIGC Prompt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooklm-tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NotebookLM Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contact
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-power-of-local-rag-data-sovereignty" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Power of Local RAG &amp; Data Sovereignty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-workflow-interface-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Workflow &amp; Interface Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Workflow &amp; Interface Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interface-layout-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Layout Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-and-vectorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing and Vectorization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-conversation-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical Conversation Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-and-future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion and Future Directions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion and Future Directions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#future-potential" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Potential
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#efficiency-and-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficiency and Privacy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="local-rag-deployment-practice">Local RAG Deployment &amp; Practice</h1>
+<p>This project explores the process of deploying and running a local Retrieval-Augmented Generation (RAG) knowledge base. By integrating a private Large Language Model with local documents, we can achieve intelligent information querying and retrieval while comprehensively safe-guarding data privacy.</p>
+<hr />
+<h3 id="the-power-of-local-rag-data-sovereignty">The Power of Local RAG &amp; Data Sovereignty</h3>
+<p>If your organization possesses deep technical expertise, vast repositories of local documentation, and proprietary know-how, you understand the value of your intellectual property. You may be hesitant to upload this knowledge to cloud-based LLM platforms, where it could potentially be used for model training and indirectly benefit your competitors. At the same time, you cannot afford to miss out on the transformative wave of Generative AI.</p>
+<p><strong>This tool is exactly what you need.</strong> It allows you to build a powerful, private RAG system that stays entirely within your infrastructure, giving you the best of both worlds: cutting-edge AI capabilities and absolute data sovereignty.</p>
+<hr />
+<h2 id="system-workflow-interface-overview">System Workflow &amp; Interface Overview</h2>
+<p>The following images illustrate the entire workflow, spanning from building the knowledge base and segmenting documents to configuring the model and operating the final Q&amp;A interface:</p>
+<h3 id="interface-layout-overview">Interface Layout Overview</h3>
+<p>The below image illustrates the overall application interface:
+- <strong>Center Session Area</strong>: The primary chat interface where users interact with the Large Language Model.
+- <strong>Left Panel (History)</strong>: Storage for historical chat sessions.
+  - Users can manually edit the titles of their historical interactions.
+  - Alternatively, use AI to automatically generate a summary title for the chat.
+  - Unwanted chat sessions can also be permanently deleted from here.
+- <strong>Right Panel (Control Panel)</strong>: The command center for system settings.
+  - Users can choose between an online API model or a local Large Language Model, depending on their performance needs and security requirements.
+  - Users can upload local PDF files as the information source for the RAG system.
+  - Users have full control over the session memory, allowing them to manage the model's chat history and conversational context.</p>
+<p><img alt="RAG 1" src="../../assets/images/RAG_1.png" /></p>
+<hr />
+<h3 id="document-processing-and-vectorization">Document Processing and Vectorization</h3>
+<p>The below image details the RAG document processing capabilities:
+- Users can click <strong>Choose File</strong> to upload local PDF documents.
+- Upon uploading, the system automatically segments (chunks) the PDF and processes it into vector embeddings.
+- This vectorization process is highly optimized and typically completes within 1 second, making it capable of efficiently handling very large local files.
+- If the recently uploaded PDF does not immediately appear in the vectorized document list, users can click <strong>Refresh list</strong> to update the display.</p>
+<p><img alt="RAG 2" src="../../assets/images/RAG_2.png" /></p>
+<hr />
+<h3 id="memory-management">Memory Management</h3>
+<p>The below image highlights the <strong>Memory</strong> section within the control panel:
+- <strong>Persona Definition</strong>: Users can explicitly define the Large Language Model's own persona and role.
+- <strong>User Profile</strong>: Users can also define their own profile to tailor the interaction style.
+- <strong>Historical Memory Loading</strong>: The system provides the ability to load historical memories into the active context.
+- <strong>Pinned Memories</strong>: Specifically, if a user shares important information during a conversation that might be useful in the future, they can add or load it into "Pinned Memories". This ensures that the next time the user mentions this topic, the Large Language Model can instantly recall it from memory and seamlessly continue the previous conversation.</p>
+<p><img alt="RAG 3" src="../../assets/images/RAG_3.png" /></p>
+<hr />
+<h3 id="model-selection">Model Selection</h3>
+<p>The below image details the <strong>Model Selection</strong> functionality within the control panel:
+- <strong>Online API Integration</strong>: For users who prioritize rapid response times or do not require strict local data privacy, this option allows connecting to popular external APIs via a custom token. This provides access to state-of-the-art models for high-quality and fast interactions.
+- <strong>Local LLMs</strong>: For users handling highly sensitive information or those equipped with high-performance local hardware (capable of running robust 70B or 120B parameter models), the local deployment option is ideal.
+- <strong>Ollama Synchronization</strong>: The local model selection is fully integrated with Ollama. Any model successfully downloaded and managed within your Ollama environment will automatically appear in this dropdown list for immediate selection.</p>
+<p><img alt="RAG 4" src="../../assets/images/RAG_4.png" /></p>
+<h3 id="historical-conversation-management">Historical Conversation Management</h3>
+<p>The below image illustrates the <strong>Historical Conversation Management</strong> features located in the left sidebar:
+- <strong>Renaming Conversations</strong>: Users can manually rename any historical conversation to make it easier to recognize.
+- <strong>AI-Generated Titles</strong>: Alternatively, users can utilize AI to automatically generate a comprehensive summary title, which greatly facilitates future search and retrieval efforts.
+- <strong>Deleting Conversations</strong>: If a history record is no longer needed, users can simply click the "X" button to permanently delete the conversation.</p>
+<p><img alt="RAG 5" src="../../assets/images/RAG_5.png" /></p>
+<p>By following these procedures, we empower ourselves to build an intelligent, self-contained knowledge base without relying on external cloud APIs.</p>
+<hr />
+<h2 id="conclusion-and-future-directions">Conclusion and Future Directions</h2>
+<p>The Local RAG tool is designed for complete deployment on personal or office local machines, ensuring a highly secure and private environment for knowledge management.</p>
+<h3 id="future-potential">Future Potential</h3>
+<p>Users have the flexibility to customize and enhance various aspects of the system, including:
+- <strong>Memory System Enhancement</strong>: Building more sophisticated long-term memory architectures.
+- <strong>Soul &amp; Persona Development</strong>: Further refining the AI's "inner monologue" and personality consistency.
+- <strong>Advanced Memory Search</strong>: While the current version handles small-to-medium datasets efficiently by loading them into the model's context for retrieval, future iterations could include dedicated indexing for even larger historical records.</p>
+<h3 id="efficiency-and-privacy">Efficiency and Privacy</h3>
+<ul>
+<li><strong>Token Optimization</strong>: When dealing with extremely large conversation histories, relying on cloud APIs can lead to significant token consumption. In such scenarios, we recommend managing the memory system via local models or completely switching to a local LLM to minimize costs.</li>
+<li><strong>Data Sovereignty</strong>: For users handling highly sensitive or proprietary data, the online API mode can be entirely disabled. By running everything locally, you maintain absolute control over your information, preventing any data leaks to external providers.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
