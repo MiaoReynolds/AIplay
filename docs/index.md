@@ -218,6 +218,17 @@ hide:
 
   <div class="bento-grid">
 
+    <a href="projects/local-rag" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">AI Native</span>
+        <h3 class="bento-title">Local RAG</h3>
+        <p class="bento-desc">Deploy a local Retrieval-Augmented Generation knowledge base for private and secure document querying.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/RAG_0.png" alt="Local RAG">
+        </div>
+      </div>
+    </a>
+
     <a href="aigc-prompt" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">AIGC</span>

@@ -37,6 +37,7 @@ nav:
           # - Hardware Design: projects/screen-project/design.md
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
+      - Local RAG: projects/local-rag.md
       - Prompt Generator: prompt-generator.md
       - Vibe Coding: projects/vibe-coding.md
       - n8n Concepts Workflow: projects/ai-course.md
