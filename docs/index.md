@@ -240,13 +240,13 @@ hide:
       </div>
     </a>
 
-    <a href="notebooklm-tutorial" class="bento-card">
+    <a href="projects/notebooklm-tutorial" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Tutorial</span>
         <h3 class="bento-title">NotebookLM Guide</h3>
         <p class="bento-desc">Learn how to use Google's AI note-taking tool to build your personal knowledge base.</p>
         <div class="bento-image-wrapper" style="background-color: white;">
-          <img src="notebookLM_logo.png" alt="NotebookLM Tutorial" style="object-fit: contain; padding: 1rem;">
+          <img src="projects/notebookLM_logo.png" alt="NotebookLM Tutorial" style="object-fit: contain; padding: 1rem;">
         </div>
       </div>
     </a>

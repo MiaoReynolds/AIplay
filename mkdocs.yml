@@ -39,6 +39,7 @@ nav:
           # - Build Steps: projects/screen-project/build.md
       - Local RAG: projects/local-rag.md
       - Prompt Generator: prompt-generator.md
+      - NotebookLM Tutorial: projects/notebooklm-tutorial.md
       - Vibe Coding: projects/vibe-coding.md
       - n8n Concepts Workflow: projects/ai-course.md
       - Time Value of Money: tvm-calculator.md
@@ -55,7 +56,7 @@ nav:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
       # - Setting Up LeRobot: tutorials/lerobot-setup.md
-  - NotebookLM Tutorial: notebooklm-tutorial.md
+
   - About: about.md
   - Contact: contact.md
 
