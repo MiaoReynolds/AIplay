@@ -147,11 +147,11 @@ hide:
 }
 </style>
 
-# About This Site
-
-**AIplay** is where AI meets the physical world. We build practical solutions that bridge intelligent automation, embedded hardware, and enterprise workflows — turning ideas into deployable systems.
+# About AIone Lab
 
 ![About Hero](assets/images/about-hero-banner.png)
+
+AIone Lab is a summary of our past project history and our ongoing R&D activities. We provide a range of specialized services, including the end-to-end deployment of everything showcased on this site—from the platform itself to the full commercialization of its underlying technologies—into your organization's daily operations. We invite you to contact us with your most challenging objectives; we believe that as long as a request does not violate the physical laws of our universe, we can engineer a viable solution.
 
 ---
 
