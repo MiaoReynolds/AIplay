@@ -322,6 +322,27 @@ hide:
     </div>
 
     <div class="aigc-card"
+         data-img="../assets/images/whale.png"
+         data-prompt="Create a realistic painting of a massive humpback whale gracefully floating in the air above an expansive, dense forest. The whale's back should be arched and facing upwards, with its body gently curved. Its belly should be close to the treetops, casting a soft shadow over the forest below. The forest should appear vast and endless, resembling a rolling sea of emerald and deep green trees. The sky above should be a clear, bright blue, devoid of clouds, emphasizing the surreal and magical nature of the scene. The whale's skin should be textured, with subtle shades of grey and blue, conveying its immense size and power as it defies gravity in this fantastical landscape.
+
+Additional details to consider:
+
+Perspective: The painting should capture the vastness of the forest and the enormity of the whale, possibly by using a wide-angle perspective.
+
+Lighting: The bright sunlight should illuminate the scene, creating a sense of warmth and wonder. The shadows cast by the whale should add depth and dimension to the forest.
+
+Realism: While the scene is fantastical, the whale and the forest should be depicted in a realistic style, with attention to detail and texture.
+
+Overall, the painting should evoke a sense of awe, wonder, and the magical possibilities of nature."
+         data-title="Flying Humpback Whale"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/whale.png" alt="Flying Humpback Whale">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Flying Humpback Whale</h3>
+      </div>
+    </div>
+
+    <div class="aigc-card"
          data-img="../assets/images/riverside.png"
          data-prompt="A cinematic view of a traditional Chinese riverside street at dusk. Ancient Jiangnan-style buildings with grey clay-tiled roofs and white plaster walls line the edge of a calm canal. The architecture features wooden balconies, dark wooden window frames, and intricate lattice railings. Bright red Chinese lanterns hang densely along the eaves and balconies, glowing warmly against the cool blue evening light.
 
