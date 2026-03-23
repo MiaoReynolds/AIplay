@@ -160,7 +160,7 @@ hide:
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
 }
 
 .prompt-modal-text {
@@ -171,7 +171,7 @@ hide:
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0.75rem;
   padding: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   word-break: break-word;
 }
@@ -180,19 +180,19 @@ hide:
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  margin-bottom: 1.25rem;
 }
 
 .prompt-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   border-radius: 0.6rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.06);
   color: #e5e7eb;
-  font-size: 0.875rem;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -298,6 +298,17 @@ hide:
   </section>
 
   <div class="aigc-grid">
+
+    <div class="aigc-card"
+         data-img="../assets/images/image111.png"
+         data-prompt="A breathtaking aerial view of a dramatic tropical island coastline, seen from high above like a drone shot. Towering limestone cliffs drop sharply into the ocean, forming a curved bay with pristine white sand beaches. The sea shifts in vivid gradients from deep sapphire blue to glowing turquoise and emerald green near the shore. Gentle waves roll in, creating delicate white foam patterns along the coastline. Sunlight is bright and warm, casting soft highlights on the water and subtle shadows on the cliffs. The sky is clear with minimal clouds, enhancing the sense of openness and scale. The composition emphasizes vastness and depth, with the coastline leading the eye into the distance, evoking a serene yet majestic atmosphere. Ultra-realistic, high detail, cinematic lighting, wide-angle lens, 16:9."
+         data-title="Tropical Island Coastline"
+         onclick="openPromptModal(this)">
+      <img class="aigc-card-img" src="../assets/images/image111.png" alt="Tropical Island Coastline">
+      <div class="aigc-card-body">
+        <h3 class="aigc-card-title">Tropical Island Coastline</h3>
+      </div>
+    </div>
 
     <div class="aigc-card"
          data-img="../assets/images/mountain1.png"
@@ -567,17 +578,15 @@ Please retrieve current weather conditions for Tokyo before rendering to ensure 
     <img class="prompt-modal-img" id="modalImg" src="" alt="">
     <div class="prompt-modal-content">
       <h2 class="prompt-modal-title" id="modalTitle"></h2>
-      <div class="prompt-modal-text" id="modalText"></div>
       <div class="prompt-modal-actions">
-        <button class="prompt-btn" id="copyBtn" onclick="copyPrompt()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy Prompt
+        <button class="prompt-btn" id="copyBtn" onclick="copyPrompt()" title="Copy Prompt">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         </button>
-        <button class="prompt-btn" id="dlBtn" onclick="downloadImage()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Image
+        <button class="prompt-btn" id="dlBtn" onclick="downloadImage()" title="Download Image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
       </div>
+      <div class="prompt-modal-text" id="modalText"></div>
     </div>
   </div>
 </div>
@@ -596,8 +605,9 @@ function openPromptModal(card) {
   document.getElementById('modalTitle').textContent = title;
   document.getElementById('modalText').textContent = currentPrompt;
   document.getElementById('copyBtn').classList.remove('copied');
+  document.getElementById('copyBtn').setAttribute('title', 'Copy Prompt');
   document.getElementById('copyBtn').innerHTML =
-    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt';
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
 
   document.getElementById('promptOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -618,12 +628,14 @@ function copyPrompt() {
   navigator.clipboard.writeText(currentPrompt).then(function() {
     var btn = document.getElementById('copyBtn');
     btn.classList.add('copied');
+    btn.setAttribute('title', 'Copied!');
     btn.innerHTML =
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
     setTimeout(function() {
       btn.classList.remove('copied');
+      btn.setAttribute('title', 'Copy Prompt');
       btn.innerHTML =
-        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt';
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
     }, 2000);
   });
 }
