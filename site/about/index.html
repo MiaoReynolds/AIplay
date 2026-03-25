@@ -1044,10 +1044,11 @@
 /* ===== Card Grid Styles ===== */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
+  gap: 1.5rem;
   padding: 1rem 0;
   margin-bottom: 3rem;
+  justify-content: start;
 }
 
 .bento-card {
@@ -1062,6 +1063,7 @@
   flex-direction: column;
   transition: all 0.3s ease;
   overflow: hidden;
+  max-width: 350px;
 }
 
 .bento-card:hover {

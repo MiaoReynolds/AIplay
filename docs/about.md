@@ -196,11 +196,33 @@ Explore our [Projects](projects/vibe-coding.md) to see what we're building, or [
   <div class="bento-card">
     <div class="bento-content-wrapper">
       <div class="team-avatar-wrapper">
+        <img src="../assets/images/miao.jpg" alt="Dr Miao Bin">
+      </div>
+      <h3 class="bento-title">Dr Miao Bin</h3>
+      <div class="bento-subtitle">Chief AI Officer (CAIO)</div>
+      <p class="bento-desc">Dr. Miao is the visionary leader driving enterprise-wide AI transformation. He specializes in deploying state-of-the-art AI algorithms to revitalize traditional applications, bridging the gap between cutting-edge research and scalable business impact. Operating at the technological forefront, he continuously explores how native AI applications can architect intelligent ecosystems and revolutionize a myriad of industries.</p>
+    </div>
+  </div>
+
+  <div class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="team-avatar-wrapper">
         <img src="../assets/images/Charles Sun.jpg" alt="Charles Sun">
       </div>
       <h3 class="bento-title">Charles Sun</h3>
       <div class="bento-subtitle">Software Engineer</div>
       <p class="bento-desc">Charles is an experienced software engineer with a decade of expertise in full-stack development. His responsibilities encompass software UI development, API integration, and the deployment of control algorithms.</p>
+    </div>
+  </div>
+
+  <div class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="team-avatar-wrapper">
+        <img src="../assets/images/openclaw-logo-hd.png" alt="Original Claw">
+      </div>
+      <h3 class="bento-title">Original Claw</h3>
+      <div class="bento-subtitle">Operations Secretary (Non-Human)</div>
+      <p class="bento-desc">As the tireless backbone of our daily operations, Original Claw handles the heavy lifting of administrative work. Its core functionalities encompass rapid, high-accuracy document recognition, automated data entry, and seamless frontline customer service. By executing these essential tasks efficiently, it ensures the human team remains unburdened and strictly focused on innovation.</p>
     </div>
   </div>
   <div class="bento-card">
@@ -209,10 +231,21 @@ Explore our [Projects](projects/vibe-coding.md) to see what we're building, or [
         <img src="../assets/images/Scout-Claw.png" alt="Scout-Claw">
       </div>
       <h3 class="bento-title">Scout-Claw</h3>
-      <div class="bento-subtitle">Original Openclaw (Non-Human)</div>
+      <div class="bento-subtitle">Explorer (Non-Human)</div>
       <p class="bento-desc">Scout-Claw operates on pure, unadulterated curiosity. It relentlessly crawls the digital tides—from obscure GitHub repos to underground creative forums—scavenging for "Biological Sparks" (new ideas) and "Digital Driftwood" (emerging trends). Its primary task is to filter this raw data into structured "Catalyst Briefs" for the human team to dissect during R&D sessions.</p>
     </div>
   </div>
+
+  <a href="https://chem.hkust.edu.hk/people/haibin-su-suhaibin" target="_blank" rel="noopener noreferrer" class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="team-avatar-wrapper">
+        <img src="../assets/images/Prof Su Haibin.jpg" alt="Prof Su Haibin">
+      </div>
+      <h3 class="bento-title">Prof Su Haibin</h3>
+      <div class="bento-subtitle">Academic Advisor</div>
+      <p class="bento-desc">Full Professor at HKUST and Director of the IAS Center for AI for Scientific Discoveries. Specializing in Quantum Physics, Computational Chemistry, and Applied AI. Prof. Su acts as our visionary architect bridging academia and the tech industry. By translating paradigm-shifting scientific research into scalable, industry-disrupting technology, he provides unparalleled guidance on frontier trends and ensures our moonshot R&D initiatives are infused with absolute, bleeding-edge rigor.</p>
+    </div>
+  </a>
 </div>
 
 ## Partners
