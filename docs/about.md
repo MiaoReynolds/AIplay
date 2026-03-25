@@ -207,11 +207,33 @@ Explore our [Projects](projects/vibe-coding.md) to see what we're building, or [
   <div class="bento-card">
     <div class="bento-content-wrapper">
       <div class="team-avatar-wrapper">
+        <img src="../assets/images/Deng.jpg" alt="Dr Deng Zhihua">
+      </div>
+      <h3 class="bento-title">Dr Deng Zhihua</h3>
+      <div class="bento-subtitle">AI Engineer</div>
+      <p class="bento-desc">Dr. Deng is the cyber-physical virtuoso orchestrating the synaptic fusion of neural networks and edge hardware. He focuses on deploying highly optimized AI algorithms directly onto localized endpoints, powering next-generation energy management systems, advanced robotics, and real-time computer vision platforms. By turning raw silicon into autonomously intelligent endpoints, he pushes the ultimate boundaries of embedded AI and operational limits.</p>
+    </div>
+  </div>
+
+  <div class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="team-avatar-wrapper">
+        <img src="../assets/images/yang.png" alt="Yang Xun">
+      </div>
+      <h3 class="bento-title">Yang Xun</h3>
+      <div class="bento-subtitle">Hardware Engineer</div>
+      <p class="bento-desc">With over 15 years of veteran expertise in hardware engineering, Yang is the absolute bedrock of our physical implementations. He spearheads all hardware-related operations, ranging from intricate PCB topographies and rapid physical prototyping to robust electro-mechanical integrations. By flawlessly executing the tangible builds, he transforms our cutting-edge digital intelligence into battle-tested, real-world machineries.</p>
+    </div>
+  </div>
+
+  <div class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="team-avatar-wrapper">
         <img src="../assets/images/Charles Sun.jpg" alt="Charles Sun">
       </div>
       <h3 class="bento-title">Charles Sun</h3>
       <div class="bento-subtitle">Software Engineer</div>
-      <p class="bento-desc">Charles is an experienced software engineer with a decade of expertise in full-stack development. His responsibilities encompass software UI development, API integration, and the deployment of control algorithms.</p>
+      <p class="bento-desc">Charles is an experienced software engineer with a decade of expertise in full-stack development. His responsibilities encompass software UI development, API integration, and the deployment of control algorithms. By meticulously weaving scalable API pipelines with elegant frontends, he architects intuitive human-in-the-loop portals that make our advanced cognitive engines accessible and resilient.</p>
     </div>
   </div>
 
