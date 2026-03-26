@@ -113,7 +113,7 @@ hide:
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  align-self: flex-end;
+  align-self: center;
   margin-bottom: 1rem;
 }
 
@@ -121,6 +121,7 @@ hide:
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
+  text-align: center;
   margin: 0 0 0.5rem 0;
 }
 
@@ -128,6 +129,7 @@ hide:
   color: #9ca3af;
   font-size: 0.875rem;
   line-height: 1.6;
+  text-align: center;
   margin-bottom: 1.5rem;
   flex-grow: 1;
 }
