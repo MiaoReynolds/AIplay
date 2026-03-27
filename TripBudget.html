@@ -13,7 +13,6 @@
         .chip-active { background-color: #059669; color: white; border-color: #059669; }
         .chip-inactive { background-color: white; color: #475569; border-color: #e2e8f0; }
         .flow-arrow { position: relative; display: flex; align-items: center; justify-content: center; min-width: 100px; }
-        .step-number { background: #059669; color: white; border-radius: 999px; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 9px; margin-right: 4px; }
         
         .official-stamp {
             width: 90px;
@@ -175,7 +174,7 @@
                                         <p id="out-serial" class="text-emerald-600 font-mono text-xs font-bold"></p>
                                     </div>
                                 </div>
-                                <h5 id="out-path" class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-3 h-6 rounded-full inline-block text-center leading-[24px] align-middle mt-2"></h5>
+                                <h5 id="out-path" class="text-[12px] font-bold text-emerald-700 mt-3 p-3 bg-slate-50 rounded-xl tracking-wide leading-relaxed text-center flex items-center justify-center min-h-[40px]"></h5>
                             </div>
                             <div id="out-flowchart-preview" class="p-3 bg-slate-50 rounded-xl flex items-center gap-2 mb-4 overflow-x-auto"></div>
                             <table class="w-full text-xs">
@@ -227,18 +226,15 @@
             extras: ['移动数据/学生包']
         };
 
-        // 彻底修复：安全的字符串缩写提取方法
         function getAbbr(fullName) {
             if (!fullName) return "";
             if (fullName.includes('(')) {
-                // 安全提取括号内的内容：这里修复了导致崩溃的 Bug
                 const parts = fullName.split('(');
                 if (parts.length > 1) {
-                    return parts[1].replace(')', '').trim(); // 正确使用 parts[1]
+                    return parts[1].replace(')', '').trim(); 
                 }
             }
-            // 对于没有括号的，取前4个字符或全称
-            return fullName.length > 5 ? fullName.substring(0, 4) : fullName;
+            return fullName;
         }
 
         window.onload = () => { renderSelector(); renderActivities(); renderExtras(); updateFlow(); };
@@ -302,7 +298,7 @@
             let html = '';
             state.route.forEach((l, i) => {
                 const sn = getAbbr(l);
-                html += `<div class="px-3 h-8 bg-white border-2 border-emerald-100 rounded-lg text-[11px] font-bold shadow-sm whitespace-nowrap inline-block text-center leading-[28px]">${sn}</div>`;
+                html += `<div class="text-[13px] font-black text-slate-800 whitespace-nowrap px-1">${sn}</div>`;
                 
                 if (i < state.route.length - 1) {
                     const key = `${i}-${i+1}`;
@@ -310,9 +306,8 @@
                     state.transports[key] = cur;
                     html += `
                         <div class="flow-arrow flex flex-col items-center">
-                            <div class="flex items-center text-[8px] font-bold text-emerald-600 mb-1">
-                                <span class="step-number">${i+1}</span>
-                                <select onchange="state.transports['${key}']=this.value" class="bg-transparent outline-none cursor-pointer">
+                            <div class="flex items-center justify-center text-[8px] font-bold text-emerald-600 mb-1">
+                                <select onchange="state.transports['${key}']=this.value" class="bg-transparent outline-none cursor-pointer text-center">
                                     ${Object.keys(transportDB).map(t => `<option value="${t}" ${t===cur?'selected':''}>${t}</option>`).join('')}
                                 </select>
                             </div>
@@ -482,15 +477,28 @@
                 const pdf = new jsPDF('p', 'mm', 'a4');
                 const pW = pdf.internal.pageSize.getWidth();
                 const pH = pdf.internal.pageSize.getHeight();
-                const imgH = (canvas.height * pW) / canvas.width;
                 
-                let hLeft = imgH; let pos = 0;
+                const margin = 15; 
+                const usableW = pW - 2 * margin;
+                const usableH = pH - 2 * margin;
+                const imgH_scaled = (canvas.height * usableW) / canvas.width;
+                
+                let hLeft = imgH_scaled; 
+                let srcY = 0; 
+                
                 while (hLeft > 0) {
-                    pdf.addImage(imgData, 'PNG', 0, pos, pW, imgH);
+                    pdf.addImage(imgData, 'PNG', margin, margin - srcY, usableW, imgH_scaled);
+                    
+                    pdf.setFillColor(255, 255, 255);
+                    pdf.rect(0, 0, pW, margin, 'F');
+                    pdf.rect(0, pH - margin, pW, margin, 'F');
+                    
                     pdf.setGState(new pdf.GState({opacity: 0.8}));
-                    pdf.addImage(stampData, 'PNG', pW - 45, pH - 45, 38, 38);
+                    pdf.addImage(stampData, 'PNG', pW - margin - 35, pH - margin - 35, 32, 32);
                     pdf.setGState(new pdf.GState({opacity: 1.0}));
-                    hLeft -= pH; pos -= pH;
+
+                    hLeft -= usableH; 
+                    srcY += usableH;
                     if (hLeft > 0) pdf.addPage();
                 }
                 
