@@ -1041,6 +1041,22 @@
 
 
 <style>
+/* ===== Layout Overrides (Mimicking AIGC Prompt) ===== */
+.md-grid, .md-main__inner {
+  max-width: 1200px !important;
+  margin: 0 auto;
+}
+
+/* Banner Image Styling */
+img[alt="About Hero"] {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  margin: 1rem 0 3rem 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
 /* ===== Card Grid Styles ===== */
 .bento-grid {
   display: grid;
@@ -1115,6 +1131,8 @@
   color: #9ca3af;
   font-size: 0.8rem;
   line-height: 1.5;
+  text-align: justify;
+  text-justify: inter-word;
   flex-grow: 1;
   margin-bottom: 0;
 }
@@ -1305,6 +1323,15 @@
       <p class="bento-desc">A premier AI hub pioneering innovations in Healthcare AI, Generative AI models (HKGAI), and driving impactful "AI + X" solutions across diverse sectors.</p>
     </div>
   </div>
+  <a href="https://laviebay.wixsite.com/soiree" target="_blank" rel="noopener noreferrer" class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="partner-logo-wrapper">
+        <img src="../assets/images/soiree.avif" alt="Society of Interdisciplinary Research Logo">
+      </div>
+      <h3 class="bento-title">Society of Interdisciplinary Research</h3>
+      <p class="bento-desc">SOIRÉE is a premier international platform that fosters interdisciplinary collaboration by boldly bridging the gap between cutting-edge scientific research and commercial applications to solve the grand challenges of the 21st century.</p>
+    </div>
+  </a>
 </div>
 
 
