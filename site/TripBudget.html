@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新加坡智库游学预算生成器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        .chip-active { background-color: #059669; color: white; border-color: #059669; }
+        .chip-inactive { background-color: white; color: #475569; border-color: #e2e8f0; }
+        .flow-arrow { position: relative; display: flex; align-items: center; justify-content: center; min-width: 100px; }
+        .step-number { background: #059669; color: white; border-radius: 999px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 10px; margin-right: 4px; }
+        
+        .official-stamp {
+            width: 90px;
+            height: 90px;
+            border: 3px solid #1e40af;
+            color: #1e40af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 900;
+            font-size: 13px;
+            line-height: 1.2;
+            padding: 8px;
+            transform: rotate(-12deg);
+            opacity: 0.8;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        @media print { 
+            body { margin: 0; padding: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body * { visibility: hidden; }
+            #quotation-card, #quotation-card * { visibility: visible; }
+            #quotation-card {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                max-height: none !important;
+                height: auto !important;
+                overflow: visible !important;
+                background-color: transparent !important;
+            }
+            #quotation-content { 
+                overflow: visible !important;
+            }
+            .no-print { display: none !important; }
+            
+            #ui-stamp {
+                position: fixed !important;
+                bottom: 20mm !important;
+                right: 20mm !important;
+                opacity: 0.8 !important;
+                transform: rotate(-15deg) !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <div class="min-h-screen p-4 md:p-8">
+        <header class="max-w-6xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2 text-emerald-800">
+                    <span>🇸🇬</span> 新加坡游学行程生成器
+                </h1>
+                <p class="text-slate-500 mt-1 font-medium italic">学术探索与狮城地标：定制化研学预算系统</p>
+            </div>
+        </header>
+
+        <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 space-y-6">
+                <!-- User Info -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100">
+                        <svg class="text-emerald-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <h2 class="text-lg font-bold text-slate-800">用户信息登记</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input id="userName" type="text" placeholder="学生姓名" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500">
+                        <input id="userCampus" type="text" placeholder="所属校园" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+                
+                <!-- Section 1: Landmarks -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100">
+                        <svg class="text-emerald-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <h2 class="text-lg font-bold text-slate-800">1. 选择游学地标</h2>
+                    </div>
+                    <div id="city-selector" class="flex flex-wrap gap-2 mb-6"></div>
+                    
+                    <div class="mt-4 p-4 bg-slate-50 rounded-2xl min-h-[120px]">
+                        <label class="block text-[10px] font-bold mb-3 uppercase tracking-widest text-slate-400">研学路径路线图</label>
+                        <div id="flowchart-container" class="flex flex-wrap items-center gap-y-6 gap-x-2">
+                            <p class="text-slate-300 italic text-sm w-full text-center py-4">请在地标池中按顺序选择...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Projects -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100">
+                        <svg class="text-emerald-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a4 4 0 0 0-4-4H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a4 4 0 0 1 4-4h6z"/></svg>
+                        <h2 class="text-lg font-bold text-slate-800">2. 游学/学术项目选择</h2>
+                    </div>
+                    <div id="activity-container" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Section 3: Accommodation and Extras -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100">
+                        <svg class="text-emerald-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                        <h2 class="text-lg font-bold text-slate-800">3. 住宿及经常项目</h2>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-[10px] font-bold mb-3 uppercase tracking-widest text-slate-400">基础食宿标准</label>
+                        <select id="hotelStar" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="4200">学生宿舍/青旅 (¥4,200/程)</option>
+                            <option value="6800" selected>大学城配套酒店 (¥6,800/程)</option>
+                            <option value="12000">乌节路高级行政酒店 (¥12,000/程)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold mb-3 uppercase tracking-widest text-slate-400">日常及经常项目</label>
+                        <div id="extra-container" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="button" onclick="generateQuotation()" class="w-full justify-center bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl text-lg font-bold tracking-wide transition-all shadow-xl flex items-center gap-2 transform active:scale-[0.98] no-print">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        生成游学报价单
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="lg:col-span-5 lg:sticky lg:top-8 self-start">
+                <div id="quotation-card" class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col min-h-[600px] max-h-[85vh]">
+                    <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-emerald-50/50 no-print flex-col sm:flex-row gap-3">
+                        <h3 class="font-bold flex items-center gap-2 text-emerald-800 tracking-tight uppercase text-sm">
+                            游学报价汇总
+                        </h3>
+                        <div class="flex gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+                            <button id="md-btn" type="button" onclick="exportMarkdown()" disabled class="text-xs bg-slate-700 hover:bg-slate-800 text-white px-3 py-2 rounded-lg shadow-md no-print transition-all duration-200 flex items-center gap-1 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16h16V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> 导出 Md</button>
+                            <button id="pdf-btn" type="button" onclick="exportPDF()" disabled class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-lg shadow-md no-print transition-all duration-200 flex items-center gap-1 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> PDF (存图)</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quotation-content" class="flex-1 p-8 overflow-y-auto bg-white relative">
+                        <div id="empty-state" class="flex flex-col items-center justify-center h-full text-slate-400 text-center space-y-4 py-20">
+                            <p class="text-sm font-medium">配置行程后点击生成按钮...</p>
+                        </div>
+                        <div id="price-table-area" class="hidden space-y-6">
+                            <div class="border-b pb-4">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h4 id="out-user" class="text-xl font-black text-slate-800 leading-tight"></h4>
+                                        <p id="out-campus" class="text-slate-500 text-xs mt-1"></p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">核对序号</p>
+                                        <p id="out-serial" class="text-emerald-600 font-mono text-xs font-bold"></p>
+                                    </div>
+                                </div>
+                                <h5 id="out-path" class="text-sm font-bold text-emerald-700 bg-emerald-50 px-4 h-8 rounded-full block text-center leading-[32px] align-middle"></h5>
+                            </div>
+                            <div id="out-flowchart-preview" class="p-3 bg-slate-50 rounded-xl flex items-center gap-2 mb-4 overflow-x-auto"></div>
+                            <table class="w-full text-sm">
+                                <thead class="text-slate-400 border-b">
+                                    <tr><th class="text-left py-2 font-medium">研学项目细节</th><th class="text-right py-2 font-medium">预算(CNY)</th></tr>
+                                </thead>
+                                <tbody id="table-body" class="text-slate-600"></tbody>
+                                <tfoot class="border-t-2 border-slate-100">
+                                    <tr class="text-slate-800 font-bold">
+                                        <td class="py-4 text-lg">总费用 (每生)</td>
+                                        <td id="total-price" class="py-4 text-right text-lg text-emerald-600"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="flex justify-end pt-4 pb-12"><div id="ui-stamp" class="official-stamp">银河漫游公司<br>Pte Ltd</div></div>
+                            <div class="text-[9px] text-slate-400 italic pt-4 border-t border-slate-100">生成日期: <span id="out-date"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <canvas id="hidden-stamp-canvas" width="400" height="400" style="display:none;"></canvas>
+
+    <script>
+        const landmarksDB = ['鱼尾狮公园', '滨海湾花园', '新加坡国立大学 (NUS)', '南洋理工大学 (NTU)', '新加坡管理大学 (SMU)', '圣淘沙研学中心'];
+        const transportDB = {'豪华商务车 (6座)': 550, '出租车 (Grab)': 120, '新加坡地铁/巴士': 25, '校园穿梭巴士': 0};
+        const activityMap = {
+            '新加坡国立大学 (NUS)': [{ name: 'UTown大学城探访', price: 0 }, { name: 'AI公开课', price: 1200 }, { name: '创新中心交流', price: 800 }],
+            '南洋理工大学 (NTU)': [{ name: 'The Hive建筑参观', price: 0 }, { name: '未来科技研讨课', price: 1500 }, { name: '可持续发展讲座', price: 900 }],
+            '鱼尾狮公园': [{ name: '狮城历史演变调研', price: 0 }],
+            '滨海湾花园': [{ name: '云雾林考察', price: 280 }],
+            '圣淘沙研学中心': [{ name: '海洋生物课', price: 350 }]
+        };
+
+        const extraDB = [
+            { name: '移动数据/学生包', price: 180 },
+            { name: '出行保险 (7天)', price: 240 },
+            { name: '环球影城全日游', price: 580 },
+            { name: '夜间野生动物园门票', price: 320 },
+            { name: '结业晚宴附加费', price: 300 }
+        ];
+
+        let state = { 
+            route: ['新加坡国立大学 (NUS)', '南洋理工大学 (NTU)'], 
+            transports: {}, 
+            activities: [],
+            extras: ['移动数据/学生包']
+        };
+
+        // 彻底修复：安全的字符串缩写提取方法
+        function getAbbr(fullName) {
+            if (!fullName) return "";
+            if (fullName.includes('(')) {
+                // 安全提取括号内的内容：这里修复了导致崩溃的 Bug
+                const parts = fullName.split('(');
+                if (parts.length > 1) {
+                    return parts[1].replace(')', '').trim(); // 正确使用 parts[1]
+                }
+            }
+            // 对于没有括号的，取前4个字符或全称
+            return fullName.length > 5 ? fullName.substring(0, 4) : fullName;
+        }
+
+        window.onload = () => { renderSelector(); renderActivities(); renderExtras(); updateFlow(); };
+
+        function renderSelector() {
+            document.getElementById('city-selector').innerHTML = landmarksDB.map(l => `
+                <button type="button" onclick="toggleLandmark('${l}')" class="chip px-4 py-2 rounded-xl text-xs font-bold border transition-all ${state.route.includes(l) ? 'chip-active shadow-md' : 'chip-inactive'}">${l}</button>
+            `).join('');
+        }
+
+        function renderActivities() {
+            let avail = [];
+            state.route.forEach(l => { 
+                const matchKey = Object.keys(activityMap).find(k => l.includes(k));
+                if (matchKey && activityMap[matchKey]) {
+                    avail = [...avail, ...activityMap[matchKey].map(a => ({ ...a, location: getAbbr(matchKey) }))];
+                }
+            });
+            document.getElementById('activity-container').innerHTML = avail.map(act => {
+                const dn = `${act.name} (${act.location})`;
+                return `<button type="button" onclick="toggleActivity('${dn}')" class="chip px-3 py-1.5 rounded-lg text-[11px] font-semibold border transition-all ${state.activities.includes(dn) ? 'chip-active' : 'chip-inactive'}">${dn}${act.price===0?' [免费]':''}</button>`;
+            }).join('');
+        }
+
+        function toggleLandmark(l) {
+            const idx = state.route.indexOf(l);
+            if (idx > -1) {
+                state.route.splice(idx, 1);
+                state.transports = {};
+                const abbr = getAbbr(l);
+                state.activities = state.activities.filter(a => !a.includes(`(${abbr})`));
+            } else { state.route.push(l); }
+            renderSelector(); updateFlow(); renderActivities();
+        }
+
+        function toggleActivity(dn) {
+            const idx = state.activities.indexOf(dn);
+            if (idx > -1) state.activities.splice(idx, 1); else state.activities.push(dn);
+            renderActivities();
+        }
+
+        function renderExtras() {
+            document.getElementById('extra-container').innerHTML = extraDB.map(ex => {
+                return `<button type="button" onclick="toggleExtra('${ex.name}')" class="chip px-3 py-1.5 rounded-lg text-[11px] font-semibold border transition-all ${state.extras.includes(ex.name) ? 'chip-active shadow-md' : 'chip-inactive'}">${ex.name}</button>`;
+            }).join('');
+        }
+
+        function toggleExtra(name) {
+            const idx = state.extras.indexOf(name);
+            if (idx > -1) state.extras.splice(idx, 1); else state.extras.push(name);
+            renderExtras();
+        }
+
+        function updateFlow() {
+            const container = document.getElementById('flowchart-container');
+            if (state.route.length === 0) { 
+                container.innerHTML = '<p class="text-slate-300 italic text-sm w-full text-center py-4">请选择地标规划路径...</p>'; 
+                return; 
+            }
+            
+            let html = '';
+            state.route.forEach((l, i) => {
+                const sn = getAbbr(l);
+                html += `<div class="px-5 h-10 bg-white border-2 border-emerald-100 rounded-lg text-sm font-bold shadow-sm whitespace-nowrap block text-center leading-[36px]">${sn}</div>`;
+                
+                if (i < state.route.length - 1) {
+                    const key = `${i}-${i+1}`;
+                    const cur = state.transports[key] || '新加坡地铁/巴士';
+                    state.transports[key] = cur;
+                    html += `
+                        <div class="flow-arrow flex flex-col items-center">
+                            <div class="flex items-center text-[8px] font-bold text-emerald-600 mb-1">
+                                <span class="step-number">${i+1}</span>
+                                <select onchange="state.transports['${key}']=this.value" class="bg-transparent outline-none cursor-pointer">
+                                    ${Object.keys(transportDB).map(t => `<option value="${t}" ${t===cur?'selected':''}>${t}</option>`).join('')}
+                                </select>
+                            </div>
+                            <svg width="25" height="12" viewBox="0 0 40 20" fill="none"><path d="M0 10H36M36 10L30 4M36 10L30 16" stroke="#10B981" stroke-width="2"/></svg>
+                        </div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function generateQuotation() {
+            if (state.route.length < 2) { alert('研学计划至少需要两个地标。'); return; }
+            
+            const name = document.getElementById('userName').value || "贵宾";
+            const campus = document.getElementById('userCampus').value || "未填写机构";
+            const serial = "ST-" + new Date().toISOString().slice(0, 10).replace(/-/g, "") + "-" + Math.random().toString(36).substr(2, 4).toUpperCase();
+
+            document.getElementById('empty-state').classList.add('hidden');
+            document.getElementById('price-table-area').classList.remove('hidden');
+            document.getElementById('pdf-btn').disabled = false;
+            document.getElementById('md-btn').disabled = false;
+            
+            document.getElementById('out-user').innerText = `致：${name}`;
+            document.getElementById('out-campus').innerText = campus;
+            document.getElementById('out-serial').innerText = serial;
+            
+            document.getElementById('out-path').innerText = state.route.map(l => l.split(' (')[0]).join(' → ');
+            document.getElementById('out-date').innerText = new Date().toLocaleString();
+            
+            const hotel = document.getElementById('hotelStar');
+            const hTextFull = hotel.options[hotel.selectedIndex].text;
+            const hText = hTextFull.split(' (')[0];
+            const outHotelEl = document.getElementById('out-hotel');
+            if (outHotelEl) outHotelEl.innerText = `食宿标准：${hText}`;
+            
+            const flowCopy = document.getElementById('flowchart-container').cloneNode(true);
+            flowCopy.querySelectorAll('select').forEach(s => { 
+                const span=document.createElement('span'); 
+                span.innerText=s.value; 
+                span.className="text-[8px] text-emerald-600 ml-1 font-bold";
+                s.parentNode.replaceChild(span, s); 
+            });
+            document.getElementById('out-flowchart-preview').innerHTML = '';
+            document.getElementById('out-flowchart-preview').appendChild(flowCopy);
+
+            let total = parseInt(hotel.value);
+            let rows = `<tr><td class="py-2 font-bold text-slate-800">研学基础食宿 (${hText})</td><td class="py-2 text-right font-mono font-bold">¥${total.toLocaleString()}</td></tr>`;
+            
+            Object.keys(state.transports).forEach(key => {
+                const t = state.transports[key]; const p = transportDB[t];
+                rows += `<tr class="text-xs text-slate-400"><td class="py-1 italic">学术段转运交通 (${t})</td><td class="py-1 text-right font-mono">¥${p}</td></tr>`;
+                total += p;
+            });
+
+            const allActivities = Object.values(activityMap).flat();
+            state.activities.forEach(sn => {
+                const act = allActivities.find(a => sn.startsWith(a.name));
+                const p = act ? act.price : 0;
+                rows += `<tr><td class="py-2">${sn}</td><td class="py-2 text-right font-mono">${p===0?'[免费]':'¥'+p.toLocaleString()}</td></tr>`;
+                total += p;
+            });
+
+            state.extras.forEach(en => {
+                const ext = extraDB.find(e => e.name === en);
+                if (ext) {
+                    rows += `<tr class="text-slate-500"><td class="py-2">${ext.name} (通用项目)</td><td class="py-2 text-right font-mono">¥${ext.price.toLocaleString()}</td></tr>`;
+                    total += ext.price;
+                }
+            });
+
+            document.getElementById('table-body').innerHTML = rows;
+            document.getElementById('total-price').innerText = `¥${total.toLocaleString()}`;
+        }
+
+        function exportMarkdown() {
+            const userName = document.getElementById('userName').value.trim() || '未填';
+            const userCampus = document.getElementById('userCampus').value.trim() || '未填';
+            const serial = document.getElementById('out-serial').innerText || '未知';
+            const totalPrice = document.getElementById('total-price').innerText.replace('¥', '') || '0';
+            
+            let md = `# 新加坡游学报价单\n\n`;
+            md += `**客户姓名**: ${userName}\n**所属机构**: ${userCampus}\n**核对序号**: ${serial}\n**导出时间**: ${new Date().toLocaleString()}\n\n`;
+            
+            md += `## 1. 研学路线\n`;
+            md += state.route.map(l => l.split(' (')[0]).join(' → ') + '\n\n';
+            
+            md += `## 2. 交通接驳\n`;
+            Object.keys(state.transports).forEach(key => {
+                const parts = key.split('-');
+                const from = getAbbr(state.route[parseInt(parts[0])]);
+                const to = getAbbr(state.route[parseInt(parts[1])]);
+                const t = state.transports[key];
+                md += `- ${from} 到 ${to}: ${t} (¥${transportDB[t]})\n`;
+            });
+            md += `\n`;
+
+            md += `## 3. 详细明细 (CNY)\n`;
+            md += `| 类别/项目 | 价格 |\n|---|---|\n`;
+            
+            const hotel = document.getElementById('hotelStar');
+            const hText = hotel.options[hotel.selectedIndex].text.split(' (')[0];
+            md += `| 基础食宿标准 (${hText}) | ¥${hotel.value} |\n`;
+
+            const allActivities = Object.values(activityMap).flat();
+            state.activities.forEach(sn => {
+                const act = allActivities.find(a => sn.startsWith(a.name));
+                const p = act ? act.price : 0;
+                md += `| ${sn} | ${p===0?'[免费]':'¥'+p} |\n`;
+            });
+            
+            state.extras.forEach(en => {
+                const ext = extraDB.find(e => e.name === en);
+                if (ext) {
+                    md += `| ${ext.name} (通用项目) | ¥${ext.price} |\n`;
+                }
+            });
+
+            md += `\n### 总预算: **¥${totalPrice}**\n`;
+
+            const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const safeName = userName !== '未填' ? userName.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '') : "Guest";
+            a.download = `Singapore_StudyTour_${safeName}.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function createStampData() {
+            const canvas = document.getElementById('hidden-stamp-canvas');
+            canvas.width = 400; 
+            canvas.height = 400;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, 400, 400);
+            ctx.save();
+            ctx.translate(200, 200);
+            ctx.rotate(-15 * Math.PI / 180);
+            ctx.strokeStyle = "#1e40af"; ctx.lineWidth = 14;
+            ctx.strokeRect(-130, -130, 260, 260);
+            ctx.fillStyle = "#1e40af"; ctx.font = "bold 44px 'Noto Sans SC'"; ctx.textAlign = "center";
+            ctx.fillText("银河漫游公司", 0, -15);
+            ctx.font = "bold 40px Arial"; ctx.fillText("Pte Ltd", 0, 55);
+            ctx.restore();
+            return canvas.toDataURL('image/png');
+        }
+
+        async function exportPDF() {
+            const btn = document.getElementById('pdf-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<svg class="animate-spin h-3.5 w-3.5 mr-1 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> 生成中...`; 
+            btn.disabled = true;
+
+            try {
+                const el = document.getElementById('quotation-content');
+                const uiStamp = document.getElementById('ui-stamp');
+                if(uiStamp) uiStamp.style.display = 'none';
+                
+                el.scrollTop = 0;
+                const canvas = await html2canvas(el, { scale: 3, useCORS: true, backgroundColor: "#ffffff" });
+                
+                if(uiStamp) uiStamp.style.display = 'flex';
+                
+                const imgData = canvas.toDataURL('image/png');
+                const stampData = createStampData();
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pW = pdf.internal.pageSize.getWidth();
+                const pH = pdf.internal.pageSize.getHeight();
+                const imgH = (canvas.height * pW) / canvas.width;
+                
+                let hLeft = imgH; let pos = 0;
+                while (hLeft > 0) {
+                    pdf.addImage(imgData, 'PNG', 0, pos, pW, imgH);
+                    pdf.setGState(new pdf.GState({opacity: 0.8}));
+                    pdf.addImage(stampData, 'PNG', pW - 45, pH - 45, 38, 38);
+                    pdf.setGState(new pdf.GState({opacity: 1.0}));
+                    hLeft -= pH; pos -= pH;
+                    if (hLeft > 0) pdf.addPage();
+                }
+                
+                const nameInput = document.getElementById('userName').value.trim();
+                const safeName = nameInput ? nameInput.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '') : "Guest";
+                pdf.save(`Singapore_StudyTour_${safeName}.pdf`);
+            } catch (e) { 
+                console.error("PDF Export failed:", e); 
+                alert("导出失败，请重试"); 
+            } finally { 
+                btn.innerHTML = originalText; 
+                btn.disabled = false; 
+            }
+        }
+    </script>
+</body>
+</html>
