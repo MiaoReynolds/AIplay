@@ -6,7 +6,7 @@ hide:
 
 <style>
 /* ===== Layout Overrides (Mimicking AIGC Prompt) ===== */
-.md-grid, .md-main__inner {
+.md-main .md-grid, .md-main__inner {
   max-width: 1200px !important;
   margin: 0 auto;
 }
