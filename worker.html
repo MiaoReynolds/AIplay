@@ -1,25 +1,36 @@
-<div id="ai-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: sans-serif;">
-    <button id="ai-chat-toggle" style="width: 60px; height: 60px; border-radius: 50%; background: #007bff; color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 24px;">
-        💬
-    </button>
+<div id="ai-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div id="ai-chat-toggle" style="width: 60px; height: 60px; border-radius: 50%; background: #007bff; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;">
+        <span style="font-size: 28px;">💬</span>
+    </div>
 
-    <div id="ai-chat-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; margin-bottom: 10px;">
-        <div style="background: #007bff; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
-            <span>AIOne Lab 客服</span>
-            <span id="close-chat" style="cursor: pointer;">✕</span>
+    <div id="ai-chat-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); flex-direction: column; overflow: hidden; margin-bottom: 15px;">
+        <div style="background: #007bff; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="width: 10px; height: 10px; background: #28a745; border-radius: 50%;"></span>
+                AIOne Lab 智能助手
+            </div>
+            <span id="close-chat" style="cursor: pointer; font-size: 20px;">✕</span>
         </div>
-        <div id="ai-messages" style="flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; line-height: 1.5; background: #f9f9f9;">
-            <div style="margin-bottom: 10px; color: #555;">你好！我是 AI 助理，有什么可以帮您？</div>
+        
+        <div id="ai-messages" style="flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa; display: flex; flex-direction: column; gap: 12px;">
+            <div style="align-self: flex-start; background: white; padding: 10px 14px; border-radius: 15px 15px 15px 0; border: 1px solid #eee; color: #444; font-size: 14px; max-width: 85%;">
+                你好！我是 AIOne Lab 的 AI 助理，有什么可以帮到你的吗？ 😊
+            </div>
         </div>
-        <div style="padding: 10px; border-top: 1px solid #eee; display: flex;">
-            <input type="text" id="ai-input" placeholder="输入问题..." style="flex: 1; border: 1px solid #ddd; padding: 8px; border-radius: 4px; outline: none;">
-            <button id="ai-send" style="margin-left: 8px; background: #007bff; color: white; border: none; padding: 0 15px; border-radius: 4px; cursor: pointer;">发送</button>
+
+        <div style="padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px;">
+            <input type="text" id="ai-input" placeholder="请输入您的问题..." style="flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 20px; outline: none; font-size: 14px;">
+            <button id="ai-send" style="background: #007bff; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
+                ➤
+            </button>
         </div>
     </div>
 </div>
 
 <script>
-    const WORKER_URL = "https://red-feather-3773.mb-miaobin.workers.dev/"; // 👈 替换成你的 Cloudflare URL
+    // 1. 配置你的 Cloudflare Worker 地址
+    const WORKER_URL = "https://red-feather-3773.mb-miaobin.workers.dev/"; 
+
     const toggleBtn = document.getElementById('ai-chat-toggle');
     const chatWindow = document.getElementById('ai-chat-window');
     const closeBtn = document.getElementById('close-chat');
@@ -27,54 +38,93 @@
     const inputField = document.getElementById('ai-input');
     const msgContainer = document.getElementById('ai-messages');
 
-    // 开关窗口
+    // 切换窗口显示状态
     toggleBtn.onclick = () => {
-        chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
+        chatWindow.style.display = 'flex';
         toggleBtn.style.display = 'none';
     };
     closeBtn.onclick = () => {
         chatWindow.style.display = 'none';
-        toggleBtn.style.display = 'block';
+        toggleBtn.style.display = 'flex';
     };
 
-    // 发送消息逻辑
+    // 核心发送逻辑
     async function sendMessage() {
         const text = inputField.value.trim();
         if (!text) return;
 
-        // 显示用户消息
+        // 1. 显示用户消息
         appendMessage('user', text);
         inputField.value = '';
+
+        // 2. 显示加载状态（打点效果）
+        const loadingId = "loading-" + Date.now();
+        appendMessage('ai', '正在思考...', loadingId);
 
         try {
             const response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                // 注意：这里的 body 结构要对应你 Worker 转发到的目标 API (如 OpenAI)
                 body: JSON.stringify({
-                    model: "gpt-4o-mini", 
+                    model: "gpt-4o-mini", // 这里确保和 OpenAI 返回的模型一致
                     messages: [{ role: "user", content: text }]
                 })
             });
 
             const data = await response.json();
-            const aiText = data.choices.message.content;
-            appendMessage('ai', aiText);
+            
+            // 移除加载提示
+            document.getElementById(loadingId)?.remove();
+
+            // 3. 根据你的 Response 截图解析路径
+            if (data.choices && data.choices && data.choices.message) {
+                const aiText = data.choices.message.content;
+                appendMessage('ai', aiText);
+            } else {
+                console.error("数据结构异常:", data);
+                appendMessage('ai', "抱歉，回复格式解析失败。");
+            }
+
         } catch (err) {
-            appendMessage('ai', "抱歉，连接超时或出错。");
-            console.error(err);
+            document.getElementById(loadingId)?.remove();
+            appendMessage('ai', "请求失败：无法连接到 AI 服务器。");
+            console.error("Fetch Error:", err);
         }
     }
 
-    function appendMessage(role, text) {
+    // 辅助函数：将消息添加到界面
+    function appendMessage(role, text, id = null) {
         const div = document.createElement('div');
-        div.style.marginBottom = '10px';
-        div.style.textAlign = role === 'user' ? 'right' : 'left';
-        div.innerHTML = `<span style="display: inline-block; padding: 8px 12px; border-radius: 8px; background: ${role === 'user' ? '#007bff' : '#eee'}; color: ${role === 'user' ? 'white' : 'black'}">${text}</span>`;
+        if(id) div.id = id;
+        
+        div.style.maxWidth = "85%";
+        div.style.padding = "10px 14px";
+        div.style.fontSize = "14px";
+        div.style.lineHeight = "1.5";
+        
+        if (role === 'user') {
+            div.style.alignSelf = "flex-end";
+            div.style.background = "#007bff";
+            div.style.color = "white";
+            div.style.borderRadius = "15px 15px 0 15px";
+        } else {
+            div.style.alignSelf = "flex-start";
+            div.style.background = "white";
+            div.style.color = "#444";
+            div.style.border = "1px solid #eee";
+            div.style.borderRadius = "15px 15px 15px 0";
+        }
+        
+        div.innerText = text;
         msgContainer.appendChild(div);
+        
+        // 自动滚动到底部
         msgContainer.scrollTop = msgContainer.scrollHeight;
     }
 
+    // 绑定事件
     sendBtn.onclick = sendMessage;
-    inputField.onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
+    inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
 </script>
