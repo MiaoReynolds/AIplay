@@ -228,6 +228,8 @@
 
 <script>
     const WORKER_URL = "https://red-feather-3773.mb-miaobin.workers.dev/";
+    const MAX_HISTORY = 50;  // 最多保留50条消息（约25轮对话）
+    const conversationHistory = [];
 
     const toggleBtn   = document.getElementById('ai-chat-toggle');
     const chatWindow  = document.getElementById('ai-chat-window');
@@ -261,6 +263,11 @@
         const text = inputField.value.trim();
         if (!text) return;
 
+        // 追加用户消息到历史
+        conversationHistory.push({ role: "user", content: text });
+        // 超出上限时，从头删最旧的一条（保留偶数条，维持 user/assistant 对称）
+        if (conversationHistory.length > MAX_HISTORY) conversationHistory.shift();
+
         appendMessage('user', text);
         inputField.value = '';
         inputField.style.height = 'auto';
@@ -274,19 +281,21 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     model: "gpt-4o-mini",
-                    messages: [{ role: "user", content: text }]
+                    messages: conversationHistory  // 发送完整对话历史
                 })
             });
 
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             const data = await response.json();
-            const loadingEl = document.getElementById(loadingId);
-            if (loadingEl) loadingEl.remove();
+            document.getElementById(loadingId)?.remove();
 
-            // ✅ 正确解析路径：choices[0].message.content
-            if (data.choices && data.choices.length > 0 && data.choices[0].message) {
-                appendMessage('ai', data.choices[0].message.content);
+            if (data.choices?.[0]?.message) {
+                const aiReply = data.choices[0].message.content;
+                // 追加 AI 回复到历史
+                conversationHistory.push({ role: "assistant", content: aiReply });
+                if (conversationHistory.length > MAX_HISTORY) conversationHistory.shift();
+                appendMessage('ai', aiReply);
             } else {
                 console.error("响应结构异常:", data);
                 appendMessage('ai', "抱歉，回复解析失败，请查看控制台。");
@@ -294,8 +303,7 @@
 
         } catch (err) {
             console.error("请求错误:", err);
-            const loadingEl = document.getElementById(loadingId);
-            if (loadingEl) loadingEl.remove();
+            document.getElementById(loadingId)?.remove();
             appendMessage('ai', "抱歉，连接超时或接口异常。");
         }
     }
