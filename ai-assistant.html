@@ -1,25 +1,7 @@
-<div id="ai-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: sans-serif;">
-    <button id="ai-chat-toggle" style="width: 60px; height: 60px; border-radius: 50%; background: #007bff; color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 24px;">
-        💬
-    </button>
-
-    <div id="ai-chat-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; margin-bottom: 10px;">
-        <div style="background: #007bff; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
-            <span>AIOne Lab 客服</span>
-            <span id="close-chat" style="cursor: pointer;">✕</span>
-        </div>
-        <div id="ai-messages" style="flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; line-height: 1.5; background: #f9f9f9;">
-            <div style="margin-bottom: 10px; color: #555;">你好！我是 AI 助理，有什么可以帮您？</div>
-        </div>
-        <div style="padding: 10px; border-top: 1px solid #eee; display: flex;">
-            <input type="text" id="ai-input" placeholder="输入问题..." style="flex: 1; border: 1px solid #ddd; padding: 8px; border-radius: 4px; outline: none;">
-            <button id="ai-send" style="margin-left: 8px; background: #007bff; color: white; border: none; padding: 0 15px; border-radius: 4px; cursor: pointer;">发送</button>
-        </div>
-    </div>
-</div>
-
 <script>
-    const WORKER_URL = "https://red-feather-3773.mb-miaobin.workers.dev/"; // 👈 替换成你的 Cloudflare URL
+    // 1. 确保这是你的 Cloudflare Worker 地址 (末尾斜杠不影响)
+    const WORKER_URL = "https://red-feather-3773.mb-miaobin.workers.dev/"; 
+
     const toggleBtn = document.getElementById('ai-chat-toggle');
     const chatWindow = document.getElementById('ai-chat-window');
     const closeBtn = document.getElementById('close-chat');
@@ -27,54 +9,95 @@
     const inputField = document.getElementById('ai-input');
     const msgContainer = document.getElementById('ai-messages');
 
-    // 开关窗口
-    toggleBtn.onclick = () => {
-        chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
-        toggleBtn.style.display = 'none';
-    };
-    closeBtn.onclick = () => {
-        chatWindow.style.display = 'none';
-        toggleBtn.style.display = 'block';
-    };
+    // 窗口开关逻辑
+    toggleBtn.onclick = () => { chatWindow.style.display = 'flex'; toggleBtn.style.display = 'none'; };
+    closeBtn.onclick = () => { chatWindow.style.display = 'none'; toggleBtn.style.display = 'flex'; };
 
-    // 发送消息逻辑
+    // 核心发送函数
     async function sendMessage() {
         const text = inputField.value.trim();
         if (!text) return;
 
-        // 显示用户消息
+        // 插入用户气泡
         appendMessage('user', text);
         inputField.value = '';
+
+        // 插入加载占位符
+        const loadingId = "loading-" + Date.now();
+        appendMessage('ai', '正在思考...', loadingId);
 
         try {
             const response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                // 注意：这里的 body 结构要对应你 Worker 转发到的目标 API (如 OpenAI)
                 body: JSON.stringify({
                     model: "gpt-4o-mini", 
                     messages: [{ role: "user", content: text }]
                 })
             });
 
+            // 如果 HTTP 状态码不是 200，直接报错
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
             const data = await response.json();
-            const aiText = data.choices.message.content;
-            appendMessage('ai', aiText);
+            
+            // 移除加载占位符
+            const loadingEl = document.getElementById(loadingId);
+            if (loadingEl) loadingEl.remove();
+
+            // --- 关键解析路径：对应你截图中的 Response 结构 ---
+            if (data.choices && data.choices.length > 0 && data.choices.message) {
+                const aiText = data.choices.message.content; // 👈 就是这里！
+                appendMessage('ai', aiText);
+            } else {
+                console.error("数据结构不符合预期:", data);
+                appendMessage('ai', "抱歉，回复内容解析失败，请检查控制台。");
+            }
+
         } catch (err) {
-            appendMessage('ai', "抱歉，连接超时或出错。");
-            console.error(err);
+            console.error("请求发生错误:", err);
+            const loadingEl = document.getElementById(loadingId);
+            if (loadingEl) loadingEl.remove();
+            appendMessage('ai', "抱歉，连接超时或接口异常。");
         }
     }
 
-    function appendMessage(role, text) {
+    // 气泡生成函数
+    function appendMessage(role, text, id = null) {
         const div = document.createElement('div');
-        div.style.marginBottom = '10px';
-        div.style.textAlign = role === 'user' ? 'right' : 'left';
-        div.innerHTML = `<span style="display: inline-block; padding: 8px 12px; border-radius: 8px; background: ${role === 'user' ? '#007bff' : '#eee'}; color: ${role === 'user' ? 'white' : 'black'}">${text}</span>`;
+        if(id) div.id = id;
+        
+        div.style.maxWidth = "85%";
+        div.style.padding = "10px 14px";
+        div.style.fontSize = "14px";
+        div.style.lineHeight = "1.5";
+        div.style.marginBottom = "10px";
+        
+        if (role === 'user') {
+            div.style.alignSelf = "flex-end";
+            div.style.background = "#007bff";
+            div.style.color = "white";
+            div.style.borderRadius = "15px 15px 0 15px";
+            div.style.marginLeft = "auto"; // 靠右
+        } else {
+            div.style.alignSelf = "flex-start";
+            div.style.background = "white";
+            div.style.color = "#444";
+            div.style.border = "1px solid #eee";
+            div.style.borderRadius = "15px 15px 15px 0";
+            div.style.marginRight = "auto"; // 靠左
+        }
+        
+        div.innerText = text;
         msgContainer.appendChild(div);
+        
+        // 确保新消息出来后自动滚到底部
         msgContainer.scrollTop = msgContainer.scrollHeight;
     }
 
+    // 绑定回车和点击事件
     sendBtn.onclick = sendMessage;
-    inputField.onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
+    inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
 </script>
