@@ -53,7 +53,6 @@ nav:
       - Quadruped Robot: projects/quadruped.md
   - AIGC Prompt: aigc-prompt.md
   - Trip Budget: trip-budget.md
-  - AI 助理: ai-assistant.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
