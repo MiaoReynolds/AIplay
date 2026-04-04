@@ -80,6 +80,29 @@ By following these procedures, we empower ourselves to build an intelligent, sel
 
 ---
 
+## Project Toolchain
+
+### System Tools
+- Python 3.8+ (3.10+ recommended)
+- Ollama (for local model runtime)
+- Git (if you clone the project via `git clone`)
+- Virtual environment tool: Conda or venv (choose one)
+
+### Ollama Models
+- Chat model: `Qwen3.5:35b` (replaceable)
+- Embedding model: `nomic-embed-text` (required for RAG/PDF vectorization)
+
+### Python Libraries
+- `fastapi`
+- `uvicorn`
+- `requests`
+- `pydantic`
+- `trafilatura`
+- `python-multipart`
+- `pypdf`
+
+---
+
 ## Conclusion and Future Directions
 
 The Local RAG tool is designed for complete deployment on personal or office local machines, ensuring a highly secure and private environment for knowledge management.
@@ -93,4 +116,3 @@ Users have the flexibility to customize and enhance various aspects of the syste
 ### Efficiency and Privacy
 - **Token Optimization**: When dealing with extremely large conversation histories, relying on cloud APIs can lead to significant token consumption. In such scenarios, we recommend managing the memory system via local models or completely switching to a local LLM to minimize costs.
 - **Data Sovereignty**: For users handling highly sensitive or proprietary data, the online API mode can be entirely disabled. By running everything locally, you maintain absolute control over your information, preventing any data leaks to external providers.
-
