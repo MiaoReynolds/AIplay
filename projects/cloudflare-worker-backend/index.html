@@ -10,28 +10,28 @@
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/trip-budget/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/cloudflare-worker-backend/">
       
       
-        <link rel="prev" href="../aigc-prompt/">
+        <link rel="prev" href="../local-rag/">
       
       
-        <link rel="next" href="../about/">
+        <link rel="next" href="../../prompt-generator/">
       
       
-      <link rel="icon" href="../assets/images/A_logo_cropped.png">
+      <link rel="icon" href="../../assets/images/A_logo_cropped.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Trip Budget - AIone Lab</title>
+        <title>Cloudflare Worker Backend Setup - AIone Lab</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#cloudflare-worker-backend-setup-guide" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -87,9 +92,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="AIone Lab" class="md-header__button md-logo" aria-label="AIone Lab" data-md-component="logo">
+    <a href="../.." title="AIone Lab" class="md-header__button md-logo" aria-label="AIone Lab" data-md-component="logo">
       
-  <img src="../assets/images/A_logo_cropped.png" alt="logo">
+  <img src="../../assets/images/A_logo_cropped.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -106,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Trip Budget
+              Cloudflare Worker Backend Setup
             
           </span>
         </div>
@@ -207,7 +212,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -224,11 +229,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../projects/local-rag/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../local-rag/" class="md-tabs__link">
           
   
   
@@ -246,7 +253,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../aigc-prompt/" class="md-tabs__link">
+      <a href="../../aigc-prompt/" class="md-tabs__link">
         
   
   
@@ -263,11 +270,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../trip-budget/" class="md-tabs__link">
         
   
   
@@ -286,7 +291,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../about/" class="md-tabs__link">
+      <a href="../../about/" class="md-tabs__link">
         
   
   
@@ -305,7 +310,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../contact/" class="md-tabs__link">
+      <a href="../../contact/" class="md-tabs__link">
         
   
   
@@ -329,9 +334,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -342,9 +345,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="AIone Lab" class="md-nav__button md-logo" aria-label="AIone Lab" data-md-component="logo">
+    <a href="../.." title="AIone Lab" class="md-nav__button md-logo" aria-label="AIone Lab" data-md-component="logo">
       
-  <img src="../assets/images/A_logo_cropped.png" alt="logo">
+  <img src="../../assets/images/A_logo_cropped.png" alt="logo">
 
     </a>
     AIone Lab
@@ -359,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -378,24 +381,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -408,7 +416,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Projects
@@ -422,7 +430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/local-rag/" class="md-nav__link">
+      <a href="../local-rag/" class="md-nav__link">
         
   
   
@@ -442,10 +450,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../projects/cloudflare-worker-backend/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Cloudflare Worker Backend Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -456,6 +486,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-open-workers-pages-and-create-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Open Workers &amp; Pages and create an application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-with-the-hello-world-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Start with the Hello World template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-set-worker-name-and-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Set Worker name and deploy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-open-the-worker-and-edit-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Open the Worker and edit code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-implement-backend-logic-in-workerjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Implement backend logic in worker.js
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-configure-variables-and-secrets-in-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Configure Variables and Secrets in Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-call-the-worker-url-from-your-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Call the Worker URL from your frontend
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final checks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -468,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../prompt-generator/" class="md-nav__link">
+      <a href="../../prompt-generator/" class="md-nav__link">
         
   
   
@@ -491,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/notebooklm-tutorial/" class="md-nav__link">
+      <a href="../notebooklm-tutorial/" class="md-nav__link">
         
   
   
@@ -514,7 +636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/vibe-coding/" class="md-nav__link">
+      <a href="../vibe-coding/" class="md-nav__link">
         
   
   
@@ -537,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/ai-course/" class="md-nav__link">
+      <a href="../ai-course/" class="md-nav__link">
         
   
   
@@ -560,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tvm-calculator/" class="md-nav__link">
+      <a href="../../tvm-calculator/" class="md-nav__link">
         
   
   
@@ -583,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../unit-converter/" class="md-nav__link">
+      <a href="../../unit-converter/" class="md-nav__link">
         
   
   
@@ -606,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/raspberrypi-project/raspberrypi-page/" class="md-nav__link">
+      <a href="../raspberrypi-project/raspberrypi-page/" class="md-nav__link">
         
   
   
@@ -629,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/screen-project/timer/" class="md-nav__link">
+      <a href="../screen-project/timer/" class="md-nav__link">
         
   
   
@@ -652,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/screen-project/pomodo_timer_V4/" class="md-nav__link">
+      <a href="../screen-project/pomodo_timer_V4/" class="md-nav__link">
         
   
   
@@ -675,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/screen-project/timer_091OLED/" class="md-nav__link">
+      <a href="../screen-project/timer_091OLED/" class="md-nav__link">
         
   
   
@@ -698,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/screen-project/timer_091OLED_V3/" class="md-nav__link">
+      <a href="../screen-project/timer_091OLED_V3/" class="md-nav__link">
         
   
   
@@ -721,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/lerobot/" class="md-nav__link">
+      <a href="../lerobot/" class="md-nav__link">
         
   
   
@@ -744,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/quadruped/" class="md-nav__link">
+      <a href="../quadruped/" class="md-nav__link">
         
   
   
@@ -774,7 +896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../aigc-prompt/" class="md-nav__link">
+      <a href="../../aigc-prompt/" class="md-nav__link">
         
   
   
@@ -793,17 +915,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../trip-budget/" class="md-nav__link">
         
   
   
@@ -814,7 +929,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -826,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -848,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contact/" class="md-nav__link">
+      <a href="../../contact/" class="md-nav__link">
         
   
   
@@ -871,9 +985,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -882,6 +994,88 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-open-workers-pages-and-create-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Open Workers &amp; Pages and create an application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-with-the-hello-world-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Start with the Hello World template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-set-worker-name-and-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Set Worker name and deploy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-open-the-worker-and-edit-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Open the Worker and edit code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-implement-backend-logic-in-workerjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Implement backend logic in worker.js
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-configure-variables-and-secrets-in-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Configure Variables and Secrets in Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-call-the-worker-url-from-your-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Call the Worker URL from your frontend
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final checks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -894,36 +1088,69 @@
               <article class="md-content__inner md-typeset">
                 
                   
-  
+
+
+
+<h1 id="cloudflare-worker-backend-setup-guide">Cloudflare Worker Backend Setup Guide</h1>
+<p>This page shows how to create a Cloudflare Worker from scratch and use it as the backend for your website.</p>
+<h2 id="step-1-open-workers-pages-and-create-an-application">Step 1: Open Workers &amp; Pages and create an application</h2>
+<p>In the Cloudflare dashboard, click <code>Workers &amp; Pages</code> in the left sidebar, then click <code>Create application</code> in the top-right corner.</p>
+<p><img alt="Step 1: Open Workers &amp; Pages and create an application" src="../cloudflare1.png" /></p>
+<h2 id="step-2-start-with-the-hello-world-template">Step 2: Start with the Hello World template</h2>
+<p>In the "Ship something new" screen, choose <code>Start with Hello World!</code> to initialize a Worker quickly.</p>
+<p><img alt="Step 2: Start with Hello World" src="../cloudflare2.png" /></p>
+<h2 id="step-3-set-worker-name-and-deploy">Step 3: Set Worker name and deploy</h2>
+<p>In the <code>Deploy Hello World</code> screen:</p>
+<ol>
+<li>Enter or confirm your <code>Worker name</code></li>
+<li>Review the default code preview</li>
+<li>Click <code>Deploy</code></li>
+</ol>
+<p>After deployment, Cloudflare gives you a public <code>*.workers.dev</code> URL.</p>
+<p><img alt="Step 3: Set Worker name and deploy" src="../cloudflare3.png" /></p>
+<h2 id="step-4-open-the-worker-and-edit-code">Step 4: Open the Worker and edit code</h2>
+<p>After deployment, go to the Worker overview page and click <code>Edit code</code> to open the online editor.</p>
+<p><img alt="Step 4: Open Edit code" src="../cloudflare4.png" /></p>
+<h2 id="step-5-implement-backend-logic-in-workerjs">Step 5: Implement backend logic in worker.js</h2>
+<p>Edit <code>worker.js</code> to implement your backend API logic, for example:</p>
+<ol>
+<li>Read <code>Origin</code> from request headers</li>
+<li>Configure a frontend allowlist for CORS</li>
+<li>Process requests and return JSON responses</li>
+</ol>
+<p>The example in the screenshot already includes allowlist checking, which is a good pattern for GitHub Pages frontend + Worker backend integration.</p>
+<p><img alt="Step 5: Implement backend logic in worker.js" src="../cloudflare5.png" /></p>
+<h2 id="step-6-configure-variables-and-secrets-in-settings">Step 6: Configure Variables and Secrets in Settings</h2>
+<p>Go to <code>Settings</code>, open <code>Variables and Secrets</code>, then add runtime configuration:</p>
+<ol>
+<li><code>Secret</code>, for example <code>AI_API_KEY</code> (store API keys securely)</li>
+<li><code>Plaintext</code>, for example <code>KNOWLEDGE_BASE</code> (store non-sensitive config text)</li>
+</ol>
+<p>Your Worker code can read these environment variables at runtime, so sensitive values are not hardcoded in source code.</p>
+<p><img alt="Step 6: Configure Variables and Secrets" src="../cloudflare6.png" /></p>
+<h2 id="step-7-call-the-worker-url-from-your-frontend">Step 7: Call the Worker URL from your frontend</h2>
+<p>In your frontend application, send requests to your Worker endpoint (the <code>*.workers.dev</code> URL, or your custom domain route). This is the final step that connects frontend and Cloudflare backend.</p>
+<p>Once connected, the backend can handle and protect key server-side responsibilities, such as:</p>
+<ol>
+<li>Storing API keys securely</li>
+<li>Processing and storing user data</li>
+<li>Managing system prompts and backend business logic</li>
+</ol>
+<h2 id="final-checks">Final checks</h2>
+<ol>
+<li>Click <code>Visit</code> to confirm the Worker is reachable</li>
+<li>Test frontend-to-Worker requests and verify CORS behavior</li>
+<li>Redeploy and run regression checks after each backend update</li>
+</ol>
 
 
 
 
-  <h1>Trip Budget</h1>
-
-<style>
-/* Hide MkDocs auto h1 */
-.md-typeset > h1:first-child { display: none; }
-/* Remove MkDocs content padding to maximize iframe space */
-.md-content__inner { padding: 0 !important; margin: 0 !important; max-width: none !important; }
-.md-main__inner { margin: 0; max-width: none; }
-</style>
-
-<iframe src="../TripBudget.html" style="width: 100%; height: calc(100vh - 60px); border: none; display: block;" allowfullscreen></iframe>
 
 
 
 
 
-
-
-  
-  
-
-
-
-
-  
 
 
 
@@ -969,10 +1196,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "content.code.annotate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>
