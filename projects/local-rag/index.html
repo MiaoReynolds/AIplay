@@ -549,6 +549,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#project-toolchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Toolchain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Toolchain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ollama-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ollama Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Libraries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion-and-future-directions" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion and Future Directions
@@ -1103,6 +1145,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#project-toolchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Toolchain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Toolchain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ollama-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ollama Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Libraries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion-and-future-directions" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion and Future Directions
@@ -1202,6 +1286,30 @@
 - <strong>Deleting Conversations</strong>: If a history record is no longer needed, users can simply click the "X" button to permanently delete the conversation.</p>
 <p><img alt="RAG 5" src="../../assets/images/RAG_5.png" /></p>
 <p>By following these procedures, we empower ourselves to build an intelligent, self-contained knowledge base without relying on external cloud APIs.</p>
+<hr />
+<h2 id="project-toolchain">Project Toolchain</h2>
+<h3 id="system-tools">System Tools</h3>
+<ul>
+<li>Python 3.8+ (3.10+ recommended)</li>
+<li>Ollama (for local model runtime)</li>
+<li>Git (if you clone the project via <code>git clone</code>)</li>
+<li>Virtual environment tool: Conda or venv (choose one)</li>
+</ul>
+<h3 id="ollama-models">Ollama Models</h3>
+<ul>
+<li>Chat model: <code>Qwen3.5:35b</code> (replaceable)</li>
+<li>Embedding model: <code>nomic-embed-text</code> (required for RAG/PDF vectorization)</li>
+</ul>
+<h3 id="python-libraries">Python Libraries</h3>
+<ul>
+<li><code>fastapi</code></li>
+<li><code>uvicorn</code></li>
+<li><code>requests</code></li>
+<li><code>pydantic</code></li>
+<li><code>trafilatura</code></li>
+<li><code>python-multipart</code></li>
+<li><code>pypdf</code></li>
+</ul>
 <hr />
 <h2 id="conclusion-and-future-directions">Conclusion and Future Directions</h2>
 <p>The Local RAG tool is designed for complete deployment on personal or office local machines, ensuring a highly secure and private environment for knowledge management.</p>
