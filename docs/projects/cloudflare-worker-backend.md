@@ -6,7 +6,7 @@ This page shows how to create a Cloudflare Worker from scratch and use it as the
 
 In the Cloudflare dashboard, click `Workers & Pages` in the left sidebar, then click `Create application` in the top-right corner.
 
-![Step 1: Open Workers & Pages and create an application](cloudflare1.png)
+![Step 1: Open Workers & Pages and create an application](cloudflare1_.png)
 
 ## Step 2: Start with the Hello World template
 
@@ -24,13 +24,13 @@ In the `Deploy Hello World` screen:
 
 After deployment, Cloudflare gives you a public `*.workers.dev` URL.
 
-![Step 3: Set Worker name and deploy](cloudflare3.png)
+![Step 3: Set Worker name and deploy](cloudflare3_.png)
 
 ## Step 4: Open the Worker and edit code
 
 After deployment, go to the Worker overview page and click `Edit code` to open the online editor.
 
-![Step 4: Open Edit code](cloudflare4.png)
+![Step 4: Open Edit code](cloudflare4_.png)
 
 ## Step 5: Implement backend logic in worker.js
 
