@@ -231,6 +231,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/cloudflare-worker-backend" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Backend</span>
+        <h3 class="bento-title">Cloudflare Backend</h3>
+        <p class="bento-desc">Build a secure serverless backend with Cloudflare Workers for API routing, secret management, and frontend integration.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/cloudflare-workers.webp" alt="Cloudflare Backend">
+        </div>
+      </div>
+    </a>
+
     <a href="aigc-prompt" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">AIGC</span>

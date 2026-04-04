@@ -38,6 +38,7 @@ nav:
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
       - Local RAG: projects/local-rag.md
+      - Cloudflare Worker Backend Setup: projects/cloudflare-worker-backend.md
       - Prompt Generator: prompt-generator.md
       - NotebookLM Tutorial: projects/notebooklm-tutorial.md
       - Vibe Coding: projects/vibe-coding.md
