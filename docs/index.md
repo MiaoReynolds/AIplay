@@ -242,6 +242,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/codex-skills" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Tutorial</span>
+        <h3 class="bento-title">Codex Skills</h3>
+        <p class="bento-desc">Learn how to install and use Skills in OpenAI Codex to teach the agent your project's custom workflows.</p>
+        <div class="bento-image-wrapper" style="background-color: #000;">
+          <img src="assets/images/openai-codex-logo-hd.png" alt="Codex Skills" style="object-fit: contain; padding: 1.5rem;">
+        </div>
+      </div>
+    </a>
+
     <a href="aigc-prompt" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">AIGC</span>
