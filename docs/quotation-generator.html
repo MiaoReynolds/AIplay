@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报价单生成器 - 银河旅游公司</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-area {
+                width: 100% !important;
+                height: 100% !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 1.5cm !important;
+            }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+<div class="flex flex-col md:flex-row min-h-screen">
+    <!-- 左侧控制面板 -->
+    <div class="w-full md:w-1/2 p-6 bg-white border-r border-slate-200 overflow-y-auto max-h-screen no-print custom-scrollbar">
+        <div class="max-w-xl mx-auto space-y-8">
+            <header class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                    报价单生成器
+                </h1>
+                <button onclick="window.print()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                    输出 PDF / 打印
+                </button>
+            </header>
+
+            <!-- 本公司信息 -->
+            <section class="space-y-4">
+                <h2 class="text-lg font-semibold text-slate-700 border-b pb-2 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+                    本公司信息
+                </h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <input type="text" id="myCompanyName" placeholder="公司名称" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="银河旅游公司" oninput="updateData()">
+                    <input type="text" id="myCompanyUen" placeholder="UEN / 信用代码" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="209988888S" oninput="updateData()">
+                    <input type="text" id="myCompanyAddr" placeholder="公司地址" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="中国上海市黄浦区某某路 88 号" oninput="updateData()">
+                    <input type="text" id="myCompanyContact" placeholder="联系方式" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="+86 21 1234 5678" oninput="updateData()">
+                </div>
+            </section>
+
+            <!-- 客户信息 -->
+            <section class="space-y-4">
+                <h2 class="text-lg font-semibold text-slate-700 border-b pb-2 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    客户信息
+                </h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <input type="text" id="customerName" placeholder="客户公司名称" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="客户公司名称" oninput="updateData()">
+                    <input type="text" id="customerAddr" placeholder="客户地址" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="客户公司地址详情" oninput="updateData()">
+                    <input type="text" id="customerContact" placeholder="联系人及方式" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" value="张经理 (+86 138 0000 0000)" oninput="updateData()">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="quoteNo" placeholder="报价单号" class="p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" oninput="updateData()">
+                        <input type="date" id="quoteDate" class="p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" oninput="updateData()">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 产品条目 -->
+            <section class="space-y-4">
+                <h2 class="text-lg font-semibold text-slate-700 border-b pb-2 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                    产品条目
+                </h2>
+                <div id="itemsContainer" class="space-y-4">
+                    <!-- 条目将通过 JS 渲染 -->
+                </div>
+                <button onclick="addItem()" class="w-full py-3 border-2 border-dashed border-slate-300 text-slate-500 rounded-lg hover:border-blue-400 hover:text-blue-500 flex items-center justify-center gap-2 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                    添加物料条目
+                </button>
+            </section>
+        </div>
+    </div>
+
+    <!-- 右侧实时预览区 -->
+    <div class="w-full md:w-1/2 p-4 md:p-8 bg-slate-200 overflow-y-auto min-h-screen custom-scrollbar">
+        <div class="max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-2xl p-8 md:p-12 text-slate-800 print-area" id="quotationContent">
+            <!-- 头部 -->
+            <div class="flex justify-between items-start border-b-2 border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-4xl font-serif font-bold text-slate-900 mb-2 uppercase tracking-wider">Quotation</h1>
+                    <p class="text-sm font-bold text-slate-600">报价单号: <span id="previewQuoteNo"></span></p>
+                    <p class="text-sm text-slate-600">日期: <span id="previewDate"></span></p>
+                </div>
+                <div class="text-right">
+                    <h2 id="previewMyCompanyName" class="text-xl font-bold text-blue-800"></h2>
+                    <p class="text-xs text-slate-500 mt-1 uppercase">UEN: <span id="previewMyCompanyUen"></span></p>
+                    <div class="text-xs text-slate-600 mt-2 max-w-xs ml-auto leading-relaxed">
+                        <span id="previewMyCompanyAddr"></span><br />
+                        <span id="previewMyCompanyContact"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 客户信息区 -->
+            <div class="mt-8 grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">客户信息 (Bill To)</h3>
+                    <p id="previewCustomerName" class="font-bold text-slate-800"></p>
+                    <p id="previewCustomerAddr" class="text-sm text-slate-600 mt-1 leading-relaxed"></p>
+                    <p id="previewCustomerContact" class="text-sm text-slate-600 mt-1 italic"></p>
+                </div>
+            </div>
+
+            <!-- 表格区 -->
+            <div class="mt-10">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider font-bold">
+                            <th class="py-3 px-4 rounded-tl-sm">项目描述</th>
+                            <th class="py-3 px-4 text-center">数量</th>
+                            <th class="py-3 px-4 text-right">单价 (含税)</th>
+                            <th class="py-3 px-4 text-right rounded-tr-sm">总金额</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previewTableBody" class="text-sm divide-y divide-slate-200">
+                        <!-- 由 JS 填充 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 总结区 -->
+            <div class="mt-8 border-t-2 border-slate-100 pt-6 flex justify-end">
+                <div class="w-64 space-y-3">
+                    <div class="flex justify-between text-slate-500">
+                        <span>合计条目:</span>
+                        <span id="previewItemCount">0 项</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-200">
+                        <span class="text-lg font-bold">总计金额:</span>
+                        <span class="text-2xl font-black text-blue-900">¥ <span id="previewGrandTotal">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 备注与签章 -->
+            <div class="mt-20">
+                <div class="grid grid-cols-2 gap-12">
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">条款与备注</h4>
+                        <ul class="text-xs text-slate-500 space-y-1 list-disc pl-4">
+                            <li>本报价有效期为 30 天。</li>
+                            <li>最终价格以双方签订的合同为准。</li>
+                            <li>汇款请注明报价单号。</li>
+                        </ul>
+                    </div>
+                    <div class="text-center pt-8 border-t border-slate-200">
+                        <div class="h-16 flex items-center justify-center italic text-slate-300">
+                            (加盖公章处 / Signature)
+                        </div>
+                        <p class="text-xs font-bold text-slate-400 uppercase mt-4">Authorized Signature</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 页脚 -->
+            <div class="mt-20 pt-4 border-t border-slate-100 text-[10px] text-slate-400 text-center uppercase tracking-widest">
+                Thank you for your business
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 初始化状态
+    let items = [
+        { id: Date.now(), description: '高端商务旅游套餐', cost: 5000, margin: 25, tax: 6, quantity: 1 }
+    ];
+
+    // 初始化默认日期和单号
+    window.onload = () => {
+        const today = new Date().toISOString().split('T');
+        document.getElementById('quoteDate').value = today;
+        document.getElementById('quoteNo').value = `QT-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}-001`;
+        render();
+    };
+
+    function addItem() {
+        items.push({
+            id: Date.now(),
+            description: '',
+            cost: 0,
+            margin: 0,
+            tax: 0,
+            quantity: 1
+        });
+        render();
+    }
+
+    function removeItem(id) {
+        if (items.length > 1) {
+            items = items.filter(item => item.id !== id);
+            render();
+        }
+    }
+
+    function updateItem(id, field, value) {
+        const item = items.find(i => i.id === id);
+        if (item) {
+            item[field] = field === 'description' ? value : (parseFloat(value) || 0);
+            renderPreviewOnly(); // 只更新右侧预览以提高性能
+        }
+    }
+
+    function updateData() {
+        renderPreviewOnly();
+    }
+
+    function render() {
+        renderInputs();
+        renderPreviewOnly();
+    }
+
+    function renderInputs() {
+        const container = document.getElementById('itemsContainer');
+        container.innerHTML = items.map((item, index) => `
+            <div class="p-4 border rounded-lg bg-slate-50 relative group">
+                <button onclick="removeItem(${item.id})" class="absolute -top-2 -right-2 bg-red-100 text-red-600 p-1 rounded-full opacity-0 group-hover:opacity-100 transition shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                </button>
+                <div class="grid grid-cols-1 gap-3">
+                    <input type="text" placeholder="物料描述" class="w-full p-2 border rounded bg-white" value="${item.description}" 
+                           oninput="updateItem(${item.id}, 'description', this.value)">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+                        <div>
+                            <label class="text-slate-500 block mb-1">成本价</label>
+                            <input type="number" class="w-full p-2 border rounded bg-white" value="${item.cost}" 
+                                   oninput="updateItem(${item.id}, 'cost', this.value)">
+                        </div>
+                        <div>
+                            <label class="text-slate-500 block mb-1">利润率 %</label>
+                            <input type="number" class="w-full p-2 border rounded bg-white" value="${item.margin}" 
+                                   oninput="updateItem(${item.id}, 'margin', this.value)">
+                        </div>
+                        <div>
+                            <label class="text-slate-500 block mb-1">税率 %</label>
+                            <input type="number" class="w-full p-2 border rounded bg-white" value="${item.tax}" 
+                                   oninput="updateItem(${item.id}, 'tax', this.value)">
+                        </div>
+                        <div>
+                            <label class="text-slate-500 block mb-1">数量</label>
+                            <input type="number" class="w-full p-2 border rounded bg-white" value="${item.quantity}" 
+                                   oninput="updateItem(${item.id}, 'quantity', this.value)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderPreviewOnly() {
+        // 更新基本信息
+        document.getElementById('previewMyCompanyName').innerText = document.getElementById('myCompanyName').value;
+        document.getElementById('previewMyCompanyUen').innerText = document.getElementById('myCompanyUen').value;
+        document.getElementById('previewMyCompanyAddr').innerText = document.getElementById('myCompanyAddr').value;
+        document.getElementById('previewMyCompanyContact').innerText = document.getElementById('myCompanyContact').value;
+        
+        document.getElementById('previewCustomerName').innerText = document.getElementById('customerName').value;
+        document.getElementById('previewCustomerAddr').innerText = document.getElementById('customerAddr').value;
+        document.getElementById('previewCustomerContact').innerText = document.getElementById('customerContact').value;
+        document.getElementById('previewQuoteNo').innerText = document.getElementById('quoteNo').value;
+        document.getElementById('previewDate').innerText = document.getElementById('quoteDate').value;
+
+        // 计算并更新表格
+        const tableBody = document.getElementById('previewTableBody');
+        let grandTotal = 0;
+        
+        tableBody.innerHTML = items.map(item => {
+            const priceWithMargin = item.cost * (1 + item.margin / 100);
+            const unitPriceWithTax = priceWithMargin * (1 + item.tax / 100);
+            const total = unitPriceWithTax * item.quantity;
+            
+            const roundedUnitPrice = Math.round(unitPriceWithTax);
+            const roundedRowTotal = Math.round(total);
+            grandTotal += roundedRowTotal;
+
+            return `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="py-4 px-4 font-medium">${item.description || '<span class="text-slate-300 italic">未命名条目</span>'}</td>
+                    <td class="py-4 px-4 text-center">${item.quantity}</td>
+                    <td class="py-4 px-4 text-right">¥ ${roundedUnitPrice.toLocaleString()}</td>
+                    <td class="py-4 px-4 text-right font-bold">¥ ${roundedRowTotal.toLocaleString()}</td>
+                </tr>
+            `;
+        }).join('');
+
+        document.getElementById('previewItemCount').innerText = `${items.length} 项`;
+        document.getElementById('previewGrandTotal').innerText = grandTotal.toLocaleString();
+    }
+</script>
+
+</body>
+</html>

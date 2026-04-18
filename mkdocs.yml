@@ -55,6 +55,7 @@ nav:
       - Quadruped Robot: projects/quadruped.md
   - AIGC Prompt: aigc-prompt.md
   - Trip Budget: trip-budget.md
+  - Quotation Generator: quotation-generator.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
