@@ -264,6 +264,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/ai-knowledge-wiki" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Knowledge</span>
+        <h3 class="bento-title">AI Knowledge Wiki</h3>
+        <p class="bento-desc">Let an AI Agent manage your personal Obsidian knowledge base — ingest, query, and maintain your second brain automatically.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/obsidian_personal_knowledge_base.png" alt="AI Knowledge Wiki">
+        </div>
+      </div>
+    </a>
+
     <a href="aigc-prompt" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">AIGC</span>
