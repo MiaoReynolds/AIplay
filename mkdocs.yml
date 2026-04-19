@@ -38,6 +38,7 @@ nav:
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
       - Local RAG: projects/local-rag.md
+      - GitHub Pages MkDocs (AI Agent Managed): projects/github-pages-mkdocs.md
       - Cloudflare Worker Backend Setup: projects/cloudflare-worker-backend.md
       - Prompt Generator: prompt-generator.md
       - NotebookLM Tutorial: projects/notebooklm-tutorial.md

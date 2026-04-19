@@ -253,6 +253,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/github-pages-mkdocs" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Tutorial</span>
+        <h3 class="bento-title">Github Pages</h3>
+        <p class="bento-desc">Deploy a MkDocs static site on GitHub Pages and let an AI Agent manage the content autonomously.</p>
+        <div class="bento-image-wrapper" style="background-color: #fff;">
+          <img src="assets/images/mkdocs_logo.png" alt="GitHub Pages MkDocs" style="object-fit: contain; padding: 1.5rem;">
+        </div>
+      </div>
+    </a>
+
     <a href="aigc-prompt" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">AIGC</span>
