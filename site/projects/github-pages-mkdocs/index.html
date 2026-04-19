@@ -10,13 +10,13 @@
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/cloudflare-worker-backend/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/github-pages-mkdocs/">
       
       
-        <link rel="prev" href="../github-pages-mkdocs/">
+        <link rel="prev" href="../local-rag/">
       
       
-        <link rel="next" href="../../prompt-generator/">
+        <link rel="next" href="../cloudflare-worker-backend/">
       
       
       <link rel="icon" href="../../assets/images/A_logo_cropped.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Cloudflare Worker Backend Setup - AIone Lab</title>
+        <title>GitHub Pages MkDocs (AI Agent Managed) - AIone Lab</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cloudflare-worker-backend-setup-guide" class="md-skip">
+        <a href="#github-pages-mkdocs-site-ai-agent-managed" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cloudflare Worker Backend Setup
+              GitHub Pages MkDocs (AI Agent Managed)
             
           </span>
         </div>
@@ -469,29 +469,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../github-pages-mkdocs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    GitHub Pages MkDocs (AI Agent Managed)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -509,7 +486,7 @@
   
   
   <span class="md-ellipsis">
-    Cloudflare Worker Backend Setup
+    GitHub Pages MkDocs (AI Agent Managed)
     
   </span>
   
@@ -522,7 +499,7 @@
   
   
   <span class="md-ellipsis">
-    Cloudflare Worker Backend Setup
+    GitHub Pages MkDocs (AI Agent Managed)
     
   </span>
   
@@ -545,72 +522,213 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-open-workers-pages-and-create-an-application" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Open Workers &amp; Pages and create an application
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why This Stack?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-model-mode-a-direct-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Model — Mode A (Direct Branch)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-start-with-the-hello-world-template" class="md-nav__link">
+  <a href="#2-install-mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Start with the Hello World template
+      2. Install MkDocs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-set-worker-name-and-deploy" class="md-nav__link">
+  <a href="#3-ssh-authentication-setup-one-time-human-step" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3: Set Worker name and deploy
+      3. SSH Authentication Setup (One-Time, Human Step)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SSH Authentication Setup (One-Time, Human Step)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-generate-ssh-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Generate SSH Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-start-ssh-agent-and-add-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Start SSH Agent and Add Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-add-public-key-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Add Public Key to GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-test-the-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Test the Connection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configure-repository-remote-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configure Repository Remote (SSH)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-open-the-worker-and-edit-code" class="md-nav__link">
+  <a href="#5-github-pages-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 4: Open the Worker and edit code
+      5. GitHub Pages Settings
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-implement-backend-logic-in-workerjs" class="md-nav__link">
+  <a href="#6-agent-operational-rules" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Implement backend logic in worker.js
+      6. Agent Operational Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Agent Operational Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Allowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forbidden" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Forbidden
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-automation-script-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Automation Script (Windows)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-configure-variables-and-secrets-in-settings" class="md-nav__link">
+  <a href="#8-typical-agent-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 6: Configure Variables and Secrets in Settings
+      8. Typical Agent Workflow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-call-the-worker-url-from-your-frontend" class="md-nav__link">
+  <a href="#9-recommended-project-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 7: Call the Worker URL from your frontend
+      9. Recommended Project Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Recommended Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readme_agentmd-rules-file-for-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      README_AGENT.md — Rules File for the Agent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Troubleshooting
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-checks" class="md-nav__link">
+  <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Final checks
+      Conclusion
     </span>
   </a>
   
@@ -620,6 +738,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudflare-worker-backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloudflare Worker Backend Setup
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1091,72 +1232,213 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-open-workers-pages-and-create-an-application" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Open Workers &amp; Pages and create an application
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why This Stack?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-model-mode-a-direct-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Model — Mode A (Direct Branch)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-start-with-the-hello-world-template" class="md-nav__link">
+  <a href="#2-install-mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Start with the Hello World template
+      2. Install MkDocs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-set-worker-name-and-deploy" class="md-nav__link">
+  <a href="#3-ssh-authentication-setup-one-time-human-step" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3: Set Worker name and deploy
+      3. SSH Authentication Setup (One-Time, Human Step)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SSH Authentication Setup (One-Time, Human Step)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-generate-ssh-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Generate SSH Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-start-ssh-agent-and-add-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Start SSH Agent and Add Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-add-public-key-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Add Public Key to GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-test-the-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Test the Connection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configure-repository-remote-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configure Repository Remote (SSH)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-open-the-worker-and-edit-code" class="md-nav__link">
+  <a href="#5-github-pages-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 4: Open the Worker and edit code
+      5. GitHub Pages Settings
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-implement-backend-logic-in-workerjs" class="md-nav__link">
+  <a href="#6-agent-operational-rules" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Implement backend logic in worker.js
+      6. Agent Operational Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Agent Operational Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Allowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forbidden" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Forbidden
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-automation-script-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Automation Script (Windows)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-configure-variables-and-secrets-in-settings" class="md-nav__link">
+  <a href="#8-typical-agent-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 6: Configure Variables and Secrets in Settings
+      8. Typical Agent Workflow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-call-the-worker-url-from-your-frontend" class="md-nav__link">
+  <a href="#9-recommended-project-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 7: Call the Worker URL from your frontend
+      9. Recommended Project Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Recommended Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readme_agentmd-rules-file-for-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      README_AGENT.md — Rules File for the Agent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Troubleshooting
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-checks" class="md-nav__link">
+  <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Final checks
+      Conclusion
     </span>
   </a>
   
@@ -1178,57 +1460,233 @@
 
 
 
-<h1 id="cloudflare-worker-backend-setup-guide">Cloudflare Worker Backend Setup Guide</h1>
-<p>This page shows how to create a Cloudflare Worker from scratch and use it as the backend for your website.</p>
-<h2 id="step-1-open-workers-pages-and-create-an-application">Step 1: Open Workers &amp; Pages and create an application</h2>
-<p>In the Cloudflare dashboard, click <code>Workers &amp; Pages</code> in the left sidebar, then click <code>Create application</code> in the top-right corner.</p>
-<p><img alt="Step 1: Open Workers &amp; Pages and create an application" src="../cloudflare1_.png" /></p>
-<h2 id="step-2-start-with-the-hello-world-template">Step 2: Start with the Hello World template</h2>
-<p>In the "Ship something new" screen, choose <code>Start with Hello World!</code> to initialize a Worker quickly.</p>
-<p><img alt="Step 2: Start with Hello World" src="../cloudflare2.png" /></p>
-<h2 id="step-3-set-worker-name-and-deploy">Step 3: Set Worker name and deploy</h2>
-<p>In the <code>Deploy Hello World</code> screen:</p>
+<h1 id="github-pages-mkdocs-site-ai-agent-managed">GitHub Pages MkDocs Site — AI Agent Managed</h1>
+<p>This guide documents the complete workflow for deploying a <strong>MkDocs</strong> static website on <strong>GitHub Pages</strong>, using <strong>SSH authentication</strong> and <strong>AI Agent automation</strong> for ongoing content management.</p>
+<p>The architecture is simple and reliable:</p>
+<div class="highlight"><pre><span></span><code>Local Machine (AI Agent) → Git (SSH Push) → GitHub Repository → GitHub Pages
+</code></pre></div>
+<hr />
+<h2 id="overview">Overview</h2>
+<h3 id="why-this-stack">Why This Stack?</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Choice</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static Site Generator</td>
+<td>MkDocs (Material theme)</td>
+<td>Clean docs-style layout, Markdown-native</td>
+</tr>
+<tr>
+<td>Hosting</td>
+<td>GitHub Pages</td>
+<td>Free, reliable, zero infrastructure</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>SSH key</td>
+<td>No token expiry, agent-friendly</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>AI Agent (local)</td>
+<td>Handles edits, commits, pushes autonomously</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deployment-model-mode-a-direct-branch">Deployment Model — Mode A (Direct Branch)</h3>
+<p>We use <strong>direct branch deployment</strong>:</p>
+<ul>
+<li><strong>Branch:</strong> <code>main</code></li>
+<li><strong>Folder:</strong> <code>/docs</code> (MkDocs source) or <code>/site</code> (built output, depending on your setup)</li>
+<li>The agent modifies Markdown files → commits → pushes → GitHub Pages auto-updates</li>
+</ul>
+<hr />
+<h2 id="1-prerequisites">1. Prerequisites</h2>
+<ul>
+<li>Git installed locally</li>
+<li>Python 3.8+ with <code>pip</code></li>
+<li>A GitHub account with a repository created for the site</li>
+<li>An AI Agent (e.g. Antigravity, Codex, or any tool-calling LLM) with filesystem + shell access</li>
+</ul>
+<hr />
+<h2 id="2-install-mkdocs">2. Install MkDocs</h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material
+</code></pre></div>
+<p>Initialize a new site (if starting from scratch):</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>new<span class="w"> </span>my-site
+<span class="nb">cd</span><span class="w"> </span>my-site
+</code></pre></div>
+<p>Your project structure will look like:</p>
+<div class="highlight"><pre><span></span><code>my-site/
+├─ docs/
+│   └─ index.md
+├─ mkdocs.yml
+</code></pre></div>
+<hr />
+<h2 id="3-ssh-authentication-setup-one-time-human-step">3. SSH Authentication Setup (One-Time, Human Step)</h2>
+<p>This only needs to be done once per machine.</p>
+<h3 id="31-generate-ssh-key">3.1 Generate SSH Key</h3>
+<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+</code></pre></div>
+<p>Default location: <code>~/.ssh/id_ed25519</code></p>
+<h3 id="32-start-ssh-agent-and-add-key">3.2 Start SSH Agent and Add Key</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
+ssh-add<span class="w"> </span>~/.ssh/id_ed25519
+</code></pre></div>
+<p>On Windows (PowerShell):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Start-Service</span> <span class="n">ssh-agent</span>
+<span class="n">ssh-add</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519</span>
+</code></pre></div>
+<h3 id="33-add-public-key-to-github">3.3 Add Public Key to GitHub</h3>
+<p>Copy your public key:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+</code></pre></div>
+<p>Then on GitHub: <strong>Settings → SSH and GPG Keys → New SSH Key</strong> → paste and save.</p>
+<h3 id="34-test-the-connection">3.4 Test the Connection</h3>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+<span class="c1"># Expected: Hi USERNAME! You&#39;ve successfully authenticated...</span>
+</code></pre></div>
+<hr />
+<h2 id="4-configure-repository-remote-ssh">4. Configure Repository Remote (SSH)</h2>
+<p>Check your current remote:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>-v
+</code></pre></div>
+<p>If it shows HTTPS, switch to SSH:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:USERNAME/REPO.git
+</code></pre></div>
+<hr />
+<h2 id="5-github-pages-settings">5. GitHub Pages Settings</h2>
+<p>In your GitHub repository:</p>
 <ol>
-<li>Enter or confirm your <code>Worker name</code></li>
-<li>Review the default code preview</li>
-<li>Click <code>Deploy</code></li>
+<li>Go to <strong>Settings → Pages</strong></li>
+<li>Set <strong>Source:</strong> <code>Deploy from a branch</code></li>
+<li>Set <strong>Branch:</strong> <code>main</code> / <strong>Folder:</strong> <code>/ (root)</code> or <code>/docs</code></li>
+<li>Save — GitHub will publish your site at <code>https://USERNAME.github.io/REPO</code></li>
 </ol>
-<p>After deployment, Cloudflare gives you a public <code>*.workers.dev</code> URL.</p>
-<p><img alt="Step 3: Set Worker name and deploy" src="../cloudflare3_.png" /></p>
-<h2 id="step-4-open-the-worker-and-edit-code">Step 4: Open the Worker and edit code</h2>
-<p>After deployment, go to the Worker overview page and click <code>Edit code</code> to open the online editor.</p>
-<p><img alt="Step 4: Open Edit code" src="../cloudflare4_.png" /></p>
-<h2 id="step-5-implement-backend-logic-in-workerjs">Step 5: Implement backend logic in worker.js</h2>
-<p>Edit <code>worker.js</code> to implement your backend API logic, for example:</p>
-<ol>
-<li>Read <code>Origin</code> from request headers</li>
-<li>Configure a frontend allowlist for CORS</li>
-<li>Process requests and return JSON responses</li>
-</ol>
-<p>The example in the screenshot already includes allowlist checking, which is a good pattern for GitHub Pages frontend + Worker backend integration.</p>
-<p><img alt="Step 5: Implement backend logic in worker.js" src="../cloudflare5.png" /></p>
-<h2 id="step-6-configure-variables-and-secrets-in-settings">Step 6: Configure Variables and Secrets in Settings</h2>
-<p>Go to <code>Settings</code>, open <code>Variables and Secrets</code>, then add runtime configuration:</p>
-<ol>
-<li><code>Secret</code>, for example <code>AI_API_KEY</code> (store API keys securely)</li>
-<li><code>Plaintext</code>, for example <code>KNOWLEDGE_BASE</code> (store non-sensitive config text)</li>
-</ol>
-<p>Your Worker code can read these environment variables at runtime, so sensitive values are not hardcoded in source code.</p>
-<p><img alt="Step 6: Configure Variables and Secrets" src="../cloudflare6.png" /></p>
-<h2 id="step-7-call-the-worker-url-from-your-frontend">Step 7: Call the Worker URL from your frontend</h2>
-<p>In your frontend application, send requests to your Worker endpoint (the <code>*.workers.dev</code> URL, or your custom domain route). This is the final step that connects frontend and Cloudflare backend.</p>
-<p>Once connected, the backend can handle and protect key server-side responsibilities, such as:</p>
-<ol>
-<li>Storing API keys securely</li>
-<li>Processing and storing user data</li>
-<li>Managing system prompts and backend business logic</li>
-</ol>
-<h2 id="final-checks">Final checks</h2>
-<ol>
-<li>Click <code>Visit</code> to confirm the Worker is reachable</li>
-<li>Test frontend-to-Worker requests and verify CORS behavior</li>
-<li>Redeploy and run regression checks after each backend update</li>
-</ol>
+<div class="admonition tip">
+<p class="admonition-title">Using MkDocs <code>gh-deploy</code></p>
+<p>If you prefer to keep your source on <code>main</code> and publish the <strong>built</strong> site to <code>gh-pages</code> branch automatically, run:
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div>
+This builds the site and force-pushes to the <code>gh-pages</code> branch in one command. The agent can run this as part of its update routine.</p>
+</div>
+<hr />
+<h2 id="6-agent-operational-rules">6. Agent Operational Rules</h2>
+<p>Once SSH is configured, the AI Agent can autonomously manage the site. Define clear rules:</p>
+<h3 id="allowed">✅ Allowed</h3>
+<ul>
+<li>Modify <code>.md</code> files under <code>docs/</code></li>
+<li>Add new images under <code>docs/assets/</code></li>
+<li>Update <code>mkdocs.yml</code> navigation (<code>nav:</code> section)</li>
+<li>Run <code>git add . &amp;&amp; git commit -m "..." &amp;&amp; git push origin main</code></li>
+<li>Run <code>mkdocs gh-deploy</code> to publish</li>
+</ul>
+<h3 id="forbidden">❌ Forbidden</h3>
+<ul>
+<li>Delete or modify <code>.git/</code> or <code>.ssh/</code> folders</li>
+<li>Change repository settings or branch protection rules</li>
+<li>Remove <code>CNAME</code> (if using a custom domain)</li>
+<li>Force-push to <code>main</code> without a backup</li>
+</ul>
+<hr />
+<h2 id="7-automation-script-windows">7. Automation Script (Windows)</h2>
+<p>Save this as <code>deploy_site.bat</code> in the project root:</p>
+<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
+<span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
+git add .
+git commit -m <span class="s2">&quot;update site content&quot;</span>
+git pull --rebase origin main
+git push origin main
+<span class="k">echo</span> Deployment complete.
+<span class="k">pause</span>
+</code></pre></div>
+<p>Or use <code>mkdocs gh-deploy</code> as the publish step:</p>
+<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
+<span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
+mkdocs gh-deploy --clean
+<span class="k">echo</span> Site published to GitHub Pages.
+<span class="k">pause</span>
+</code></pre></div>
+<hr />
+<h2 id="8-typical-agent-workflow">8. Typical Agent Workflow</h2>
+<p>A standard content update session looks like this:</p>
+<div class="highlight"><pre><span></span><code>1. Agent receives task: &quot;Add a new project page about X&quot;
+2. Agent creates: docs/projects/x.md
+3. Agent updates: mkdocs.yml  (adds entry under nav)
+4. Agent runs:    git add .
+5. Agent runs:    git commit -m &quot;add project page: X&quot;
+6. Agent runs:    git push origin main  (or mkdocs gh-deploy)
+7. GitHub Pages rebuilds and publishes automatically
+</code></pre></div>
+<p>No human intervention is needed after the initial SSH setup.</p>
+<hr />
+<h2 id="9-recommended-project-structure">9. Recommended Project Structure</h2>
+<div class="highlight"><pre><span></span><code>mkdocs-site/
+├─ docs/
+│   ├─ index.md
+│   ├─ about.md
+│   ├─ projects/
+│   │   ├─ project-a.md
+│   │   └─ project-b.md
+│   └─ assets/
+│       └─ images/
+├─ mkdocs.yml
+├─ deploy_site.bat
+└─ README_AGENT.md     ← agent rules &amp; context file
+</code></pre></div>
+<h3 id="readme_agentmd-rules-file-for-the-agent"><code>README_AGENT.md</code> — Rules File for the Agent</h3>
+<p>Create this file to give the agent persistent context:</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Agent Rules for mkdocs-site</span>
+
+<span class="k">-</span><span class="w"> </span>All content pages live under docs/
+<span class="k">-</span><span class="w"> </span>Navigation is controlled by mkdocs.yml (nav: section)
+<span class="k">-</span><span class="w"> </span>Images go to docs/assets/images/
+<span class="k">-</span><span class="w"> </span>After any change, run: git add . &amp;&amp; git commit -m &quot;...&quot; &amp;&amp; git push origin main
+<span class="k">-</span><span class="w"> </span>Never modify .git/ or .ssh/
+<span class="k">-</span><span class="w"> </span>Site URL: https://USERNAME.github.io/REPO
+</code></pre></div>
+<hr />
+<h2 id="10-troubleshooting">10. Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Likely Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Permission denied (publickey)</code></td>
+<td>SSH key not added to agent</td>
+<td>Run <code>ssh-add ~/.ssh/id_ed25519</code></td>
+</tr>
+<tr>
+<td>Push rejected</td>
+<td>Remote has changes not in local</td>
+<td>Run <code>git pull --rebase origin main</code> first</td>
+</tr>
+<tr>
+<td>Site not updating</td>
+<td>GitHub Pages propagation delay</td>
+<td>Wait 1–2 min; check Actions tab</td>
+</tr>
+<tr>
+<td><code>mkdocs gh-deploy</code> fails</td>
+<td>Not in project root, or missing dependencies</td>
+<td><code>cd</code> to project root, <code>pip install mkdocs-material</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>With a one-time SSH setup, the AI Agent can autonomously manage your MkDocs site indefinitely — adding pages, updating navigation, pushing changes — without ever needing a password or token. The entire workflow is transparent, version-controlled, and runs entirely on your local machine.</p>
 
 
 
