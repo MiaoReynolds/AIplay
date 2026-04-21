@@ -236,6 +236,17 @@ Explore our [Projects](projects/vibe-coding.md) to see what we're building, or [
   <div class="bento-card">
     <div class="bento-content-wrapper">
       <div class="team-avatar-wrapper">
+        <img src="../assets/images/sai.jpg" alt="Dr Sai Wei">
+      </div>
+      <h3 class="bento-title">Dr Sai Wei</h3>
+      <div class="bento-subtitle">AI Scientist</div>
+      <p class="bento-desc">Dr. Sai has a solid background in deep learning development and research, with hands-on experience in projects spanning electricity price forecasting and intelligent microgrid management systems. Within our team, her focus is on identifying and integrating state-of-the-art large model algorithms into day-to-day workflows, bridging the gap between cutting-edge AI research and practical operational needs.</p>
+    </div>
+  </div>
+
+  <div class="bento-card">
+    <div class="bento-content-wrapper">
+      <div class="team-avatar-wrapper">
         <img src="../assets/images/yang.png" alt="Yang Xun">
       </div>
       <h3 class="bento-title">Yang Xun</h3>
