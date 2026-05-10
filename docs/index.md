@@ -253,13 +253,13 @@ hide:
       </div>
     </a>
 
-    <a href="projects/codex-skills" class="bento-card">
+    <a href="projects/hermes-agent-raspberry-pi-4b-voice-setup" class="bento-card">
       <div class="bento-content-wrapper">
-        <span class="bento-tag">Tutorial</span>
-        <h3 class="bento-title">Codex Skills</h3>
-        <p class="bento-desc">Learn how to install and use Skills in OpenAI Codex to teach the agent your project's custom workflows.</p>
+        <span class="bento-tag">Voice AI</span>
+        <h3 class="bento-title">Hermes on Raspberry Pi 4B</h3>
+        <p class="bento-desc">Complete Ubuntu deployment guide for Hermes Agent with Whisper STT, LLM API, and TTS voice output.</p>
         <div class="bento-image-wrapper" style="background-color: #000;">
-          <img src="assets/images/openai-codex-logo-hd.png" alt="Codex Skills" style="object-fit: contain; padding: 1.5rem;">
+          <img src="assets/images/hermes_agent.jpg" alt="Hermes on Raspberry Pi 4B" style="object-fit: contain; padding: 1.5rem;">
         </div>
       </div>
     </a>
