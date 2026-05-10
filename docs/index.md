@@ -242,6 +242,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/hermes-agent-voice-mode" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Voice AI</span>
+        <h3 class="bento-title">Hermes Agent Voice Mode</h3>
+        <p class="bento-desc">Step-by-step macOS setup to add real-time STT and TTS voice interaction to Hermes Agent.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/hermes_agent.jpg" alt="Hermes Agent Voice Mode">
+        </div>
+      </div>
+    </a>
+
     <a href="projects/codex-skills" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Tutorial</span>

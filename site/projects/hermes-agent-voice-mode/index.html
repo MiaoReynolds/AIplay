@@ -10,13 +10,13 @@
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/github-pages-mkdocs/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/hermes-agent-voice-mode/">
       
       
-        <link rel="prev" href="../local-rag/">
+        <link rel="prev" href="../vibe-coding/">
       
       
-        <link rel="next" href="../cloudflare-worker-backend/">
+        <link rel="next" href="../codex-skills/">
       
       
       <link rel="icon" href="../../assets/images/A_logo_cropped.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>GitHub Pages MkDocs (AI Agent Managed) - AIone Lab</title>
+        <title>Add Voice Module to Hermes Agent - AIone Lab</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#github-pages-mkdocs-site-ai-agent-managed" class="md-skip">
+        <a href="#add-voice-module-to-hermes-agent-macos" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GitHub Pages MkDocs (AI Agent Managed)
+              Add Voice Module to Hermes Agent
             
           </span>
         </div>
@@ -469,32 +469,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    GitHub Pages MkDocs (AI Agent Managed)
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../github-pages-mkdocs/" class="md-nav__link">
         
   
   
@@ -505,239 +483,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-this-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why This Stack?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deployment-model-mode-a-direct-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deployment Model — Mode A (Direct Branch)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-install-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Install MkDocs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-ssh-authentication-setup-one-time-human-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. SSH Authentication Setup (One-Time, Human Step)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. SSH Authentication Setup (One-Time, Human Step)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-generate-ssh-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.1 Generate SSH Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-start-ssh-agent-and-add-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.2 Start SSH Agent and Add Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-add-public-key-to-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Add Public Key to GitHub
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-test-the-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Test the Connection
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-configure-repository-remote-ssh" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Configure Repository Remote (SSH)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-github-pages-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. GitHub Pages Settings
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-agent-operational-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Agent Operational Rules
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Agent Operational Rules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allowed" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Allowed
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forbidden" class="md-nav__link">
-    <span class="md-ellipsis">
-      ❌ Forbidden
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-automation-script-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Automation Script (Windows)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-typical-agent-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Typical Agent Workflow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-recommended-project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Recommended Project Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Recommended Project Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#readme_agentmd-rules-file-for-the-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      README_AGENT.md — Rules File for the Agent
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Troubleshooting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -862,10 +607,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../hermes-agent-voice-mode/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Add Voice Module to Hermes Agent
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -876,6 +643,263 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Snapshot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-homebrew-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Homebrew Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-hermes-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Install Hermes Agent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fix-python-version-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Fix Python Version (Critical)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rebuild-hermes-virtual-environment-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Rebuild Hermes Virtual Environment (Important)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-install-voice-mode-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Install Voice Mode Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-test-portaudio-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Test PortAudio / Microphone
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-test-edge-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Test Edge TTS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-edit-hermes-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Edit Hermes Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-start-hermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Start Hermes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-check-voice-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Check Voice Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-manual-enable-if-startup_commands-did-not-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Manual Enable (If startup_commands Did Not Apply)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-push-to-talk" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Push-To-Talk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-air-mouse-workflow-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Air Mouse Workflow (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infinite-flicker-freeze" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infinite flicker / freeze
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-module-named-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      No module named pip
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrong-python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrong Python version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tts-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      TTS: OFF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-audio-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      No audio input
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-recommended-upgrade-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Recommended Upgrade Path
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Recommended Upgrade Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stronger-whisper-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stronger Whisper model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-natural-tts-future-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      More natural TTS (future options)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mind-map-deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mind Map: Deployment Checklist
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-system-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final System Structure
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1278,28 +1302,181 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#architecture-snapshot" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Architecture Snapshot
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-homebrew-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Homebrew Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-hermes-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Install Hermes Agent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fix-python-version-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Fix Python Version (Critical)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rebuild-hermes-virtual-environment-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Rebuild Hermes Virtual Environment (Important)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-install-voice-mode-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Install Voice Mode Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-test-portaudio-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Test PortAudio / Microphone
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-test-edge-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Test Edge TTS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-edit-hermes-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Edit Hermes Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-start-hermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Start Hermes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-check-voice-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Check Voice Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-manual-enable-if-startup_commands-did-not-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Manual Enable (If startup_commands Did Not Apply)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-push-to-talk" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Push-To-Talk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-air-mouse-workflow-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Air Mouse Workflow (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Common Issues">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#why-this-stack" class="md-nav__link">
+  <a href="#infinite-flicker-freeze" class="md-nav__link">
     <span class="md-ellipsis">
-      Why This Stack?
+      Infinite flicker / freeze
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment-model-mode-a-direct-branch" class="md-nav__link">
+  <a href="#no-module-named-pip" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment Model — Mode A (Direct Branch)
+      No module named pip
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrong-python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrong Python version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tts-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      TTS: OFF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-audio-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      No audio input
     </span>
   </a>
   
@@ -1311,64 +1488,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-prerequisites" class="md-nav__link">
+  <a href="#15-recommended-upgrade-path" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Prerequisites
+      15. Recommended Upgrade Path
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-install-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Install MkDocs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-ssh-authentication-setup-one-time-human-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. SSH Authentication Setup (One-Time, Human Step)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. SSH Authentication Setup (One-Time, Human Step)">
+    <nav class="md-nav" aria-label="15. Recommended Upgrade Path">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-generate-ssh-key" class="md-nav__link">
+  <a href="#stronger-whisper-model" class="md-nav__link">
     <span class="md-ellipsis">
-      3.1 Generate SSH Key
+      Stronger Whisper model
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-start-ssh-agent-and-add-key" class="md-nav__link">
+  <a href="#more-natural-tts-future-options" class="md-nav__link">
     <span class="md-ellipsis">
-      3.2 Start SSH Agent and Add Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-add-public-key-to-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Add Public Key to GitHub
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-test-the-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Test the Connection
+      More natural TTS (future options)
     </span>
   </a>
   
@@ -1380,111 +1521,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-configure-repository-remote-ssh" class="md-nav__link">
+  <a href="#mind-map-deployment-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Configure Repository Remote (SSH)
+      Mind Map: Deployment Checklist
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-github-pages-settings" class="md-nav__link">
+  <a href="#final-system-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      5. GitHub Pages Settings
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-agent-operational-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Agent Operational Rules
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Agent Operational Rules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allowed" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Allowed
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forbidden" class="md-nav__link">
-    <span class="md-ellipsis">
-      ❌ Forbidden
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-automation-script-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Automation Script (Windows)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-typical-agent-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Typical Agent Workflow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-recommended-project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Recommended Project Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Recommended Project Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#readme_agentmd-rules-file-for-the-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      README_AGENT.md — Rules File for the Agent
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Troubleshooting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
+      Final System Structure
     </span>
   </a>
   
@@ -1506,233 +1554,288 @@
 
 
 
-<h1 id="github-pages-mkdocs-site-ai-agent-managed">GitHub Pages MkDocs Site — AI Agent Managed</h1>
-<p>This guide documents the complete workflow for deploying a <strong>MkDocs</strong> static website on <strong>GitHub Pages</strong>, using <strong>SSH authentication</strong> and <strong>AI Agent automation</strong> for ongoing content management.</p>
-<p>The architecture is simple and reliable:</p>
-<div class="highlight"><pre><span></span><code>Local Machine (AI Agent) → Git (SSH Push) → GitHub Repository → GitHub Pages
+<h1 id="add-voice-module-to-hermes-agent-macos">Add Voice Module to Hermes Agent (macOS)</h1>
+<p>This guide is a complete, command-first setup for enabling <strong>Voice Mode</strong> in Hermes Agent on macOS.</p>
+<hr />
+<h2 id="architecture-snapshot">Architecture Snapshot</h2>
+<div class="highlight"><pre><span></span><code>flowchart LR
+    A[&quot;Push-to-Talk (Ctrl+B)&quot;] --&gt; B[&quot;Hermes Voice Module&quot;]
+    B --&gt; C[&quot;faster-whisper (STT)&quot;]
+    C --&gt; D[&quot;Local LLM (Gemma)&quot;]
+    D --&gt; E[&quot;Edge Neural TTS&quot;]
+    E --&gt; F[&quot;Speaker Output&quot;]
 </code></pre></div>
 <hr />
-<h2 id="overview">Overview</h2>
-<h3 id="why-this-stack">Why This Stack?</h3>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Choice</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Static Site Generator</td>
-<td>MkDocs (Material theme)</td>
-<td>Clean docs-style layout, Markdown-native</td>
-</tr>
-<tr>
-<td>Hosting</td>
-<td>GitHub Pages</td>
-<td>Free, reliable, zero infrastructure</td>
-</tr>
-<tr>
-<td>Auth</td>
-<td>SSH key</td>
-<td>No token expiry, agent-friendly</td>
-</tr>
-<tr>
-<td>Automation</td>
-<td>AI Agent (local)</td>
-<td>Handles edits, commits, pushes autonomously</td>
-</tr>
-</tbody>
-</table>
-<h3 id="deployment-model-mode-a-direct-branch">Deployment Model — Mode A (Direct Branch)</h3>
-<p>We use <strong>direct branch deployment</strong>:</p>
-<ul>
-<li><strong>Branch:</strong> <code>main</code></li>
-<li><strong>Folder:</strong> <code>/docs</code> (MkDocs source) or <code>/site</code> (built output, depending on your setup)</li>
-<li>The agent modifies Markdown files → commits → pushes → GitHub Pages auto-updates</li>
-</ul>
-<hr />
-<h2 id="1-prerequisites">1. Prerequisites</h2>
-<ul>
-<li>Git installed locally</li>
-<li>Python 3.8+ with <code>pip</code></li>
-<li>A GitHub account with a repository created for the site</li>
-<li>An AI Agent (e.g. Antigravity, Codex, or any tool-calling LLM) with filesystem + shell access</li>
-</ul>
-<hr />
-<h2 id="2-install-mkdocs">2. Install MkDocs</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material
-</code></pre></div>
-<p>Initialize a new site (if starting from scratch):</p>
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>new<span class="w"> </span>my-site
-<span class="nb">cd</span><span class="w"> </span>my-site
-</code></pre></div>
-<p>Your project structure will look like:</p>
-<div class="highlight"><pre><span></span><code>my-site/
-├─ docs/
-│   └─ index.md
-├─ mkdocs.yml
+<h2 id="1-install-homebrew-dependencies">1. Install Homebrew Dependencies</h2>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>python@3.11
+brew<span class="w"> </span>install<span class="w"> </span>portaudio<span class="w"> </span>ffmpeg
+brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>karabiner-elements
 </code></pre></div>
 <hr />
-<h2 id="3-ssh-authentication-setup-one-time-human-step">3. SSH Authentication Setup (One-Time, Human Step)</h2>
-<p>This only needs to be done once per machine.</p>
-<h3 id="31-generate-ssh-key">3.1 Generate SSH Key</h3>
-<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+<h2 id="2-install-hermes-agent">2. Install Hermes Agent</h2>
+<p>Official installer:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://hermes-agent.nousresearch.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<p>Default location: <code>~/.ssh/id_ed25519</code></p>
-<h3 id="32-start-ssh-agent-and-add-key">3.2 Start SSH Agent and Add Key</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
-ssh-add<span class="w"> </span>~/.ssh/id_ed25519
-</code></pre></div>
-<p>On Windows (PowerShell):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Start-Service</span> <span class="n">ssh-agent</span>
-<span class="n">ssh-add</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519</span>
-</code></pre></div>
-<h3 id="33-add-public-key-to-github">3.3 Add Public Key to GitHub</h3>
-<p>Copy your public key:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
-</code></pre></div>
-<p>Then on GitHub: <strong>Settings → SSH and GPG Keys → New SSH Key</strong> → paste and save.</p>
-<h3 id="34-test-the-connection">3.4 Test the Connection</h3>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-<span class="c1"># Expected: Hi USERNAME! You&#39;ve successfully authenticated...</span>
+<p>Check installation:</p>
+<div class="highlight"><pre><span></span><code>which<span class="w"> </span>hermes
+hermes
 </code></pre></div>
 <hr />
-<h2 id="4-configure-repository-remote-ssh">4. Configure Repository Remote (SSH)</h2>
-<p>Check your current remote:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>-v
+<h2 id="3-fix-python-version-critical">3. Fix Python Version (Critical)</h2>
+<p>Hermes requires:</p>
+<div class="highlight"><pre><span></span><code>Python &gt;= 3.11
 </code></pre></div>
-<p>If it shows HTTPS, switch to SSH:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:USERNAME/REPO.git
+<p>Check current Python:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>--version
 </code></pre></div>
-<hr />
-<h2 id="5-github-pages-settings">5. GitHub Pages Settings</h2>
-<p>In your GitHub repository:</p>
-<ol>
-<li>Go to <strong>Settings → Pages</strong></li>
-<li>Set <strong>Source:</strong> <code>Deploy from a branch</code></li>
-<li>Set <strong>Branch:</strong> <code>main</code> / <strong>Folder:</strong> <code>/ (root)</code> or <code>/docs</code></li>
-<li>Save — GitHub will publish your site at <code>https://USERNAME.github.io/REPO</code></li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Using MkDocs <code>gh-deploy</code></p>
-<p>If you prefer to keep your source on <code>main</code> and publish the <strong>built</strong> site to <code>gh-pages</code> branch automatically, run:
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>gh-deploy
+<p>If you still see macOS default, for example:</p>
+<div class="highlight"><pre><span></span><code>Python 3.9.x
 </code></pre></div>
-This builds the site and force-pushes to the <code>gh-pages</code> branch in one command. The agent can run this as part of its update routine.</p>
-</div>
-<hr />
-<h2 id="6-agent-operational-rules">6. Agent Operational Rules</h2>
-<p>Once SSH is configured, the AI Agent can autonomously manage the site. Define clear rules:</p>
-<h3 id="allowed">✅ Allowed</h3>
-<ul>
-<li>Modify <code>.md</code> files under <code>docs/</code></li>
-<li>Add new images under <code>docs/assets/</code></li>
-<li>Update <code>mkdocs.yml</code> navigation (<code>nav:</code> section)</li>
-<li>Run <code>git add . &amp;&amp; git commit -m "..." &amp;&amp; git push origin main</code></li>
-<li>Run <code>mkdocs gh-deploy</code> to publish</li>
-</ul>
-<h3 id="forbidden">❌ Forbidden</h3>
-<ul>
-<li>Delete or modify <code>.git/</code> or <code>.ssh/</code> folders</li>
-<li>Change repository settings or branch protection rules</li>
-<li>Remove <code>CNAME</code> (if using a custom domain)</li>
-<li>Force-push to <code>main</code> without a backup</li>
-</ul>
-<hr />
-<h2 id="7-automation-script-windows">7. Automation Script (Windows)</h2>
-<p>Save this as <code>deploy_site.bat</code> in the project root:</p>
-<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
-<span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
-git add .
-git commit -m <span class="s2">&quot;update site content&quot;</span>
-git pull --rebase origin main
-git push origin main
-<span class="k">echo</span> Deployment complete.
-<span class="k">pause</span>
-</code></pre></div>
-<p>Or use <code>mkdocs gh-deploy</code> as the publish step:</p>
-<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
-<span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
-mkdocs gh-deploy --clean
-<span class="k">echo</span> Site published to GitHub Pages.
-<span class="k">pause</span>
+<p>Use Homebrew Python:</p>
+<div class="highlight"><pre><span></span><code>/opt/homebrew/bin/python3.11<span class="w"> </span>--version
 </code></pre></div>
 <hr />
-<h2 id="8-typical-agent-workflow">8. Typical Agent Workflow</h2>
-<p>A standard content update session looks like this:</p>
-<div class="highlight"><pre><span></span><code>1. Agent receives task: &quot;Add a new project page about X&quot;
-2. Agent creates: docs/projects/x.md
-3. Agent updates: mkdocs.yml  (adds entry under nav)
-4. Agent runs:    git add .
-5. Agent runs:    git commit -m &quot;add project page: X&quot;
-6. Agent runs:    git push origin main  (or mkdocs gh-deploy)
-7. GitHub Pages rebuilds and publishes automatically
-</code></pre></div>
-<p>No human intervention is needed after the initial SSH setup.</p>
-<hr />
-<h2 id="9-recommended-project-structure">9. Recommended Project Structure</h2>
-<div class="highlight"><pre><span></span><code>mkdocs-site/
-├─ docs/
-│   ├─ index.md
-│   ├─ about.md
-│   ├─ projects/
-│   │   ├─ project-a.md
-│   │   └─ project-b.md
-│   └─ assets/
-│       └─ images/
-├─ mkdocs.yml
-├─ deploy_site.bat
-└─ README_AGENT.md     ← agent rules &amp; context file
-</code></pre></div>
-<h3 id="readme_agentmd-rules-file-for-the-agent"><code>README_AGENT.md</code> — Rules File for the Agent</h3>
-<p>Create this file to give the agent persistent context:</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Agent Rules for mkdocs-site</span>
+<h2 id="4-rebuild-hermes-virtual-environment-important">4. Rebuild Hermes Virtual Environment (Important)</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/.hermes/hermes-agent
 
-<span class="k">-</span><span class="w"> </span>All content pages live under docs/
-<span class="k">-</span><span class="w"> </span>Navigation is controlled by mkdocs.yml (nav: section)
-<span class="k">-</span><span class="w"> </span>Images go to docs/assets/images/
-<span class="k">-</span><span class="w"> </span>After any change, run: git add . &amp;&amp; git commit -m &quot;...&quot; &amp;&amp; git push origin main
-<span class="k">-</span><span class="w"> </span>Never modify .git/ or .ssh/
-<span class="k">-</span><span class="w"> </span>Site URL: https://USERNAME.github.io/REPO
+rm<span class="w"> </span>-rf<span class="w"> </span>venv
+
+/opt/homebrew/bin/python3.11<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+python<span class="w"> </span>-m<span class="w"> </span>ensurepip<span class="w"> </span>--upgrade
+
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
+
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </code></pre></div>
 <hr />
-<h2 id="10-troubleshooting">10. Troubleshooting</h2>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Likely Cause</th>
-<th>Fix</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Permission denied (publickey)</code></td>
-<td>SSH key not added to agent</td>
-<td>Run <code>ssh-add ~/.ssh/id_ed25519</code></td>
-</tr>
-<tr>
-<td>Push rejected</td>
-<td>Remote has changes not in local</td>
-<td>Run <code>git pull --rebase origin main</code> first</td>
-</tr>
-<tr>
-<td>Site not updating</td>
-<td>GitHub Pages propagation delay</td>
-<td>Wait 1–2 min; check Actions tab</td>
-</tr>
-<tr>
-<td><code>mkdocs gh-deploy</code> fails</td>
-<td>Not in project root, or missing dependencies</td>
-<td><code>cd</code> to project root, <code>pip install mkdocs-material</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="5-install-voice-mode-dependencies">5. Install Voice Mode Dependencies</h2>
+<p>Activate Hermes venv:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/.hermes/hermes-agent
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</code></pre></div>
+<p>Install voice extras:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;.[voice]&quot;</span>
+</code></pre></div>
+<p>Install missing packages explicitly:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="se">\</span>
+sounddevice<span class="w"> </span><span class="se">\</span>
+soundfile<span class="w"> </span><span class="se">\</span>
+numpy<span class="w"> </span><span class="se">\</span>
+faster-whisper<span class="w"> </span><span class="se">\</span>
+edge-tts
+</code></pre></div>
 <hr />
-<h2 id="conclusion">Conclusion</h2>
-<p>With a one-time SSH setup, the AI Agent can autonomously manage your MkDocs site indefinitely — adding pages, updating navigation, pushing changes — without ever needing a password or token. The entire workflow is transparent, version-controlled, and runs entirely on your local machine.</p>
+<h2 id="6-test-portaudio-microphone">6. Test PortAudio / Microphone</h2>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<span class="s">import sounddevice as sd</span>
+<span class="s">print(sd.query_devices())</span>
+<span class="s">PY</span>
+</code></pre></div>
+<p>Expected output includes devices like:</p>
+<div class="highlight"><pre><span></span><code>MacBook Pro Microphone
+MacBook Pro Speakers
+</code></pre></div>
+<hr />
+<h2 id="7-test-edge-tts">7. Test Edge TTS</h2>
+<div class="highlight"><pre><span></span><code>edge-tts<span class="w"> </span><span class="se">\</span>
+--voice<span class="w"> </span>zh-CN-XiaoxiaoNeural<span class="w"> </span><span class="se">\</span>
+--text<span class="w"> </span><span class="s2">&quot;你好，我是 Hermes。&quot;</span><span class="w"> </span><span class="se">\</span>
+--write-media<span class="w"> </span>test.mp3
+
+afplay<span class="w"> </span>test.mp3
+</code></pre></div>
+<hr />
+<h2 id="8-edit-hermes-configuration">8. Edit Hermes Configuration</h2>
+<p>Edit config:</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>~/.hermes/config.yaml
+</code></pre></div>
+<p>Recommended config:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">stt</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base</span>
+
+<span class="nt">tts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">edge</span>
+<span class="w">  </span><span class="nt">edge</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">voice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zh-CN-YunxiNeural</span>
+
+<span class="nt">voice</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">record_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctrl+b</span>
+<span class="w">  </span><span class="nt">max_recording_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">120</span>
+
+<span class="nt">startup_commands</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/voice</span><span class="nv"> </span><span class="s">on&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/voice</span><span class="nv"> </span><span class="s">tts&quot;</span>
+</code></pre></div>
+<p>Save in nano:</p>
+<div class="highlight"><pre><span></span><code>Ctrl + O
+Enter
+Ctrl + X
+</code></pre></div>
+<hr />
+<h2 id="9-start-hermes">9. Start Hermes</h2>
+<div class="highlight"><pre><span></span><code>killall<span class="w"> </span>hermes<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+hermes
+</code></pre></div>
+<hr />
+<h2 id="10-check-voice-status">10. Check Voice Status</h2>
+<p>Inside Hermes:</p>
+<div class="highlight"><pre><span></span><code>/voice status
+</code></pre></div>
+<p>Healthy output:</p>
+<div class="highlight"><pre><span></span><code>Mode: ON
+TTS: ON
+STT provider: OK
+</code></pre></div>
+<hr />
+<h2 id="11-manual-enable-if-startup_commands-did-not-apply">11. Manual Enable (If <code>startup_commands</code> Did Not Apply)</h2>
+<div class="highlight"><pre><span></span><code>/voice on
+/voice tts
+</code></pre></div>
+<hr />
+<h2 id="12-push-to-talk">12. Push-To-Talk</h2>
+<p>Default key:</p>
+<div class="highlight"><pre><span></span><code>Ctrl + B
+</code></pre></div>
+<p>Behavior:</p>
+<div class="highlight"><pre><span></span><code>Press and hold -&gt; start recording
+Release        -&gt; stop recording
+</code></pre></div>
+<p>Hermes processing loop:</p>
+<div class="highlight"><pre><span></span><code>STT -&gt; LLM -&gt; TTS
+</code></pre></div>
+<p>You will get automatic spoken replies.</p>
+<hr />
+<h2 id="13-air-mouse-workflow-optional">13. Air Mouse Workflow (Optional)</h2>
+<p>Install:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>karabiner-elements
+</code></pre></div>
+<p>Use:</p>
+<div class="highlight"><pre><span></span><code>Karabiner EventViewer
+</code></pre></div>
+<p>Then map:</p>
+<div class="highlight"><pre><span></span><code>Air mouse button -&gt; Ctrl+B
+</code></pre></div>
+<p>Result:</p>
+<div class="highlight"><pre><span></span><code>Remote button -&gt; Hermes voice conversation
+</code></pre></div>
+<hr />
+<h2 id="14-common-issues">14. Common Issues</h2>
+<h3 id="infinite-flicker-freeze">Infinite flicker / freeze</h3>
+<p>Cause:</p>
+<div class="highlight"><pre><span></span><code>venv/bin/hermes self-recursion
+</code></pre></div>
+<p>Fix:</p>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>venv
+<span class="c1"># then recreate venv from Step 4</span>
+</code></pre></div>
+<h3 id="no-module-named-pip"><code>No module named pip</code></h3>
+<p>Cause:</p>
+<div class="highlight"><pre><span></span><code>Broken venv
+</code></pre></div>
+<p>Fix:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>ensurepip<span class="w"> </span>--upgrade
+</code></pre></div>
+<h3 id="wrong-python-version">Wrong Python version</h3>
+<p>Error:</p>
+<div class="highlight"><pre><span></span><code>requires Python &gt;=3.11
+</code></pre></div>
+<p>Fix:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>python@3.11
+</code></pre></div>
+<h3 id="tts-off"><code>TTS: OFF</code></h3>
+<p>Causes:</p>
+<ul>
+<li><code>edge-tts</code> not installed</li>
+<li>TTS not enabled in config</li>
+<li><code>/voice tts</code> not executed</li>
+</ul>
+<p>Fix:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>edge-tts
+</code></pre></div>
+<p>Config check:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">tts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h3 id="no-audio-input">No audio input</h3>
+<p>On macOS:</p>
+<div class="highlight"><pre><span></span><code>System Settings
+-&gt; Privacy &amp; Security
+-&gt; Microphone
+</code></pre></div>
+<p>Allow:</p>
+<ul>
+<li>Terminal</li>
+<li>iTerm2</li>
+<li>VSCode</li>
+</ul>
+<hr />
+<h2 id="15-recommended-upgrade-path">15. Recommended Upgrade Path</h2>
+<h3 id="stronger-whisper-model">Stronger Whisper model</h3>
+<p>Use:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">small</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
+</code></pre></div>
+<h3 id="more-natural-tts-future-options">More natural TTS (future options)</h3>
+<ul>
+<li>ElevenLabs</li>
+<li>XTTS</li>
+<li>Piper</li>
+<li>OpenAI TTS</li>
+</ul>
+<hr />
+<h2 id="mind-map-deployment-checklist">Mind Map: Deployment Checklist</h2>
+<div class="highlight"><pre><span></span><code>mindmap
+  root((Hermes + Voice Mode))
+    Dependencies
+      python 3.11
+      portaudio
+      ffmpeg
+      karabiner
+    Installation
+      Hermes install script
+      verify hermes binary
+    Python and Venv
+      verify python version
+      rebuild venv
+      reinstall package editable mode
+    Voice Stack
+      install .[voice]
+      faster-whisper
+      edge-tts
+      sounddevice test
+    Runtime Config
+      stt local model
+      tts edge voice
+      record key ctrl+b
+      startup voice commands
+    Operation
+      voice status
+      push to talk
+      air mouse mapping optional
+    Troubleshooting
+      venv recursion
+      missing pip
+      tts off
+      microphone permission
+</code></pre></div>
+<hr />
+<h2 id="final-system-structure">Final System Structure</h2>
+<div class="highlight"><pre><span></span><code>Air mouse / Ctrl+B
+-&gt; Hermes Voice
+-&gt; faster-whisper
+-&gt; local Gemma
+-&gt; Edge Neural TTS
+-&gt; real-time voice reply
+</code></pre></div>
 
 
 
