@@ -10,13 +10,13 @@
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/codex-skills/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/hermes-agent-raspberry-pi-4b-voice-setup/">
       
       
-        <link rel="prev" href="../hermes-agent-raspberry-pi-4b-voice-setup/">
+        <link rel="prev" href="../hermes-agent-voice-mode/">
       
       
-        <link rel="next" href="../ai-course/">
+        <link rel="next" href="../codex-skills/">
       
       
       <link rel="icon" href="../../assets/images/A_logo_cropped.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Codex Skills - AIone Lab</title>
+        <title>Hermes Agent Voice AI on Raspberry Pi 4B - AIone Lab</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-a-skill-in-openai-codex" class="md-skip">
+        <a href="#hermes-agent-voice-ai-on-raspberry-pi-4b" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Codex Skills
+              Hermes Agent Voice AI on Raspberry Pi 4B
             
           </span>
         </div>
@@ -630,29 +630,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../hermes-agent-raspberry-pi-4b-voice-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Hermes Agent Voice AI on Raspberry Pi 4B
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -670,7 +647,7 @@
   
   
   <span class="md-ellipsis">
-    Codex Skills
+    Hermes Agent Voice AI on Raspberry Pi 4B
     
   </span>
   
@@ -683,7 +660,7 @@
   
   
   <span class="md-ellipsis">
-    Codex Skills
+    Hermes Agent Voice AI on Raspberry Pi 4B
     
   </span>
   
@@ -706,54 +683,213 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-a-skill" class="md-nav__link">
+  <a href="#complete-ubuntu-deployment-guide-stt-llm-tts" class="md-nav__link">
     <span class="md-ellipsis">
-      What Is a Skill?
+      Complete Ubuntu Deployment Guide (STT + LLM + TTS)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-the-skills-folder-file" class="md-nav__link">
+  <a href="#1-recommended-hardware" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1 — Create the Skills Folder &amp; File
+      1. Recommended Hardware
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-install-verify-in-codex" class="md-nav__link">
+  <a href="#2-why-not-run-a-large-local-llm-on-pi" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2 — Install &amp; Verify in Codex
+      2. Why Not Run a Large Local LLM on Pi?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-use-the-skill-in-a-session" class="md-nav__link">
+  <a href="#3-update-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3 — Use the Skill in a Session
+      3. Update System
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips" class="md-nav__link">
+  <a href="#4-install-system-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Tips
+      4. Install System Dependencies
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
+  <a href="#5-create-workspace" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Reference
+      5. Create Workspace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-create-python-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Create Python Virtual Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-install-ai-python-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Install AI Python Packages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-install-hermes-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Install Hermes Agent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-configure-whisper-stt" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Configure Whisper STT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-configure-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Configure TTS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-configure-llm-api-deepseekopenai" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Configure LLM API (DeepSeek/OpenAI)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-edit-hermes-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Edit Hermes Config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-start-hermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Start Hermes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-auto-start-with-systemd-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Auto Start with Systemd (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#buildinstall-is-very-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build/install is very slow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sd-card-wear" class="md-nav__link">
+    <span class="md-ellipsis">
+      SD card wear
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-memory-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out-of-memory errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thermal-throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thermal throttling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-practical-final-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Practical Final Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-future-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Future Extensions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-one-command-bootstrap-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. One-Command Bootstrap (Reference)
     </span>
   </a>
   
@@ -763,6 +899,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codex-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Codex Skills
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1142,54 +1301,213 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-a-skill" class="md-nav__link">
+  <a href="#complete-ubuntu-deployment-guide-stt-llm-tts" class="md-nav__link">
     <span class="md-ellipsis">
-      What Is a Skill?
+      Complete Ubuntu Deployment Guide (STT + LLM + TTS)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-the-skills-folder-file" class="md-nav__link">
+  <a href="#1-recommended-hardware" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1 — Create the Skills Folder &amp; File
+      1. Recommended Hardware
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-install-verify-in-codex" class="md-nav__link">
+  <a href="#2-why-not-run-a-large-local-llm-on-pi" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2 — Install &amp; Verify in Codex
+      2. Why Not Run a Large Local LLM on Pi?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-use-the-skill-in-a-session" class="md-nav__link">
+  <a href="#3-update-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3 — Use the Skill in a Session
+      3. Update System
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips" class="md-nav__link">
+  <a href="#4-install-system-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Tips
+      4. Install System Dependencies
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
+  <a href="#5-create-workspace" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Reference
+      5. Create Workspace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-create-python-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Create Python Virtual Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-install-ai-python-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Install AI Python Packages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-install-hermes-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Install Hermes Agent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-configure-whisper-stt" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Configure Whisper STT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-configure-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Configure TTS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-configure-llm-api-deepseekopenai" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Configure LLM API (DeepSeek/OpenAI)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-edit-hermes-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Edit Hermes Config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-start-hermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Start Hermes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-auto-start-with-systemd-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Auto Start with Systemd (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#buildinstall-is-very-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build/install is very slow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sd-card-wear" class="md-nav__link">
+    <span class="md-ellipsis">
+      SD card wear
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-memory-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out-of-memory errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thermal-throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thermal throttling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-practical-final-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Practical Final Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-future-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Future Extensions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-one-command-bootstrap-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. One-Command Bootstrap (Reference)
     </span>
   </a>
   
@@ -1211,92 +1529,253 @@
 
 
 
-<h1 id="installing-a-skill-in-openai-codex">Installing a Skill in OpenAI Codex</h1>
-<p><strong>OpenAI Codex</strong> is an AI coding agent that works directly in your terminal. It can read files, write code, run commands, and iterate — all from a single CLI session. One of its most powerful features is <strong>Skills</strong>: reusable, markdown-based instruction sets that teach Codex how to handle specific workflows in your project.</p>
+<h1 id="hermes-agent-voice-ai-on-raspberry-pi-4b">Hermes Agent Voice AI on Raspberry Pi 4B</h1>
+<h2 id="complete-ubuntu-deployment-guide-stt-llm-tts">Complete Ubuntu Deployment Guide (STT + LLM + TTS)</h2>
+<p>This tutorial shows how to build a low-cost, always-on <strong>voice AI terminal</strong> on <strong>Raspberry Pi 4B</strong> using Hermes Agent, Whisper STT, and TTS.</p>
 <hr />
-<h2 id="what-is-a-skill">What Is a Skill?</h2>
-<p>A <strong>Skill</strong> is a <code>.md</code> file that lives in a special folder inside your repo (<code>.codex/skills/</code> or similar). When Codex detects a relevant skill, it reads the instructions automatically and applies them — no extra prompting needed.</p>
-<p>Typical use cases:</p>
-<ul>
-<li>Project-specific build or deploy steps</li>
-<li>Coding conventions and style guides</li>
-<li>Repeated refactoring patterns</li>
-<li>Domain knowledge (e.g., how your API is structured)</li>
-</ul>
-<hr />
-<h2 id="step-1-create-the-skills-folder-file">Step 1 — Create the Skills Folder &amp; File</h2>
-<p>In your project root, create the directory and skill file:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>.codex/skills
-touch<span class="w"> </span>.codex/skills/my-skill.md
-</code></pre></div>
-<p>Open <code>my-skill.md</code> and write your instructions in plain markdown. For example:</p>
-<div class="highlight"><pre><span></span><code>---
-name: &quot;Run Dev Server&quot;
-<span class="gu">description: &quot;How to start the local development server for this project.&quot;</span>
-<span class="gu">---</span>
-
-Always use <span class="sb">`npm run dev`</span> to start the dev server.
-The server runs on port 3000. Never use port 8080.
-After starting, verify the server is healthy by checking http://localhost:3000/health.
-</code></pre></div>
-<p>The YAML frontmatter (<code>name</code>, <code>description</code>) helps Codex identify and surface the skill. The body is freeform markdown — write it as you would write a note for a teammate.</p>
-<hr />
-<h2 id="step-2-install-verify-in-codex">Step 2 — Install &amp; Verify in Codex</h2>
-<p><img alt="Codex skill installation" src="../codex_skill1.png" /></p>
-<p>After creating the skill file, open a Codex session in your project:</p>
-<div class="highlight"><pre><span></span><code>codex
-</code></pre></div>
-<p>Codex will automatically scan <code>.codex/skills/</code> on startup. You can confirm a skill was loaded by asking:</p>
-<blockquote>
-<p><em>"What skills do you have loaded?"</em></p>
-</blockquote>
-<p>Codex will list all detected skills and their descriptions from the frontmatter.</p>
-<hr />
-<h2 id="step-3-use-the-skill-in-a-session">Step 3 — Use the Skill in a Session</h2>
-<p><img alt="Codex skill in action" src="../codex_skill2.png" /></p>
-<p>Once loaded, the skill is applied automatically whenever the context is relevant. You can also trigger it explicitly:</p>
-<blockquote>
-<p><em>"Use the Run Dev Server skill to start the project."</em></p>
-</blockquote>
-<p>Codex will follow the instructions in the skill file step by step — running the right command, on the right port, with the health check.</p>
-<hr />
-<h2 id="tips">Tips</h2>
+<h2 id="1-recommended-hardware">1. Recommended Hardware</h2>
 <table>
 <thead>
 <tr>
-<th>Tip</th>
-<th>Details</th>
+<th>Component</th>
+<th>Recommendation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Keep skills focused</strong></td>
-<td>One skill = one workflow. Don't combine unrelated steps.</td>
+<td>Board</td>
+<td>Raspberry Pi 4B (4GB or 8GB)</td>
 </tr>
 <tr>
-<td><strong>Use concrete commands</strong></td>
-<td>The more specific the instruction, the more reliably Codex follows it.</td>
+<td>OS</td>
+<td>Ubuntu Server 24.04 ARM64</td>
 </tr>
 <tr>
-<td><strong>Version control your skills</strong></td>
-<td>Commit <code>.codex/skills/</code> to Git so the whole team benefits.</td>
+<td>Storage</td>
+<td>SSD (strongly recommended)</td>
 </tr>
 <tr>
-<td><strong>Iterate</strong></td>
-<td>If Codex doesn't follow a step correctly, rewrite that instruction more explicitly.</td>
+<td>Power</td>
+<td>Official 5V 3A adapter</td>
+</tr>
+<tr>
+<td>Cooling</td>
+<td>Heatsink + fan</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>USB microphone / USB sound card</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="quick-reference">Quick Reference</h2>
-<div class="highlight"><pre><span></span><code>your-project/
-└── .codex/
-    └── skills/
-        ├── dev-server.md
-        ├── run-tests.md
-        └── deploy.md
+<h2 id="2-why-not-run-a-large-local-llm-on-pi">2. Why Not Run a Large Local LLM on Pi?</h2>
+<p>Raspberry Pi 4B has no NVIDIA GPU, so it is not ideal for:</p>
+<ul>
+<li>7B/13B local LLM inference</li>
+<li>Stable Diffusion</li>
+<li>Large Whisper models</li>
+</ul>
+<p>A practical architecture is:</p>
+<ul>
+<li>Pi handles: Hermes runtime + audio I/O + STT/TTS</li>
+<li>Cloud API handles: heavy LLM inference (DeepSeek/OpenAI)</li>
+</ul>
+<hr />
+<h2 id="3-update-system">3. Update System</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
 </code></pre></div>
-<p>Each file is an independent skill. Codex loads them all at the start of every session.</p>
+<hr />
+<h2 id="4-install-system-dependencies">4. Install System Dependencies</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+git<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-venv<span class="w"> </span>python3-dev<span class="w"> </span><span class="se">\</span>
+ffmpeg<span class="w"> </span>portaudio19-dev<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>pkg-config<span class="w"> </span><span class="se">\</span>
+libopenblas-dev
+</code></pre></div>
+<hr />
+<h2 id="5-create-workspace">5. Create Workspace</h2>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ai/hermes
+<span class="nb">cd</span><span class="w"> </span>~/ai/hermes
+</code></pre></div>
+<hr />
+<h2 id="6-create-python-virtual-environment">6. Create Python Virtual Environment</h2>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</code></pre></div>
+<hr />
+<h2 id="7-install-ai-python-packages">7. Install AI Python Packages</h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+faster-whisper<span class="w"> </span><span class="se">\</span>
+edge-tts<span class="w"> </span><span class="se">\</span>
+openai<span class="w"> </span><span class="se">\</span>
+sounddevice<span class="w"> </span><span class="se">\</span>
+numpy<span class="w"> </span><span class="se">\</span>
+scipy<span class="w"> </span><span class="se">\</span>
+requests
+</code></pre></div>
+<hr />
+<h2 id="8-install-hermes-agent">8. Install Hermes Agent</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/ai
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Hermes-Project/hermes-agent.git
+<span class="nb">cd</span><span class="w"> </span>hermes-agent
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<hr />
+<h2 id="9-configure-whisper-stt">9. Configure Whisper STT</h2>
+<p>Recommended model sizes on Pi:</p>
+<ul>
+<li><code>tiny</code> (best speed)</li>
+<li><code>base</code> (balanced)</li>
+<li><code>small</code> (sometimes acceptable)</li>
+</ul>
+<p>Quick test:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<span class="s">from faster_whisper import WhisperModel</span>
+<span class="s">model = WhisperModel(&quot;tiny&quot;)</span>
+<span class="s">print(&quot;Whisper tiny loaded&quot;)</span>
+<span class="s">PY</span>
+</code></pre></div>
+<hr />
+<h2 id="10-configure-tts">10. Configure TTS</h2>
+<p>Install:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>edge-tts
+</code></pre></div>
+<p>Test:</p>
+<div class="highlight"><pre><span></span><code>edge-tts<span class="w"> </span><span class="se">\</span>
+--text<span class="w"> </span><span class="s2">&quot;Hello from Raspberry Pi&quot;</span><span class="w"> </span><span class="se">\</span>
+--write-media<span class="w"> </span>test.mp3
+
+ffplay<span class="w"> </span>test.mp3
+</code></pre></div>
+<hr />
+<h2 id="11-configure-llm-api-deepseekopenai">11. Configure LLM API (DeepSeek/OpenAI)</h2>
+<p>DeepSeek: <a href="https://platform.deepseek.com">https://platform.deepseek.com</a><br />
+Docs: <a href="https://api-docs.deepseek.com">https://api-docs.deepseek.com</a></p>
+<p>Use a cloud API because Pi 4B is much better as a voice edge terminal than a heavy LLM server.</p>
+<hr />
+<h2 id="12-edit-hermes-config">12. Edit Hermes Config</h2>
+<p>Typical path:</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>~/.hermes/config.yaml
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">llm</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
+<span class="w">  </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_API_KEY&quot;</span>
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;deepseek-chat&quot;</span>
+<span class="w">  </span><span class="nt">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.deepseek.com&quot;</span>
+
+<span class="nt">voice</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">stt</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">faster_whisper</span>
+<span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tiny</span>
+
+<span class="nt">tts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">edge_tts</span>
+<span class="w">  </span><span class="nt">voice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">en-US-GuyNeural</span>
+</code></pre></div>
+<hr />
+<h2 id="13-start-hermes">13. Start Hermes</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/ai/hermes/venv/bin/activate
+python<span class="w"> </span>main.py
+</code></pre></div>
+<p>If your repository structure differs, try:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>app.py
+</code></pre></div>
+<hr />
+<h2 id="14-auto-start-with-systemd-optional">14. Auto Start with Systemd (Optional)</h2>
+<p>Create service:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/hermes.service
+</code></pre></div>
+<p>Service file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Hermes Agent</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">User</span><span class="o">=</span><span class="s">pi</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/pi/ai/hermes/hermes-agent</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/pi/ai/hermes/hermes-agent/venv/bin/python main.py</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div>
+<p>Enable and start:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>hermes
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hermes
+systemctl<span class="w"> </span>status<span class="w"> </span>hermes
+</code></pre></div>
+<hr />
+<h2 id="15-common-issues">15. Common Issues</h2>
+<h3 id="buildinstall-is-very-slow">Build/install is very slow</h3>
+<p>Many ARM packages compile locally. This is normal.</p>
+<h3 id="sd-card-wear">SD card wear</h3>
+<p>AI workloads increase I/O. Prefer SSD for long-term reliability.</p>
+<h3 id="out-of-memory-errors">Out-of-memory errors</h3>
+<p>Use Whisper <code>tiny/base</code>, enable swap, avoid large models.</p>
+<h3 id="thermal-throttling">Thermal throttling</h3>
+<p>Use proper cooling and airflow.</p>
+<hr />
+<h2 id="16-practical-final-architecture">16. Practical Final Architecture</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi 4B</td>
+<td>Mic, speaker, button/control, local STT/TTS</td>
+</tr>
+<tr>
+<td>Cloud LLM API</td>
+<td>Reasoning and response generation</td>
+</tr>
+<tr>
+<td>Hermes Agent</td>
+<td>Orchestration between voice and LLM</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-future-extensions">17. Future Extensions</h2>
+<ul>
+<li>OLED UI</li>
+<li>EC11 knob input</li>
+<li>ESP32 peripherals</li>
+<li>Wake-word support</li>
+<li>Home Assistant integration</li>
+<li>Telegram bot integration</li>
+<li>Robot arm controller endpoint</li>
+</ul>
+<hr />
+<h2 id="18-one-command-bootstrap-reference">18. One-Command Bootstrap (Reference)</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+git<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-venv<span class="w"> </span>python3-dev<span class="w"> </span><span class="se">\</span>
+ffmpeg<span class="w"> </span>portaudio19-dev<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>pkg-config<span class="w"> </span><span class="se">\</span>
+libopenblas-dev<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/ai/hermes<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="nb">cd</span><span class="w"> </span>~/ai/hermes<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+faster-whisper<span class="w"> </span><span class="se">\</span>
+edge-tts<span class="w"> </span><span class="se">\</span>
+openai<span class="w"> </span><span class="se">\</span>
+sounddevice<span class="w"> </span><span class="se">\</span>
+numpy<span class="w"> </span><span class="se">\</span>
+scipy<span class="w"> </span><span class="se">\</span>
+requests
+</code></pre></div>
+<hr />
+<p>Raspberry Pi 4B is not a powerful LLM server, but it is an excellent <strong>AI voice endpoint</strong>, <strong>IoT gateway</strong>, and <strong>robotics control front-end</strong> when paired with Hermes Agent.</p>
 
 
 
