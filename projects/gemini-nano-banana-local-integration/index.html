@@ -10,13 +10,13 @@
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/github-pages-mkdocs/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/gemini-nano-banana-local-integration/">
       
       
-        <link rel="prev" href="../local-rag/">
+        <link rel="prev" href="../vibe-coding/">
       
       
-        <link rel="next" href="../cloudflare-worker-backend/">
+        <link rel="next" href="../hermes-agent-voice-mode/">
       
       
       <link rel="icon" href="../../assets/images/A_logo_cropped.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>GitHub Pages MkDocs (AI Agent Managed) - AIone Lab</title>
+        <title>Gemini Nano Banana Local Integration - AIone Lab</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#github-pages-mkdocs-site-ai-agent-managed" class="md-skip">
+        <a href="#integrate-gemini-nano-banana-in-local-apps" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GitHub Pages MkDocs (AI Agent Managed)
+              Gemini Nano Banana Local Integration
             
           </span>
         </div>
@@ -469,32 +469,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    GitHub Pages MkDocs (AI Agent Managed)
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../github-pages-mkdocs/" class="md-nav__link">
         
   
   
@@ -505,239 +483,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-this-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why This Stack?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deployment-model-mode-a-direct-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deployment Model — Mode A (Direct Branch)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-install-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Install MkDocs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-ssh-authentication-setup-one-time-human-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. SSH Authentication Setup (One-Time, Human Step)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. SSH Authentication Setup (One-Time, Human Step)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-generate-ssh-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.1 Generate SSH Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-start-ssh-agent-and-add-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.2 Start SSH Agent and Add Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-add-public-key-to-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Add Public Key to GitHub
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-test-the-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Test the Connection
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-configure-repository-remote-ssh" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Configure Repository Remote (SSH)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-github-pages-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. GitHub Pages Settings
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-agent-operational-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Agent Operational Rules
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Agent Operational Rules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allowed" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Allowed
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forbidden" class="md-nav__link">
-    <span class="md-ellipsis">
-      ❌ Forbidden
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-automation-script-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Automation Script (Windows)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-typical-agent-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Typical Agent Workflow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-recommended-project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Recommended Project Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Recommended Project Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#readme_agentmd-rules-file-for-the-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      README_AGENT.md — Rules File for the Agent
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Troubleshooting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -862,10 +607,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../gemini-nano-banana-local-integration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Gemini Nano Banana Local Integration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -876,6 +643,164 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gemini-25-flash-image-api-guide-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gemini 2.5 Flash Image API Guide (2026)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-access-and-base-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Access and Base Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Access and Base Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get API Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-request-format-json-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Request Format (JSON Payload)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-response-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Response Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Response Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-shape-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Shape (simplified)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-app-frontend-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-app Frontend Rendering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-model-selection-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Model Selection Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-quick-curl-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Quick cURL Test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-security-and-production-advice" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Security and Production Advice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-common-integration-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Common Integration Checklist
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1324,28 +1249,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#gemini-25-flash-image-api-guide-2026" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Gemini 2.5 Flash Image API Guide (2026)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-access-and-base-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Access and Base Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Access and Base Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#why-this-stack" class="md-nav__link">
+  <a href="#get-api-key" class="md-nav__link">
     <span class="md-ellipsis">
-      Why This Stack?
+      Get API Key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment-model-mode-a-direct-branch" class="md-nav__link">
+  <a href="#endpoint" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment Model — Mode A (Direct Branch)
+      Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Headers
     </span>
   </a>
   
@@ -1357,64 +1309,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-prerequisites" class="md-nav__link">
+  <a href="#2-request-format-json-payload" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Prerequisites
+      2. Request Format (JSON Payload)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-install-mkdocs" class="md-nav__link">
+  <a href="#3-response-handling" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Install MkDocs
+      3. Response Handling
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-ssh-authentication-setup-one-time-human-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. SSH Authentication Setup (One-Time, Human Step)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. SSH Authentication Setup (One-Time, Human Step)">
+    <nav class="md-nav" aria-label="3. Response Handling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-generate-ssh-key" class="md-nav__link">
+  <a href="#response-shape-simplified" class="md-nav__link">
     <span class="md-ellipsis">
-      3.1 Generate SSH Key
+      Response Shape (simplified)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-start-ssh-agent-and-add-key" class="md-nav__link">
+  <a href="#mini-app-frontend-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      3.2 Start SSH Agent and Add Key
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-add-public-key-to-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Add Public Key to GitHub
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-test-the-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Test the Connection
+      Mini-app Frontend Rendering
     </span>
   </a>
   
@@ -1426,111 +1351,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-configure-repository-remote-ssh" class="md-nav__link">
+  <a href="#4-model-selection-tips" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Configure Repository Remote (SSH)
+      4. Model Selection Tips
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-github-pages-settings" class="md-nav__link">
+  <a href="#5-quick-curl-test" class="md-nav__link">
     <span class="md-ellipsis">
-      5. GitHub Pages Settings
+      5. Quick cURL Test
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-agent-operational-rules" class="md-nav__link">
+  <a href="#6-security-and-production-advice" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Agent Operational Rules
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Agent Operational Rules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allowed" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Allowed
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forbidden" class="md-nav__link">
-    <span class="md-ellipsis">
-      ❌ Forbidden
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-automation-script-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Automation Script (Windows)
+      6. Security and Production Advice
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-typical-agent-workflow" class="md-nav__link">
+  <a href="#7-common-integration-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      8. Typical Agent Workflow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-recommended-project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Recommended Project Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Recommended Project Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#readme_agentmd-rules-file-for-the-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      README_AGENT.md — Rules File for the Agent
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Troubleshooting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
+      7. Common Integration Checklist
     </span>
   </a>
   
@@ -1552,233 +1402,146 @@
 
 
 
-<h1 id="github-pages-mkdocs-site-ai-agent-managed">GitHub Pages MkDocs Site — AI Agent Managed</h1>
-<p>This guide documents the complete workflow for deploying a <strong>MkDocs</strong> static website on <strong>GitHub Pages</strong>, using <strong>SSH authentication</strong> and <strong>AI Agent automation</strong> for ongoing content management.</p>
-<p>The architecture is simple and reliable:</p>
-<div class="highlight"><pre><span></span><code>Local Machine (AI Agent) → Git (SSH Push) → GitHub Repository → GitHub Pages
-</code></pre></div>
+<h1 id="integrate-gemini-nano-banana-in-local-apps">Integrate Gemini Nano Banana in Local Apps</h1>
+<h2 id="gemini-25-flash-image-api-guide-2026">Gemini 2.5 Flash Image API Guide (2026)</h2>
+<p>If you want to call <strong>Nano Banana</strong> (Gemini image generation) from a local mini app or desktop app, you need to configure API access in Google AI Studio and send requests in the correct JSON format.</p>
+<p>This guide follows the latest Gemini API usage pattern and gives you a practical integration template.</p>
 <hr />
-<h2 id="overview">Overview</h2>
-<h3 id="why-this-stack">Why This Stack?</h3>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Choice</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Static Site Generator</td>
-<td>MkDocs (Material theme)</td>
-<td>Clean docs-style layout, Markdown-native</td>
-</tr>
-<tr>
-<td>Hosting</td>
-<td>GitHub Pages</td>
-<td>Free, reliable, zero infrastructure</td>
-</tr>
-<tr>
-<td>Auth</td>
-<td>SSH key</td>
-<td>No token expiry, agent-friendly</td>
-</tr>
-<tr>
-<td>Automation</td>
-<td>AI Agent (local)</td>
-<td>Handles edits, commits, pushes autonomously</td>
-</tr>
-</tbody>
-</table>
-<h3 id="deployment-model-mode-a-direct-branch">Deployment Model — Mode A (Direct Branch)</h3>
-<p>We use <strong>direct branch deployment</strong>:</p>
-<ul>
-<li><strong>Branch:</strong> <code>main</code></li>
-<li><strong>Folder:</strong> <code>/docs</code> (MkDocs source) or <code>/site</code> (built output, depending on your setup)</li>
-<li>The agent modifies Markdown files → commits → pushes → GitHub Pages auto-updates</li>
-</ul>
-<hr />
-<h2 id="1-prerequisites">1. Prerequisites</h2>
-<ul>
-<li>Git installed locally</li>
-<li>Python 3.8+ with <code>pip</code></li>
-<li>A GitHub account with a repository created for the site</li>
-<li>An AI Agent (e.g. Antigravity, Codex, or any tool-calling LLM) with filesystem + shell access</li>
-</ul>
-<hr />
-<h2 id="2-install-mkdocs">2. Install MkDocs</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material
-</code></pre></div>
-<p>Initialize a new site (if starting from scratch):</p>
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>new<span class="w"> </span>my-site
-<span class="nb">cd</span><span class="w"> </span>my-site
-</code></pre></div>
-<p>Your project structure will look like:</p>
-<div class="highlight"><pre><span></span><code>my-site/
-├─ docs/
-│   └─ index.md
-├─ mkdocs.yml
-</code></pre></div>
-<hr />
-<h2 id="3-ssh-authentication-setup-one-time-human-step">3. SSH Authentication Setup (One-Time, Human Step)</h2>
-<p>This only needs to be done once per machine.</p>
-<h3 id="31-generate-ssh-key">3.1 Generate SSH Key</h3>
-<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
-</code></pre></div>
-<p>Default location: <code>~/.ssh/id_ed25519</code></p>
-<h3 id="32-start-ssh-agent-and-add-key">3.2 Start SSH Agent and Add Key</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
-ssh-add<span class="w"> </span>~/.ssh/id_ed25519
-</code></pre></div>
-<p>On Windows (PowerShell):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Start-Service</span> <span class="n">ssh-agent</span>
-<span class="n">ssh-add</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519</span>
-</code></pre></div>
-<h3 id="33-add-public-key-to-github">3.3 Add Public Key to GitHub</h3>
-<p>Copy your public key:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
-</code></pre></div>
-<p>Then on GitHub: <strong>Settings → SSH and GPG Keys → New SSH Key</strong> → paste and save.</p>
-<h3 id="34-test-the-connection">3.4 Test the Connection</h3>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-<span class="c1"># Expected: Hi USERNAME! You&#39;ve successfully authenticated...</span>
-</code></pre></div>
-<hr />
-<h2 id="4-configure-repository-remote-ssh">4. Configure Repository Remote (SSH)</h2>
-<p>Check your current remote:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>-v
-</code></pre></div>
-<p>If it shows HTTPS, switch to SSH:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:USERNAME/REPO.git
-</code></pre></div>
-<hr />
-<h2 id="5-github-pages-settings">5. GitHub Pages Settings</h2>
-<p>In your GitHub repository:</p>
+<h2 id="1-access-and-base-configuration">1. Access and Base Configuration</h2>
+<p>Before coding, prepare your API key and endpoint.</p>
+<h3 id="get-api-key">Get API Key</h3>
 <ol>
-<li>Go to <strong>Settings → Pages</strong></li>
-<li>Set <strong>Source:</strong> <code>Deploy from a branch</code></li>
-<li>Set <strong>Branch:</strong> <code>main</code> / <strong>Folder:</strong> <code>/ (root)</code> or <code>/docs</code></li>
-<li>Save — GitHub will publish your site at <code>https://USERNAME.github.io/REPO</code></li>
+<li>Go to <a href="https://aistudio.google.com">Google AI Studio</a></li>
+<li>Sign in</li>
+<li>Click <code>Create API Key</code></li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Using MkDocs <code>gh-deploy</code></p>
-<p>If you prefer to keep your source on <code>main</code> and publish the <strong>built</strong> site to <code>gh-pages</code> branch automatically, run:
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>gh-deploy
+<h3 id="endpoint">Endpoint</h3>
+<div class="highlight"><pre><span></span><code>https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent
 </code></pre></div>
-This builds the site and force-pushes to the <code>gh-pages</code> branch in one command. The agent can run this as part of its update routine.</p>
-</div>
-<hr />
-<h2 id="6-agent-operational-rules">6. Agent Operational Rules</h2>
-<p>Once SSH is configured, the AI Agent can autonomously manage the site. Define clear rules:</p>
-<h3 id="allowed">✅ Allowed</h3>
-<ul>
-<li>Modify <code>.md</code> files under <code>docs/</code></li>
-<li>Add new images under <code>docs/assets/</code></li>
-<li>Update <code>mkdocs.yml</code> navigation (<code>nav:</code> section)</li>
-<li>Run <code>git add . &amp;&amp; git commit -m "..." &amp;&amp; git push origin main</code></li>
-<li>Run <code>mkdocs gh-deploy</code> to publish</li>
-</ul>
-<h3 id="forbidden">❌ Forbidden</h3>
-<ul>
-<li>Delete or modify <code>.git/</code> or <code>.ssh/</code> folders</li>
-<li>Change repository settings or branch protection rules</li>
-<li>Remove <code>CNAME</code> (if using a custom domain)</li>
-<li>Force-push to <code>main</code> without a backup</li>
-</ul>
-<hr />
-<h2 id="7-automation-script-windows">7. Automation Script (Windows)</h2>
-<p>Save this as <code>deploy_site.bat</code> in the project root:</p>
-<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
-<span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
-git add .
-git commit -m <span class="s2">&quot;update site content&quot;</span>
-git pull --rebase origin main
-git push origin main
-<span class="k">echo</span> Deployment complete.
-<span class="k">pause</span>
-</code></pre></div>
-<p>Or use <code>mkdocs gh-deploy</code> as the publish step:</p>
-<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
-<span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
-mkdocs gh-deploy --clean
-<span class="k">echo</span> Site published to GitHub Pages.
-<span class="k">pause</span>
+<h3 id="request-method">Request Method</h3>
+<p><code>POST</code></p>
+<h3 id="required-headers">Required Headers</h3>
+<div class="highlight"><pre><span></span><code>Content-Type: application/json
+x-goog-api-key: YOUR_API_KEY
 </code></pre></div>
 <hr />
-<h2 id="8-typical-agent-workflow">8. Typical Agent Workflow</h2>
-<p>A standard content update session looks like this:</p>
-<div class="highlight"><pre><span></span><code>1. Agent receives task: &quot;Add a new project page about X&quot;
-2. Agent creates: docs/projects/x.md
-3. Agent updates: mkdocs.yml  (adds entry under nav)
-4. Agent runs:    git add .
-5. Agent runs:    git commit -m &quot;add project page: X&quot;
-6. Agent runs:    git push origin main  (or mkdocs gh-deploy)
-7. GitHub Pages rebuilds and publishes automatically
-</code></pre></div>
-<p>No human intervention is needed after the initial SSH setup.</p>
-<hr />
-<h2 id="9-recommended-project-structure">9. Recommended Project Structure</h2>
-<div class="highlight"><pre><span></span><code>mkdocs-site/
-├─ docs/
-│   ├─ index.md
-│   ├─ about.md
-│   ├─ projects/
-│   │   ├─ project-a.md
-│   │   └─ project-b.md
-│   └─ assets/
-│       └─ images/
-├─ mkdocs.yml
-├─ deploy_site.bat
-└─ README_AGENT.md     ← agent rules &amp; context file
-</code></pre></div>
-<h3 id="readme_agentmd-rules-file-for-the-agent"><code>README_AGENT.md</code> — Rules File for the Agent</h3>
-<p>Create this file to give the agent persistent context:</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Agent Rules for mkdocs-site</span>
-
-<span class="k">-</span><span class="w"> </span>All content pages live under docs/
-<span class="k">-</span><span class="w"> </span>Navigation is controlled by mkdocs.yml (nav: section)
-<span class="k">-</span><span class="w"> </span>Images go to docs/assets/images/
-<span class="k">-</span><span class="w"> </span>After any change, run: git add . &amp;&amp; git commit -m &quot;...&quot; &amp;&amp; git push origin main
-<span class="k">-</span><span class="w"> </span>Never modify .git/ or .ssh/
-<span class="k">-</span><span class="w"> </span>Site URL: https://USERNAME.github.io/REPO
+<h2 id="2-request-format-json-payload">2. Request Format (JSON Payload)</h2>
+<p>Put your image prompt inside <code>contents[].parts[].text</code>.</p>
+<p>To force image output, set <code>response_modalities</code> to <code>["IMAGE"]</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;contents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A cat drinking coffee on a cyberpunk rooftop, cinematic lighting, 4k resolution&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;generationConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;response_modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;IMAGE&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;candidate_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;aspect_ratio&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1:1&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="10-troubleshooting">10. Troubleshooting</h2>
+<h2 id="3-response-handling">3. Response Handling</h2>
+<p>Gemini image output is returned as Base64 in <code>inline_data.data</code>.</p>
+<h3 id="response-shape-simplified">Response Shape (simplified)</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;candidates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;inline_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;mime_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAA...&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="mini-app-frontend-rendering">Mini-app Frontend Rendering</h3>
+<p>Build a data URL:</p>
+<div class="highlight"><pre><span></span><code>data:image/png;base64,&lt;BASE64_STRING&gt;
+</code></pre></div>
+<p>Then bind it to your <code>&lt;image&gt;</code> component.</p>
+<hr />
+<h2 id="4-model-selection-tips">4. Model Selection Tips</h2>
+<p>Choose model IDs based on latency, quality, and reasoning needs.</p>
 <table>
 <thead>
 <tr>
-<th>Issue</th>
-<th>Likely Cause</th>
-<th>Fix</th>
+<th>Nickname</th>
+<th>Model ID</th>
+<th>Typical Use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Permission denied (publickey)</code></td>
-<td>SSH key not added to agent</td>
-<td>Run <code>ssh-add ~/.ssh/id_ed25519</code></td>
+<td>Nano Banana</td>
+<td><code>gemini-2.5-flash-image</code></td>
+<td>Fastest response, low-latency generation for mini apps.</td>
 </tr>
 <tr>
-<td>Push rejected</td>
-<td>Remote has changes not in local</td>
-<td>Run <code>git pull --rebase origin main</code> first</td>
+<td>Nano Banana 2</td>
+<td><code>gemini-3.1-flash-image-preview</code></td>
+<td>Better quality/understanding if available in your account.</td>
 </tr>
 <tr>
-<td>Site not updating</td>
-<td>GitHub Pages propagation delay</td>
-<td>Wait 1–2 min; check Actions tab</td>
-</tr>
-<tr>
-<td><code>mkdocs gh-deploy</code> fails</td>
-<td>Not in project root, or missing dependencies</td>
-<td><code>cd</code> to project root, <code>pip install mkdocs-material</code></td>
+<td>Nano Banana Pro</td>
+<td><code>gemini-3-pro-image-preview</code></td>
+<td>Highest quality and advanced instruction following.</td>
 </tr>
 </tbody>
 </table>
+<p>Note: preview model availability can vary by region/account and may change over time.</p>
 <hr />
-<h2 id="conclusion">Conclusion</h2>
-<p>With a one-time SSH setup, the AI Agent can autonomously manage your MkDocs site indefinitely — adding pages, updating navigation, pushing changes — without ever needing a password or token. The entire workflow is transparent, version-controlled, and runs entirely on your local machine.</p>
+<h2 id="5-quick-curl-test">5. Quick cURL Test</h2>
+<p>Use this in early development to validate credentials and payload quickly:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=YOUR_API_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;contents&quot;: [</span>
+<span class="s1">      { &quot;parts&quot;: [ { &quot;text&quot;: &quot;A futuristic laboratory with neon lights&quot; } ] }</span>
+<span class="s1">    ],</span>
+<span class="s1">    &quot;generationConfig&quot;: {</span>
+<span class="s1">      &quot;response_modalities&quot;: [&quot;IMAGE&quot;]</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<hr />
+<h2 id="6-security-and-production-advice">6. Security and Production Advice</h2>
+<p>Do not expose your API key directly in client-side code.</p>
+<p>Recommended architecture:</p>
+<ol>
+<li>Mini app / local app calls your own backend proxy (Node.js or Python)</li>
+<li>Backend injects API key server-side</li>
+<li>Backend calls Gemini API and returns safe response</li>
+</ol>
+<p>Also plan for:</p>
+<ul>
+<li>Rate limiting and retries</li>
+<li>Request logging</li>
+<li>Error mapping for frontend UX</li>
+</ul>
+<hr />
+<h2 id="7-common-integration-checklist">7. Common Integration Checklist</h2>
+<ul>
+<li>API key created and enabled</li>
+<li>Correct endpoint and model ID</li>
+<li><code>x-goog-api-key</code> in headers</li>
+<li><code>response_modalities: ["IMAGE"]</code> set</li>
+<li><code>inline_data.data</code> parsed correctly</li>
+<li>Base64 data URL rendered in UI</li>
+<li>API key protected by backend proxy</li>
+</ul>
+<hr />
+<p>With this structure, you can quickly integrate Nano Banana image generation into local mini apps while keeping latency low and credentials secure.</p>
 
 
 
