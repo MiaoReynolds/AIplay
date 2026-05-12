@@ -44,6 +44,7 @@ nav:
       - Prompt Generator: prompt-generator.md
       - NotebookLM Tutorial: projects/notebooklm-tutorial.md
       - Vibe Coding: projects/vibe-coding.md
+      - Gemini Nano Banana Local Integration: projects/gemini-nano-banana-local-integration.md
       - Add Voice Module to Hermes Agent: projects/hermes-agent-voice-mode.md
       - Hermes Agent Voice AI on Raspberry Pi 4B: projects/hermes-agent-raspberry-pi-4b-voice-setup.md
       - Codex Skills: projects/codex-skills.md
