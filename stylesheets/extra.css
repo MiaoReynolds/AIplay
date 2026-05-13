@@ -133,3 +133,119 @@ body:has(.homepage-layout) .md-content {
 body:has(.homepage-layout) .md-grid {
   grid-template-columns: 0 1fr 0 !important;
 }
+
+/* ========== Header Refresh: Scheme A / Safer Brand Navigation ========== */
+
+:root {
+  --alab-header-start: #3148b0;
+  --alab-header-mid: #365ebc;
+  --alab-header-end: #2094bd;
+  --alab-tabs-bg: rgba(16, 20, 34, 0.96);
+  --alab-tabs-border: rgba(255, 255, 255, 0.08);
+  --alab-link-muted: rgba(233, 238, 255, 0.68);
+  --alab-link-strong: #ffffff;
+  --alab-accent: #7dd3fc;
+}
+
+.md-header {
+  background:
+    radial-gradient(circle at top right, rgba(125, 211, 252, 0.14), transparent 24%),
+    linear-gradient(90deg, var(--alab-header-start) 0%, var(--alab-header-mid) 55%, var(--alab-header-end) 100%) !important;
+  box-shadow: 0 8px 24px rgba(10, 16, 38, 0.2);
+}
+
+.md-header__inner {
+  background: transparent !important;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  border-radius: 0.55rem;
+  box-shadow: 0 6px 16px rgba(7, 12, 35, 0.24);
+}
+
+.md-header__title {
+  font-size: 1.36rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+}
+
+/* Keep the brand title fixed in the header instead of switching to page titles. */
+.md-header__topic + .md-header__topic {
+  display: none !important;
+}
+
+.md-header__topic:first-child {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.md-tabs {
+  background: var(--alab-tabs-bg) !important;
+  border-bottom: 1px solid var(--alab-tabs-border);
+  box-shadow: 0 10px 24px rgba(4, 8, 24, 0.14);
+}
+
+.md-tabs__inner {
+  background: transparent !important;
+}
+
+.md-tabs__link {
+  color: var(--alab-link-muted) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.md-tabs__link:is(:hover, :focus-visible) {
+  color: var(--alab-link-strong) !important;
+}
+
+.md-tabs__item--active {
+  position: relative;
+}
+
+.md-tabs__item--active .md-tabs__link {
+  color: var(--alab-link-strong) !important;
+}
+
+.md-tabs__item--active::after {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  right: 0.2rem;
+  bottom: -0.05rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8b9cff, var(--alab-accent));
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.32);
+}
+
+.md-search__form {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(17, 25, 61, 0.32) !important;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.md-search__form:hover,
+.md-search__form:focus-within {
+  background: rgba(17, 25, 61, 0.5) !important;
+  border-color: rgba(125, 211, 252, 0.32);
+}
+
+.md-search__input,
+.md-search__icon {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.md-search__input::placeholder {
+  color: rgba(231, 238, 255, 0.68);
+}
+
+@media screen and (max-width: 44.9375em) {
+  .md-header__title {
+    font-size: 1.18rem !important;
+  }
+}
