@@ -51,6 +51,8 @@ nav:
       - n8n Concepts Workflow: projects/ai-course.md
       - Time Value of Money: tvm-calculator.md
       - Unit Converter: unit-converter.md
+      - Trip Budget: trip-budget.md
+      - Quotation Generator: quotation-generator.md
       - Raspberry Pi Screen: projects/raspberrypi-project/raspberrypi-page.md
       - Pomodoro Timer 1.3 OLED: projects/screen-project/timer.md
       - Pomodoro Timer 1.3 OLED with knob and all buttons: projects/screen-project/pomodo_timer_V4.md
@@ -59,8 +61,6 @@ nav:
       - LeRobot Arm: projects/lerobot.md
       - Quadruped Robot: projects/quadruped.md
   - AIGC Prompt: aigc-prompt.md
-  - Trip Budget: trip-budget.md
-  - Quotation Generator: quotation-generator.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
       # - Building the Display Device: tutorials/screen-howto.md
