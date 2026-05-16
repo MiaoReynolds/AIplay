@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework Assistant — System Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #020617; color: #e2e8f0; font-family: 'JetBrains Mono', monospace;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px;
+}
+.header {
+  text-align: center; margin-bottom: 40px; width: 100%; max-width: 1000px;
+}
+.header h1 { font-size: 28px; font-weight: 700; color: #f1f5f9; }
+.header .dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  background: #22d3ee; margin-right: 10px; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.header .subtitle { font-size: 14px; color: #94a3b8; margin-top: 8px; }
+.diagram-card {
+  background: #0f172a; border: 1px solid #1e293b; border-radius: 16px;
+  padding: 40px; width: 100%; max-width: 1000px; margin-bottom: 30px;
+}
+svg { width: 100%; height: auto; display: block; }
+.cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 1000px; width: 100%; }
+.card {
+  background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 24px;
+}
+.card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.card-dot { width: 8px; height: 8px; border-radius: 50%; }
+.card-dot.cyan { background: #22d3ee; }
+.card-dot.green { background: #34d399; }
+.card-dot.amber { background: #fbbf24; }
+.card h3 { font-size: 14px; font-weight: 600; color: #f1f5f9; }
+.card ul { list-style: none; }
+.card li { font-size: 11px; color: #94a3b8; padding: 4px 0; line-height: 1.6; }
+.card li::before { content: "• "; color: #475569; }
+.footer { text-align: center; margin-top: 30px; font-size: 11px; color: #475569; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1><span class="dot"></span>Homework Assistant — System Architecture</h1>
+  <div class="subtitle">AI-powered homework supervision system · Voice · Vision · Telegram</div>
+</div>
+
+<div class="diagram-card">
+<svg viewBox="0 0 920 580" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#fbbf24"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="920" height="580" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="460" y="30" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Homework Assistant Architecture</text>
+
+  <!-- ===== BOUNDARY: Child's Ubuntu Desktop ===== -->
+  <rect x="20" y="50" width="400" height="510" rx="12" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.5"/>
+  <text x="220" y="72" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="600" opacity="0.8">CHILD'S UBUNTU DESKTOP</text>
+
+  <!-- Web UI (Frontend) -->
+  <rect x="50" y="90" width="340" height="60" rx="6" fill="rgba(8, 51, 68, 0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="220" y="112" text-anchor="middle" fill="#22d3ee" font-size="12" font-weight="600">Web UI (index.html)</text>
+  <text x="220" y="130" text-anchor="middle" fill="#94a3b8" font-size="9">Three-column layout · Camera · Chat · Ask AI</text>
+
+  <!-- Flask Server -->
+  <rect x="50" y="175" width="340" height="60" rx="6" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="220" y="197" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">Flask Backend (homework_server.py)</text>
+  <text x="220" y="215" text-anchor="middle" fill="#94a3b8" font-size="9">Port 8791 · REST API · Status management</text>
+
+  <!-- Arrow: UI → Flask -->
+  <line x1="220" y1="150" x2="220" y2="175" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- ===== File System ===== -->
+  <rect x="50" y="270" width="160" height="80" rx="6" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="130" y="295" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="600">Local File System</text>
+  <text x="130" y="312" text-anchor="middle" fill="#94a3b8" font-size="8">submissions/ (photos)</text>
+  <text x="130" y="324" text-anchor="middle" fill="#94a3b8" font-size="8">audio/ (voice files)</text>
+  <text x="130" y="336" text-anchor="middle" fill="#94a3b8" font-size="8">status.json · logbook.md</text>
+  <line x1="220" y1="235" x2="130" y2="270" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- ===== Edge TTS (Voice) ===== -->
+  <rect x="240" y="270" width="150" height="50" rx="6" fill="rgba(251, 146, 60, 0.3)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="315" y="295" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="600">Edge TTS</text>
+  <text x="315" y="310" text-anchor="middle" fill="#94a3b8" font-size="8">Xiaoyi · Aria Neural</text>
+  <line x1="220" y1="235" x2="315" y2="270" stroke="#fb923c" stroke-width="1.5"/>
+
+  <!-- Speaker icon -->
+  <text x="315" y="360" text-anchor="middle" fill="#fb923c" font-size="20" filter="url(#glow)">🔊</text>
+  <line x1="315" y1="320" x2="315" y2="345" stroke="#fb923c" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- ===== BOUNDARY: Cloud Services ===== -->
+  <rect x="460" y="50" width="440" height="510" rx="12" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.5"/>
+  <text x="680" y="72" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600" opacity="0.8">CLOUD SERVICES</text>
+
+  <!-- Gemini API -->
+  <rect x="490" y="100" width="190" height="55" rx="6" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="585" y="123" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">Gemini 2.5 Flash</text>
+  <text x="585" y="140" text-anchor="middle" fill="#94a3b8" font-size="9">Vision API · Photo Grading</text>
+
+  <!-- Telegram API -->
+  <rect x="490" y="180" width="190" height="55" rx="6" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="585" y="203" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">Telegram Bot API</text>
+  <text x="585" y="220" text-anchor="middle" fill="#94a3b8" font-size="9">Parent notifications · Chat relay</text>
+
+  <!-- Arrow: Flask → Gemini -->
+  <line x1="390" y1="205" x2="490" y2="130" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+  <line x1="390" y1="215" x2="490" y2="210" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- ===== Hermes Agent (Cron) ===== -->
+  <rect x="720" y="100" width="155" height="135" rx="6" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="797" y="120" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Hermes Cron Jobs</text>
+  <text x="797" y="140" text-anchor="middle" fill="#64748b" font-size="8">14:15  Kickoff</text>
+  <text x="797" y="153" text-anchor="middle" fill="#64748b" font-size="8">*/3   Fast Review</text>
+  <text x="797" y="166" text-anchor="middle" fill="#64748b" font-size="8">*/15 Chat Forward</text>
+  <text x="797" y="179" text-anchor="middle" fill="#64748b" font-size="8">*/5   Chat Reply</text>
+  <text x="797" y="192" text-anchor="middle" fill="#64748b" font-size="8">15:00 Mid Check</text>
+  <text x="797" y="205" text-anchor="middle" fill="#64748b" font-size="8">15:45 / 16:30 Check</text>
+  <text x="797" y="218" text-anchor="middle" fill="#64748b" font-size="8">17:30 Final Check</text>
+
+  <!-- Arrow: Hermes → Flask -->
+  <line x1="720" y1="170" x2="390" y2="200" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+  <!-- ===== Devices ===== -->
+  <!-- Parent phone -->
+  <rect x="490" y="280" width="190" height="55" rx="6" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="585" y="303" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">📱 Parent's Phone</text>
+  <text x="585" y="320" text-anchor="middle" fill="#64748b" font-size="9">Telegram notifications</text>
+
+  <line x1="680" y1="210" x2="585" y2="280" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+
+  <!-- ===== Legend ===== -->
+  <rect x="490" y="380" width="380" height="150" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="680" y="400" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">LEGEND</text>
+  <rect x="505" y="415" width="14" height="14" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="525" y="426" fill="#94a3b8" font-size="9">Frontend (UI)</text>
+  <rect x="660" y="415" width="14" height="14" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="680" y="426" fill="#94a3b8" font-size="9">Backend (Server)</text>
+  <rect x="505" y="440" width="14" height="14" rx="3" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="525" y="451" fill="#94a3b8" font-size="9">File System / Storage</text>
+  <rect x="660" y="440" width="14" height="14" rx="3" fill="rgba(251,146,60,0.3)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="680" y="451" fill="#94a3b8" font-size="9">Voice / TTS</text>
+  <rect x="505" y="465" width="14" height="14" rx="3" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="525" y="476" fill="#94a3b8" font-size="9">Cloud API</text>
+  <rect x="660" y="465" width="14" height="14" rx="3" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="680" y="476" fill="#94a3b8" font-size="9">Cron / External</text>
+  <line x1="505" y1="495" x2="550" y2="495" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="560" y="499" fill="#94a3b8" font-size="9">Scheduled / Async</text>
+  <line x1="660" y1="495" x2="705" y2="495" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="715" y="499" fill="#94a3b8" font-size="9">HTTP Request</text>
+</svg>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-dot cyan"></div>
+      <h3>Frontend — Child's UI</h3>
+    </div>
+    <ul>
+      <li>Three-column responsive layout</li>
+      <li>Subject cards with status badges</li>
+      <li>Camera capture + crop for submissions</li>
+      <li>Chat panel (voice + text)</li>
+      <li>"Ask AI" photo tutoring panel</li>
+      <li>Review panel with AI grading results</li>
+      <li>Edgeless fullscreen on Ubuntu kiosk</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-dot green"></div>
+      <h3>Backend — Flask Server</h3>
+    </div>
+    <ul>
+      <li>REST API on port 8791</li>
+      <li>Photo submission with date-named files</li>
+      <li>Status tracking (pending → submitted → reviewed)</li>
+      <li>Edge TTS voice generation (per-subject voice)</li>
+      <li>ffplay audio output (one-at-a-time)</li>
+      <li>Homework logbook auto-generation</li>
+      <li>Chat history (JSON + Markdown)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-dot amber"></div>
+      <h3>Automation — Cron Jobs</h3>
+    </div>
+    <ul>
+      <li>14:15 — Kickoff + voice reminder</li>
+      <li>every 3 min — Fast grading via Gemini</li>
+      <li>every 5 min — Chat auto-responder</li>
+      <li>every 15 min — Forward to parent Telegram</li>
+      <li>15:00 / 15:45 / 16:30 — Mid-check + grading</li>
+      <li>17:30 — Final check + summary report</li>
+      <li>Parents send messages via prefix "告诉孩子"</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">Homework Assistant · Built with Flask · Gemini · Edge TTS · Hermes Agent</div>
+</body>
+</html>
