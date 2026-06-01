@@ -48,6 +48,8 @@ nav:
       - Add Voice Module to Hermes Agent: projects/hermes-agent-voice-mode.md
       - Hermes Agent Voice AI on Raspberry Pi 4B: projects/hermes-agent-raspberry-pi-4b-voice-setup.md
       - Codex Skills: projects/codex-skills.md
+      - M5Stack Chan Home Companion Robot: projects/raspberry-pi-5-tank-stack-chan.md
+      - AI Agent Terminal: projects/ai-agent-terminal.md
       - n8n Concepts Workflow: projects/ai-course.md
       - Time Value of Money: tvm-calculator.md
       - Unit Converter: unit-converter.md

@@ -107,9 +107,9 @@ hide:
 
 .hero-showcase {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 1080px;
+  max-width: 1180px;
   margin: 0.45rem auto 0;
 }
 
@@ -137,6 +137,10 @@ hide:
 
 .hero-mini-card:nth-child(3) {
   transform: translateY(20px) rotate(1.5deg);
+}
+
+.hero-mini-card:nth-child(4) {
+  transform: translateY(8px) rotate(-0.8deg);
 }
 
 .hero-mini-card:hover {
@@ -380,7 +384,8 @@ hide:
   .hero-mini-card,
   .hero-mini-card:nth-child(1),
   .hero-mini-card:nth-child(2),
-  .hero-mini-card:nth-child(3) {
+  .hero-mini-card:nth-child(3),
+  .hero-mini-card:nth-child(4) {
     transform: none;
   }
 }
@@ -443,6 +448,15 @@ hide:
           <p class="hero-mini-desc">Real-time speech workflows with STT, LLM orchestration, and TTS on low-cost hardware.</p>
         </a>
 
+        <a href="projects/raspberry-pi-5-tank-stack-chan" class="hero-mini-card">
+          <div class="hero-mini-media">
+            <img src="assets/images/stackchan_RPi5.jpg" alt="M5Stack Chan Home Companion Robot">
+          </div>
+          <span class="hero-mini-tag">Companion AI</span>
+          <h3 class="hero-mini-title">M5Stack Chan Robot</h3>
+          <p class="hero-mini-desc">A mobile LLM companion with expressions, voice interaction, memory, and private AI expansion.</p>
+        </a>
+
         <a href="projects/cloudflare-worker-backend" class="hero-mini-card">
           <div class="hero-mini-media">
             <img src="assets/images/cloudflare-workers.webp" alt="Cloudflare Backend">
@@ -456,6 +470,17 @@ hide:
   </section>
 
   <div class="bento-grid">
+
+    <a href="projects/ai-agent-terminal" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">AI Terminal</span>
+        <h3 class="bento-title">AI Agent Terminal</h3>
+        <p class="bento-desc">An all-in-one voice AI terminal connected to cloud or local large models for coding and log organization.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/hermes_terminal_1.jpg" alt="AI Agent Terminal">
+        </div>
+      </div>
+    </a>
 
     <a href="projects/hermes-agent-voice-mode" class="bento-card">
       <div class="bento-content-wrapper">
