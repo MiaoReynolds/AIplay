@@ -6,17 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="An API LLM-powered home companion robot project that uses M5Stack Chan as an expressive interface with voice, facial expressions, movement, and privacy-aware local AI expansion.">
+      
       
         <meta name="author" content="Reynolds">
       
       
-        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/codex-skills/">
+        <link rel="canonical" href="https://github.com/MiaoReynolds/AIplay.git/projects/raspberry-pi-5-tank-stack-chan/">
       
       
-        <link rel="prev" href="../hermes-agent-raspberry-pi-4b-voice-setup/">
+        <link rel="prev" href="../codex-skills/">
       
       
-        <link rel="next" href="../raspberry-pi-5-tank-stack-chan/">
+        <link rel="next" href="../ai-agent-terminal/">
       
       
       <link rel="icon" href="../../assets/images/A_logo_cropped.png">
@@ -24,7 +26,7 @@
     
     
       
-        <title>Codex Skills - AIone Lab</title>
+        <title>M5Stack Chan Home Companion Robot - AIone Lab</title>
       
     
     
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-a-skill-in-openai-codex" class="md-skip">
+        <a href="#m5stack-chan-home-companion-robot" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Codex Skills
+              M5Stack Chan Home Companion Robot
             
           </span>
         </div>
@@ -638,6 +640,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../codex-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Codex Skills
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -655,7 +680,7 @@
   
   
   <span class="md-ellipsis">
-    Codex Skills
+    M5Stack Chan Home Companion Robot
     
   </span>
   
@@ -668,7 +693,7 @@
   
   
   <span class="md-ellipsis">
-    Codex Skills
+    M5Stack Chan Home Companion Robot
     
   </span>
   
@@ -691,54 +716,99 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-a-skill" class="md-nav__link">
+  <a href="#the-story" class="md-nav__link">
     <span class="md-ellipsis">
-      What Is a Skill?
+      The Story
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-the-skills-folder-file" class="md-nav__link">
+  <a href="#core-idea" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1 — Create the Skills Folder &amp; File
+      Core Idea
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-install-verify-in-codex" class="md-nav__link">
+  <a href="#possible-real-life-uses" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2 — Install &amp; Verify in Codex
+      Possible Real-Life Uses
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-use-the-skill-in-a-session" class="md-nav__link">
+  <a href="#privacy-aware-local-ai-direction" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3 — Use the Skill in a Session
+      Privacy-Aware Local AI Direction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips" class="md-nav__link">
+  <a href="#system-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Tips
+      System Architecture
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
+  <a href="#hardware-platform" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Reference
+      Hardware Platform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mechanical-and-cad-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mechanical and CAD Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prototype-gallery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prototype Gallery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roadmap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-term-vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long-Term Vision
     </span>
   </a>
   
@@ -748,29 +818,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../raspberry-pi-5-tank-stack-chan/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    M5Stack Chan Home Companion Robot
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1198,54 +1245,99 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-a-skill" class="md-nav__link">
+  <a href="#the-story" class="md-nav__link">
     <span class="md-ellipsis">
-      What Is a Skill?
+      The Story
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-the-skills-folder-file" class="md-nav__link">
+  <a href="#core-idea" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1 — Create the Skills Folder &amp; File
+      Core Idea
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-install-verify-in-codex" class="md-nav__link">
+  <a href="#possible-real-life-uses" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2 — Install &amp; Verify in Codex
+      Possible Real-Life Uses
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-use-the-skill-in-a-session" class="md-nav__link">
+  <a href="#privacy-aware-local-ai-direction" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3 — Use the Skill in a Session
+      Privacy-Aware Local AI Direction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips" class="md-nav__link">
+  <a href="#system-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Tips
+      System Architecture
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
+  <a href="#hardware-platform" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Reference
+      Hardware Platform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mechanical-and-cad-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mechanical and CAD Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prototype-gallery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prototype Gallery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roadmap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-term-vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long-Term Vision
     </span>
   </a>
   
@@ -1267,98 +1359,222 @@
 
 
 
-<h1 id="installing-a-skill-in-openai-codex">Installing a Skill in OpenAI Codex</h1>
-<p><strong>OpenAI Codex</strong> is an AI coding agent that works directly in your terminal. It can read files, write code, run commands, and iterate — all from a single CLI session. One of its most powerful features is <strong>Skills</strong>: reusable, markdown-based instruction sets that teach Codex how to handle specific workflows in your project.</p>
-<hr />
-<h2 id="what-is-a-skill">What Is a Skill?</h2>
-<p>A <strong>Skill</strong> is a <code>.md</code> file that lives in a special folder inside your repo (<code>.codex/skills/</code> or similar). When Codex detects a relevant skill, it reads the instructions automatically and applies them — no extra prompting needed.</p>
-<p>Typical use cases:</p>
-<ul>
-<li>Project-specific build or deploy steps</li>
-<li>Coding conventions and style guides</li>
-<li>Repeated refactoring patterns</li>
-<li>Domain knowledge (e.g., how your API is structured)</li>
-</ul>
-<hr />
-<h2 id="step-1-create-the-skills-folder-file">Step 1 — Create the Skills Folder &amp; File</h2>
-<p>In your project root, create the directory and skill file:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>.codex/skills
-touch<span class="w"> </span>.codex/skills/my-skill.md
-</code></pre></div>
-<p>Open <code>my-skill.md</code> and write your instructions in plain markdown. For example:</p>
-<div class="highlight"><pre><span></span><code>---
-name: &quot;Run Dev Server&quot;
-<span class="gu">description: &quot;How to start the local development server for this project.&quot;</span>
-<span class="gu">---</span>
-
-Always use <span class="sb">`npm run dev`</span> to start the dev server.
-The server runs on port 3000. Never use port 8080.
-After starting, verify the server is healthy by checking http://localhost:3000/health.
-</code></pre></div>
-<p>The YAML frontmatter (<code>name</code>, <code>description</code>) helps Codex identify and surface the skill. The body is freeform markdown — write it as you would write a note for a teammate.</p>
-<hr />
-<h2 id="step-2-install-verify-in-codex">Step 2 — Install &amp; Verify in Codex</h2>
-<p><img alt="Codex skill installation" src="../codex_skill1.png" /></p>
-<p>After creating the skill file, open a Codex session in your project:</p>
-<div class="highlight"><pre><span></span><code>codex
-</code></pre></div>
-<p>Codex will automatically scan <code>.codex/skills/</code> on startup. You can confirm a skill was loaded by asking:</p>
-<blockquote>
-<p><em>"What skills do you have loaded?"</em></p>
-</blockquote>
-<p>Codex will list all detected skills and their descriptions from the frontmatter.</p>
-<hr />
-<h2 id="step-3-use-the-skill-in-a-session">Step 3 — Use the Skill in a Session</h2>
-<p><img alt="Codex skill in action" src="../codex_skill2.png" /></p>
-<p>Once loaded, the skill is applied automatically whenever the context is relevant. You can also trigger it explicitly:</p>
-<blockquote>
-<p><em>"Use the Run Dev Server skill to start the project."</em></p>
-</blockquote>
-<p>Codex will follow the instructions in the skill file step by step — running the right command, on the right port, with the health check.</p>
-<hr />
-<h2 id="tips">Tips</h2>
+<h1 id="m5stack-chan-home-companion-robot">M5Stack Chan Home Companion Robot</h1>
+<p><strong>An API LLM-powered home companion robot that can talk, show expressions, move around, and gradually become a helpful presence in daily life.</strong></p>
+<p>This project started from a simple question: what if an AI assistant was not only a chat window, but a small physical character at home?</p>
+<p>The robot uses <strong>M5Stack Chan / STACK-CHAN</strong> as the expressive front-end. It can communicate through facial expressions, voice, and conversational responses powered by an API-based LLM. Under the body, a Raspberry Pi 5 and ESP32-controlled tank platform give it the ability to move by itself, turning the assistant from a static device into a small mobile companion.</p>
+<p><a href="https://github.com/MiaoReynolds/Raspberry-Pi-5-Tank-with-STACK-CHAN">View the GitHub Repository</a>{ .md-button .md-button--primary }</p>
+<p><img alt="M5Stack Chan with Raspberry Pi 5 mobile platform" src="../../assets/images/stackchan_RPi5.jpg" /></p>
+<h2 id="the-story">The Story</h2>
+<p>Most AI assistants today live inside phones, speakers, or browser tabs. They answer questions, but they do not really feel present. I wanted to explore a different form: a small companion robot that can look back at you, react with a face, answer with a voice, and move around the room when needed.</p>
+<p>M5Stack Chan is perfect for this role because it already feels like a character. By connecting it to an LLM, the robot can become a friendly interface for everyday interaction: chatting, reminding, explaining, recording, observing, and responding in a more natural way than a plain screen.</p>
+<p>The tank base adds physical agency. It is not only a talking head on a desk; it can move, turn, approach, patrol, or reposition itself. That makes the project a prototype for a new kind of home AI device: expressive, mobile, and extensible.</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>| Capability | What It Means |
+| --- | --- | --- |
+| <strong>LLM Conversation</strong> | Connect to API-based large language models for natural dialogue, Q&amp;A, reasoning, and task assistance |
+| <strong>Expressive Interface</strong> | Use M5Stack Chan's screen and character face to show emotion, status, attention, and feedback |
+| <strong>Voice Interaction</strong> | Support speaking and listening workflows so the robot can communicate without a keyboard |
+| <strong>Self Movement</strong> | Use the ESP32 tank base to control movement, turning the assistant into a mobile companion |
+| <strong>Expandable AI Brain</strong> | Use Raspberry Pi 5 as the local orchestration layer for memory, sensors, vision, automation, and local model experiments |</p>
+<h2 id="possible-real-life-uses">Possible Real-Life Uses</h2>
+<p>This project is designed as a flexible platform. Different software modules can turn the same robot into different kinds of home or office assistant.</p>
 <table>
 <thead>
 <tr>
-<th>Tip</th>
-<th>Details</th>
+<th>Scenario</th>
+<th>Example Use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Keep skills focused</strong></td>
-<td>One skill = one workflow. Don't combine unrelated steps.</td>
+<td><strong>Elderly companionship</strong></td>
+<td>Daily conversation, medicine reminders, emotional check-ins, simple safety prompts, and routine monitoring</td>
 </tr>
 <tr>
-<td><strong>Use concrete commands</strong></td>
-<td>The more specific the instruction, the more reliably Codex follows it.</td>
+<td><strong>Child companionship</strong></td>
+<td>Storytelling, answering questions, language practice, and gentle learning support</td>
 </tr>
 <tr>
-<td><strong>Version control your skills</strong></td>
-<td>Commit <code>.codex/skills/</code> to Git so the whole team benefits.</td>
+<td><strong>Homework tutoring</strong></td>
+<td>Explain questions step by step, encourage progress, remind children to stay focused, and connect with a homework tracking system</td>
 </tr>
 <tr>
-<td><strong>Iterate</strong></td>
-<td>If Codex doesn't follow a step correctly, rewrite that instruction more explicitly.</td>
+<td><strong>Pet care</strong></td>
+<td>Patrol the room, play voice reminders, check feeding routines, or act as a mobile camera platform in future versions</td>
+</tr>
+<tr>
+<td><strong>Daily chat assistant</strong></td>
+<td>Casual conversation, schedule reminders, weather, simple planning, and household Q&amp;A</td>
+</tr>
+<tr>
+<td><strong>Personal logbook</strong></td>
+<td>Record daily reflections, family notes, voice diaries, project progress, and searchable life logs</td>
+</tr>
+<tr>
+<td><strong>Company local assistant</strong></td>
+<td>Become a private office knowledge assistant for internal documents, meeting notes, procedures, and onboarding</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="quick-reference">Quick Reference</h2>
-<div class="highlight"><pre><span></span><code>your-project/
-└── .codex/
-    └── skills/
-        ├── dev-server.md
-        ├── run-tests.md
-        └── deploy.md
-</code></pre></div>
-<p>Each file is an independent skill. Codex loads them all at the start of every session.</p>
+<h2 id="privacy-aware-local-ai-direction">Privacy-Aware Local AI Direction</h2>
+<p>The first version can use cloud API LLMs for fast prototyping. But the more interesting long-term direction is a <strong>locally deployed home or company AI system</strong>.</p>
+<p>In this model, the robot becomes the friendly physical interface for a local large model or local knowledge base. Sensitive information can stay inside the home or office network instead of being uploaded to cloud services. This makes the project useful for:</p>
+<ul>
+<li>Family records and private conversations</li>
+<li>Children's learning history</li>
+<li>Elderly care notes</li>
+<li>Company documents and internal knowledge</li>
+<li>Personal journals and long-term memory</li>
+<li>Local RAG systems for private Q&amp;A</li>
+</ul>
+<p>The robot is then not just a device. It becomes a small, embodied doorway into a private AI system.</p>
+<h2 id="system-architecture">System Architecture</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Main Role</th>
+<th>What It Handles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M5Stack Chan Interaction Layer</strong></td>
+<td>Character interface</td>
+<td>Facial expression, voice output, user-facing status, emotional feedback</td>
+</tr>
+<tr>
+<td><strong>LLM / Agent Layer</strong></td>
+<td>Intelligence</td>
+<td>Conversation, reasoning, memory, tutoring, logging, planning, and tool use</td>
+</tr>
+<tr>
+<td><strong>Raspberry Pi 5 Master Layer</strong></td>
+<td>Local coordinator</td>
+<td>API calls, local services, sensors, storage, future local models and RAG</td>
+</tr>
+<tr>
+<td><strong>ESP32 Tank Layer</strong></td>
+<td>Motion controller</td>
+<td>Motor driver control, movement commands, real-time chassis control</td>
+</tr>
+</tbody>
+</table>
+<p>This layered design separates personality, intelligence, local computing, and physical movement. Each part can be improved independently.</p>
+<h2 id="hardware-platform">Hardware Platform</h2>
+<p>The current hardware scope includes:</p>
+<ul>
+<li>Raspberry Pi 5 as the master controller</li>
+<li>ESP32-C3 Mini as the tank-side controller</li>
+<li>Custom tank chassis with dual DC motors</li>
+<li>L9110 motor driver</li>
+<li>18650 battery and battery holder</li>
+<li>STACK-CHAN-compatible interaction hardware</li>
+<li>M3 heat-set threaded inserts and long M3 bolts for mechanical assembly</li>
+<li>M2.5 brass standoffs and Dupont wiring for module mounting</li>
+</ul>
+<p>Optional expansion points include camera, microphone, speaker, ultrasonic sensor, IMU, servos, voice modules, and additional sensors.</p>
+<h2 id="mechanical-and-cad-design">Mechanical and CAD Design</h2>
+<table>
+<thead>
+<tr>
+<th>CAD File</th>
+<th>Purpose</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tank_body_48mm_V4.2.step</code></td>
+<td>Main tank body for two TT motors</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>tank_body_cover_V4.3.step</code></td>
+<td>First-layer top cover for ESP32-C3 and L9110</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>tank_body_cover_RPi.step</code></td>
+<td>Second-layer top cover for Raspberry Pi 5 and battery module</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>tank_body_cover_RPi_V1.1.step</code></td>
+<td>Alternative second-layer cover with different wiring height</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>sprocket_tank track 4_10teeth_V2.1.step</code></td>
+<td>Driving sprocket</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>sprocket_tank track 4_10teeth_V2.2.step</code></td>
+<td>Passive sprocket</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>Sprocket and track V4.1.step</code></td>
+<td>Tank track</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>ESP32_soldering_holder_v1.1.step</code></td>
+<td>Soldering helper tool for ESP32 preparation</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prototype-gallery">Prototype Gallery</h2>
+<div class="tank-gallery">
+  <img src="https://raw.githubusercontent.com/MiaoReynolds/Raspberry-Pi-5-Tank-with-STACK-CHAN/main/1.jpg" alt="Mobile robot body assembly view 1">
+  <img src="https://raw.githubusercontent.com/MiaoReynolds/Raspberry-Pi-5-Tank-with-STACK-CHAN/main/2.jpg" alt="Mobile robot body assembly view 2">
+  <img src="https://raw.githubusercontent.com/MiaoReynolds/Raspberry-Pi-5-Tank-with-STACK-CHAN/main/3.jpg" alt="Chassis and electronics view">
+  <img src="https://raw.githubusercontent.com/MiaoReynolds/Raspberry-Pi-5-Tank-with-STACK-CHAN/main/4.jpg" alt="Mechanical detail of the robot platform">
+</div>
+
+<h2 id="current-status">Current Status</h2>
+<p>The project is currently in the documentation and hardware architecture stage. The mechanical design and module layout are defined. The next major step is connecting the movement layer, M5Stack Chan interaction layer, and LLM conversation layer into one working prototype.</p>
+<h2 id="roadmap">Roadmap</h2>
+<ul>
+<li>Build the Raspberry Pi 5 to ESP32 movement command pipeline</li>
+<li>Add M5Stack Chan expression and voice interaction flows</li>
+<li>Connect API LLM conversation to robot state and actions</li>
+<li>Add memory and personal logbook features</li>
+<li>Integrate camera and sensors for simple awareness</li>
+<li>Explore homework tutoring and family assistant workflows</li>
+<li>Build a local RAG or local LLM version for private home/company deployment</li>
+</ul>
+<h2 id="long-term-vision">Long-Term Vision</h2>
+<p>For me, this project is not only a robot tank. It is an experiment in giving AI a small body, a face, a voice, and a role in daily life.</p>
+<p>The long-term vision is a home companion that can grow with different needs: chatting with elderly family members, helping children with homework, watching over pets, recording personal memories, or serving as a private interface to a local AI knowledge base. It is a small step toward AI that feels less like software and more like a helpful presence.</p>
+<style>
+.tank-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.tank-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+}
+</style>
 
 
 
 
 
 
+
+  
+  
 
 
 
