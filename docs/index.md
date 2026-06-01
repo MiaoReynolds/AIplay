@@ -109,14 +109,19 @@ hide:
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
+  width: 100%;
   max-width: 1180px;
   margin: 0.45rem auto 0;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
 }
 
 .hero-mini-card {
   position: relative;
+  min-width: 0;
   min-height: 220px;
   padding: 1rem;
+  box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.4rem;
   background: linear-gradient(180deg, rgba(22, 28, 45, 0.94) 0%, rgba(12, 16, 28, 0.98) 100%);
@@ -371,13 +376,13 @@ hide:
   background: linear-gradient(to top, rgba(248, 250, 252, 0.6), transparent);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .hero-section {
     padding-top: 1.3rem;
   }
 
   .hero-showcase {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.9rem;
   }
 
@@ -387,6 +392,13 @@ hide:
   .hero-mini-card:nth-child(3),
   .hero-mini-card:nth-child(4) {
     transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-showcase {
+    grid-template-columns: 1fr;
+    padding: 0;
   }
 }
 
