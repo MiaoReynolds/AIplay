@@ -69,7 +69,7 @@ nav:
       - Quadruped Robots:
           - Quadruped Robot: projects/quadruped.md
           - LeRobot Arm: projects/lerobot.md
-  - Mini Tank Motor Assembly: projects/tank-motor-assembly.md
+  - Mini Tank: projects/tank-motor-assembly.md
   - AIGC Prompt: aigc-prompt.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md

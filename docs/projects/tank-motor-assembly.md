@@ -1,5 +1,5 @@
 ---
-title: "Mini Tank Motor Assembly"
+title: "Mini Tank"
 description: "A step-by-step hardware assembly note for a compact ESP32-C3 mini tank chassis with TT motors, L9110S motor driver, HC-SR04 ultrasonic sensor, tracks, sprockets, and battery holder."
 tags: [tank robot, ESP32-C3, L9110S, TT motor, HC-SR04, hardware assembly]
 ---
