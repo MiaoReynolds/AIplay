@@ -163,9 +163,17 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
   </figure>
 </div>
 
-## 9. Firmware Code
+## 9. Vibe Coding Prompt
 
-??? code "ESP32-C3 Mini Tank Firmware"
+???+ code "Vibe Coding Prompt"
+
+    ```text
+    --8<-- "assets/code/mini-tank-vibe-coding-prompt.txt"
+    ```
+
+## 10. Firmware Code
+
+???+ code "ESP32-C3 Mini Tank Firmware"
 
     ```cpp
     --8<-- "assets/code/mini-tank-esp32c3.ino"
@@ -227,6 +235,11 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
   color: #94a3b8;
   font-size: 0.8rem;
   text-align: center;
+}
+
+.md-typeset details.code[open] .highlight {
+  max-height: 18rem;
+  overflow: auto;
 }
 
 @media (max-width: 900px) {

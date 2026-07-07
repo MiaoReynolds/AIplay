@@ -1,0 +1,122 @@
+Please write an Arduino IDE program for an ESP32-C3 web-controlled mini tank, including HC-SR04 ultrasonic obstacle avoidance.
+
+Project structure:
+- Use a dedicated Arduino sketch folder to avoid Arduino IDE merging multiple .ino files in the same directory.
+- Put the ultrasonic version here:
+  Tank_web_ultrasoni/Tank_web_ultrasoni.ino
+- Keep all code in a single .ino file.
+- Must compile with Arduino ESP32 core 3.x.
+- Include:
+  - WiFi.h
+  - WebServer.h
+  - DNSServer.h
+
+Hardware:
+- ESP32-C3 drives two DC motors through an L9110S H-bridge.
+- Right motor uses L9110S channel A.
+- Left motor uses L9110S channel B.
+- Motor wiring:
+  - GPIO21 -> A-1A
+  - GPIO20 -> A-1B
+  - GPIO3  -> B-1A
+  - GPIO4  -> B-1B
+- GPIO3/GPIO4 are used for the left motor. Avoid GPIO0/GPIO1 because they may affect ESP32-C3 boot.
+- HC-SR04 ultrasonic sensor:
+  - Power and common ground are already connected.
+  - TRIG -> ESP32-C3 GPIO5
+  - ECHO -> ESP32-C3 GPIO6
+
+Motor logic:
+- Do not use PWM. Use only digitalWrite HIGH/LOW on/off control.
+- L9110S rules:
+  - 1A = HIGH, 1B = LOW: motor forward
+  - 1A = LOW, 1B = HIGH: motor reverse
+  - 1A = LOW, 1B = LOW: stop
+- Forward: both motors forward
+- Backward: both motors reverse
+- Turn left: right motor forward, left motor reverse
+- Turn right: right motor reverse, left motor forward
+- Stop: all four motor control pins LOW
+- Keep direction-change protection:
+  - When any motor switches from forward to reverse or reverse to forward, first set both pins of that motor LOW, wait 100ms, then output the new direction.
+  - If both motors need reversing at the same time, stop all motors that need reversing first, wait one shared 100ms delay, then output the new directions.
+
+Wi-Fi and web UI:
+- ESP32-C3 creates a Wi-Fi AP.
+- SSID: ESP32C3-Tank
+- Password: 12345678
+- Fixed AP IP: 192.168.4.1
+- After connecting to this Wi-Fi, open http://192.168.4.1/ in a browser.
+- Use WebServer for the web page and the /cmd?do=... control API.
+- Web page buttons:
+  - Forward
+  - Backward
+  - Turn left
+  - Turn right
+  - Stop
+  - Test connection
+  - Restart ESP32
+- Direction buttons must support press-and-hold movement. Releasing the button sends Stop automatically.
+- When the page loses focus or becomes hidden, send Stop automatically.
+- Button text must not be accidentally selected:
+  - Use CSS user-select: none, -webkit-user-select: none, touch-action: none
+  - Disable -webkit-touch-callout
+  - preventDefault() for selectstart and contextmenu events on buttons
+- Add captive portal compatibility:
+  - Use DNSServer to resolve all domains to 192.168.4.1
+  - Handle /generate_204, /gen_204, /hotspot-detect.html, /fwlink
+  - Redirect unknown paths to the home page.
+
+Onboard LED feedback:
+- Each time a web button command reaches the ESP32-C3, briefly blink the onboard blue LED.
+- This board uses GPIO8 for the onboard blue LED.
+- The LED is active-low:
+  - FEEDBACK_LED_PIN = 8
+  - FEEDBACK_LED_ACTIVE_LOW = true
+  - LED_ON_LEVEL = LOW
+  - LED_OFF_LEVEL = HIGH
+- LED should normally stay off and only blink when a web command is received.
+- Blink duration: 60ms.
+- LED blinking must use millis() and be non-blocking.
+- Restart command is the exception: after responding, a short delay before ESP.restart() is acceptable.
+
+Ultrasonic obstacle avoidance:
+- Use HC-SR04 measurement:
+  - Set TRIG LOW for 2us
+  - Set TRIG HIGH for 10us
+  - Set TRIG LOW
+  - Read echo duration with pulseIn(ECHO, HIGH, 25000)
+  - If pulseIn returns 0, treat the reading as invalid
+  - Convert distance using durationUs / 58.0 to get centimeters
+- Measurement interval: 120ms.
+- Obstacle threshold: less than 5cm.
+- When a valid measured distance is below 5cm, the tank automatically reverses for 2 seconds, then stops.
+- Obstacle avoidance reverse must be implemented as a millis() state machine, not delay(2000), so WebServer can still respond to user commands.
+- User control has highest priority:
+  - When the user presses and holds Forward, Backward, Left, or Right, set userControlActive = true.
+  - While the user is controlling the tank, obstacle avoidance must not take over.
+  - If obstacle avoidance is currently reversing and the user sends a direction command, immediately cancel avoidance and execute the user command.
+  - When the user releases the button and sends S/STOP, set userControlActive = false and stop the motors. Only then can obstacle avoidance resume.
+- PING must not change the user-control state.
+- Before REBOOT, cancel avoidance, clear user-control state, stop all motors, send the HTTP response, briefly delay, then call ESP.restart().
+
+setup() must:
+- Serial.begin(115200)
+- Initialize all motor control pins as OUTPUT and stop all motors
+- Initialize onboard LED as OUTPUT and off by default
+- Initialize HC-SR04:
+  - TRIG as OUTPUT and LOW
+  - ECHO as INPUT
+- Initialize Wi-Fi AP
+- Start DNS server
+- Register HTTP routes and start WebServer
+
+loop() must call:
+- server.handleClient()
+- dnsServer.processNextRequest()
+- updateFeedbackBlink()
+- updateObstacleAvoidance()
+
+Implementation requirements:
+- Code should be clear, stable, and suitable for direct upload to ESP32-C3.
+- Remember Arduino IDE behavior: do not keep multiple independent .ino files in the same sketch folder, or Arduino will merge them and cause redefinition errors.
