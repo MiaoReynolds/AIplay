@@ -163,6 +163,14 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
   </figure>
 </div>
 
+## 9. Firmware Code
+
+??? code "ESP32-C3 Mini Tank Firmware"
+
+    ```cpp
+    --8<-- "assets/code/mini-tank-esp32c3.ino"
+    ```
+
 <style>
 .motor-hero,
 .motor-single,

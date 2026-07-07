@@ -87,6 +87,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight
+  - pymdownx.snippets:
+      base_path: docs
   - md_in_html
 
 extra_css:
