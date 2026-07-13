@@ -70,6 +70,7 @@ nav:
           - Quadruped Robot: projects/quadruped.md
           - LeRobot Arm: projects/lerobot.md
   - Mini Tank: projects/tank-motor-assembly.md
+  - Image Prompt Generator: text-to-image-prompt-generator.md
   - AIGC Prompt: aigc-prompt.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
