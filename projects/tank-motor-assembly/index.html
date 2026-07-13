@@ -18,7 +18,7 @@
         <link rel="prev" href="../lerobot/">
       
       
-        <link rel="next" href="../../aigc-prompt/">
+        <link rel="next" href="../../text-to-image-prompt-generator/">
       
       
       <link rel="icon" href="../../assets/images/A_logo_cropped.png">
@@ -272,6 +272,25 @@
     
   
   Mini Tank
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../text-to-image-prompt-generator/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Image Prompt Generator
 
       </a>
     </li>
@@ -1481,10 +1500,50 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#9-vibe-coding-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Vibe Coding Prompt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-firmware-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Firmware Code
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../text-to-image-prompt-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Image Prompt Generator
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1672,6 +1731,24 @@
   <a href="#8-final-assembly" class="md-nav__link">
     <span class="md-ellipsis">
       8. Final Assembly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-vibe-coding-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Vibe Coding Prompt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-firmware-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Firmware Code
     </span>
   </a>
   
@@ -1918,6 +1995,630 @@
   </figure>
 </div>
 
+<h2 id="9-vibe-coding-prompt">9. Vibe Coding Prompt</h2>
+<details class="code" open="open">
+<summary>Vibe Coding Prompt</summary>
+<div class="highlight"><pre><span></span><code>Please write an Arduino IDE program for an ESP32-C3 web-controlled mini tank, including HC-SR04 ultrasonic obstacle avoidance.
+
+Project structure:
+- Use a dedicated Arduino sketch folder to avoid Arduino IDE merging multiple .ino files in the same directory.
+- Put the ultrasonic version here:
+  Tank_web_ultrasoni/Tank_web_ultrasoni.ino
+- Keep all code in a single .ino file.
+- Must compile with Arduino ESP32 core 3.x.
+- Include:
+  - WiFi.h
+  - WebServer.h
+  - DNSServer.h
+
+Hardware:
+- ESP32-C3 drives two DC motors through an L9110S H-bridge.
+- Right motor uses L9110S channel A.
+- Left motor uses L9110S channel B.
+- Motor wiring:
+  - GPIO21 -&gt; A-1A
+  - GPIO20 -&gt; A-1B
+  - GPIO3  -&gt; B-1A
+  - GPIO4  -&gt; B-1B
+- GPIO3/GPIO4 are used for the left motor. Avoid GPIO0/GPIO1 because they may affect ESP32-C3 boot.
+- HC-SR04 ultrasonic sensor:
+  - Power and common ground are already connected.
+  - TRIG -&gt; ESP32-C3 GPIO5
+  - ECHO -&gt; ESP32-C3 GPIO6
+
+Motor logic:
+- Do not use PWM. Use only digitalWrite HIGH/LOW on/off control.
+- L9110S rules:
+  - 1A = HIGH, 1B = LOW: motor forward
+  - 1A = LOW, 1B = HIGH: motor reverse
+  - 1A = LOW, 1B = LOW: stop
+- Forward: both motors forward
+- Backward: both motors reverse
+- Turn left: right motor forward, left motor reverse
+- Turn right: right motor reverse, left motor forward
+- Stop: all four motor control pins LOW
+- Keep direction-change protection:
+  - When any motor switches from forward to reverse or reverse to forward, first set both pins of that motor LOW, wait 100ms, then output the new direction.
+  - If both motors need reversing at the same time, stop all motors that need reversing first, wait one shared 100ms delay, then output the new directions.
+
+Wi-Fi and web UI:
+- ESP32-C3 creates a Wi-Fi AP.
+- SSID: ESP32C3-Tank
+- Password: 12345678
+- Fixed AP IP: 192.168.4.1
+- After connecting to this Wi-Fi, open http://192.168.4.1/ in a browser.
+- Use WebServer for the web page and the /cmd?do=... control API.
+- Web page buttons:
+  - Forward
+  - Backward
+  - Turn left
+  - Turn right
+  - Stop
+  - Test connection
+  - Restart ESP32
+- Direction buttons must support press-and-hold movement. Releasing the button sends Stop automatically.
+- When the page loses focus or becomes hidden, send Stop automatically.
+- Button text must not be accidentally selected:
+  - Use CSS user-select: none, -webkit-user-select: none, touch-action: none
+  - Disable -webkit-touch-callout
+  - preventDefault() for selectstart and contextmenu events on buttons
+- Add captive portal compatibility:
+  - Use DNSServer to resolve all domains to 192.168.4.1
+  - Handle /generate_204, /gen_204, /hotspot-detect.html, /fwlink
+  - Redirect unknown paths to the home page.
+
+Onboard LED feedback:
+- Each time a web button command reaches the ESP32-C3, briefly blink the onboard blue LED.
+- This board uses GPIO8 for the onboard blue LED.
+- The LED is active-low:
+  - FEEDBACK_LED_PIN = 8
+  - FEEDBACK_LED_ACTIVE_LOW = true
+  - LED_ON_LEVEL = LOW
+  - LED_OFF_LEVEL = HIGH
+- LED should normally stay off and only blink when a web command is received.
+- Blink duration: 60ms.
+- LED blinking must use millis() and be non-blocking.
+- Restart command is the exception: after responding, a short delay before ESP.restart() is acceptable.
+
+Ultrasonic obstacle avoidance:
+- Use HC-SR04 measurement:
+  - Set TRIG LOW for 2us
+  - Set TRIG HIGH for 10us
+  - Set TRIG LOW
+  - Read echo duration with pulseIn(ECHO, HIGH, 25000)
+  - If pulseIn returns 0, treat the reading as invalid
+  - Convert distance using durationUs / 58.0 to get centimeters
+- Measurement interval: 120ms.
+- Obstacle threshold: less than 5cm.
+- When a valid measured distance is below 5cm, the tank automatically reverses for 2 seconds, then stops.
+- Obstacle avoidance reverse must be implemented as a millis() state machine, not delay(2000), so WebServer can still respond to user commands.
+- User control has highest priority:
+  - When the user presses and holds Forward, Backward, Left, or Right, set userControlActive = true.
+  - While the user is controlling the tank, obstacle avoidance must not take over.
+  - If obstacle avoidance is currently reversing and the user sends a direction command, immediately cancel avoidance and execute the user command.
+  - When the user releases the button and sends S/STOP, set userControlActive = false and stop the motors. Only then can obstacle avoidance resume.
+- PING must not change the user-control state.
+- Before REBOOT, cancel avoidance, clear user-control state, stop all motors, send the HTTP response, briefly delay, then call ESP.restart().
+
+setup() must:
+- Serial.begin(115200)
+- Initialize all motor control pins as OUTPUT and stop all motors
+- Initialize onboard LED as OUTPUT and off by default
+- Initialize HC-SR04:
+  - TRIG as OUTPUT and LOW
+  - ECHO as INPUT
+- Initialize Wi-Fi AP
+- Start DNS server
+- Register HTTP routes and start WebServer
+
+loop() must call:
+- server.handleClient()
+- dnsServer.processNextRequest()
+- updateFeedbackBlink()
+- updateObstacleAvoidance()
+
+Implementation requirements:
+- Code should be clear, stable, and suitable for direct upload to ESP32-C3.
+- Remember Arduino IDE behavior: do not keep multiple independent .ino files in the same sketch folder, or Arduino will merge them and cause redefinition errors.
+</code></pre></div>
+</details>
+<h2 id="10-firmware-code">10. Firmware Code</h2>
+<details class="code" open="open">
+<summary>ESP32-C3 Mini Tank Firmware</summary>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;WiFi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;WebServer.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;DNSServer.h&gt;</span>
+<span class="c1">// Wi-Fi AP settings</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">AP_SSID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ESP32C3-Tank&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">AP_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;12345678&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_IP</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_GATEWAY</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_NETMASK</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">DNS_PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">53</span><span class="p">;</span>
+<span class="c1">// L9110S wiring</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1A_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO21 -&gt; A-1A</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1B_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO20 -&gt; A-1B</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LEFT_MOTOR_1A_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">   </span><span class="c1">// GPIO3  -&gt; B-1A</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LEFT_MOTOR_1B_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">   </span><span class="c1">// GPIO4  -&gt; B-1B</span>
+<span class="c1">// HC-SR04 ultrasonic sensor wiring</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO5 -&gt; TRIG</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ULTRASONIC_ECHO_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO6 -&gt; ECHO</span>
+<span class="c1">// This ESP32-C3 board uses GPIO8 for the onboard blue LED.</span>
+<span class="c1">// Set this to 0 if your board&#39;s LED turns on with HIGH instead.</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">FEEDBACK_LED_ACTIVE_LOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED_ON_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FEEDBACK_LED_ACTIVE_LOW</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">LOW</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FEEDBACK_LED_ACTIVE_LOW</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">HIGH</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LED_BLINK_MS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">MOTOR_REVERSE_PROTECT_MS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ULTRASONIC_READ_INTERVAL_MS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">120</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ULTRASONIC_ECHO_TIMEOUT_US</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25000</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">OBSTACLE_DISTANCE_CM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">AVOIDANCE_REVERSE_MS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+<span class="n">WebServer</span><span class="w"> </span><span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class="n">DNSServer</span><span class="w"> </span><span class="n">dnsServer</span><span class="p">;</span>
+<span class="k">enum</span><span class="w"> </span><span class="nc">MotorDirection</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MOTOR_STOP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="n">MOTOR_FORWARD</span><span class="p">,</span>
+<span class="w">  </span><span class="n">MOTOR_REVERSE</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Motor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">pin1A</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">pin1B</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MotorDirection</span><span class="w"> </span><span class="n">direction</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">Motor</span><span class="w"> </span><span class="n">rightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">RIGHT_MOTOR_1A_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1B_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">MOTOR_STOP</span><span class="p">};</span>
+<span class="n">Motor</span><span class="w"> </span><span class="n">leftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">LEFT_MOTOR_1A_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LEFT_MOTOR_1B_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">MOTOR_STOP</span><span class="p">};</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">feedbackBlinkStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastUltrasonicReadAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">avoidanceStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">[]</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">rawliteral(</span>
+<span class="s">&lt;!doctype html&gt;</span>
+<span class="s">&lt;html lang=&quot;zh-CN&quot;&gt;</span>
+<span class="s">&lt;head&gt;</span>
+<span class="s">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="s">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span>
+<span class="s">  &lt;title&gt;ESP32-C3 Tank&lt;/title&gt;</span>
+<span class="s">  &lt;style&gt;</span>
+<span class="s">    :root {</span>
+<span class="s">      --bg: #f6f7f9;</span>
+<span class="s">      --panel: #ffffff;</span>
+<span class="s">      --text: #15181d;</span>
+<span class="s">      --muted: #667085;</span>
+<span class="s">      --border: #d9dee7;</span>
+<span class="s">      --primary: #1f6feb;</span>
+<span class="s">      --danger: #d92d20;</span>
+<span class="s">      --ok: #079455;</span>
+<span class="s">    }</span>
+<span class="s">    * {</span>
+<span class="s">      box-sizing: border-box;</span>
+<span class="s">      -webkit-tap-highlight-color: transparent;</span>
+<span class="s">      -webkit-touch-callout: none;</span>
+<span class="s">    }</span>
+<span class="s">    body {</span>
+<span class="s">      margin: 0;</span>
+<span class="s">      min-height: 100vh;</span>
+<span class="s">      display: flex;</span>
+<span class="s">      justify-content: center;</span>
+<span class="s">      align-items: center;</span>
+<span class="s">      padding: 18px;</span>
+<span class="s">      color: var(--text);</span>
+<span class="s">      background: var(--bg);</span>
+<span class="s">      font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Arial, sans-serif;</span>
+<span class="s">    }</span>
+<span class="s">    main {</span>
+<span class="s">      width: min(440px, 100%);</span>
+<span class="s">      padding: 18px;</span>
+<span class="s">      border: 1px solid var(--border);</span>
+<span class="s">      border-radius: 8px;</span>
+<span class="s">      background: var(--panel);</span>
+<span class="s">      box-shadow: 0 12px 34px rgba(21, 24, 29, 0.10);</span>
+<span class="s">    }</span>
+<span class="s">    h1 {</span>
+<span class="s">      margin: 0 0 6px;</span>
+<span class="s">      font-size: 22px;</span>
+<span class="s">      line-height: 1.25;</span>
+<span class="s">      letter-spacing: 0;</span>
+<span class="s">    }</span>
+<span class="s">    .meta {</span>
+<span class="s">      margin: 0 0 18px;</span>
+<span class="s">      color: var(--muted);</span>
+<span class="s">      font-size: 14px;</span>
+<span class="s">      line-height: 1.45;</span>
+<span class="s">    }</span>
+<span class="s">    .pad {</span>
+<span class="s">      display: grid;</span>
+<span class="s">      grid-template-columns: repeat(3, minmax(0, 1fr));</span>
+<span class="s">      gap: 10px;</span>
+<span class="s">      user-select: none;</span>
+<span class="s">      touch-action: none;</span>
+<span class="s">    }</span>
+<span class="s">    button {</span>
+<span class="s">      min-height: 86px;</span>
+<span class="s">      border: 1px solid var(--border);</span>
+<span class="s">      border-radius: 8px;</span>
+<span class="s">      background: #fff;</span>
+<span class="s">      color: var(--text);</span>
+<span class="s">      font-size: 18px;</span>
+<span class="s">      font-weight: 700;</span>
+<span class="s">      cursor: pointer;</span>
+<span class="s">      user-select: none;</span>
+<span class="s">      -webkit-user-select: none;</span>
+<span class="s">      -moz-user-select: none;</span>
+<span class="s">      -ms-user-select: none;</span>
+<span class="s">      touch-action: none;</span>
+<span class="s">      transition: transform 80ms ease, background 80ms ease, border-color 80ms ease;</span>
+<span class="s">    }</span>
+<span class="s">    button:active,</span>
+<span class="s">    button.active {</span>
+<span class="s">      transform: translateY(1px);</span>
+<span class="s">      border-color: var(--primary);</span>
+<span class="s">      background: #eff6ff;</span>
+<span class="s">    }</span>
+<span class="s">    .stop {</span>
+<span class="s">      color: #fff;</span>
+<span class="s">      border-color: var(--danger);</span>
+<span class="s">      background: var(--danger);</span>
+<span class="s">    }</span>
+<span class="s">    .stop:active,</span>
+<span class="s">    .stop.active {</span>
+<span class="s">      background: #b42318;</span>
+<span class="s">      border-color: #b42318;</span>
+<span class="s">    }</span>
+<span class="s">    .actions {</span>
+<span class="s">      display: grid;</span>
+<span class="s">      grid-template-columns: 1fr 1fr;</span>
+<span class="s">      gap: 10px;</span>
+<span class="s">      margin-top: 12px;</span>
+<span class="s">    }</span>
+<span class="s">    .actions button {</span>
+<span class="s">      min-height: 54px;</span>
+<span class="s">      font-size: 15px;</span>
+<span class="s">      font-weight: 700;</span>
+<span class="s">    }</span>
+<span class="s">    .status {</span>
+<span class="s">      min-height: 22px;</span>
+<span class="s">      margin-top: 14px;</span>
+<span class="s">      color: var(--muted);</span>
+<span class="s">      font-size: 14px;</span>
+<span class="s">      line-height: 1.45;</span>
+<span class="s">    }</span>
+<span class="s">    .ok {</span>
+<span class="s">      color: var(--ok);</span>
+<span class="s">    }</span>
+<span class="s">    .err {</span>
+<span class="s">      color: var(--danger);</span>
+<span class="s">    }</span>
+<span class="s">  &lt;/style&gt;</span>
+<span class="s">&lt;/head&gt;</span>
+<span class="s">&lt;body&gt;</span>
+<span class="s">  &lt;main&gt;</span>
+<span class="s">    &lt;h1&gt;ESP32-C3 小坦克控制&lt;/h1&gt;</span>
+<span class="s">    &lt;p class=&quot;meta&quot;&gt;Wi-Fi: ESP32C3-Tank / 12345678&lt;br&gt;地址: http://192.168.4.1/&lt;/p&gt;</span>
+<span class="s">    &lt;section class=&quot;pad&quot; aria-label=&quot;方向控制&quot;&gt;</span>
+<span class="s">      &lt;span&gt;&lt;/span&gt;</span>
+<span class="s">      &lt;button id=&quot;forward&quot; data-cmd=&quot;F&quot;&gt;前进&lt;/button&gt;</span>
+<span class="s">      &lt;span&gt;&lt;/span&gt;</span>
+<span class="s">      &lt;button id=&quot;left&quot; data-cmd=&quot;L&quot;&gt;左转&lt;/button&gt;</span>
+<span class="s">      &lt;button id=&quot;stop&quot; class=&quot;stop&quot; data-cmd=&quot;S&quot;&gt;停止&lt;/button&gt;</span>
+<span class="s">      &lt;button id=&quot;right&quot; data-cmd=&quot;R&quot;&gt;右转&lt;/button&gt;</span>
+<span class="s">      &lt;span&gt;&lt;/span&gt;</span>
+<span class="s">      &lt;button id=&quot;backward&quot; data-cmd=&quot;B&quot;&gt;后退&lt;/button&gt;</span>
+<span class="s">      &lt;span&gt;&lt;/span&gt;</span>
+<span class="s">    &lt;/section&gt;</span>
+<span class="s">    &lt;section class=&quot;actions&quot; aria-label=&quot;系统控制&quot;&gt;</span>
+<span class="s">      &lt;button id=&quot;ping&quot;&gt;测试连接&lt;/button&gt;</span>
+<span class="s">      &lt;button id=&quot;reboot&quot;&gt;重启 ESP32&lt;/button&gt;</span>
+<span class="s">    &lt;/section&gt;</span>
+<span class="s">    &lt;div id=&quot;status&quot; class=&quot;status&quot;&gt;Ready&lt;/div&gt;</span>
+<span class="s">  &lt;/main&gt;</span>
+<span class="s">  &lt;script&gt;</span>
+<span class="s">    const statusEl = document.getElementById(&#39;status&#39;);</span>
+<span class="s">    let heldButton = null;</span>
+<span class="s">    function setStatus(text, kind) {</span>
+<span class="s">      statusEl.textContent = text;</span>
+<span class="s">      statusEl.className = &#39;status &#39; + (kind || &#39;&#39;);</span>
+<span class="s">    }</span>
+<span class="s">    async function sendCmd(cmd) {</span>
+<span class="s">      try {</span>
+<span class="s">        const response = await fetch(&#39;/cmd?do=&#39; + encodeURIComponent(cmd), { cache: &#39;no-store&#39; });</span>
+<span class="s">        const text = await response.text();</span>
+<span class="s">        setStatus(text, response.ok ? &#39;ok&#39; : &#39;err&#39;);</span>
+<span class="s">        return response.ok;</span>
+<span class="s">      } catch (error) {</span>
+<span class="s">        setStatus(&#39;连接失败: &#39; + error, &#39;err&#39;);</span>
+<span class="s">        return false;</span>
+<span class="s">      }</span>
+<span class="s">    }</span>
+<span class="s">    function releaseHold() {</span>
+<span class="s">      if (!heldButton) {</span>
+<span class="s">        return;</span>
+<span class="s">      }</span>
+<span class="s">      heldButton.classList.remove(&#39;active&#39;);</span>
+<span class="s">      heldButton = null;</span>
+<span class="s">      sendCmd(&#39;S&#39;);</span>
+<span class="s">    }</span>
+<span class="s">    function bindHoldButton(button) {</span>
+<span class="s">      button.addEventListener(&#39;selectstart&#39;, function (event) {</span>
+<span class="s">        event.preventDefault();</span>
+<span class="s">      });</span>
+<span class="s">      button.addEventListener(&#39;contextmenu&#39;, function (event) {</span>
+<span class="s">        event.preventDefault();</span>
+<span class="s">      });</span>
+<span class="s">      button.addEventListener(&#39;pointerdown&#39;, function (event) {</span>
+<span class="s">        event.preventDefault();</span>
+<span class="s">        if (heldButton === button) {</span>
+<span class="s">          return;</span>
+<span class="s">        }</span>
+<span class="s">        releaseHold();</span>
+<span class="s">        heldButton = button;</span>
+<span class="s">        button.classList.add(&#39;active&#39;);</span>
+<span class="s">        button.setPointerCapture(event.pointerId);</span>
+<span class="s">        sendCmd(button.dataset.cmd);</span>
+<span class="s">      });</span>
+<span class="s">      button.addEventListener(&#39;pointerup&#39;, function (event) {</span>
+<span class="s">        event.preventDefault();</span>
+<span class="s">        releaseHold();</span>
+<span class="s">      });</span>
+<span class="s">      button.addEventListener(&#39;pointercancel&#39;, releaseHold);</span>
+<span class="s">      button.addEventListener(&#39;lostpointercapture&#39;, releaseHold);</span>
+<span class="s">    }</span>
+<span class="s">    [&#39;forward&#39;, &#39;backward&#39;, &#39;left&#39;, &#39;right&#39;].forEach(function (id) {</span>
+<span class="s">      bindHoldButton(document.getElementById(id));</span>
+<span class="s">    });</span>
+<span class="s">    document.getElementById(&#39;stop&#39;).addEventListener(&#39;click&#39;, function () {</span>
+<span class="s">      releaseHold();</span>
+<span class="s">      sendCmd(&#39;S&#39;);</span>
+<span class="s">    });</span>
+<span class="s">    document.getElementById(&#39;ping&#39;).addEventListener(&#39;click&#39;, function () {</span>
+<span class="s">      sendCmd(&#39;PING&#39;);</span>
+<span class="s">    });</span>
+<span class="s">    document.getElementById(&#39;reboot&#39;).addEventListener(&#39;click&#39;, async function () {</span>
+<span class="s">      releaseHold();</span>
+<span class="s">      await sendCmd(&#39;S&#39;);</span>
+<span class="s">      await sendCmd(&#39;REBOOT&#39;);</span>
+<span class="s">    });</span>
+<span class="s">    window.addEventListener(&#39;blur&#39;, releaseHold);</span>
+<span class="s">    document.addEventListener(&#39;visibilitychange&#39;, function () {</span>
+<span class="s">      if (document.hidden) {</span>
+<span class="s">        releaseHold();</span>
+<span class="s">      }</span>
+<span class="s">    });</span>
+<span class="s">  &lt;/script&gt;</span>
+<span class="s">&lt;/body&gt;</span>
+<span class="s">&lt;/html&gt;</span>
+<span class="dl">)rawliteral</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">triggerFeedbackBlink</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_ON_LEVEL</span><span class="p">);</span>
+<span class="w">  </span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="n">feedbackBlinkStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">updateFeedbackBlink</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">feedbackBlinkStartedAt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LED_BLINK_MS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">writeMotorPins</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Motor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">level1A</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">level1B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motor</span><span class="p">.</span><span class="n">pin1A</span><span class="p">,</span><span class="w"> </span><span class="n">level1A</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motor</span><span class="p">.</span><span class="n">pin1B</span><span class="p">,</span><span class="w"> </span><span class="n">level1B</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stopMotor</span><span class="p">(</span><span class="n">Motor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">motor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">writeMotorPins</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="n">motor</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MOTOR_STOP</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">needsReverseProtection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Motor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="n">MotorDirection</span><span class="w"> </span><span class="n">newDirection</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MOTOR_STOP</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">newDirection</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MOTOR_STOP</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">newDirection</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">applyMotorDirection</span><span class="p">(</span><span class="n">Motor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="n">MotorDirection</span><span class="w"> </span><span class="n">newDirection</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">newDirection</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MOTOR_STOP</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">stopMotor</span><span class="p">(</span><span class="n">motor</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">newDirection</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MOTOR_FORWARD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">writeMotorPins</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">writeMotorPins</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">motor</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newDirection</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stopAllMotors</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">stopMotor</span><span class="p">(</span><span class="n">rightMotor</span><span class="p">);</span>
+<span class="w">  </span><span class="n">stopMotor</span><span class="p">(</span><span class="n">leftMotor</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setTankMotion</span><span class="p">(</span><span class="n">MotorDirection</span><span class="w"> </span><span class="n">rightDirection</span><span class="p">,</span><span class="w"> </span><span class="n">MotorDirection</span><span class="w"> </span><span class="n">leftDirection</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">protectRight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">needsReverseProtection</span><span class="p">(</span><span class="n">rightMotor</span><span class="p">,</span><span class="w"> </span><span class="n">rightDirection</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">protectLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">needsReverseProtection</span><span class="p">(</span><span class="n">leftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">leftDirection</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">protectRight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">stopMotor</span><span class="p">(</span><span class="n">rightMotor</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">protectLeft</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">stopMotor</span><span class="p">(</span><span class="n">leftMotor</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">protectRight</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">protectLeft</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="n">MOTOR_REVERSE_PROTECT_MS</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">applyMotorDirection</span><span class="p">(</span><span class="n">rightMotor</span><span class="p">,</span><span class="w"> </span><span class="n">rightDirection</span><span class="p">);</span>
+<span class="w">  </span><span class="n">applyMotorDirection</span><span class="p">(</span><span class="n">leftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">leftDirection</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">moveForward</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">setTankMotion</span><span class="p">(</span><span class="n">MOTOR_FORWARD</span><span class="p">,</span><span class="w"> </span><span class="n">MOTOR_FORWARD</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">moveBackward</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">setTankMotion</span><span class="p">(</span><span class="n">MOTOR_REVERSE</span><span class="p">,</span><span class="w"> </span><span class="n">MOTOR_REVERSE</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">turnLeft</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">setTankMotion</span><span class="p">(</span><span class="n">MOTOR_FORWARD</span><span class="p">,</span><span class="w"> </span><span class="n">MOTOR_REVERSE</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">turnRight</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">setTankMotion</span><span class="p">(</span><span class="n">MOTOR_REVERSE</span><span class="p">,</span><span class="w"> </span><span class="n">MOTOR_FORWARD</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">float</span><span class="w"> </span><span class="nf">readUltrasonicDistanceCm</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">echoDurationUs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pulseIn</span><span class="p">(</span><span class="n">ULTRASONIC_ECHO_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">,</span><span class="w"> </span><span class="n">ULTRASONIC_ECHO_TIMEOUT_US</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">echoDurationUs</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">echoDurationUs</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">58.0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">startAvoidanceReverse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="n">avoidanceStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="n">moveBackward</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stopAvoidanceReverse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="n">stopAllMotors</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">cancelAvoidanceForUserControl</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">avoidanceActive</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">updateObstacleAvoidance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userControlActive</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">avoidanceActive</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">avoidanceStartedAt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">AVOIDANCE_REVERSE_MS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">stopAvoidanceReverse</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastUltrasonicReadAt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ULTRASONIC_READ_INTERVAL_MS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">lastUltrasonicReadAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">distanceCm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readUltrasonicDistanceCm</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">distanceCm</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">distanceCm</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">OBSTACLE_DISTANCE_CM</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">startAvoidanceReverse</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sendIndexPage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">send_P</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">redirectToRoot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">sendHeader</span><span class="p">(</span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&quot;http://&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AP_IP</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">302</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Redirecting to controller&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">handleCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">server</span><span class="p">.</span><span class="n">hasArg</span><span class="p">(</span><span class="s">&quot;do&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Missing command&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">server</span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&quot;do&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">command</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span>
+<span class="w">  </span><span class="n">command</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">();</span>
+<span class="w">  </span><span class="n">triggerFeedbackBlink</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
+<span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">moveForward</span><span class="p">();</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 前进&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
+<span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">moveBackward</span><span class="p">();</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 后退&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;L&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
+<span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">turnLeft</span><span class="p">();</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 左转&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;R&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
+<span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">turnRight</span><span class="p">();</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 右转&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;S&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;STOP&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
+<span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">stopAllMotors</span><span class="p">();</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 停止&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;PING&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PONG&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;REBOOT&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
+<span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">stopAllMotors</span><span class="p">();</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rebooting&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ESP</span><span class="p">.</span><span class="n">restart</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unknown command&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setupMotorPins</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RIGHT_MOTOR_1A_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RIGHT_MOTOR_1B_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LEFT_MOTOR_1A_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LEFT_MOTOR_1B_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">stopAllMotors</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setupFeedbackLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setupUltrasonicSensor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ULTRASONIC_ECHO_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setupWiFiAp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">WiFi</span><span class="p">.</span><span class="n">mode</span><span class="p">(</span><span class="n">WIFI_AP</span><span class="p">);</span>
+<span class="w">  </span><span class="n">WiFi</span><span class="p">.</span><span class="n">setSleep</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">  </span><span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">AP_IP</span><span class="p">,</span><span class="w"> </span><span class="n">AP_GATEWAY</span><span class="p">,</span><span class="w"> </span><span class="n">AP_NETMASK</span><span class="p">);</span>
+<span class="w">  </span><span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">AP_SSID</span><span class="p">,</span><span class="w"> </span><span class="n">AP_PASSWORD</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ESP32-C3 Tank AP started&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;SSID: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">AP_SSID</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Password: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">AP_PASSWORD</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setupDnsServer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dnsServer</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">DNS_PORT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">AP_IP</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setupHttpRoutes</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/cmd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">handleCommand</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/generate_204&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/gen_204&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/hotspot-detect.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/fwlink&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">onNotFound</span><span class="p">(</span><span class="n">redirectToRoot</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="w">  </span><span class="n">setupMotorPins</span><span class="p">();</span>
+<span class="w">  </span><span class="n">setupFeedbackLed</span><span class="p">();</span>
+<span class="w">  </span><span class="n">setupUltrasonicSensor</span><span class="p">();</span>
+<span class="w">  </span><span class="n">setupWiFiAp</span><span class="p">();</span>
+<span class="w">  </span><span class="n">setupDnsServer</span><span class="p">();</span>
+<span class="w">  </span><span class="n">setupHttpRoutes</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Open http://192.168.4.1/ after connecting to the AP.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">handleClient</span><span class="p">();</span>
+<span class="w">  </span><span class="n">dnsServer</span><span class="p">.</span><span class="n">processNextRequest</span><span class="p">();</span>
+<span class="w">  </span><span class="n">updateFeedbackBlink</span><span class="p">();</span>
+<span class="w">  </span><span class="n">updateObstacleAvoidance</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
 <style>
 .motor-hero,
 .motor-single,
@@ -1974,6 +2675,11 @@
   color: #94a3b8;
   font-size: 0.8rem;
   text-align: center;
+}
+
+.md-typeset details.code[open] .highlight {
+  max-height: 18rem;
+  overflow: auto;
 }
 
 @media (max-width: 900px) {

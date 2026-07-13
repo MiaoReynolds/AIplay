@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text to Image Prompt Generator</title>
+  <style>
+    :root {
+      --bg: #f8fbff;
+      --surface: #ffffff;
+      --surface-2: #f0f6fb;
+      --ink: #102a56;
+      --muted: #5c6d86;
+      --line: #d6e5f2;
+      --accent: #1d6bb8;
+      --accent-2: #15936a;
+      --accent-soft: #edf6ff;
+      --warn-soft: #fff7ed;
+      --shadow: 0 16px 38px rgba(30, 85, 140, 0.1);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(222, 240, 255, 0.9), transparent 34%),
+        radial-gradient(circle at top right, rgba(241, 232, 255, 0.72), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, rgba(248, 251, 255, 0.98) 360px),
+        var(--bg);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .app {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      padding: 24px 22px 42px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .hero-main,
+    .quick-panel,
+    .section,
+    .output-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      position: relative;
+      padding: 28px 26px 24px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: none;
+    }
+
+    .hero-main::before {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 8px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 42%, #ffffff 0 20%, transparent 21%),
+        linear-gradient(135deg, #e8f6ff, #f1fffa);
+      border: 2px solid #b8d5f0;
+      box-shadow: inset 0 -5px 0 rgba(29, 107, 184, 0.08);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 auto;
+      max-width: 880px;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .hero-text {
+      max-width: 760px;
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .formula {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 12px;
+      border: 2px solid #9ec3ea;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .formula span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 10px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .formula span:nth-child(1) { color: #1d6bb8; }
+    .formula span:nth-child(2) { color: #1f8f66; }
+    .formula span:nth-child(3) { color: #5d8f28; }
+    .formula span:nth-child(4) { color: #d99a0c; }
+    .formula span:nth-child(5) { color: #e36c19; }
+    .formula span:nth-child(6) { color: #df4c4c; }
+    .formula span:nth-child(7) { color: #85449b; }
+    .formula span:nth-child(8) { color: #6546a6; }
+    .formula span:nth-child(9) { color: #0f766e; }
+    .formula span:nth-child(10) { color: #2563eb; }
+    .formula span:nth-child(11) { color: #7c3aed; }
+
+    .formula span + span::before {
+      content: "+";
+      margin-right: 10px;
+      color: #263b5e;
+      font-weight: 900;
+    }
+
+    .quick-panel {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(239, 248, 255, 0.96), rgba(248, 253, 249, 0.96));
+    }
+
+    .quick-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .preset-btn,
+    .icon-btn,
+    .primary-btn,
+    .secondary-btn,
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    .preset-btn {
+      min-height: 44px;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .preset-btn:hover,
+    .icon-btn:hover,
+    .secondary-btn:hover,
+    .chip:hover {
+      border-color: rgba(15, 118, 110, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .preset-btn.active,
+    .chip.active {
+      border-color: rgba(15, 118, 110, 0.72);
+      background: var(--accent-soft);
+      color: #0f4f49;
+    }
+
+    .main-grid {
+      display: block;
+    }
+
+    .builder {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section {
+      position: relative;
+      width: 100%;
+      padding: 28px 26px 24px;
+      overflow: visible;
+      scroll-margin-top: 18px;
+    }
+
+    .section:nth-child(1) {
+      background: linear-gradient(135deg, rgba(237, 247, 255, 0.97), rgba(255, 255, 255, 0.96));
+      border-color: #c9def4;
+    }
+
+    .section:nth-child(2) {
+      background: linear-gradient(135deg, rgba(239, 251, 246, 0.97), rgba(255, 255, 255, 0.96));
+      border-color: #c5e8dc;
+    }
+
+    .section:nth-child(3) {
+      background: linear-gradient(135deg, rgba(246, 251, 236, 0.97), rgba(255, 255, 255, 0.96));
+      border-color: #dbe9be;
+    }
+
+    .section:nth-child(4) {
+      background: linear-gradient(135deg, rgba(255, 248, 232, 0.98), rgba(255, 255, 255, 0.96));
+      border-color: #f1ddb2;
+    }
+
+    .section:nth-child(5) {
+      background: linear-gradient(135deg, rgba(255, 240, 237, 0.98), rgba(255, 255, 255, 0.96));
+      border-color: #f1cdc8;
+    }
+
+    .section:nth-child(6) {
+      background: linear-gradient(135deg, rgba(246, 239, 255, 0.98), rgba(255, 255, 255, 0.96));
+      border-color: #dccdf0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-left: 58px;
+    }
+
+    .section-head::before {
+      content: "";
+      position: absolute;
+      left: 26px;
+      top: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(30, 85, 140, 0.18);
+    }
+
+    .section:nth-child(1) .section-head::before { content: "1"; background: #1d6bb8; }
+    .section:nth-child(2) .section-head::before { content: "2"; background: #1f8f66; }
+    .section:nth-child(3) .section-head::before { content: "3"; background: #6f9c2c; }
+    .section:nth-child(4) .section-head::before { content: "4"; background: #e0a11b; }
+    .section:nth-child(5) .section-head::before { content: "5"; background: #e56f22; }
+    .section:nth-child(6) .section-head::before { content: "6"; background: #7a4eb3; }
+
+    .section h2 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.25;
+    }
+
+    .section small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field-grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    label {
+      color: #314052;
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+
+    input,
+    select {
+      min-height: 42px;
+      padding: 8px 10px;
+    }
+
+    textarea {
+      min-height: 92px;
+      padding: 11px;
+      line-height: 1.55;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(37, 99, 235, 0.65);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      min-height: 34px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .output-panel {
+      position: static;
+      margin-top: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(237, 247, 255, 0.98), rgba(248, 245, 255, 0.98));
+    }
+
+    .output-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      text-align: center;
+    }
+
+    .output-head h2 {
+      margin: 0 0 6px;
+      font-size: 19px;
+    }
+
+    .output-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .output-body {
+      padding: 16px;
+    }
+
+    .prompt-box {
+      min-height: 360px;
+      background: #ffffff;
+      color: #102a56;
+      border: 2px solid #b7d2ec;
+      font-family: "Cascadia Code", Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .negative-box {
+      min-height: 104px;
+      margin-top: 12px;
+      background: #fffaf5;
+      border-color: #fed7aa;
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 8px 12px;
+      font-weight: 800;
+    }
+
+    .primary-btn {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .primary-btn:hover {
+      background: #0d665f;
+      transform: translateY(-1px);
+    }
+
+    .secondary-btn {
+      background: #fff;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .muted-note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .span-2 {
+      grid-column: span 2;
+    }
+
+    .span-3 {
+      grid-column: span 3;
+    }
+
+    .status {
+      min-height: 18px;
+      margin-top: 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 1080px) {
+      .preset-grid,
+      .field-grid,
+      .field-grid.three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .app {
+        padding: 16px 12px 28px;
+      }
+
+      .hero-main,
+      .quick-panel,
+      .output-body,
+      .output-head {
+        padding: 14px;
+      }
+
+      .section {
+        padding: 22px 14px 16px;
+      }
+
+      .section-head {
+        padding-left: 48px;
+      }
+
+      .section-head::before {
+        left: 14px;
+        top: 18px;
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+      }
+
+      .field-grid,
+      .field-grid.three {
+        grid-template-columns: 1fr;
+      }
+
+      .span-2,
+      .span-3 {
+        grid-column: span 1;
+      }
+
+      .action-row {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">AIGC Text to Image</p>
+        <h1>Structured Prompt Generator</h1>
+        <p class="hero-text">把主体、动作、环境、镜头、风格、细节和输出规格组合成一条清晰的英文文生图 Prompt，适合 Midjourney、Flux、GPT Image、Ideogram、SDXL、Gemini Image 等工具。</p>
+        <div class="formula" aria-label="Prompt structure">
+          <span>Subject</span>
+          <span>Action</span>
+          <span>Environment</span>
+          <span>Composition</span>
+          <span>Camera</span>
+          <span>Lighting</span>
+          <span>Style</span>
+          <span>Color</span>
+          <span>Material</span>
+          <span>Quality</span>
+          <span>Output</span>
+        </div>
+      </div>
+
+      <aside class="quick-panel">
+        <h2 class="quick-title">Scene Presets</h2>
+        <div class="preset-grid">
+          <button class="preset-btn" type="button" data-preset="science">Science Magazine</button>
+          <button class="preset-btn" type="button" data-preset="ppt">PPT Hero Slide</button>
+          <button class="preset-btn" type="button" data-preset="product">Product Render</button>
+          <button class="preset-btn" type="button" data-preset="storybook">Storybook</button>
+          <button class="preset-btn" type="button" data-preset="robot">Friendly Robot</button>
+          <button class="preset-btn" type="button" data-preset="technical">Technical Diagram</button>
+        </div>
+        <p class="muted-note">选择一个预设后仍可继续修改每个模块。</p>
+      </aside>
+    </section>
+
+    <div class="main-grid">
+      <form class="builder" id="promptForm">
+        <section class="section">
+          <div class="section-head">
+            <h2>1. What</h2>
+            <small>Subject</small>
+          </div>
+          <div class="field-grid">
+            <div class="field span-2">
+              <label for="subject">主体 Subject</label>
+              <input id="subject" placeholder="A compact service robot with white shell and blue glowing eyes">
+            </div>
+            <div class="field">
+              <label for="quantity">数量 Quantity</label>
+              <select id="quantity">
+                <option value="">Not specified</option>
+                <option>A single</option>
+                <option>Two</option>
+                <option>A group of</option>
+                <option>A crowd of</option>
+                <option>Multiple</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="identity">身份 / 类型 Identity</label>
+              <select id="identity">
+                <option value="">Not specified</option>
+                <option>scientist</option>
+                <option>student</option>
+                <option>service robot</option>
+                <option>AI assistant</option>
+                <option>teacher</option>
+                <option>engineer</option>
+                <option>hydrogen refueling station</option>
+                <option>futuristic laboratory</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="traits">主体特征 Features</label>
+              <input id="traits" placeholder="smiling, Asian, black hair tied back">
+            </div>
+            <div class="field">
+              <label for="clothing">服装 / 外观 Clothing</label>
+              <input id="clothing" placeholder="wearing a white lab coat">
+            </div>
+            <div class="field span-2">
+              <label for="subjectDetails">补充细节 Extra subject details</label>
+              <textarea id="subjectDetails" placeholder="blue glowing eyes, friendly face, clean industrial design"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>2. How</h2>
+            <small>Action + Mood</small>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="action">动作 Action</label>
+              <select id="action">
+                <option value="">Not specified</option>
+                <option>helping a child study</option>
+                <option>repairing flowers</option>
+                <option>holding a book</option>
+                <option>pointing at a hologram</option>
+                <option>walking forward</option>
+                <option>looking upward</option>
+                <option>floating in space</option>
+                <option>repairing machinery</option>
+                <option>teaching children</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="pose">姿态 Pose</label>
+              <select id="pose">
+                <option value="">Not specified</option>
+                <option>standing confidently</option>
+                <option>sitting calmly</option>
+                <option>dynamic pose</option>
+                <option>front-facing pose</option>
+                <option>three-quarter pose</option>
+                <option>hero pose</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="mood">情绪 Mood</label>
+              <select id="mood">
+                <option value="">Not specified</option>
+                <option>hopeful</option>
+                <option>peaceful</option>
+                <option>inspiring</option>
+                <option>mysterious</option>
+                <option>professional</option>
+                <option>friendly</option>
+                <option>energetic</option>
+                <option>dramatic</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="era">年代 Era</label>
+              <select id="era">
+                <option value="">Not specified</option>
+                <option>near future</option>
+                <option>space age</option>
+                <option>1980s</option>
+                <option>Victorian era</option>
+                <option>Ancient Rome</option>
+                <option>medieval era</option>
+              </select>
+            </div>
+          </div>
+          <div class="chips" data-target="actionCustom">
+            <button class="chip" type="button" data-value="interacting naturally with people">interacting naturally</button>
+            <button class="chip" type="button" data-value="showing curiosity and warmth">curious and warm</button>
+            <button class="chip" type="button" data-value="surrounded by subtle motion cues">motion cues</button>
+          </div>
+          <input id="actionCustom" type="hidden">
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>3. Where</h2>
+            <small>Environment</small>
+          </div>
+          <div class="field-grid three">
+            <div class="field">
+              <label for="environment">环境 Environment</label>
+              <select id="environment">
+                <option value="">Not specified</option>
+                <option>inside a futuristic laboratory</option>
+                <option>inside a bright modern classroom</option>
+                <option>in a greenhouse</option>
+                <option>on Mars</option>
+                <option>in a dense forest</option>
+                <option>underwater</option>
+                <option>on a mountain peak</option>
+                <option>floating above clouds</option>
+                <option>inside a clean studio</option>
+                <option>on a white background</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="time">时间 Time</label>
+              <select id="time">
+                <option value="">Not specified</option>
+                <option>sunrise</option>
+                <option>morning</option>
+                <option>midday</option>
+                <option>golden hour</option>
+                <option>blue hour</option>
+                <option>sunset</option>
+                <option>night</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="weather">天气 Weather</label>
+              <select id="weather">
+                <option value="">Not specified</option>
+                <option>clear sky</option>
+                <option>sunny</option>
+                <option>foggy</option>
+                <option>rainy</option>
+                <option>snowing</option>
+                <option>stormy</option>
+                <option>overcast</option>
+              </select>
+            </div>
+            <div class="field span-3">
+              <label for="environmentCustom">环境补充 Extra environment details</label>
+              <input id="environmentCustom" placeholder="large windows, plants, clean tables, soft background elements">
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>4. Camera</h2>
+            <small>Composition + Lens</small>
+          </div>
+          <div class="field-grid three">
+            <div class="field">
+              <label for="composition">构图 Composition</label>
+              <select id="composition">
+                <option value="">Not specified</option>
+                <option>center composition</option>
+                <option>symmetrical composition</option>
+                <option>rule of thirds</option>
+                <option>minimal composition</option>
+                <option>clean layout</option>
+                <option>top-down composition</option>
+                <option>isometric composition</option>
+                <option>wide composition</option>
+                <option>close-up composition</option>
+                <option>portrait composition</option>
+                <option>hero shot</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="camera">镜头 Camera</label>
+              <select id="camera">
+                <option value="">Not specified</option>
+                <option>eye-level shot</option>
+                <option>low angle shot</option>
+                <option>high angle shot</option>
+                <option>bird's-eye view</option>
+                <option>worm's-eye view</option>
+                <option>front view</option>
+                <option>side view</option>
+                <option>over-the-shoulder shot</option>
+                <option>macro shot</option>
+                <option>cinematic shot</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lens">焦段 Lens</label>
+              <select id="lens">
+                <option value="">Not specified</option>
+                <option>35mm lens</option>
+                <option>50mm lens</option>
+                <option>85mm lens</option>
+                <option>wide-angle lens</option>
+                <option>telephoto lens</option>
+                <option>macro lens</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="focus">焦点 Focus</label>
+              <select id="focus">
+                <option value="">Not specified</option>
+                <option>sharp focus</option>
+                <option>shallow depth of field</option>
+                <option>deep depth of field</option>
+                <option>bokeh background</option>
+                <option>background blur</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="scale">尺度 Scale</label>
+              <select id="scale">
+                <option value="">Not specified</option>
+                <option>miniature scale</option>
+                <option>macro scale</option>
+                <option>gigantic scale</option>
+                <option>epic scale</option>
+                <option>micro scale</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="space">留白 Space</label>
+              <select id="space">
+                <option value="">Not specified</option>
+                <option>large empty space for title</option>
+                <option>empty space on the left</option>
+                <option>empty space on the right</option>
+                <option>clean background for text overlay</option>
+                <option>no text area needed</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>5. Style</h2>
+            <small>Look + Color</small>
+          </div>
+          <div class="field-grid three">
+            <div class="field">
+              <label for="style">风格 Style</label>
+              <select id="style">
+                <option value="">Not specified</option>
+                <option>Nature magazine illustration</option>
+                <option>Science magazine illustration</option>
+                <option>photorealistic</option>
+                <option>Pixar style</option>
+                <option>Disney style</option>
+                <option>Studio Ghibli style</option>
+                <option>Japanese anime</option>
+                <option>flat illustration</option>
+                <option>vector illustration</option>
+                <option>minimalist</option>
+                <option>cyberpunk</option>
+                <option>steampunk</option>
+                <option>comic style</option>
+                <option>concept art</option>
+                <option>blueprint</option>
+                <option>technical illustration</option>
+                <option>watercolor illustration</option>
+                <option>oil painting</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="medium">媒介 Medium</label>
+              <select id="medium">
+                <option value="">Not specified</option>
+                <option>digital illustration</option>
+                <option>watercolor</option>
+                <option>3D render</option>
+                <option>editorial illustration</option>
+                <option>product photography</option>
+                <option>infographic illustration</option>
+                <option>line art</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="color">颜色 Color</label>
+              <select id="color">
+                <option value="">Not specified</option>
+                <option>blue and white color palette</option>
+                <option>warm tone</option>
+                <option>cool tone</option>
+                <option>pastel color palette</option>
+                <option>high saturation</option>
+                <option>muted colors</option>
+                <option>orange and teal</option>
+                <option>monochrome</option>
+                <option>earth tone</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lighting">光照 Lighting</label>
+              <select id="lighting">
+                <option value="">Not specified</option>
+                <option>soft light</option>
+                <option>soft diffused lighting</option>
+                <option>studio lighting</option>
+                <option>volumetric lighting</option>
+                <option>golden hour lighting</option>
+                <option>soft morning sunlight</option>
+                <option>dramatic lighting</option>
+                <option>backlight</option>
+                <option>rim light</option>
+                <option>neon lighting</option>
+                <option>ambient light</option>
+                <option>global illumination</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="material">材质 Material</label>
+              <select id="material">
+                <option value="">Not specified</option>
+                <option>glass</option>
+                <option>metal</option>
+                <option>wood</option>
+                <option>paper texture</option>
+                <option>ceramic</option>
+                <option>plastic</option>
+                <option>carbon fiber</option>
+                <option>transparent acrylic</option>
+                <option>brushed aluminum</option>
+                <option>brushed titanium</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="rendering">渲染 Rendering</label>
+              <select id="rendering">
+                <option value="">Not specified</option>
+                <option>Octane render</option>
+                <option>Unreal Engine render</option>
+                <option>Cinema4D render</option>
+                <option>Blender render</option>
+                <option>Redshift render</option>
+                <option>ray tracing</option>
+                <option>global illumination</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>6. Details</h2>
+            <small>Quality + Output</small>
+          </div>
+          <div class="field-grid three">
+            <div class="field">
+              <label for="quality">质量 Quality</label>
+              <select id="quality">
+                <option>highly detailed</option>
+                <option>ultra detailed</option>
+                <option>intricate details</option>
+                <option>scientifically accurate</option>
+                <option>clean edges</option>
+                <option>precise geometry</option>
+                <option>realistic reflections</option>
+                <option>sharp focus</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="output">输出用途 Output</label>
+              <select id="output">
+                <option>16:9 presentation slide</option>
+                <option>poster</option>
+                <option>banner</option>
+                <option>social media cover</option>
+                <option>infographic</option>
+                <option>icon</option>
+                <option>product hero image</option>
+                <option>PPT slide</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="aspect">画幅 Aspect ratio</label>
+              <select id="aspect">
+                <option>16:9</option>
+                <option>4:3</option>
+                <option>1:1</option>
+                <option>3:2</option>
+                <option>2:3</option>
+                <option>9:16</option>
+                <option>21:9</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="background">背景 Background</label>
+              <select id="background">
+                <option value="">Not specified</option>
+                <option>white background</option>
+                <option>transparent background</option>
+                <option>clean background</option>
+                <option>minimal background</option>
+                <option>soft gradient background</option>
+                <option>dark background</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="textPolicy">文字 Text</label>
+              <select id="textPolicy">
+                <option>no text</option>
+                <option>minimal text</option>
+                <option>leave space for title text</option>
+                <option>accurate readable typography</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="modelHint">模型提示 Model hint</label>
+              <select id="modelHint">
+                <option value="">Universal</option>
+                <option value="Midjourney style prompt">Midjourney</option>
+                <option value="Flux optimized prompt">Flux</option>
+                <option value="GPT Image optimized prompt">GPT Image</option>
+                <option value="SDXL optimized prompt">SDXL</option>
+                <option value="Ideogram optimized prompt">Ideogram</option>
+              </select>
+            </div>
+            <div class="field span-3">
+              <label for="extraDetails">额外细节 Extra details</label>
+              <textarea id="extraDetails" placeholder="clean layout, professional visual hierarchy, suitable for a technology presentation"></textarea>
+            </div>
+            <div class="field span-3">
+              <label for="negative">Negative prompt</label>
+              <input id="negative" value="low quality, blurry, distorted anatomy, extra fingers, messy composition, unreadable text, watermark, logo, oversaturated">
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <aside class="output-panel">
+        <div class="output-head">
+          <h2>Generated Prompt</h2>
+          <p>英文结构化输出会自动更新，也可以点击生成按钮重新整理。</p>
+        </div>
+        <div class="output-body">
+          <textarea class="prompt-box" id="promptOutput" spellcheck="false"></textarea>
+          <textarea class="negative-box" id="negativeOutput" spellcheck="false"></textarea>
+          <div class="action-row">
+            <button class="primary-btn" type="button" id="generateBtn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              Generate
+            </button>
+            <button class="secondary-btn" type="button" id="copyBtn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V7a2 2 0 0 1 2-2h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="action-row">
+            <button class="secondary-btn" type="button" id="copyNegativeBtn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 8h10v10H8z" stroke="currentColor" stroke-width="1.8"/><path d="M6 14H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.8"/></svg>
+              Copy Negative
+            </button>
+            <button class="secondary-btn" type="button" id="clearBtn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 7h12M10 11v6M14 11v6M9 7l1-2h4l1 2M8 7l1 12h6l1-12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Clear
+            </button>
+          </div>
+          <div class="status" id="status" aria-live="polite"></div>
+          <p class="muted-note">Prompt 采用 “What → How → Camera → Style → Details → Output” 顺序。</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const ids = [
+      "subject", "quantity", "identity", "traits", "clothing", "subjectDetails",
+      "action", "pose", "mood", "era", "actionCustom",
+      "environment", "time", "weather", "environmentCustom",
+      "composition", "camera", "lens", "focus", "scale", "space",
+      "style", "medium", "color", "lighting", "material", "rendering",
+      "quality", "output", "aspect", "background", "textPolicy", "modelHint",
+      "extraDetails", "negative"
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    const value = (id) => ($(id)?.value || "").trim();
+
+    const presets = {
+      science: {
+        subject: "A modern AI research laboratory visualizing a neural network as luminous layered structures",
+        action: "pointing at a hologram",
+        environment: "inside a futuristic laboratory",
+        composition: "clean layout",
+        camera: "eye-level shot",
+        lens: "35mm lens",
+        lighting: "soft diffused lighting",
+        style: "Science magazine illustration",
+        medium: "editorial illustration",
+        color: "blue and white color palette",
+        quality: "scientifically accurate",
+        output: "16:9 presentation slide",
+        background: "clean background",
+        space: "large empty space for title",
+        extraDetails: "precise geometry, professional visual hierarchy, suitable for a science presentation"
+      },
+      ppt: {
+        subject: "An AI assistant organizing business data into clear charts and workflows",
+        action: "pointing at a hologram",
+        environment: "inside a clean studio",
+        composition: "minimal composition",
+        camera: "front view",
+        lighting: "studio lighting",
+        style: "Nature magazine illustration",
+        medium: "digital illustration",
+        color: "cool tone",
+        quality: "clean edges",
+        output: "16:9 presentation slide",
+        background: "white background",
+        textPolicy: "leave space for title text",
+        space: "empty space on the right"
+      },
+      product: {
+        subject: "A compact smart desktop robot with a white shell and a small expressive screen",
+        action: "standing confidently",
+        environment: "inside a clean studio",
+        composition: "hero shot",
+        camera: "three-quarter pose",
+        lens: "50mm lens",
+        lighting: "studio lighting",
+        style: "photorealistic",
+        medium: "product photography",
+        material: "brushed aluminum",
+        rendering: "ray tracing",
+        quality: "realistic reflections",
+        output: "product hero image",
+        background: "minimal background"
+      },
+      storybook: {
+        subject: "A cute orange robot repairing flowers in a greenhouse",
+        action: "repairing flowers",
+        environment: "in a greenhouse",
+        composition: "close-up composition",
+        camera: "eye-level shot",
+        lighting: "soft morning sunlight",
+        style: "Studio Ghibli style",
+        medium: "watercolor illustration",
+        color: "pastel color palette",
+        mood: "friendly",
+        quality: "highly detailed",
+        output: "poster",
+        aspect: "4:3",
+        background: "clean background"
+      },
+      robot: {
+        subject: "A cute small white robot with a rounded head, black glass face screen, cyan glowing eyes, side ear modules, and a tiny antenna on top",
+        action: "holding a half-full glass of water while water is dripping from it, stepping carefully beside a spilled cup and a puddle on the floor",
+        traits: "confused expression, curious and slightly worried, thought bubble with a question mark",
+        clothing: "smooth white robot shell with dark gray joints and rounded mechanical hands",
+        subjectDetails: "one leg lifted in an uncertain walking pose, water droplets splashing on the ground",
+        environment: "on a white background",
+        composition: "center composition",
+        camera: "eye-level shot",
+        lens: "50mm lens",
+        focus: "sharp focus",
+        lighting: "soft diffused lighting",
+        style: "storybook illustration",
+        medium: "watercolor illustration",
+        color: "blue and white color palette",
+        mood: "friendly",
+        quality: "highly detailed",
+        output: "poster",
+        aspect: "4:3",
+        background: "white background",
+        textPolicy: "no text",
+        extraDetails: "gentle ink outlines, soft watercolor shading, playful educational character design, clean white space, charming children's book style"
+      },
+      technical: {
+        subject: "A modern hydrogen refueling station shown as a clean technical cutaway diagram",
+        action: "",
+        environment: "on a white background",
+        composition: "isometric composition",
+        camera: "front view",
+        lighting: "soft light",
+        style: "technical illustration",
+        medium: "infographic illustration",
+        color: "blue and white color palette",
+        quality: "precise geometry",
+        output: "infographic",
+        background: "white background",
+        textPolicy: "minimal text",
+        extraDetails: "labeled modules, clean lines, scientifically accurate proportions"
+      }
+    };
+
+    function compact(parts) {
+      return parts.map((part) => (part || "").trim()).filter(Boolean);
+    }
+
+    function buildSubject() {
+      const base = compact([value("quantity"), value("subject")]).join(" ");
+      const fallback = compact([value("quantity"), value("identity")]).join(" ");
+      return compact([base || fallback, value("traits"), value("clothing"), value("subjectDetails")]).join(", ");
+    }
+
+    function buildPrompt() {
+      const subject = buildSubject();
+      const action = compact([value("action"), value("pose"), value("actionCustom"), value("mood"), value("era")]);
+      const environment = compact([value("environment"), value("time"), value("weather"), value("environmentCustom")]);
+      const camera = compact([value("composition"), value("camera"), value("lens"), value("focus"), value("scale"), value("space")]);
+      const style = compact([value("lighting"), value("style"), value("medium"), value("color"), value("material")]);
+      const details = compact([value("quality"), value("rendering"), value("extraDetails")]);
+      const output = compact([value("output"), value("background"), value("textPolicy"), value("aspect"), value("modelHint")]);
+      const prompt = compact([subject, ...action, ...environment, ...camera, ...style, ...details, ...output]).join(", ");
+
+      $("promptOutput").value = prompt || "Describe your subject to generate a structured prompt.";
+      $("negativeOutput").value = "Negative prompt: " + (value("negative") || "low quality, blurry, distorted, watermark, unreadable text");
+      return prompt;
+    }
+
+    function setStatus(message) {
+      $("status").textContent = message;
+      window.clearTimeout(setStatus.timer);
+      setStatus.timer = window.setTimeout(() => $("status").textContent = "", 1800);
+    }
+
+    async function copyText(text, label) {
+      if (!text.trim()) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus(label + " copied");
+      } catch (error) {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        temp.remove();
+        setStatus(label + " copied");
+      }
+    }
+
+    function applyPreset(name) {
+      const preset = presets[name];
+      if (!preset) return;
+      Object.entries(preset).forEach(([key, presetValue]) => {
+        if ($(key)) $(key).value = presetValue;
+      });
+      document.querySelectorAll(".preset-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.preset === name);
+      });
+      buildPrompt();
+      setStatus("Preset applied");
+    }
+
+    function clearForm() {
+      ids.forEach((id) => {
+        const el = $(id);
+        if (!el) return;
+        if (id === "quality") el.value = "highly detailed";
+        else if (id === "output") el.value = "16:9 presentation slide";
+        else if (id === "aspect") el.value = "16:9";
+        else if (id === "textPolicy") el.value = "no text";
+        else if (id === "negative") el.value = "low quality, blurry, distorted anatomy, extra fingers, messy composition, unreadable text, watermark, logo, oversaturated";
+        else el.value = "";
+      });
+      document.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
+      buildPrompt();
+      setStatus("Cleared");
+    }
+
+    document.querySelectorAll("input, select, textarea").forEach((el) => {
+      el.addEventListener("input", buildPrompt);
+      el.addEventListener("change", buildPrompt);
+    });
+
+    document.querySelectorAll(".preset-btn").forEach((btn) => {
+      btn.addEventListener("click", () => applyPreset(btn.dataset.preset));
+    });
+
+    document.querySelectorAll(".chips").forEach((group) => {
+      group.addEventListener("click", (event) => {
+        const btn = event.target.closest(".chip");
+        if (!btn) return;
+        btn.classList.toggle("active");
+        const target = $(group.dataset.target);
+        const values = [...group.querySelectorAll(".chip.active")].map((chip) => chip.dataset.value);
+        target.value = values.join(", ");
+        buildPrompt();
+      });
+    });
+
+    $("generateBtn").addEventListener("click", () => {
+      buildPrompt();
+      setStatus("Prompt generated");
+    });
+
+    $("copyBtn").addEventListener("click", () => copyText($("promptOutput").value, "Prompt"));
+    $("copyNegativeBtn").addEventListener("click", () => copyText($("negativeOutput").value, "Negative prompt"));
+    $("clearBtn").addEventListener("click", clearForm);
+
+    applyPreset("robot");
+  </script>
+</body>
+</html>
