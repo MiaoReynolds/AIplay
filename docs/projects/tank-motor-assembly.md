@@ -120,12 +120,12 @@ Figures 9 and 10 show the wiring stage. The L9110S driver receives control signa
 
 | ESP32 | Board | Parts |
 | --- | --- | --- |
-| 20 | L9110N A-1A | Motor R |
-| 21 | L9110N A-1B | Motor R |
+| 1 | L9110N A-1A | Motor R |
+| 2 | L9110N A-1B | Motor R |
 | 3 | L9110N B-1A | Motor L |
 | 4 | L9110N B-1B | Motor L |
-| 5 | HC-SR04 Trigger | Ultrasonic Sensor |
-| 6 | HC-SR04 Echo | Ultrasonic Sensor |
+| 20 | HC-SR04 Trigger | Ultrasonic Sensor |
+| 21 | HC-SR04 Echo | Ultrasonic Sensor |
 | 5V | DC bus | Battery Box |
 | GND | DC bus | Battery Box |
 | 3.3V | HC-SR04 VCC | Ultrasonic Sensor |

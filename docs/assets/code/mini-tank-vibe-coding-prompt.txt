@@ -16,15 +16,16 @@ Hardware:
 - Right motor uses L9110S channel A.
 - Left motor uses L9110S channel B.
 - Motor wiring:
-  - GPIO21 -> A-1A
-  - GPIO20 -> A-1B
+  - GPIO1  -> A-1A
+  - GPIO2  -> A-1B
   - GPIO3  -> B-1A
   - GPIO4  -> B-1B
-- GPIO3/GPIO4 are used for the left motor. Avoid GPIO0/GPIO1 because they may affect ESP32-C3 boot.
+- GPIO1/GPIO2 are used for the right motor.
+- GPIO3/GPIO4 are used for the left motor.
 - HC-SR04 ultrasonic sensor:
   - Power and common ground are already connected.
-  - TRIG -> ESP32-C3 GPIO5
-  - ECHO -> ESP32-C3 GPIO6
+  - TRIG -> ESP32-C3 GPIO20
+  - ECHO -> ESP32-C3 GPIO21
 
 Motor logic:
 - Do not use PWM. Use only digitalWrite HIGH/LOW on/off control.
@@ -68,16 +69,10 @@ Wi-Fi and web UI:
   - Redirect unknown paths to the home page.
 
 Onboard LED feedback:
-- Each time a web button command reaches the ESP32-C3, briefly blink the onboard blue LED.
-- This board uses GPIO8 for the onboard blue LED.
-- The LED is active-low:
-  - FEEDBACK_LED_PIN = 8
-  - FEEDBACK_LED_ACTIVE_LOW = true
-  - LED_ON_LEVEL = LOW
-  - LED_OFF_LEVEL = HIGH
-- LED should normally stay off and only blink when a web command is received.
-- Blink duration: 60ms.
-- LED blinking must use millis() and be non-blocking.
+- Onboard LED feedback is disabled so it cannot conflict with motor pins.
+- Set FEEDBACK_LED_PIN = -1.
+- Keep the feedback LED helper functions safe: if FEEDBACK_LED_PIN < 0, they should immediately return.
+- If a separate feedback LED is added later, FEEDBACK_LED_PIN can be changed to a free GPIO.
 - Restart command is the exception: after responding, a short delay before ESP.restart() is acceptable.
 
 Ultrasonic obstacle avoidance:
