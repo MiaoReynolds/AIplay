@@ -1,3 +1,4 @@
+
 #include <WiFi.h>
 #include <WebServer.h>
 #include <DNSServer.h>
@@ -9,16 +10,16 @@ static const IPAddress AP_GATEWAY(192, 168, 4, 1);
 static const IPAddress AP_NETMASK(255, 255, 255, 0);
 static const byte DNS_PORT = 53;
 // L9110S wiring
-static const int RIGHT_MOTOR_1A_PIN = 21; // GPIO21 -> A-1A
-static const int RIGHT_MOTOR_1B_PIN = 20; // GPIO20 -> A-1B
+static const int RIGHT_MOTOR_1A_PIN = 1;  // GPIO1 -> A-1A
+static const int RIGHT_MOTOR_1B_PIN = 2;  // GPIO2 -> A-1B
 static const int LEFT_MOTOR_1A_PIN = 3;   // GPIO3  -> B-1A
 static const int LEFT_MOTOR_1B_PIN = 4;   // GPIO4  -> B-1B
 // HC-SR04 ultrasonic sensor wiring
-static const int ULTRASONIC_TRIG_PIN = 5; // GPIO5 -> TRIG
-static const int ULTRASONIC_ECHO_PIN = 6; // GPIO6 -> ECHO
-// This ESP32-C3 board uses GPIO8 for the onboard blue LED.
-// Set this to 0 if your board's LED turns on with HIGH instead.
-static const int FEEDBACK_LED_PIN = 8;
+static const int ULTRASONIC_TRIG_PIN = 20; // GPIO20 -> TRIG
+static const int ULTRASONIC_ECHO_PIN = 21; // GPIO21 -> ECHO
+// Onboard LED feedback is disabled so it cannot conflict with motor pins.
+// Set to a free GPIO if you add a separate feedback LED later.
+static const int FEEDBACK_LED_PIN = -1;
 static const bool FEEDBACK_LED_ACTIVE_LOW = true;
 static const uint8_t LED_ON_LEVEL = FEEDBACK_LED_ACTIVE_LOW ? LOW : HIGH;
 static const uint8_t LED_OFF_LEVEL = FEEDBACK_LED_ACTIVE_LOW ? HIGH : LOW;
@@ -35,6 +36,10 @@ enum MotorDirection {
   MOTOR_FORWARD,
   MOTOR_REVERSE
 };
+enum AvoidancePhase {
+  AVOIDANCE_IDLE = 0,
+  AVOIDANCE_REVERSING
+};
 struct Motor {
   int pin1A;
   int pin1B;
@@ -45,9 +50,10 @@ Motor leftMotor = {LEFT_MOTOR_1A_PIN, LEFT_MOTOR_1B_PIN, MOTOR_STOP};
 bool feedbackBlinking = false;
 unsigned long feedbackBlinkStartedAt = 0;
 bool userControlActive = false;
-bool avoidanceActive = false;
+AvoidancePhase avoidancePhase = AVOIDANCE_IDLE;
+bool waitingForObstacleClear = false;
 unsigned long lastUltrasonicReadAt = 0;
-unsigned long avoidanceStartedAt = 0;
+unsigned long avoidancePhaseStartedAt = 0;
 static const char INDEX_HTML[] PROGMEM = R"rawliteral(
 <!doctype html>
 <html lang="zh-CN">
@@ -265,11 +271,17 @@ static const char INDEX_HTML[] PROGMEM = R"rawliteral(
 </html>
 )rawliteral";
 void triggerFeedbackBlink() {
+  if (FEEDBACK_LED_PIN < 0) {
+    return;
+  }
   digitalWrite(FEEDBACK_LED_PIN, LED_ON_LEVEL);
   feedbackBlinking = true;
   feedbackBlinkStartedAt = millis();
 }
 void updateFeedbackBlink() {
+  if (FEEDBACK_LED_PIN < 0) {
+    return;
+  }
   if (feedbackBlinking && millis() - feedbackBlinkStartedAt >= LED_BLINK_MS) {
     digitalWrite(FEEDBACK_LED_PIN, LED_OFF_LEVEL);
     feedbackBlinking = false;
@@ -342,27 +354,27 @@ float readUltrasonicDistanceCm() {
   return echoDurationUs / 58.0;
 }
 void startAvoidanceReverse() {
-  avoidanceActive = true;
-  avoidanceStartedAt = millis();
+  avoidancePhase = AVOIDANCE_REVERSING;
+  avoidancePhaseStartedAt = millis();
+  waitingForObstacleClear = true;
   moveBackward();
 }
-void stopAvoidanceReverse() {
-  avoidanceActive = false;
+void stopAvoidance() {
+  avoidancePhase = AVOIDANCE_IDLE;
   stopAllMotors();
 }
 void cancelAvoidanceForUserControl() {
-  if (avoidanceActive) {
-    avoidanceActive = false;
-  }
+  avoidancePhase = AVOIDANCE_IDLE;
+  waitingForObstacleClear = false;
 }
 void updateObstacleAvoidance() {
   if (userControlActive) {
     return;
   }
   unsigned long now = millis();
-  if (avoidanceActive) {
-    if (now - avoidanceStartedAt >= AVOIDANCE_REVERSE_MS) {
-      stopAvoidanceReverse();
+  if (avoidancePhase == AVOIDANCE_REVERSING) {
+    if (now - avoidancePhaseStartedAt >= AVOIDANCE_REVERSE_MS) {
+      stopAvoidance();
     }
     return;
   }
@@ -371,6 +383,12 @@ void updateObstacleAvoidance() {
   }
   lastUltrasonicReadAt = now;
   float distanceCm = readUltrasonicDistanceCm();
+  if (waitingForObstacleClear) {
+    if (distanceCm <= 0 || distanceCm >= OBSTACLE_DISTANCE_CM) {
+      waitingForObstacleClear = false;
+    }
+    return;
+  }
   if (distanceCm > 0 && distanceCm < OBSTACLE_DISTANCE_CM) {
     startAvoidanceReverse();
   }
@@ -437,6 +455,9 @@ void setupMotorPins() {
   stopAllMotors();
 }
 void setupFeedbackLed() {
+  if (FEEDBACK_LED_PIN < 0) {
+    return;
+  }
   digitalWrite(FEEDBACK_LED_PIN, LED_OFF_LEVEL);
   pinMode(FEEDBACK_LED_PIN, OUTPUT);
   digitalWrite(FEEDBACK_LED_PIN, LED_OFF_LEVEL);
