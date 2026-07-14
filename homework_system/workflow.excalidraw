@@ -1,0 +1,71 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "hermes-agent",
+  "elements": [
+    {"type":"rectangle","id":"bg","x":0,"y":0,"width":1200,"height":900,"backgroundColor":"#ffffff","fillStyle":"solid","strokeColor":"#ffffff","roughness":0},
+
+    {"type":"text","id":"title","x":350,"y":20,"text":"Child Workflow — Homework Session","fontSize":28,"fontFamily":1,"strokeColor":"#1e1e1e","originalText":"Child Workflow — Homework Session","autoResize":true},
+
+    {"type":"ellipse","id":"start","x":480,"y":70,"width":120,"height":60,"backgroundColor":"#b2f2bb","fillStyle":"solid","roundness":{"type":2},"boundElements":[{"id":"t_start","type":"text"}]},
+    {"type":"text","id":"t_start","x":490,"y":85,"width":100,"height":25,"text":"14:15 Kickoff","fontSize":18,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"start","originalText":"14:15 Kickoff","autoResize":true},
+
+    {"type":"arrow","id":"a1","x":540,"y":130,"width":0,"height":60,"endArrowhead":"arrow","points":[[0,0],[0,60]],"startBinding":{"elementId":"start","fixedPoint":[0.5,1]},"endBinding":{"elementId":"voice1","fixedPoint":[0.5,0]}},
+    {"type":"rectangle","id":"voice1","x":440,"y":190,"width":200,"height":60,"backgroundColor":"#ffd8a8","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_voice1","type":"text"}]},
+    {"type":"text","id":"t_voice1","x":450,"y":205,"width":180,"height":25,"text":"🔊 Voice Reminder Plays","fontSize":18,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"voice1","originalText":"🔊 Voice Reminder Plays","autoResize":true},
+
+    {"type":"arrow","id":"a2","x":540,"y":250,"width":0,"height":50,"endArrowhead":"arrow","points":[[0,0],[0,50]],"startBinding":{"elementId":"voice1","fixedPoint":[0.5,1]},"endBinding":{"elementId":"ui","fixedPoint":[0.5,0]}},
+    {"type":"rectangle","id":"ui","x":400,"y":300,"width":280,"height":60,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_ui","type":"text"}]},
+    {"type":"text","id":"t_ui","x":410,"y":315,"width":260,"height":25,"text":"Child Opens Web UI (Chrome Kiosk)","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"ui","originalText":"Child Opens Web UI (Chrome Kiosk)","autoResize":true},
+
+    {"type":"arrow","id":"a3","x":540,"y":360,"width":0,"height":50,"endArrowhead":"arrow","points":[[0,0],[0,50]],"startBinding":{"elementId":"ui","fixedPoint":[0.5,1]},"endBinding":{"elementId":"cards","fixedPoint":[0.5,0]}},
+    {"type":"rectangle","id":"cards","x":400,"y":410,"width":280,"height":60,"backgroundColor":"#d0bfff","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_cards","type":"text"}]},
+    {"type":"text","id":"t_cards","x":410,"y":425,"width":260,"height":25,"text":"4 Subject Cards Displayed","fontSize":18,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"cards","originalText":"4 Subject Cards Displayed","autoResize":true},
+
+    {"type":"text","id":"note1","x":170,"y":430,"width":180,"height":20,"text":"中文 · English · Math · Science","fontSize":16,"fontFamily":1,"strokeColor":"#757575","originalText":"中文 · English · Math · Science","autoResize":true},
+
+    {"type":"diamond","id":"choice1","x":460,"y":510,"width":160,"height":80,"backgroundColor":"#fff3bf","fillStyle":"solid","boundElements":[{"id":"t_choice1","type":"text"}]},
+    {"type":"text","id":"t_choice1","x":470,"y":535,"width":140,"height":25,"text":"Photo Submit?","fontSize":18,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"choice1","originalText":"Photo Submit?","autoResize":true},
+
+    {"type":"arrow","id":"a4_yes","x":620,"y":550,"width":80,"height":0,"endArrowhead":"arrow","points":[[0,0],[80,0]],"startBinding":{"elementId":"choice1","fixedPoint":[1,0.5]},"endBinding":{"elementId":"submit","fixedPoint":[0,0.5]}},
+    {"type":"text","id":"t_yes","x":645,"y":530,"width":30,"height":20,"text":"Yes","fontSize":16,"fontFamily":1,"strokeColor":"#2b8a3e","originalText":"Yes","autoResize":true},
+
+    {"type":"rectangle","id":"submit","x":700,"y":520,"width":220,"height":60,"backgroundColor":"#b2f2bb","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_submit","type":"text"}]},
+    {"type":"text","id":"t_submit","x":710,"y":535,"width":200,"height":25,"text":"📸 Camera → Crop → Submit","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"submit","originalText":"📸 Camera → Crop → Submit","autoResize":true},
+
+    {"type":"arrow","id":"a5","x":810,"y":580,"width":0,"height":40,"endArrowhead":"arrow","points":[[0,0],[0,40]],"startBinding":{"elementId":"submit","fixedPoint":[0.5,1]},"endBinding":{"elementId":"grade","fixedPoint":[0.5,0]}},
+    {"type":"rectangle","id":"grade","x":710,"y":620,"width":200,"height":60,"backgroundColor":"#ffd8a8","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_grade","type":"text"}]},
+    {"type":"text","id":"t_grade","x":720,"y":635,"width":180,"height":25,"text":"🤖 Gemini AI Grades Photo","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"grade","originalText":"🤖 Gemini AI Grades Photo","autoResize":true},
+
+    {"type":"arrow","id":"a6","x":810,"y":680,"width":0,"height":40,"endArrowhead":"arrow","points":[[0,0],[0,40]],"startBinding":{"elementId":"grade","fixedPoint":[0.5,1]},"endBinding":{"elementId":"result","fixedPoint":[0.5,0]}},
+    {"type":"rectangle","id":"result","x":710,"y":720,"width":200,"height":60,"backgroundColor":"#b2f2bb","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_result","type":"text"}]},
+    {"type":"text","id":"t_result","x":720,"y":735,"width":180,"height":25,"text":"✅ Review + Voice Feedback","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"result","originalText":"✅ Review + Voice Feedback","autoResize":true},
+
+    {"type":"arrow","id":"a4_no","x":460,"y":555,"width":-80,"height":0,"endArrowhead":"arrow","points":[[0,0],[-80,0]],"startBinding":{"elementId":"choice1","fixedPoint":[0,0.5]},"endBinding":{"elementId":"chat_or_ask","fixedPoint":[1,0.5]}},
+    {"type":"text","id":"t_no","x":375,"y":535,"width":25,"height":20,"text":"No","fontSize":16,"fontFamily":1,"strokeColor":"#c92a2a","originalText":"No","autoResize":true},
+
+    {"type":"diamond","id":"chat_or_ask","x":160,"y":520,"width":220,"height":80,"backgroundColor":"#fff3bf","fillStyle":"solid","boundElements":[{"id":"t_ask_choice","type":"text"}]},
+    {"type":"text","id":"t_ask_choice","x":170,"y":540,"width":200,"height":25,"text":"Chat or Ask AI?","fontSize":18,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"chat_or_ask","originalText":"Chat or Ask AI?","autoResize":true},
+
+    {"type":"arrow","id":"a8","x":60,"y":540,"width":-40,"height":0,"endArrowhead":"arrow","points":[[0,0],[-40,0]],"startBinding":{"elementId":"chat_or_ask","fixedPoint":[0,0.5]}},
+    {"type":"rectangle","id":"chat","x":-80,"y":510,"width":140,"height":60,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_chat","type":"text"}]},
+    {"type":"text","id":"t_chat","x":-70,"y":525,"width":120,"height":25,"text":"💬 Chat with AI","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"chat","originalText":"💬 Chat with AI","autoResize":true},
+
+    {"type":"arrow","id":"a9","x":270,"y":520,"width":0,"height":-40,"endArrowhead":"arrow","points":[[0,0],[0,-40]],"startBinding":{"elementId":"chat_or_ask","fixedPoint":[0.5,0]}},
+    {"type":"text","id":"t_ask_btn","x":240,"y":465,"width":50,"height":20,"text":"Ask","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","originalText":"Ask","autoResize":true},
+
+    {"type":"rectangle","id":"ask","x":100,"y":420,"width":130,"height":50,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_ask","type":"text"}]},
+    {"type":"text","id":"t_ask","x":110,"y":432,"width":110,"height":25,"text":"📷 Ask AI Photo","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"ask","originalText":"📷 Ask AI Photo","autoResize":true},
+
+    {"type":"arrow","id":"a10","x":810,"y":780,"width":0,"height":40,"endArrowhead":"arrow","points":[[0,0],[0,40]]},
+    {"type":"rectangle","id":"all_done","x":700,"y":820,"width":220,"height":50,"backgroundColor":"#c3fae8","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_done","type":"text"}]},
+    {"type":"text","id":"t_done","x":710,"y":832,"width":200,"height":25,"text":"🏁 All Subjects Complete","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"all_done","originalText":"🏁 All Subjects Complete","autoResize":true},
+
+    {"type":"arrow","id":"a11","x":810,"y":870,"width":0,"height":30,"endArrowhead":"arrow","points":[[0,0],[0,30]]},
+    {"type":"rectangle","id":"telegram","x":680,"y":900,"width":260,"height":50,"backgroundColor":"#ffd8a8","fillStyle":"solid","roundness":{"type":3},"boundElements":[{"id":"t_tg","type":"text"}]},
+    {"type":"text","id":"t_tg","x":690,"y":912,"width":240,"height":25,"text":"📱 Summary Sent to Parent's Telegram","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"telegram","originalText":"📱 Summary Sent to Parent's Telegram","autoResize":true}
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff"
+  }
+}
