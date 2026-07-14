@@ -2136,16 +2136,16 @@ Implementation requirements:
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_NETMASK</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">DNS_PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">53</span><span class="p">;</span>
 <span class="c1">// L9110S wiring</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1A_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO21 -&gt; A-1A</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1B_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO20 -&gt; A-1B</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1A_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// GPIO1 -&gt; A-1A</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1B_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">  </span><span class="c1">// GPIO2 -&gt; A-1B</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LEFT_MOTOR_1A_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">   </span><span class="c1">// GPIO3  -&gt; B-1A</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LEFT_MOTOR_1B_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">   </span><span class="c1">// GPIO4  -&gt; B-1B</span>
 <span class="c1">// HC-SR04 ultrasonic sensor wiring</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO5 -&gt; TRIG</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ULTRASONIC_ECHO_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO6 -&gt; ECHO</span>
-<span class="c1">// This ESP32-C3 board uses GPIO8 for the onboard blue LED.</span>
-<span class="c1">// Set this to 0 if your board&#39;s LED turns on with HIGH instead.</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ULTRASONIC_TRIG_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO20 -&gt; TRIG</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ULTRASONIC_ECHO_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO21 -&gt; ECHO</span>
+<span class="c1">// Onboard LED feedback is disabled so it cannot conflict with motor pins.</span>
+<span class="c1">// Set to a free GPIO if you add a separate feedback LED later.</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">FEEDBACK_LED_ACTIVE_LOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED_ON_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FEEDBACK_LED_ACTIVE_LOW</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">LOW</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FEEDBACK_LED_ACTIVE_LOW</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">HIGH</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
@@ -2162,6 +2162,10 @@ Implementation requirements:
 <span class="w">  </span><span class="n">MOTOR_FORWARD</span><span class="p">,</span>
 <span class="w">  </span><span class="n">MOTOR_REVERSE</span>
 <span class="p">};</span>
+<span class="k">enum</span><span class="w"> </span><span class="nc">AvoidancePhase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">AVOIDANCE_IDLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="n">AVOIDANCE_REVERSING</span>
+<span class="p">};</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">Motor</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">pin1A</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">pin1B</span><span class="p">;</span>
@@ -2172,9 +2176,10 @@ Implementation requirements:
 <span class="kt">bool</span><span class="w"> </span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">feedbackBlinkStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="n">AvoidancePhase</span><span class="w"> </span><span class="n">avoidancePhase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AVOIDANCE_IDLE</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">waitingForObstacleClear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastUltrasonicReadAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">avoidanceStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">avoidancePhaseStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">[]</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">rawliteral(</span>
 <span class="s">&lt;!doctype html&gt;</span>
 <span class="s">&lt;html lang=&quot;zh-CN&quot;&gt;</span>
@@ -2392,11 +2397,17 @@ Implementation requirements:
 <span class="s">&lt;/html&gt;</span>
 <span class="dl">)rawliteral</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">triggerFeedbackBlink</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_ON_LEVEL</span><span class="p">);</span>
 <span class="w">  </span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">  </span><span class="n">feedbackBlinkStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">updateFeedbackBlink</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">feedbackBlinkStartedAt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LED_BLINK_MS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="p">);</span>
 <span class="w">    </span><span class="n">feedbackBlinking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
@@ -2469,27 +2480,27 @@ Implementation requirements:
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">echoDurationUs</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">58.0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">startAvoidanceReverse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">  </span><span class="n">avoidanceStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="n">avoidancePhase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AVOIDANCE_REVERSING</span><span class="p">;</span>
+<span class="w">  </span><span class="n">avoidancePhaseStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="n">waitingForObstacleClear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">  </span><span class="n">moveBackward</span><span class="p">();</span>
 <span class="p">}</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">stopAvoidanceReverse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stopAvoidance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">avoidancePhase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AVOIDANCE_IDLE</span><span class="p">;</span>
 <span class="w">  </span><span class="n">stopAllMotors</span><span class="p">();</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">cancelAvoidanceForUserControl</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">avoidanceActive</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">avoidanceActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">avoidancePhase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AVOIDANCE_IDLE</span><span class="p">;</span>
+<span class="w">  </span><span class="n">waitingForObstacleClear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">updateObstacleAvoidance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userControlActive</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">avoidanceActive</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">avoidanceStartedAt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">AVOIDANCE_REVERSE_MS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">stopAvoidanceReverse</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">avoidancePhase</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">AVOIDANCE_REVERSING</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">avoidancePhaseStartedAt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">AVOIDANCE_REVERSE_MS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">stopAvoidance</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
@@ -2498,6 +2509,12 @@ Implementation requirements:
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">lastUltrasonicReadAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">distanceCm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readUltrasonicDistanceCm</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">waitingForObstacleClear</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">distanceCm</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">distanceCm</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">OBSTACLE_DISTANCE_CM</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">waitingForObstacleClear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">distanceCm</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">distanceCm</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">OBSTACLE_DISTANCE_CM</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">startAvoidanceReverse</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
@@ -2564,6 +2581,9 @@ Implementation requirements:
 <span class="w">  </span><span class="n">stopAllMotors</span><span class="p">();</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">setupFeedbackLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="p">);</span>
 <span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF_LEVEL</span><span class="p">);</span>
