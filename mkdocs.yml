@@ -52,6 +52,7 @@ nav:
           - Vibe Coding: projects/vibe-coding.md
           - Gemini Nano Banana Local Integration: projects/gemini-nano-banana-local-integration.md
       - Business Reporting Automation:
+          - Local AI Business Document Systems: projects/local-ai-business-documents.md
           - Cloudflare Worker Backend Setup: projects/cloudflare-worker-backend.md
           - n8n Concepts Workflow: projects/ai-course.md
           - Time Value of Money: tvm-calculator.md

@@ -483,6 +483,17 @@ hide:
 
   <div class="bento-grid">
 
+    <a href="projects/local-ai-business-documents" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Business Automation</span>
+        <h3 class="bento-title">Local AI Documents</h3>
+        <p class="bento-desc">Custom local-first AI systems for quotations, delivery orders, receipts, tax summaries, and daily business spreadsheets.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/business-local-ai-documents.png" alt="Local AI business document systems">
+        </div>
+      </div>
+    </a>
+
     <a href="projects/cloudflare-worker-backend" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Automation</span>
