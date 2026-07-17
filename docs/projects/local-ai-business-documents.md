@@ -7,7 +7,7 @@ tags: [business automation, local AI, spreadsheet system, quotation, delivery or
 # Local AI Business Document Systems
 
 <figure class="business-doc-hero">
-  <img src="../assets/images/business-local-ai-documents.png" alt="Quotation, invoice, bill of lading, and itinerary documents for business operations">
+  <img src="../../assets/images/business-local-ai-documents.png" alt="Quotation, invoice, bill of lading, and itinerary documents for business operations">
   <figcaption>Custom document systems for daily business work.</figcaption>
 </figure>
 
