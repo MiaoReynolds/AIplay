@@ -538,6 +538,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/tank-motor-assembly" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Robotics</span>
+        <h3 class="bento-title">Mini Tank</h3>
+        <p class="bento-desc">Assemble a compact ESP32-C3 tracked tank and upload starter firmware for web control and obstacle avoidance.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/mini-tank-assembled-preview.png" alt="Mini Tank">
+        </div>
+      </div>
+    </a>
+
     <a href="projects/notebooklm-tutorial" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Tutorial</span>

@@ -6,7 +6,14 @@ tags: [tank robot, ESP32-C3, L9110S, TT motor, HC-SR04, hardware assembly]
 
 # Mini Tank Motor Assembly
 
-This build documents the hardware assembly process for a compact ESP32-C3 mini tank platform. The goal is to create a small tracked robot base with dual TT motors, an L9110S motor driver, an ultrasonic sensor, and a battery holder mounted into a layered chassis.
+<figure class="motor-preview">
+  <img src="../../assets/images/mini-tank-assembled-preview.png" alt="Finished ESP32-C3 mini tank with tracks, battery holder, and ultrasonic sensor">
+  <figcaption>Mini Tank build preview.</figcaption>
+</figure>
+
+This article walks through building the physical mini tank platform from loose parts into a working tracked robot. It covers the basic chassis assembly, motor driver wiring, ultrasonic sensor placement, and provides starter firmware code for web-based movement control and simple obstacle avoidance.
+
+The goal is to create a small ESP32-C3 tracked robot base with dual TT motors, an L9110S motor driver, an HC-SR04 ultrasonic sensor, and a battery holder mounted into a layered chassis.
 
 The platform can later be used as the movement base for an AI companion robot, a small autonomous rover, or a classroom robotics demo.
 
@@ -163,7 +170,15 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
   </figure>
 </div>
 
-## 9. Vibe Coding Prompt
+## 9. Minimal Vibe Coding Prompt
+
+???+ code "Minimal Vibe Coding Prompt"
+
+    ```text
+    --8<-- "assets/code/mini-tank-minimal-prompt.txt"
+    ```
+
+## 10. Vibe Coding Prompt
 
 ???+ code "Vibe Coding Prompt"
 
@@ -171,7 +186,7 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
     --8<-- "assets/code/mini-tank-vibe-coding-prompt.txt"
     ```
 
-## 10. Firmware Code
+## 11. Firmware Code
 
 ???+ code "ESP32-C3 Mini Tank Firmware"
 
@@ -180,10 +195,22 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
     ```
 
 <style>
+.motor-preview,
 .motor-hero,
 .motor-single,
 .motor-strip figure {
   margin: 1.2rem 0;
+}
+
+.motor-preview img {
+  display: block;
+  width: min(100%, 760px);
+  max-height: 720px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin: 0 auto;
+  background: #fbf3e3;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
 }
 
 .motor-hero img {
@@ -228,6 +255,7 @@ Figures 13 and 14 show the finished mini tank platform. At this stage, the base 
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.14);
 }
 
+.motor-preview figcaption,
 .motor-hero figcaption,
 .motor-single figcaption,
 .motor-strip figcaption {

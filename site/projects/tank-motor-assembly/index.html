@@ -1501,18 +1501,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-vibe-coding-prompt" class="md-nav__link">
+  <a href="#9-minimal-vibe-coding-prompt" class="md-nav__link">
     <span class="md-ellipsis">
-      9. Vibe Coding Prompt
+      9. Minimal Vibe Coding Prompt
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-firmware-code" class="md-nav__link">
+  <a href="#10-vibe-coding-prompt" class="md-nav__link">
     <span class="md-ellipsis">
-      10. Firmware Code
+      10. Vibe Coding Prompt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-firmware-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Firmware Code
     </span>
   </a>
   
@@ -1737,18 +1746,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-vibe-coding-prompt" class="md-nav__link">
+  <a href="#9-minimal-vibe-coding-prompt" class="md-nav__link">
     <span class="md-ellipsis">
-      9. Vibe Coding Prompt
+      9. Minimal Vibe Coding Prompt
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-firmware-code" class="md-nav__link">
+  <a href="#10-vibe-coding-prompt" class="md-nav__link">
     <span class="md-ellipsis">
-      10. Firmware Code
+      10. Vibe Coding Prompt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-firmware-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Firmware Code
     </span>
   </a>
   
@@ -1771,7 +1789,13 @@
 
 
 <h1 id="mini-tank-motor-assembly">Mini Tank Motor Assembly</h1>
-<p>This build documents the hardware assembly process for a compact ESP32-C3 mini tank platform. The goal is to create a small tracked robot base with dual TT motors, an L9110S motor driver, an ultrasonic sensor, and a battery holder mounted into a layered chassis.</p>
+<figure class="motor-preview">
+  <img src="../../assets/images/mini-tank-assembled-preview.png" alt="Finished ESP32-C3 mini tank with tracks, battery holder, and ultrasonic sensor">
+  <figcaption>Mini Tank build preview.</figcaption>
+</figure>
+
+<p>This article walks through building the physical mini tank platform from loose parts into a working tracked robot. It covers the basic chassis assembly, motor driver wiring, ultrasonic sensor placement, and provides starter firmware code for web-based movement control and simple obstacle avoidance.</p>
+<p>The goal is to create a small ESP32-C3 tracked robot base with dual TT motors, an L9110S motor driver, an HC-SR04 ultrasonic sensor, and a battery holder mounted into a layered chassis.</p>
 <p>The platform can later be used as the movement base for an AI companion robot, a small autonomous rover, or a classroom robotics demo.</p>
 <figure class="motor-hero">
   <img src="../../assets/images/motor_1.jpg" alt="All parts for the mini tank assembly">
@@ -1995,7 +2019,52 @@
   </figure>
 </div>
 
-<h2 id="9-vibe-coding-prompt">9. Vibe Coding Prompt</h2>
+<h2 id="9-minimal-vibe-coding-prompt">9. Minimal Vibe Coding Prompt</h2>
+<details class="code" open="open">
+<summary>Minimal Vibe Coding Prompt</summary>
+<div class="highlight"><pre><span></span><code>Write an Arduino IDE program for an ESP32-C3 web-controlled mini tank. Put all code in a single .ino file. It must compile with Arduino ESP32 core 3.x and be ready to upload.
+
+Hardware:
+- ESP32-C3 + L9110S dual motor driver + two DC motors
+- Right motor on L9110S channel A:
+  - GPIO1 -&gt; A-1A
+  - GPIO2 -&gt; A-1B
+- Left motor on L9110S channel B:
+  - GPIO3 -&gt; B-1A
+  - GPIO4 -&gt; B-1B
+- HC-SR04 ultrasonic sensor:
+  - TRIG -&gt; GPIO20
+  - ECHO -&gt; GPIO21
+
+Motor control:
+- Do not use PWM. Use only digitalWrite HIGH/LOW.
+- L9110S rules:
+  - 1A HIGH, 1B LOW = forward
+  - 1A LOW, 1B HIGH = reverse
+  - 1A LOW, 1B LOW = stop
+- Implement forward, backward, left turn, right turn, and stop.
+- When reversing direction, stop the affected motor first, wait 100ms, then apply the new direction.
+
+Web control:
+- ESP32-C3 creates a Wi-Fi AP:
+  - SSID: ESP32C3-Tank
+  - Password: 12345678
+  - IP: 192.168.4.1
+- Use WiFi.h, WebServer.h, and DNSServer.h.
+- Provide web buttons:
+  - Forward, Backward, Left, Right, Stop, Test connection, Restart ESP32
+- Direction buttons should move while pressed and send Stop when released.
+- Send Stop automatically when the page loses focus or becomes hidden.
+- Add captive portal support and redirect unknown paths to the home page.
+
+Ultrasonic obstacle avoidance:
+- When the user is not controlling the tank, periodically read the HC-SR04 distance.
+- If distance is below 5cm, automatically reverse for 2 seconds, then stop.
+- Manual user control has highest priority: user input must prevent or interrupt obstacle avoidance.
+- Implement obstacle avoidance with a millis() state machine, not delay(2000).
+</code></pre></div>
+</details>
+<h2 id="10-vibe-coding-prompt">10. Vibe Coding Prompt</h2>
 <details class="code" open="open">
 <summary>Vibe Coding Prompt</summary>
 <div class="highlight"><pre><span></span><code>Please write an Arduino IDE program for an ESP32-C3 web-controlled mini tank, including HC-SR04 ultrasonic obstacle avoidance.
@@ -2117,7 +2186,7 @@ Implementation requirements:
 - Remember Arduino IDE behavior: do not keep multiple independent .ino files in the same sketch folder, or Arduino will merge them and cause redefinition errors.
 </code></pre></div>
 </details>
-<h2 id="10-firmware-code">10. Firmware Code</h2>
+<h2 id="11-firmware-code">11. Firmware Code</h2>
 <details class="code" open="open">
 <summary>ESP32-C3 Mini Tank Firmware</summary>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;WiFi.h&gt;</span>
@@ -2635,10 +2704,22 @@ Implementation requirements:
 </code></pre></div>
 </details>
 <style>
+.motor-preview,
 .motor-hero,
 .motor-single,
 .motor-strip figure {
   margin: 1.2rem 0;
+}
+
+.motor-preview img {
+  display: block;
+  width: min(100%, 760px);
+  max-height: 720px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin: 0 auto;
+  background: #fbf3e3;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
 }
 
 .motor-hero img {
@@ -2683,6 +2764,7 @@ Implementation requirements:
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.14);
 }
 
+.motor-preview figcaption,
 .motor-hero figcaption,
 .motor-single figcaption,
 .motor-strip figcaption {
