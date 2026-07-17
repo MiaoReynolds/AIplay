@@ -1,0 +1,40 @@
+Write an Arduino IDE program for an ESP32-C3 web-controlled mini tank. Put all code in a single .ino file. It must compile with Arduino ESP32 core 3.x and be ready to upload.
+
+Hardware:
+- ESP32-C3 + L9110S dual motor driver + two DC motors
+- Right motor on L9110S channel A:
+  - GPIO1 -> A-1A
+  - GPIO2 -> A-1B
+- Left motor on L9110S channel B:
+  - GPIO3 -> B-1A
+  - GPIO4 -> B-1B
+- HC-SR04 ultrasonic sensor:
+  - TRIG -> GPIO20
+  - ECHO -> GPIO21
+
+Motor control:
+- Do not use PWM. Use only digitalWrite HIGH/LOW.
+- L9110S rules:
+  - 1A HIGH, 1B LOW = forward
+  - 1A LOW, 1B HIGH = reverse
+  - 1A LOW, 1B LOW = stop
+- Implement forward, backward, left turn, right turn, and stop.
+- When reversing direction, stop the affected motor first, wait 100ms, then apply the new direction.
+
+Web control:
+- ESP32-C3 creates a Wi-Fi AP:
+  - SSID: ESP32C3-Tank
+  - Password: 12345678
+  - IP: 192.168.4.1
+- Use WiFi.h, WebServer.h, and DNSServer.h.
+- Provide web buttons:
+  - Forward, Backward, Left, Right, Stop, Test connection, Restart ESP32
+- Direction buttons should move while pressed and send Stop when released.
+- Send Stop automatically when the page loses focus or becomes hidden.
+- Add captive portal support and redirect unknown paths to the home page.
+
+Ultrasonic obstacle avoidance:
+- When the user is not controlling the tank, periodically read the HC-SR04 distance.
+- If distance is below 5cm, automatically reverse for 2 seconds, then stop.
+- Manual user control has highest priority: user input must prevent or interrupt obstacle avoidance.
+- Implement obstacle avoidance with a millis() state machine, not delay(2000).
