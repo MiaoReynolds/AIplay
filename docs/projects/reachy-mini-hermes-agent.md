@@ -8,7 +8,7 @@ tags: [AI Agent, Reachy Mini, Hermes Agent, embodied agent, voice AI, Obsidian, 
 
 ## Building the Next-Generation Human-Computer Interaction System with Reachy Mini and Hermes Agent
 
-![Reachy Mini and Hermes Agent terminal](../assets/images/hermes_terminal_1.jpg)
+![Reachy Mini and Hermes Agent terminal](../assets/images/reachy-mini-hermes-agent-hero.png)
 
 ---
 
