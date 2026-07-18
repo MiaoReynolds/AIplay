@@ -494,6 +494,17 @@ hide:
       </div>
     </a>
 
+    <a href="projects/reachy-mini-hermes-agent" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Embodied AI</span>
+        <h3 class="bento-title">Reachy Mini x Hermes</h3>
+        <p class="bento-desc">Build a physical AI companion with Reachy Mini, Hermes Agent voice interaction, Obsidian memory, and future RAG workflows.</p>
+        <div class="bento-image-wrapper">
+          <img src="assets/images/reachy-mini-hermes-agent-hero.png" alt="Reachy Mini with Hermes Agent terminal">
+        </div>
+      </div>
+    </a>
+
     <a href="projects/cloudflare-worker-backend" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Automation</span>
