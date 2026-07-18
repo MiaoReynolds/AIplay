@@ -38,6 +38,7 @@ nav:
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
       - AI Agent:
+          - Reachy Mini x Hermes Agent: projects/reachy-mini-hermes-agent.md
           - Local RAG: projects/local-rag.md
           - AI Agent Terminal: projects/ai-agent-terminal.md
           - Hermes Agent Voice AI on Raspberry Pi 4B: projects/hermes-agent-raspberry-pi-4b-voice-setup.md
