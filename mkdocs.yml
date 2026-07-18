@@ -49,6 +49,7 @@ nav:
           - Codex Skills: projects/codex-skills.md
       - AIGC:
           - Prompt Generator: prompt-generator.md
+          - Image Prompt Generator: text-to-image-prompt-generator.md
           - NotebookLM Tutorial: projects/notebooklm-tutorial.md
           - Vibe Coding: projects/vibe-coding.md
           - Gemini Nano Banana Local Integration: projects/gemini-nano-banana-local-integration.md
@@ -67,12 +68,11 @@ nav:
           - Pomodoro Timer 0.91 OLED : projects/screen-project/timer_091OLED.md
           - Pomodoro with ESP32, EC11 encoder, 0.91 OLED, buzzer, RGB : projects/screen-project/timer_091OLED_V3.md
       - Tank Robots:
+          - Mini Tank: projects/tank-motor-assembly.md
           - M5Stack Chan Home Companion Robot: projects/raspberry-pi-5-tank-stack-chan.md
       - Quadruped Robots:
           - Quadruped Robot: projects/quadruped.md
           - LeRobot Arm: projects/lerobot.md
-  - Mini Tank: projects/tank-motor-assembly.md
-  - Image Prompt Generator: text-to-image-prompt-generator.md
   - AIGC Prompt: aigc-prompt.md
   # - Tutorials:
       # - Getting Started with AI: tutorials/ai-course-basic.md
