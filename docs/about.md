@@ -236,7 +236,7 @@ Explore our [Projects](projects/vibe-coding.md) to see what we're building, or [
   <div class="bento-card">
     <div class="bento-content-wrapper">
       <div class="team-avatar-wrapper">
-        <img src="../assets/images/sai.jpg" alt="Dr Sai Wei">
+        <img src="../assets/images/dr_Sai.jpg" alt="Dr Sai Wei">
       </div>
       <h3 class="bento-title">Dr Sai Wei</h3>
       <div class="bento-subtitle">AI Scientist</div>
