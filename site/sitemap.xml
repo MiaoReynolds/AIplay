@@ -2,258 +2,262 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://aionelab.com/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/about/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/ai-assistant/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/aigc-prompt/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/contact/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/extras-contact/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/extras-faq/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/hardware/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/project/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/prompt-generator/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/quotation-generator/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/software/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/text-to-image-prompt-generator/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/trip-budget/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tutorial-advanced-topics/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tutorial-control-basics/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tutorials-setup/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tvm-calculator/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/unit-converter/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/videos/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/ai-agent-terminal/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/ai-course/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/ai-knowledge-wiki/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/cloudflare-worker-backend/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/codex-skills/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/gemini-nano-banana-local-integration/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/github-pages-mkdocs/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/hermes-agent-raspberry-pi-4b-voice-setup/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/hermes-agent-voice-mode/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/homework-supervisor-system/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/lerobot/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/local-ai-business-documents/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/local-rag/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/notebooklm-tutorial/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
+    </url>
+    <url>
+         <loc>https://aionelab.com/projects/personal-knowledge-base/</loc>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/quadruped/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/raspberry-pi-5-tank-stack-chan/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/reachy-mini-hermes-agent/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/tank-motor-assembly/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/vibe-coding/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/ai-course/coding/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/ai-course/overview/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/ai-course/prompting/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/lerobot/control/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/lerobot/setup/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/lerobot/usecases/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/quadruped/ai/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/quadruped/frame/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/quadruped/motion/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/raspberrypi-project/raspberrypi-page/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/build/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/cloud-terminal/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/code/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/design/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/generative-graphics/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/pomodo_timer_V4/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/system-monitor/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/timer/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/timer_091OLED/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/timer_091OLED_V3/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/projects/screen-project/voice-animator/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tutorials/ai-course-basic/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tutorials/lerobot-setup/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
     <url>
          <loc>https://aionelab.com/tutorials/screen-howto/</loc>
-         <lastmod>2026-08-06</lastmod>
+         <lastmod>2026-09-03</lastmod>
     </url>
 </urlset>

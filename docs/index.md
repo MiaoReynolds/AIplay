@@ -304,6 +304,14 @@ hide:
   transition: transform 0.5s ease;
 }
 
+.bento-image-wrapper video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
 .bento-card:hover .bento-image-wrapper img {
   transform: scale(1.05);
 }
@@ -501,6 +509,19 @@ hide:
         <p class="bento-desc">Build a physical AI companion with Reachy Mini, Hermes Agent voice interaction, Obsidian memory, and future RAG workflows.</p>
         <div class="bento-image-wrapper">
           <img src="assets/images/reachy-mini-hermes-agent-hero.png" alt="Reachy Mini with Hermes Agent terminal">
+        </div>
+      </div>
+    </a>
+
+    <a href="projects/personal-knowledge-base" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Knowledge AI</span>
+        <h3 class="bento-title">Personal Knowledge Base</h3>
+        <p class="bento-desc">A living knowledge system managed by local or remote AI Agents for classification, semantic search, and connected documents.</p>
+        <div class="bento-image-wrapper">
+          <video autoplay muted loop playsinline preload="metadata" tabindex="-1" aria-label="Personal knowledge base demonstration">
+            <source src="assets/videos/personal-knowledge-base-demo.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </a>
