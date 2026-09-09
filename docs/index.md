@@ -42,6 +42,38 @@ hide:
       <span id="project-count" role="status" aria-live="polite"></span>
     </div>
   <div class="bento-grid">
+    <a href="projects/local-rag/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Knowledge AI</span>
+        <h3 class="bento-title">Private Local RAG</h3>
+        <p class="bento-desc">Secure document querying and retrieval workflows for internal knowledge systems.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/RAG_0.png" alt="Local hosted LLM RAG system workflow"></div>
+      </div>
+    </a>
+    <a href="projects/hermes-agent-raspberry-pi-4b-voice-setup/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Voice AI</span>
+        <h3 class="bento-title">Hermes Voice Agent</h3>
+        <p class="bento-desc">Real-time speech workflows with STT, LLM orchestration, and TTS on low-cost hardware.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/hermes_agent.jpg" alt="Hermes Agent"></div>
+      </div>
+    </a>
+    <a href="projects/raspberry-pi-5-tank-stack-chan/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Companion AI</span>
+        <h3 class="bento-title">M5Stack Chan Robot</h3>
+        <p class="bento-desc">A mobile LLM companion with expressions, voice interaction, memory, and private AI expansion.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/stackchan_RPi5.jpg" alt="M5Stack Chan home companion robot"></div>
+      </div>
+    </a>
+    <a href="projects/ai-agent-terminal/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">AI Terminal</span>
+        <h3 class="bento-title">AI Agent Terminal</h3>
+        <p class="bento-desc">An all-in-one voice AI terminal connected to cloud or local models for coding and logs.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/hermes_terminal_1.jpg" alt="AI Agent Terminal with display and keyboard"></div>
+      </div>
+    </a>
 
     <a href="projects/local-ai-business-documents/" class="bento-card">
       <div class="bento-content-wrapper">

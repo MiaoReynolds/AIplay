@@ -97,8 +97,8 @@ markdown_extensions:
   - md_in_html
 
 extra_css:
-  - stylesheets/extra.css?v=20260909
-  - stylesheets/home.css?v=20260909
+  - stylesheets/extra.css?v=20260909-2
+  - stylesheets/home.css?v=20260909-2
 
 extra_javascript:
-  - javascripts/home.js?v=20260909
+  - javascripts/home.js?v=20260909-2
