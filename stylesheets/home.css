@@ -54,6 +54,7 @@ body:has(.home-container) .md-content__inner > h1 { display: none; }
 .bento-image-wrapper { order: -1; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 7px; background: var(--lab-soft); margin-bottom: 17px; border: 1px solid var(--lab-line); }
 .bento-image-wrapper img, .bento-image-wrapper video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
 .bento-card:hover .bento-image-wrapper img { transform: scale(1.04); }
+.bento-image-wrapper video { pointer-events: none; user-select: none; }
 .bento-tag { color: var(--lab-accent); font-size: 9px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
 .home-container .bento-title { margin: 7px 0 8px; font-size: 18px; line-height: 1.35; font-weight: 600; }
 .home-container .bento-title::after { content: ' ↗'; font-size: 15px; color: var(--lab-muted); }
