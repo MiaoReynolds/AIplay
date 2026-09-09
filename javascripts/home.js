@@ -4,7 +4,7 @@
   if (!root) return;
   const cards = [...root.querySelectorAll('.bento-card')];
   const buttons = [...root.querySelectorAll('[data-filter]')];
-  const hardware = new Set(['Robotics', 'Hardware', 'Embedded', 'UI/UX', 'Embodied AI']);
+  const hardware = new Set(['Robotics', 'Hardware', 'Embedded', 'UI/UX', 'Embodied AI', 'Companion AI', 'AI Terminal']);
   const automation = new Set(['Business Automation', 'Automation', 'Finance', 'Utility']);
   cards.forEach(card => {
     const tag = card.querySelector('.bento-tag').textContent.trim();
