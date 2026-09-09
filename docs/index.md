@@ -103,7 +103,9 @@ hide:
         <h3 class="bento-title">Personal Knowledge Base</h3>
         <p class="bento-desc">A living knowledge system managed by local or remote AI Agents for classification, semantic search, and connected documents.</p>
         <div class="bento-image-wrapper">
-          <img loading="lazy" decoding="async" src="assets/images/obsidian_personal_knowledge_base_2.png" alt="Personal knowledge base in Obsidian">
+          <video autoplay muted loop playsinline preload="metadata" tabindex="-1" draggable="false" aria-label="Personal knowledge base interface demonstration" style="pointer-events:none; user-select:none;">
+            <source src="assets/videos/personal-knowledge-base-demo.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </a>
