@@ -1,6 +1,7 @@
 site_name: AIone Lab
 site_url: https://aionelab.com
 site_author: Reynolds
+site_description: Hands-on experiments in AI, automation, and robotics. Explore practical tools, working prototypes, and build notes from AIone Lab.
 
 theme:
   name: material
@@ -14,14 +15,14 @@ theme:
     - content.code.annotate
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
@@ -97,3 +98,7 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/home.css
+
+extra_javascript:
+  - javascripts/home.js
