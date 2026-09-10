@@ -1,9 +1,3 @@
----
-hide:
-  - navigation
-  - toc
----
-
 <style>
 /* Hide MkDocs auto h1 */
 .md-typeset > h1:first-child { display: none; }
