@@ -6,19 +6,36 @@ tags: [AI Agent, LLM, voice AI, local model, terminal, coding, productivity]
 
 # AI Agent Terminal
 
-**An all-in-one AI intelligent terminal for running a voice-enabled AI Agent connected to cloud or private large language models.**
+**A private command center for Hermes Agent: voice, coding, notes, and everyday operations brought back onto your own network.**
 
 This project explores a dedicated physical terminal for AI agents. Instead of keeping the agent inside a browser tab or chat app, the terminal becomes a focused workspace where the AI can listen, speak, code, organize logs, and work together with the user.
 
-The terminal can connect to cloud-based large models through APIs, or to a locally deployed model running on another workstation, desktop, or high-performance computing machine. This makes it flexible enough for quick cloud prototyping and private local AI workflows.
+The terminal can connect to cloud-based large models through APIs, or to a locally deployed model running on another workstation, desktop, or high-performance computing machine. The headline idea is simple: deploy Hermes locally, then turn the same machine into a calm, always-ready front door for work that normally gets scattered across chat apps, browser tabs, terminal windows, and note systems.
 
 <img class="terminal-hero-image" src="../../assets/images/1.jpg" alt="AI Agent Terminal setup">
 
-## Project Idea
+## The Local Hermes Thesis
 
 The core idea is to build a small, always-ready AI workstation. It is not just a screen attached to a computer. It is a dedicated interface for interacting with an AI Agent through natural speech and task-oriented workflows.
 
-The user can talk to the terminal, ask it to reason through a coding task, summarize a development log, organize notes, or help maintain a running project journal. The terminal then becomes a bridge between human intention and long-running AI work.
+<img class="terminal-inline-image" src="../../assets/images/2.jpg" alt="Hermes Agent interface running on the terminal">
+
+The terminal is designed around a local Hermes deployment rather than a disposable web chat. Hermes can sit beside the files, logs, prompts, and services it is meant to operate. That proximity changes the experience: context can stay close to the work, conversations can become durable records, and the agent can be shaped around the routines of one person, one lab, or one small team.
+
+The user can speak to the terminal, ask it to reason through a coding task, summarize a development log, organize notes, or maintain a running project journal. The physical screen makes the agent feel less like another tab and more like a persistent instrument on the desk.
+
+## Localize the Workday
+
+<img class="terminal-inline-image terminal-inline-image--right" src="../../assets/images/3.jpg" alt="AI Agent Terminal hardware setup">
+
+The most compelling feature is not a single model benchmark. It is the ability to localize the small, repeated workflows that consume attention every day:
+
+- **Capture:** turn a voice memo, terminal output, or rough thought into a timestamped work note.
+- **Understand:** summarize a document, explain an error, extract action items, or compare two design decisions.
+- **Act:** prepare a command, update a project log, draft a checklist, or route a task to the right local tool.
+- **Remember:** save the result into a searchable project memory instead of letting it disappear in chat history.
+
+With the right permissions and tool adapters, this becomes a local operations layer: a personal interface over files, scripts, repositories, home-lab services, and knowledge bases. The cloud can remain an optional accelerator; the workflow itself stays inspectable and close at hand.
 
 ## What It Can Do
 
@@ -33,6 +50,8 @@ The user can talk to the terminal, ask it to reason through a coding task, summa
 
 ## Architecture
 
+<img class="terminal-inline-image" src="../../assets/images/4.jpg" alt="AI Agent Terminal close-up detail">
+
 | Layer | Role |
 | --- | --- |
 | **Terminal Interface** | A dedicated screen and input/output environment for the AI Agent |
@@ -41,7 +60,7 @@ The user can talk to the terminal, ask it to reason through a coding task, summa
 | **Model Backend** | Uses either cloud LLM APIs or a local model served from another machine |
 | **Storage Layer** | Keeps coding notes, logs, transcripts, summaries, and project records |
 
-This architecture keeps the terminal lightweight while allowing the model backend to scale. For daily use, it can call a cloud model. For private or heavier workloads, it can connect to a local model hosted on a more powerful machine.
+This architecture keeps the terminal lightweight while allowing the model backend to scale. For daily use, it can call a cloud model. For private or heavier workloads, it can connect to a local model hosted on a more powerful machine. The important boundary is yours: you decide which data leaves the network, which tools Hermes can call, and how long the resulting memory is kept.
 
 ## Use Cases
 
@@ -60,6 +79,12 @@ When connected to a local large model, the terminal can become a private AI endp
 ### Always-Ready AI Workbench
 
 Because the terminal is a dedicated device, it reduces the friction of opening a laptop, switching apps, and setting context again. It can become a persistent AI workbench for focused tasks.
+
+## A Desk-Sized Interface for Long-Running Work
+
+<img class="terminal-inline-image" src="../../assets/images/5.jpg" alt="AI Agent Terminal assembled on a desk">
+
+The physical form factor is deliberately practical. It gives voice interaction a visible home, keeps a task or status screen in view, and makes long-running work feel present without demanding a laptop-sized dashboard. Imagine opening the day with a spoken brief, handing off a build log while you make coffee, then asking for the next action without reconstructing the context from scratch.
 
 ## Prototype Gallery
 
@@ -104,11 +129,35 @@ For personal use, it can become a coding companion and journal system. For a tea
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
 }
 
+.terminal-inline-image {
+  display: block;
+  width: min(100%, 860px);
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 1.4rem auto 2rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+}
+
+.terminal-inline-image--right {
+  width: min(48%, 520px);
+  float: right;
+  margin: 0.25rem 0 1.5rem 2rem;
+}
+
 .terminal-gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+}
+
+@media (max-width: 700px) {
+  .terminal-inline-image--right {
+    width: 100%;
+    float: none;
+    margin: 1.2rem auto 1.5rem;
+  }
 }
 </style>
