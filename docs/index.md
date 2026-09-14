@@ -171,7 +171,7 @@ hide:
         <h3 class="bento-title">Mini Tank</h3>
         <p class="bento-desc">Assemble a compact ESP32-C3 tracked tank and upload starter firmware for web control and obstacle avoidance.</p>
         <div class="bento-image-wrapper">
-          <video autoplay muted loop playsinline preload="metadata" tabindex="-1" draggable="false" aria-label="Mini Tank demonstration" style="pointer-events:none; user-select:none;">
+          <video autoplay muted loop playsinline preload="auto" poster="assets/images/mini-tank-assembled-preview.png" tabindex="-1" draggable="false" aria-label="Mini Tank demonstration" style="pointer-events:none; user-select:none;">
             <source src="assets/videos/tank_v1.mp4" type="video/mp4">
           </video>
         </div>
