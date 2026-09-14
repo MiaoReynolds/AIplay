@@ -231,6 +231,15 @@ hide:
       </div>
     </a>
 
+    <a href="projects/three-key-wireless-macro-keyboard/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Hardware</span>
+        <h3 class="bento-title">3-Key Wireless Macro Keyboard</h3>
+        <p class="bento-desc">A compact ESP32-C3 wireless macro pad with MX switches, rechargeable battery, and a 3D-printed case.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/macro-keyboard-6404.jpeg" alt="Finished 3-key wireless macro keyboard"></div>
+      </div>
+    </a>
+
     <a href="tvm-calculator/" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Finance</span>
