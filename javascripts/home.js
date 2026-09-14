@@ -19,4 +19,10 @@
   buttons.forEach(button => button.addEventListener('click', () => filterProjects(button.dataset.filter)));
   root.querySelector('.project-toolbar').hidden = false;
   filterProjects('all');
+  // Browsers may defer autoplay for below-the-fold media; resume silently when visible.
+  const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    const video = entry.target;
+    if (entry.isIntersecting) video.play().catch(() => {});
+  }), { threshold: 0.1 });
+  root.querySelectorAll('video[autoplay]').forEach(video => videoObserver.observe(video));
 })();
