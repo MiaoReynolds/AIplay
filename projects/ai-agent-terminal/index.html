@@ -566,9 +566,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-idea" class="md-nav__link">
+  <a href="#the-local-hermes-thesis" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Idea
+      The Local Hermes Thesis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#localize-the-workday" class="md-nav__link">
+    <span class="md-ellipsis">
+      Localize the Workday
     </span>
   </a>
   
@@ -640,6 +649,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-desk-sized-interface-for-long-running-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Desk-Sized Interface for Long-Running Work
+    </span>
+  </a>
   
 </li>
       
@@ -1676,9 +1694,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-idea" class="md-nav__link">
+  <a href="#the-local-hermes-thesis" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Idea
+      The Local Hermes Thesis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#localize-the-workday" class="md-nav__link">
+    <span class="md-ellipsis">
+      Localize the Workday
     </span>
   </a>
   
@@ -1754,6 +1781,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-desk-sized-interface-for-long-running-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Desk-Sized Interface for Long-Running Work
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prototype-gallery" class="md-nav__link">
     <span class="md-ellipsis">
       Prototype Gallery
@@ -1797,13 +1833,25 @@
 
 
 <h1 id="ai-agent-terminal">AI Agent Terminal</h1>
-<p><strong>An all-in-one AI intelligent terminal for running a voice-enabled AI Agent connected to cloud or private large language models.</strong></p>
+<p><strong>A private command center for Hermes Agent: voice, coding, notes, and everyday operations brought back onto your own network.</strong></p>
 <p>This project explores a dedicated physical terminal for AI agents. Instead of keeping the agent inside a browser tab or chat app, the terminal becomes a focused workspace where the AI can listen, speak, code, organize logs, and work together with the user.</p>
-<p>The terminal can connect to cloud-based large models through APIs, or to a locally deployed model running on another workstation, desktop, or high-performance computing machine. This makes it flexible enough for quick cloud prototyping and private local AI workflows.</p>
+<p>The terminal can connect to cloud-based large models through APIs, or to a locally deployed model running on another workstation, desktop, or high-performance computing machine. The headline idea is simple: deploy Hermes locally, then turn the same machine into a calm, always-ready front door for work that normally gets scattered across chat apps, browser tabs, terminal windows, and note systems.</p>
 <p><img class="terminal-hero-image" src="../../assets/images/1.jpg" alt="AI Agent Terminal setup"></p>
-<h2 id="project-idea">Project Idea</h2>
+<h2 id="the-local-hermes-thesis">The Local Hermes Thesis</h2>
 <p>The core idea is to build a small, always-ready AI workstation. It is not just a screen attached to a computer. It is a dedicated interface for interacting with an AI Agent through natural speech and task-oriented workflows.</p>
-<p>The user can talk to the terminal, ask it to reason through a coding task, summarize a development log, organize notes, or help maintain a running project journal. The terminal then becomes a bridge between human intention and long-running AI work.</p>
+<p><img class="terminal-inline-image" src="../../assets/images/2.jpg" alt="Hermes Agent interface running on the terminal"></p>
+<p>The terminal is designed around a local Hermes deployment rather than a disposable web chat. Hermes can sit beside the files, logs, prompts, and services it is meant to operate. That proximity changes the experience: context can stay close to the work, conversations can become durable records, and the agent can be shaped around the routines of one person, one lab, or one small team.</p>
+<p>The user can speak to the terminal, ask it to reason through a coding task, summarize a development log, organize notes, or maintain a running project journal. The physical screen makes the agent feel less like another tab and more like a persistent instrument on the desk.</p>
+<h2 id="localize-the-workday">Localize the Workday</h2>
+<p><img class="terminal-inline-image terminal-inline-image--right" src="../../assets/images/3.jpg" alt="AI Agent Terminal hardware setup"></p>
+<p>The most compelling feature is not a single model benchmark. It is the ability to localize the small, repeated workflows that consume attention every day:</p>
+<ul>
+<li><strong>Capture:</strong> turn a voice memo, terminal output, or rough thought into a timestamped work note.</li>
+<li><strong>Understand:</strong> summarize a document, explain an error, extract action items, or compare two design decisions.</li>
+<li><strong>Act:</strong> prepare a command, update a project log, draft a checklist, or route a task to the right local tool.</li>
+<li><strong>Remember:</strong> save the result into a searchable project memory instead of letting it disappear in chat history.</li>
+</ul>
+<p>With the right permissions and tool adapters, this becomes a local operations layer: a personal interface over files, scripts, repositories, home-lab services, and knowledge bases. The cloud can remain an optional accelerator; the workflow itself stays inspectable and close at hand.</p>
 <h2 id="what-it-can-do">What It Can Do</h2>
 <table>
 <thead>
@@ -1840,6 +1888,7 @@
 </tbody>
 </table>
 <h2 id="architecture">Architecture</h2>
+<p><img class="terminal-inline-image" src="../../assets/images/4.jpg" alt="AI Agent Terminal close-up detail"></p>
 <table>
 <thead>
 <tr>
@@ -1870,7 +1919,7 @@
 </tr>
 </tbody>
 </table>
-<p>This architecture keeps the terminal lightweight while allowing the model backend to scale. For daily use, it can call a cloud model. For private or heavier workloads, it can connect to a local model hosted on a more powerful machine.</p>
+<p>This architecture keeps the terminal lightweight while allowing the model backend to scale. For daily use, it can call a cloud model. For private or heavier workloads, it can connect to a local model hosted on a more powerful machine. The important boundary is yours: you decide which data leaves the network, which tools Hermes can call, and how long the resulting memory is kept.</p>
 <h2 id="use-cases">Use Cases</h2>
 <h3 id="coding-companion">Coding Companion</h3>
 <p>The terminal can act as a voice-controlled coding partner. You can ask it to explain a stack trace, draft a function, summarize a codebase, or keep track of what changed during a development session.</p>
@@ -1880,6 +1929,9 @@
 <p>When connected to a local large model, the terminal can become a private AI endpoint for a home lab or company office. Sensitive code, internal documents, and private logs can remain inside the local network instead of being uploaded to external services.</p>
 <h3 id="always-ready-ai-workbench">Always-Ready AI Workbench</h3>
 <p>Because the terminal is a dedicated device, it reduces the friction of opening a laptop, switching apps, and setting context again. It can become a persistent AI workbench for focused tasks.</p>
+<h2 id="a-desk-sized-interface-for-long-running-work">A Desk-Sized Interface for Long-Running Work</h2>
+<p><img class="terminal-inline-image" src="../../assets/images/5.jpg" alt="AI Agent Terminal assembled on a desk"></p>
+<p>The physical form factor is deliberately practical. It gives voice interaction a visible home, keeps a task or status screen in view, and makes long-running work feel present without demanding a laptop-sized dashboard. Imagine opening the day with a spoken brief, handing off a build log while you make coffee, then asking for the next action without reconstructing the context from scratch.</p>
 <h2 id="prototype-gallery">Prototype Gallery</h2>
 <div class="terminal-gallery">
   <img src="../../assets/images/1.jpg" alt="AI Agent terminal front view">
@@ -1919,12 +1971,36 @@
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
 }
 
+.terminal-inline-image {
+  display: block;
+  width: min(100%, 860px);
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 1.4rem auto 2rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+}
+
+.terminal-inline-image--right {
+  width: min(48%, 520px);
+  float: right;
+  margin: 0.25rem 0 1.5rem 2rem;
+}
+
 .terminal-gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+}
+
+@media (max-width: 700px) {
+  .terminal-inline-image--right {
+    width: 100%;
+    float: none;
+    margin: 1.2rem auto 1.5rem;
+  }
 }
 </style>
 
