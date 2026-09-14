@@ -63,6 +63,7 @@ body:has(.home-container) .md-content__inner > h1 { display: none; }
   object-position: center;
   background: #17231e;
 }
+.bento-image-wrapper img.tank-gif { object-fit: contain; object-position: center; background: #17231e; }
 .bento-tag { color: var(--lab-accent); font-size: 9px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
 .home-container .bento-title { margin: 7px 0 8px; font-size: 18px; line-height: 1.35; font-weight: 600; }
 .home-container .bento-title::after { content: ' ↗'; font-size: 15px; color: var(--lab-muted); }
