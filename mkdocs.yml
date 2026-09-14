@@ -98,7 +98,7 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css?v=20260910-3
-  - stylesheets/home.css?v=20260910-3
+  - stylesheets/home.css?v=20260914-4
 
 extra_javascript:
   - javascripts/home.js?v=20260910-3
