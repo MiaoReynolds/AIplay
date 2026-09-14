@@ -12,7 +12,7 @@ This project explores a dedicated physical terminal for AI agents. Instead of ke
 
 The terminal can connect to cloud-based large models through APIs, or to a locally deployed model running on another workstation, desktop, or high-performance computing machine. This makes it flexible enough for quick cloud prototyping and private local AI workflows.
 
-<img class="terminal-hero-image" src="../../assets/images/hermes_terminal_1.jpg" alt="AI Agent Terminal setup">
+<img class="terminal-hero-image" src="../../assets/images/1.jpg" alt="AI Agent Terminal setup">
 
 ## Project Idea
 
@@ -64,9 +64,11 @@ Because the terminal is a dedicated device, it reduces the friction of opening a
 ## Prototype Gallery
 
 <div class="terminal-gallery">
-  <img src="../../assets/images/hermes_terminal_1.jpg" alt="AI Agent terminal front view">
-  <img src="../../assets/images/hermes_terminal_2.jpg" alt="AI Agent terminal running interface">
-  <img src="../../assets/images/hermes_terminal_3.jpg" alt="AI Agent terminal hardware setup">
+  <img src="../../assets/images/1.jpg" alt="AI Agent terminal front view">
+  <img src="../../assets/images/2.jpg" alt="AI Agent terminal running interface">
+  <img src="../../assets/images/3.jpg" alt="AI Agent terminal hardware setup">
+  <img src="../../assets/images/4.jpg" alt="AI Agent terminal detail">
+  <img src="../../assets/images/5.jpg" alt="AI Agent terminal setup detail">
 </div>
 
 ## Roadmap
