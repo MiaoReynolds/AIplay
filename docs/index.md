@@ -157,7 +157,7 @@ hide:
     <a href="aigc-prompt/" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">AIGC</span>
-        <h3 class="bento-title">AIGC Prompt Gallery</h3>
+        <h3 class="bento-title">AIGC Prompt</h3>
         <p class="bento-desc">Curated collection of AI-generated content prompts with full images and copyable prompts.</p>
         <div class="bento-image-wrapper">
           <img loading="lazy" decoding="async" src="assets/images/ORR_reaction_2.png" alt="AIGC Prompt Gallery">
