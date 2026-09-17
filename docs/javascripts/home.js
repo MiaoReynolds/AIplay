@@ -1,5 +1,9 @@
 // Progressive enhancement: every project remains available without JavaScript.
 (() => {
+  // AIGC Prompt belongs inside Projects → AIGC, never in the global tab bar.
+  document.querySelectorAll('.md-tabs a[href$="aigc-prompt/"]').forEach(link => {
+    link.closest('.md-tabs__item')?.remove();
+  });
   const root = document.querySelector('.home-container');
   if (!root) return;
   const cards = [...root.querySelectorAll('.bento-card')];
