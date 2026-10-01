@@ -71,6 +71,44 @@ body:has(.home-container) .md-content__inner > h1 { display: none; }
 .lab-outro { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--lab-line); padding: 38px 0 52px; }
 .home-container .lab-outro .eyebrow { margin-bottom: 8px; }
 .home-container .lab-outro h2 { margin: 0; font-size: 25px; line-height: 1.3; font-weight: 500; }
+
+/* Gallery direction: disciplined columns, generous white space, quiet metadata. */
+.home-container { max-width: 1280px; }
+.lab-hero { grid-template-columns: minmax(0, .92fr) minmax(420px, 1.08fr); gap: clamp(44px, 7vw, 112px); padding-top: clamp(78px, 9vw, 132px); }
+.home-container h1 { font-size: clamp(44px, 5.6vw, 78px); line-height: .99; }
+.home-container h1 em { margin-top: 12px; }
+.home-container .hero-desc { max-width: 410px; margin-top: 30px; font-size: 14px; }
+.hero-feature { position: relative; }
+.feature-image { border-radius: 3px; aspect-ratio: 1.28; box-shadow: none; }
+.feature-label { top: 20px; left: 20px; border-radius: 0; }
+.feature-caption { padding-top: 22px; }
+.feature-arrow { border-radius: 0; transition: background .2s, color .2s, transform .2s; }
+.hero-feature:hover .feature-arrow { background: var(--lab-ink); color: var(--lab-bg); transform: rotate(45deg); }
+.lab-highlights { margin-top: 30px; padding: 0; border-top: 0; border-bottom: 0; grid-template-columns: repeat(4, 1fr); }
+.home-container .lab-highlights a { min-height: 164px; padding: 24px 24px 22px; border-top: 1px solid var(--lab-line); border-bottom: 1px solid var(--lab-line); transition: background .25s, transform .25s; }
+.home-container .lab-highlights a:first-child { padding-left: 0; }
+.home-container .lab-highlights a:hover { background: var(--lab-soft); transform: none; }
+.project-section { padding-top: 96px; }
+.section-heading { align-items: end; margin-bottom: 36px; }
+.home-container .section-heading h2 { font-size: clamp(32px, 4vw, 48px); }
+.project-toolbar { border-top: 1px solid var(--lab-line); padding-top: 18px; }
+.project-filters button { border-radius: 4px; padding-inline: 15px; }
+.bento-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px 24px; align-items: start; }
+.home-container .bento-card { min-width: 0; transform: none; }
+.bento-content-wrapper { height: auto; }
+.bento-image-wrapper { aspect-ratio: 16 / 10; border-radius: 3px; margin-bottom: 18px; border: 0; background: #e8ede6; }
+.bento-card:hover .bento-image-wrapper { box-shadow: none; }
+.bento-card:hover .bento-image-wrapper img, .bento-card:hover .bento-image-wrapper video { transform: scale(1.045); }
+.home-container .bento-title { margin-top: 9px; font-size: 19px; line-height: 1.3; }
+.home-container .bento-title::after { display: inline-block; transition: transform .2s; }
+.bento-card:hover .bento-title::after { transform: translate(3px, -3px); }
+.home-container .bento-desc { max-width: 36ch; line-height: 1.6; }
+.bento-card:hover .bento-title { color: var(--lab-accent); }
+.lab-outro { padding-top: 68px; }
+@media (max-width: 1000px) {
+  .lab-hero { grid-template-columns: 1fr 1fr; gap: 34px; }
+  .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (min-width: 1600px) { .lab-hero { padding-top: 85px; padding-bottom: 70px; } }
 @media (max-width: 1000px) {
   .lab-hero { gap: 30px; padding-top: 45px; }
@@ -101,4 +139,37 @@ body:has(.home-container) .md-content__inner > h1 { display: none; }
   .home-container .bento-title { font-size: 20px; }
   .home-container .bento-desc { font-size: 13px; }
   .lab-outro { flex-direction: column; align-items: start; }
+}
+
+/* Readable type scale. Theme colors inherit from the active Material palette. */
+.home-container .eyebrow,
+.home-container .feature-caption .eyebrow,
+.highlight-number, .bento-tag { font-size: 12px; letter-spacing: .09em; }
+.home-container .hero-desc { max-width: 480px; font-size: 18px; line-height: 1.75; }
+.home-container .lab-button, .home-container .text-link { font-size: 15px; min-height: 48px; }
+.hero-footnote { font-size: 13px; line-height: 1.7; }
+.feature-label { font-size: 11px; }
+.home-container .feature-caption h2 { font-size: 24px; line-height: 1.35; }
+.feature-arrow { width: 44px; height: 44px; }
+.home-container .lab-highlights h2 { font-size: 22px; line-height: 1.3; }
+.home-container .lab-highlights p { font-size: 15px; line-height: 1.7; }
+.highlight-link { font-size: 14px; }
+.home-container .section-heading > p { font-size: 16px; line-height: 1.65; }
+.project-filters button { font-size: 14px; min-height: 46px; }
+#project-count { font-size: 14px; }
+.home-container .bento-title { font-size: 24px; line-height: 1.3; font-weight: 650; }
+.home-container .bento-title::after { font-size: 19px; }
+.home-container .bento-desc { font-size: 16px; line-height: 1.7; max-width: none; }
+.bento-image-wrapper { background: var(--lab-soft); }
+.bento-grid { row-gap: 48px; }
+.home-container .lab-outro h2 { font-size: clamp(28px, 3vw, 38px); }
+@media (max-width: 640px) {
+  .home-container .hero-desc { font-size: 17px; }
+  .hero-footnote { font-size: 12px; }
+  .home-container .lab-highlights h2 { font-size: 20px; }
+  .home-container .lab-highlights p { font-size: 14px; }
+  .project-filters button { font-size: 13px; }
+  .home-container .bento-title { font-size: 23px; }
+  .home-container .bento-desc { font-size: 16px; }
+  .bento-grid { row-gap: 38px; }
 }

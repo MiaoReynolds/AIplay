@@ -98,8 +98,8 @@ markdown_extensions:
   - md_in_html
 
 extra_css:
-  - stylesheets/extra.css?v=20260910-3
-  - stylesheets/home.css?v=20260914-4
+  - stylesheets/extra.css?v=20261001-contrast
+  - stylesheets/home.css?v=20261001-contrast
 
 extra_javascript:
   - javascripts/home.js?v=20260910-3
