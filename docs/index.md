@@ -42,6 +42,14 @@ hide:
       <span id="project-count" role="status" aria-live="polite"></span>
     </div>
   <div class="bento-grid">
+    <a href="projects/expenseflow/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Finance Automation</span>
+        <h3 class="bento-title">ExpenseFlow</h3>
+        <p class="bento-desc">Scan receipts into organized expense records, track receivables and payables with AI follow-up, and prepare tax- and audit-ready reports.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/expenseflow-home-cover.png" alt="ExpenseFlow — simple expenses and faster approvals"></div>
+      </div>
+    </a>
     <a href="projects/local-rag/" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Knowledge AI</span>
@@ -50,12 +58,12 @@ hide:
         <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/RAG_0.png" alt="Local hosted LLM RAG system workflow"></div>
       </div>
     </a>
-    <a href="projects/hermes-agent-raspberry-pi-4b-voice-setup/" class="bento-card">
+    <a href="projects/workbuddy/" class="bento-card">
       <div class="bento-content-wrapper">
-        <span class="bento-tag">Voice AI</span>
-        <h3 class="bento-title">Hermes Voice Agent</h3>
-        <p class="bento-desc">Real-time speech workflows with STT, LLM orchestration, and TTS on low-cost hardware.</p>
-        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/hermes_agent.jpg" alt="Hermes Agent"></div>
+        <span class="bento-tag">AI Assistant</span>
+        <h3 class="bento-title">WorkBuddy AI</h3>
+        <p class="bento-desc">Scan the invitation QR code or open the page to join WorkBuddy AI.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/workbuddy-invite-card.png" alt="WorkBuddy AI logo and invitation QR code"></div>
       </div>
     </a>
     <a href="projects/raspberry-pi-5-tank-stack-chan/" class="bento-card">

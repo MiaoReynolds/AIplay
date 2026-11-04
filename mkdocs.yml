@@ -39,6 +39,7 @@ nav:
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
       - AI Agent:
+          - WorkBuddy AI Invite: projects/workbuddy.md
           - Reachy Mini x Hermes Agent: projects/reachy-mini-hermes-agent.md
           - Local RAG: projects/local-rag.md
           - AI Agent Terminal: projects/ai-agent-terminal.md
@@ -57,6 +58,7 @@ nav:
           - Vibe Coding: projects/vibe-coding.md
           - Gemini Nano Banana Local Integration: projects/gemini-nano-banana-local-integration.md
       - Business Reporting Automation:
+          - ExpenseFlow: projects/expenseflow.md
           - Local AI Business Document Systems: projects/local-ai-business-documents.md
           - Cloudflare Worker Backend Setup: projects/cloudflare-worker-backend.md
           - n8n Concepts Workflow: projects/ai-course.md
