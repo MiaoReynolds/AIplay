@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="t d">
+<title id="t">AI infrastructure landscape</title><desc id="d">Seven layers from inference engines to Agent OS</desc>
+<rect width="960" height="600" fill="#f4f7fd"/>
+<circle cx="810" cy="90" r="210" fill="#e7edff"/>
+<path d="M0 520C210 440 380 570 560 470S810 410 960 470V600H0Z" fill="#e7f7f5"/>
+<text x="65" y="98" fill="#3269ed" font-family="Arial,sans-serif" font-size="28" letter-spacing="4">AI INFRA MAP · 2026</text>
+<text x="65" y="218" fill="#13213d" font-family="Arial,sans-serif" font-size="71" font-weight="700">From inference</text>
+<text x="65" y="310" fill="#13213d" font-family="Arial,sans-serif" font-size="71" font-weight="700">to Agent OS</text>
+<g transform="translate(65 362)"><rect width="700" height="22" rx="8" fill="#3269ed"/><rect y="30" width="635" height="22" rx="8" fill="#8b5cf6"/><rect y="60" width="570" height="22" rx="8" fill="#10abc2"/><rect y="90" width="505" height="22" rx="8" fill="#22aa75"/><rect y="120" width="440" height="22" rx="8" fill="#ef9836"/><rect y="150" width="375" height="22" rx="8" fill="#e35b91"/></g>
+</svg>
