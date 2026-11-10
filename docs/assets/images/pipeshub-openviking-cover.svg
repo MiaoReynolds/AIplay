@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="t d">
+<title id="t">PipesHub vs OpenViking</title><desc id="d">企业搜索与 Agent 记忆功能对比</desc>
+<rect width="960" height="600" fill="#14221e"/>
+<path d="M0 470C215 370 290 560 490 440S760 340 960 420V600H0Z" fill="#203d35"/>
+<circle cx="790" cy="120" r="190" fill="#1d5144" opacity=".55"/>
+<text x="74" y="105" fill="#76d9b8" font-family="Arial,sans-serif" font-size="27" letter-spacing="4">OPEN SOURCE · KNOWLEDGE SYSTEMS</text>
+<text x="70" y="265" fill="#f7f4e9" font-family="Arial,sans-serif" font-size="80" font-weight="700">PipesHub</text>
+<text x="70" y="350" fill="#76d9b8" font-family="Arial,sans-serif" font-size="56" font-weight="700">vs</text>
+<text x="70" y="445" fill="#f7f4e9" font-family="Arial,sans-serif" font-size="80" font-weight="700">OpenViking</text>
+<text x="74" y="530" fill="#bbd7c9" font-family="Arial,sans-serif" font-size="28">Enterprise search  /  Agent memory</text>
+</svg>

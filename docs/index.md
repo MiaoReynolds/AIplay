@@ -42,6 +42,14 @@ hide:
       <span id="project-count" role="status" aria-live="polite"></span>
     </div>
   <div class="bento-grid">
+    <a href="projects/pipeshub-vs-openviking/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">Knowledge AI</span>
+        <h3 class="bento-title">PipesHub vs OpenViking</h3>
+        <p class="bento-desc">Compare enterprise search and Agent memory across connectors, permissions, deployment, and practical use cases.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/pipeshub-openviking-cover.svg" alt="PipesHub versus OpenViking comparison"></div>
+      </div>
+    </a>
     <a href="projects/expenseflow/" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Finance Automation</span>
