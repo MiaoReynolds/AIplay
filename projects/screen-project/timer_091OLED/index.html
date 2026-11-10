@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../workbuddy/" class="md-tabs__link">
+        <a href="../../pipeshub-vs-openviking/" class="md-tabs__link">
           
   
   
@@ -441,6 +441,29 @@
             AI Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeshub-vs-openviking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PipesHub vs OpenViking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1804,7 +1827,7 @@ I have an ESP32-C3 SuperMini development board, a 0.91" OLED display (128x32, I2
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blocks</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_logisoso32_tf</span><span class="p">);</span><span class="w">  </span><span class="c1">// height 32 pixals</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawStr</span><span class="p">((</span><span class="n">SCREEN_WIDTH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="s">&quot;Done!&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Done!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">drawStr</span><span class="p">((</span><span class="n">SCREEN_WIDTH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="s">"Done!"</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">"Done!"</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">blocks</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">blinkIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

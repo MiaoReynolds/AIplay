@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../workbuddy/" class="md-tabs__link">
+        <a href="../pipeshub-vs-openviking/" class="md-tabs__link">
           
   
   
@@ -441,6 +441,29 @@
             AI Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeshub-vs-openviking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PipesHub vs OpenViking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1940,17 +1963,17 @@ x-goog-api-key: YOUR_API_KEY
 <p>Put your image prompt inside <code>contents[].parts[].text</code>.</p>
 <p>To force image output, set <code>response_modalities</code> to <code>["IMAGE"]</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;contents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">"contents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A cat drinking coffee on a cyberpunk rooftop, cinematic lighting, 4k resolution&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="nt">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A cat drinking coffee on a cyberpunk rooftop, cinematic lighting, 4k resolution"</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;generationConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;response_modalities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;IMAGE&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;candidate_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;aspect_ratio&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1:1&quot;</span>
+<span class="w">  </span><span class="nt">"generationConfig"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"response_modalities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"IMAGE"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"candidate_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"aspect_ratio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:1"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1959,14 +1982,14 @@ x-goog-api-key: YOUR_API_KEY
 <p>Gemini image output is returned as Base64 in <code>inline_data.data</code>.</p>
 <h3 id="response-shape-simplified">Response Shape (simplified)</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;candidates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">"candidates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;inline_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;mime_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAA...&quot;</span>
+<span class="w">            </span><span class="nt">"inline_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAA..."</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">]</span>
@@ -2013,17 +2036,17 @@ x-goog-api-key: YOUR_API_KEY
 <hr />
 <h2 id="5-quick-curl-test">5. Quick cURL Test</h2>
 <p>Use this in early development to validate credentials and payload quickly:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=YOUR_API_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=YOUR_API_KEY"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;contents&quot;: [</span>
-<span class="s1">      { &quot;parts&quot;: [ { &quot;text&quot;: &quot;A futuristic laboratory with neon lights&quot; } ] }</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<span class="s1">    "contents": [</span>
+<span class="s1">      { "parts": [ { "text": "A futuristic laboratory with neon lights" } ] }</span>
 <span class="s1">    ],</span>
-<span class="s1">    &quot;generationConfig&quot;: {</span>
-<span class="s1">      &quot;response_modalities&quot;: [&quot;IMAGE&quot;]</span>
+<span class="s1">    "generationConfig": {</span>
+<span class="s1">      "response_modalities": ["IMAGE"]</span>
 <span class="s1">    }</span>
-<span class="s1">  }&#39;</span>
+<span class="s1">  }'</span>
 </code></pre></div>
 <hr />
 <h2 id="6-security-and-production-advice">6. Security and Production Advice</h2>

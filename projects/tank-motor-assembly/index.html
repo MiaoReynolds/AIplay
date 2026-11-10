@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../workbuddy/" class="md-tabs__link">
+        <a href="../pipeshub-vs-openviking/" class="md-tabs__link">
           
   
   
@@ -441,6 +441,29 @@
             AI Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeshub-vs-openviking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PipesHub vs OpenViking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2288,12 +2311,12 @@ Implementation requirements:
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;WebServer.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;DNSServer.h&gt;</span>
 <span class="c1">// Wi-Fi AP settings</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">AP_SSID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ESP32C3-Tank&quot;</span><span class="p">;</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">AP_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;12345678&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">AP_SSID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ESP32C3-Tank"</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">AP_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"12345678"</span><span class="p">;</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_IP</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_GATEWAY</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">AP_NETMASK</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">DNS_PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">53</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="n">DNS_PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">53</span><span class="p">;</span>
 <span class="c1">// L9110S wiring</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1A_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// GPIO1 -&gt; A-1A</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_MOTOR_1B_PIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">  </span><span class="c1">// GPIO2 -&gt; A-1B</span>
@@ -2339,12 +2362,12 @@ Implementation requirements:
 <span class="kt">bool</span><span class="w"> </span><span class="n">waitingForObstacleClear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastUltrasonicReadAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">avoidancePhaseStartedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">[]</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">rawliteral(</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">[]</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">"</span><span class="dl">rawliteral(</span>
 <span class="s">&lt;!doctype html&gt;</span>
-<span class="s">&lt;html lang=&quot;zh-CN&quot;&gt;</span>
+<span class="s">&lt;html lang="zh-CN"&gt;</span>
 <span class="s">&lt;head&gt;</span>
-<span class="s">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
-<span class="s">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span>
+<span class="s">  &lt;meta charset="utf-8"&gt;</span>
+<span class="s">  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span>
 <span class="s">  &lt;title&gt;ESP32-C3 Tank&lt;/title&gt;</span>
 <span class="s">  &lt;style&gt;</span>
 <span class="s">    :root {</span>
@@ -2371,7 +2394,7 @@ Implementation requirements:
 <span class="s">      padding: 18px;</span>
 <span class="s">      color: var(--text);</span>
 <span class="s">      background: var(--bg);</span>
-<span class="s">      font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Arial, sans-serif;</span>
+<span class="s">      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;</span>
 <span class="s">    }</span>
 <span class="s">    main {</span>
 <span class="s">      width: min(440px, 100%);</span>
@@ -2461,39 +2484,39 @@ Implementation requirements:
 <span class="s">&lt;body&gt;</span>
 <span class="s">  &lt;main&gt;</span>
 <span class="s">    &lt;h1&gt;ESP32-C3 小坦克控制&lt;/h1&gt;</span>
-<span class="s">    &lt;p class=&quot;meta&quot;&gt;Wi-Fi: ESP32C3-Tank / 12345678&lt;br&gt;地址: http://192.168.4.1/&lt;/p&gt;</span>
-<span class="s">    &lt;section class=&quot;pad&quot; aria-label=&quot;方向控制&quot;&gt;</span>
+<span class="s">    &lt;p class="meta"&gt;Wi-Fi: ESP32C3-Tank / 12345678&lt;br&gt;地址: http://192.168.4.1/&lt;/p&gt;</span>
+<span class="s">    &lt;section class="pad" aria-label="方向控制"&gt;</span>
 <span class="s">      &lt;span&gt;&lt;/span&gt;</span>
-<span class="s">      &lt;button id=&quot;forward&quot; data-cmd=&quot;F&quot;&gt;前进&lt;/button&gt;</span>
+<span class="s">      &lt;button id="forward" data-cmd="F"&gt;前进&lt;/button&gt;</span>
 <span class="s">      &lt;span&gt;&lt;/span&gt;</span>
-<span class="s">      &lt;button id=&quot;left&quot; data-cmd=&quot;L&quot;&gt;左转&lt;/button&gt;</span>
-<span class="s">      &lt;button id=&quot;stop&quot; class=&quot;stop&quot; data-cmd=&quot;S&quot;&gt;停止&lt;/button&gt;</span>
-<span class="s">      &lt;button id=&quot;right&quot; data-cmd=&quot;R&quot;&gt;右转&lt;/button&gt;</span>
+<span class="s">      &lt;button id="left" data-cmd="L"&gt;左转&lt;/button&gt;</span>
+<span class="s">      &lt;button id="stop" class="stop" data-cmd="S"&gt;停止&lt;/button&gt;</span>
+<span class="s">      &lt;button id="right" data-cmd="R"&gt;右转&lt;/button&gt;</span>
 <span class="s">      &lt;span&gt;&lt;/span&gt;</span>
-<span class="s">      &lt;button id=&quot;backward&quot; data-cmd=&quot;B&quot;&gt;后退&lt;/button&gt;</span>
+<span class="s">      &lt;button id="backward" data-cmd="B"&gt;后退&lt;/button&gt;</span>
 <span class="s">      &lt;span&gt;&lt;/span&gt;</span>
 <span class="s">    &lt;/section&gt;</span>
-<span class="s">    &lt;section class=&quot;actions&quot; aria-label=&quot;系统控制&quot;&gt;</span>
-<span class="s">      &lt;button id=&quot;ping&quot;&gt;测试连接&lt;/button&gt;</span>
-<span class="s">      &lt;button id=&quot;reboot&quot;&gt;重启 ESP32&lt;/button&gt;</span>
+<span class="s">    &lt;section class="actions" aria-label="系统控制"&gt;</span>
+<span class="s">      &lt;button id="ping"&gt;测试连接&lt;/button&gt;</span>
+<span class="s">      &lt;button id="reboot"&gt;重启 ESP32&lt;/button&gt;</span>
 <span class="s">    &lt;/section&gt;</span>
-<span class="s">    &lt;div id=&quot;status&quot; class=&quot;status&quot;&gt;Ready&lt;/div&gt;</span>
+<span class="s">    &lt;div id="status" class="status"&gt;Ready&lt;/div&gt;</span>
 <span class="s">  &lt;/main&gt;</span>
 <span class="s">  &lt;script&gt;</span>
-<span class="s">    const statusEl = document.getElementById(&#39;status&#39;);</span>
+<span class="s">    const statusEl = document.getElementById('status');</span>
 <span class="s">    let heldButton = null;</span>
 <span class="s">    function setStatus(text, kind) {</span>
 <span class="s">      statusEl.textContent = text;</span>
-<span class="s">      statusEl.className = &#39;status &#39; + (kind || &#39;&#39;);</span>
+<span class="s">      statusEl.className = 'status ' + (kind || '');</span>
 <span class="s">    }</span>
 <span class="s">    async function sendCmd(cmd) {</span>
 <span class="s">      try {</span>
-<span class="s">        const response = await fetch(&#39;/cmd?do=&#39; + encodeURIComponent(cmd), { cache: &#39;no-store&#39; });</span>
+<span class="s">        const response = await fetch('/cmd?do=' + encodeURIComponent(cmd), { cache: 'no-store' });</span>
 <span class="s">        const text = await response.text();</span>
-<span class="s">        setStatus(text, response.ok ? &#39;ok&#39; : &#39;err&#39;);</span>
+<span class="s">        setStatus(text, response.ok ? 'ok' : 'err');</span>
 <span class="s">        return response.ok;</span>
 <span class="s">      } catch (error) {</span>
-<span class="s">        setStatus(&#39;连接失败: &#39; + error, &#39;err&#39;);</span>
+<span class="s">        setStatus('连接失败: ' + error, 'err');</span>
 <span class="s">        return false;</span>
 <span class="s">      }</span>
 <span class="s">    }</span>
@@ -2501,52 +2524,52 @@ Implementation requirements:
 <span class="s">      if (!heldButton) {</span>
 <span class="s">        return;</span>
 <span class="s">      }</span>
-<span class="s">      heldButton.classList.remove(&#39;active&#39;);</span>
+<span class="s">      heldButton.classList.remove('active');</span>
 <span class="s">      heldButton = null;</span>
-<span class="s">      sendCmd(&#39;S&#39;);</span>
+<span class="s">      sendCmd('S');</span>
 <span class="s">    }</span>
 <span class="s">    function bindHoldButton(button) {</span>
-<span class="s">      button.addEventListener(&#39;selectstart&#39;, function (event) {</span>
+<span class="s">      button.addEventListener('selectstart', function (event) {</span>
 <span class="s">        event.preventDefault();</span>
 <span class="s">      });</span>
-<span class="s">      button.addEventListener(&#39;contextmenu&#39;, function (event) {</span>
+<span class="s">      button.addEventListener('contextmenu', function (event) {</span>
 <span class="s">        event.preventDefault();</span>
 <span class="s">      });</span>
-<span class="s">      button.addEventListener(&#39;pointerdown&#39;, function (event) {</span>
+<span class="s">      button.addEventListener('pointerdown', function (event) {</span>
 <span class="s">        event.preventDefault();</span>
 <span class="s">        if (heldButton === button) {</span>
 <span class="s">          return;</span>
 <span class="s">        }</span>
 <span class="s">        releaseHold();</span>
 <span class="s">        heldButton = button;</span>
-<span class="s">        button.classList.add(&#39;active&#39;);</span>
+<span class="s">        button.classList.add('active');</span>
 <span class="s">        button.setPointerCapture(event.pointerId);</span>
 <span class="s">        sendCmd(button.dataset.cmd);</span>
 <span class="s">      });</span>
-<span class="s">      button.addEventListener(&#39;pointerup&#39;, function (event) {</span>
+<span class="s">      button.addEventListener('pointerup', function (event) {</span>
 <span class="s">        event.preventDefault();</span>
 <span class="s">        releaseHold();</span>
 <span class="s">      });</span>
-<span class="s">      button.addEventListener(&#39;pointercancel&#39;, releaseHold);</span>
-<span class="s">      button.addEventListener(&#39;lostpointercapture&#39;, releaseHold);</span>
+<span class="s">      button.addEventListener('pointercancel', releaseHold);</span>
+<span class="s">      button.addEventListener('lostpointercapture', releaseHold);</span>
 <span class="s">    }</span>
-<span class="s">    [&#39;forward&#39;, &#39;backward&#39;, &#39;left&#39;, &#39;right&#39;].forEach(function (id) {</span>
+<span class="s">    ['forward', 'backward', 'left', 'right'].forEach(function (id) {</span>
 <span class="s">      bindHoldButton(document.getElementById(id));</span>
 <span class="s">    });</span>
-<span class="s">    document.getElementById(&#39;stop&#39;).addEventListener(&#39;click&#39;, function () {</span>
+<span class="s">    document.getElementById('stop').addEventListener('click', function () {</span>
 <span class="s">      releaseHold();</span>
-<span class="s">      sendCmd(&#39;S&#39;);</span>
+<span class="s">      sendCmd('S');</span>
 <span class="s">    });</span>
-<span class="s">    document.getElementById(&#39;ping&#39;).addEventListener(&#39;click&#39;, function () {</span>
-<span class="s">      sendCmd(&#39;PING&#39;);</span>
+<span class="s">    document.getElementById('ping').addEventListener('click', function () {</span>
+<span class="s">      sendCmd('PING');</span>
 <span class="s">    });</span>
-<span class="s">    document.getElementById(&#39;reboot&#39;).addEventListener(&#39;click&#39;, async function () {</span>
+<span class="s">    document.getElementById('reboot').addEventListener('click', async function () {</span>
 <span class="s">      releaseHold();</span>
-<span class="s">      await sendCmd(&#39;S&#39;);</span>
-<span class="s">      await sendCmd(&#39;REBOOT&#39;);</span>
+<span class="s">      await sendCmd('S');</span>
+<span class="s">      await sendCmd('REBOOT');</span>
 <span class="s">    });</span>
-<span class="s">    window.addEventListener(&#39;blur&#39;, releaseHold);</span>
-<span class="s">    document.addEventListener(&#39;visibilitychange&#39;, function () {</span>
+<span class="s">    window.addEventListener('blur', releaseHold);</span>
+<span class="s">    document.addEventListener('visibilitychange', function () {</span>
 <span class="s">      if (document.hidden) {</span>
 <span class="s">        releaseHold();</span>
 <span class="s">      }</span>
@@ -2554,7 +2577,7 @@ Implementation requirements:
 <span class="s">  &lt;/script&gt;</span>
 <span class="s">&lt;/body&gt;</span>
 <span class="s">&lt;/html&gt;</span>
-<span class="dl">)rawliteral</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="dl">)rawliteral</span><span class="s">"</span><span class="p">;</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">triggerFeedbackBlink</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FEEDBACK_LED_PIN</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
@@ -2679,57 +2702,57 @@ Implementation requirements:
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">sendIndexPage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">send_P</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">send_P</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/html; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="n">INDEX_HTML</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">redirectToRoot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">sendHeader</span><span class="p">(</span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&quot;http://&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AP_IP</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">302</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Redirecting to controller&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">sendHeader</span><span class="p">(</span><span class="s">"Location"</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">"http://"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AP_IP</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"/"</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">302</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"Redirecting to controller"</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">handleCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">server</span><span class="p">.</span><span class="n">hasArg</span><span class="p">(</span><span class="s">&quot;do&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Missing command&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">server</span><span class="p">.</span><span class="n">hasArg</span><span class="p">(</span><span class="s">"do"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"Missing command"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">server</span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&quot;do&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">server</span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">"do"</span><span class="p">);</span>
 <span class="w">  </span><span class="n">command</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span>
 <span class="w">  </span><span class="n">command</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">();</span>
 <span class="w">  </span><span class="n">triggerFeedbackBlink</span><span class="p">();</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"F"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
 <span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="n">moveForward</span><span class="p">();</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 前进&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"OK: 前进"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"B"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
 <span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="n">moveBackward</span><span class="p">();</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 后退&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;L&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"OK: 后退"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"L"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
 <span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="n">turnLeft</span><span class="p">();</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 左转&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;R&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"OK: 左转"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"R"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
 <span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="n">turnRight</span><span class="p">();</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 右转&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;S&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;STOP&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"OK: 右转"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"S"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"STOP"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
 <span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">    </span><span class="n">stopAllMotors</span><span class="p">();</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK: 停止&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;PING&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PONG&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;REBOOT&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"OK: 停止"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"PING"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"PONG"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"REBOOT"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">cancelAvoidanceForUserControl</span><span class="p">();</span>
 <span class="w">    </span><span class="n">userControlActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">    </span><span class="n">stopAllMotors</span><span class="p">();</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rebooting&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"Rebooting"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
 <span class="w">    </span><span class="n">ESP</span><span class="p">.</span><span class="n">restart</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unknown command&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="s">"text/plain; charset=utf-8"</span><span class="p">,</span><span class="w"> </span><span class="s">"Unknown command"</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">setupMotorPins</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -2758,24 +2781,24 @@ Implementation requirements:
 <span class="w">  </span><span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">AP_IP</span><span class="p">,</span><span class="w"> </span><span class="n">AP_GATEWAY</span><span class="p">,</span><span class="w"> </span><span class="n">AP_NETMASK</span><span class="p">);</span>
 <span class="w">  </span><span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">AP_SSID</span><span class="p">,</span><span class="w"> </span><span class="n">AP_PASSWORD</span><span class="p">);</span>
 <span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ESP32-C3 Tank AP started&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;SSID: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"ESP32-C3 Tank AP started"</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"SSID: "</span><span class="p">);</span>
 <span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">AP_SSID</span><span class="p">);</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Password: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Password: "</span><span class="p">);</span>
 <span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">AP_PASSWORD</span><span class="p">);</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"IP: "</span><span class="p">);</span>
 <span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">());</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">setupDnsServer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">dnsServer</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">DNS_PORT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">AP_IP</span><span class="p">);</span>
+<span class="w">  </span><span class="n">dnsServer</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">DNS_PORT</span><span class="p">,</span><span class="w"> </span><span class="s">"*"</span><span class="p">,</span><span class="w"> </span><span class="n">AP_IP</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">setupHttpRoutes</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/cmd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">handleCommand</span><span class="p">);</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/generate_204&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/gen_204&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/hotspot-detect.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
-<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/fwlink&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/cmd"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">handleCommand</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/generate_204"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/gen_204"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/hotspot-detect.html"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
+<span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/fwlink"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="n">sendIndexPage</span><span class="p">);</span>
 <span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">onNotFound</span><span class="p">(</span><span class="n">redirectToRoot</span><span class="p">);</span>
 <span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
 <span class="p">}</span>
@@ -2788,7 +2811,7 @@ Implementation requirements:
 <span class="w">  </span><span class="n">setupWiFiAp</span><span class="p">();</span>
 <span class="w">  </span><span class="n">setupDnsServer</span><span class="p">();</span>
 <span class="w">  </span><span class="n">setupHttpRoutes</span><span class="p">();</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Open http://192.168.4.1/ after connecting to the AP.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Open http://192.168.4.1/ after connecting to the AP."</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">server</span><span class="p">.</span><span class="n">handleClient</span><span class="p">();</span>

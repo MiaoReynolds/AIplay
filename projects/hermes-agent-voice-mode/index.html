@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../workbuddy/" class="md-tabs__link">
+        <a href="../pipeshub-vs-openviking/" class="md-tabs__link">
           
   
   
@@ -443,6 +443,29 @@
             AI Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeshub-vs-openviking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PipesHub vs OpenViking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2116,11 +2139,11 @@
 <hr />
 <h2 id="architecture-snapshot">Architecture Snapshot</h2>
 <div class="highlight"><pre><span></span><code>flowchart LR
-    A[&quot;Push-to-Talk (Ctrl+B)&quot;] --&gt; B[&quot;Hermes Voice Module&quot;]
-    B --&gt; C[&quot;faster-whisper (STT)&quot;]
-    C --&gt; D[&quot;Local LLM (Gemma)&quot;]
-    D --&gt; E[&quot;Edge Neural TTS&quot;]
-    E --&gt; F[&quot;Speaker Output&quot;]
+    A["Push-to-Talk (Ctrl+B)"] --&gt; B["Hermes Voice Module"]
+    B --&gt; C["faster-whisper (STT)"]
+    C --&gt; D["Local LLM (Gemma)"]
+    D --&gt; E["Edge Neural TTS"]
+    E --&gt; F["Speaker Output"]
 </code></pre></div>
 <hr />
 <h2 id="1-install-homebrew-dependencies">1. Install Homebrew Dependencies</h2>
@@ -2174,7 +2197,7 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
 </code></pre></div>
 <p>Install voice extras:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;.[voice]&quot;</span>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="s2">".[voice]"</span>
 </code></pre></div>
 <p>Install missing packages explicitly:</p>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="se">\</span>
@@ -2186,7 +2209,7 @@ edge-tts
 </code></pre></div>
 <hr />
 <h2 id="6-test-portaudio-microphone">6. Test PortAudio / Microphone</h2>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;'PY'</span>
 <span class="s">import sounddevice as sd</span>
 <span class="s">print(sd.query_devices())</span>
 <span class="s">PY</span>
@@ -2199,7 +2222,7 @@ MacBook Pro Speakers
 <h2 id="7-test-edge-tts">7. Test Edge TTS</h2>
 <div class="highlight"><pre><span></span><code>edge-tts<span class="w"> </span><span class="se">\</span>
 --voice<span class="w"> </span>zh-CN-XiaoxiaoNeural<span class="w"> </span><span class="se">\</span>
---text<span class="w"> </span><span class="s2">&quot;你好，我是 Hermes。&quot;</span><span class="w"> </span><span class="se">\</span>
+--text<span class="w"> </span><span class="s2">"你好，我是 Hermes。"</span><span class="w"> </span><span class="se">\</span>
 --write-media<span class="w"> </span>test.mp3
 
 afplay<span class="w"> </span>test.mp3
@@ -2227,8 +2250,8 @@ afplay<span class="w"> </span>test.mp3
 <span class="w">  </span><span class="nt">max_recording_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">120</span>
 
 <span class="nt">startup_commands</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/voice</span><span class="nv"> </span><span class="s">on&quot;</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/voice</span><span class="nv"> </span><span class="s">tts&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"/voice</span><span class="nv"> </span><span class="s">on"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"/voice</span><span class="nv"> </span><span class="s">tts"</span>
 </code></pre></div>
 <p>Save in nano:</p>
 <div class="highlight"><pre><span></span><code>Ctrl + O

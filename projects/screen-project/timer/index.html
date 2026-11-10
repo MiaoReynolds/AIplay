@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../workbuddy/" class="md-tabs__link">
+        <a href="../../pipeshub-vs-openviking/" class="md-tabs__link">
           
   
   
@@ -441,6 +441,29 @@
             AI Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeshub-vs-openviking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PipesHub vs OpenViking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1764,11 +1787,11 @@ Info</p>
 
 <span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">menuCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 <span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">menuItems</span><span class="p">[</span><span class="n">menuCount</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 10s&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 15s&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 20s&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="s">&quot;Pomodoro 25s&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="s">&quot;Info&quot;</span>
+<span class="w">  </span><span class="s">"Pomodoro 10s"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s">"Pomodoro 15s"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s">"Pomodoro 20s"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s">"Pomodoro 25s"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s">"Info"</span>
 <span class="p">};</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">menuIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -1853,9 +1876,9 @@ Info</p>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_6x10_tr</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Made by Miao&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Made by Miao"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;2025-05-15&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"2025-05-15"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
 <span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1866,7 +1889,7 @@ Info</p>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_ncenB14_tr</span><span class="p">);</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Done!&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Done!"</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">((</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setDrawColor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -1904,7 +1927,7 @@ Info</p>
 <span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
 <span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
 <span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="n">timeStr</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
-<span class="w">      </span><span class="n">sprintf</span><span class="p">(</span><span class="n">timeStr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%02d:%02d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">sec</span><span class="p">);</span>
+<span class="w">      </span><span class="n">sprintf</span><span class="p">(</span><span class="n">timeStr</span><span class="p">,</span><span class="w"> </span><span class="s">"%02d:%02d"</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">sec</span><span class="p">);</span>
 
 <span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">textWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">getStrWidth</span><span class="p">(</span><span class="n">timeStr</span><span class="p">);</span>
 <span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">((</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">textWidth</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">);</span>
@@ -1918,9 +1941,9 @@ Info</p>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">clearBuffer</span><span class="p">();</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_6x10_tr</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Made by Miao&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Made by Miao"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
-<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;2025-05-15&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"2025-05-15"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">u8g2</span><span class="p">.</span><span class="n">sendBuffer</span><span class="p">();</span>
 <span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>

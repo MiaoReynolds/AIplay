@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>PipesHub vs OpenViking 功能对比</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --surface2:#f0ede6; --surface3:#e9e5db;
+  --ink:#1a1a18; --ink2:#5a5750; --ink3:#8a867e;
+  --line:#e2ddd2; --line2:#d4cfc2;
+  --teal:#0e7c6b; --teal-bg:#e6f4f1; --teal-dark:#0a5e51;
+  --amber:#b45309; --amber-bg:#fef3c7; --amber-ink:#92400e;
+  --rust:#c2410c; --rust-bg:#fff1e6;
+  --green:#15803d; --red:#b91c1c; --yellow:#a16207;
+  --radius:16px; --radius-sm:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#121110; --surface:#1c1b19; --surface2:#242321; --surface3:#2c2b28; --ink:#f2efe8; --ink2:#b8b3a8; --ink3:#8a867e; --line:#2e2d2a; --line2:#3a3936; --teal:#2dd4bf; --teal-bg:#0f2e2a; --teal-dark:#5eead4; --amber:#f59e0b; --amber-bg:#2e2308; --amber-ink:#fbbf24; --rust:#fb923c; --rust-bg:#2e1a0e; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--teal);text-decoration:none} a:hover{text-decoration:underline}
+button,[role="button"],summary{min-height:40px}
+.mono{font-family:"JetBrains Mono",monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 64px}
+
+/* header */
+.topbar{border-bottom:1px solid var(--line);background:var(--surface)}
+.topbar-inner{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar span{font-size:13px;color:var(--ink2)}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.04em;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface2)}
+.hero{padding:36px 0 28px}
+.hero h1{font-family:"Noto Serif SC",serif;font-size:clamp(32px,5.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;font-weight:900}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero h1 .vs{font-family:"Noto Sans SC",sans-serif;font-weight:900;color:var(--ink3);font-size:.55em;vertical-align:.18em;margin:0 .15em}
+.lede{font-size:18px;line-height:1.6;color:var(--ink2);max-width:760px;margin:0}
+.lede strong{color:var(--ink)}
+.verdict{margin-top:22px;background:var(--ink);color:#fff;border-radius:var(--radius);padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden}
+@media(max-width:640px){.verdict{grid-template-columns:1fr}}
+.verdict div{padding:4px 16px}
+.verdict div:first-child{border-right:1px solid rgba(255,255,255,.18)}
+@media(max-width:640px){.verdict div:first-child{border-right:none;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:16px;margin-bottom:16px}}
+.verdict b{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:6px}
+.verdict p{margin:0;font-size:15.5px;line-height:1.55}
+.verdict p strong{color:#5eead4}
+.verdict .ov strong{color:#fbbf24}
+
+/* quick stats */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 8px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi label{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--ink3);text-transform:uppercase}
+.kpi strong{display:block;font-size:22px;line-height:1.1;margin:6px 0 2px}
+.kpi span{font-size:13px;color:var(--ink2)}
+
+/* product cards */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+@media(max-width:760px){.duo{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.card-head{padding:20px 20px 16px;border-bottom:1px solid var(--line)}
+.card-head.ph{border-top:4px solid var(--teal)}
+.card-head.ov{border-top:4px solid var(--amber)}
+.card-head h2{margin:0;font-size:24px;line-height:1.2}
+.card-head p{margin:8px 0 0;color:var(--ink2);font-size:14.5px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pill{font-size:12px;font-weight:700;padding:5px 9px;border-radius:999px;background:var(--surface2);border:1px solid var(--line)}
+.pill.teal{background:var(--teal-bg);color:var(--teal-dark);border-color:transparent}
+.pill.amber{background:var(--amber-bg);color:var(--amber-ink);border-color:transparent}
+.card-body{padding:18px 20px 20px}
+.card-body h3{font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin:18px 0 8px}
+.card-body h3:first-child{margin-top:0}
+.card-body ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink2)}
+.card-body ul li{margin:5px 0} .card-body ul li strong{color:var(--ink)}
+.code{font-family:"JetBrains Mono",monospace;font-size:12.5px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow-wrap:anywhere;white-space:pre-wrap;word-break:break-word}
+.meta{font-size:12.5px;color:var(--ink3);margin-top:10px}
+
+/* sections */
+.section{margin-top:36px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.section-head h2{font-size:22px;margin:0;letter-spacing:-.01em}
+.section-head p{margin:0;color:var(--ink2);font-size:14px}
+.note{font-size:13px;color:var(--ink2);background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+
+/* table */
+.table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+thead th{text-align:left;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);background:var(--surface2);padding:12px 14px;border-bottom:1px solid var(--line)}
+tbody td,tbody th{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody th{font-weight:700;text-align:left;width:18%;background:color-mix(in srgb, var(--surface2) 55%, transparent)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+td.ph{width:41%} td.ov{width:41%}
+.yes{color:var(--green);font-weight:700} .no{color:var(--red);font-weight:700} .warn{color:var(--yellow);font-weight:700}
+.small{font-size:13px;color:var(--ink2)}
+@media(max-width:760px){
+  thead{display:none}
+  table,tbody,tr,td,th{display:block;width:100%!important}
+  tbody th{background:var(--surface2);border-bottom:none;padding-bottom:4px}
+  tbody td{border-bottom:none;padding-top:4px;padding-bottom:10px}
+  tbody td::before{content:attr(data-label);display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
+  tbody tr{border-bottom:1px solid var(--line);padding:6px 0}
+}
+
+/* fit */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.fit{grid-template-columns:1fr}}
+.fit-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.fit-card h3{margin:0 0 6px;font-size:17px}
+.fit-card .sub{color:var(--ink2);font-size:14px;margin:0 0 14px}
+.rank{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:12px;margin:10px 0}
+.rank.win{background:var(--teal-bg)} .rank.alt{background:var(--surface2)}
+.rank-num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.rank p{margin:0;font-size:14.5px} .rank p strong{display:block}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.step i{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;background:var(--ink);color:#fff;padding:4px 7px;border-radius:999px}
+.step h3{margin:10px 0 6px;font-size:16px} .step p{margin:0;color:var(--ink2);font-size:14px}
+
+/* alerts */
+.alert{border-radius:14px;padding:16px 18px;display:flex;gap:12px}
+.alert.red{background:var(--rust-bg);border:1px solid #fed7aa}
+.alert.amber2{background:var(--amber-bg);border:1px solid #fde68a}
+@media(prefers-color-scheme:dark){.alert.red{border-color:#7c2d12}.alert.amber2{border-color:#78350f}}
+.alert h3{margin:0 0 4px;font-size:15px} .alert p{margin:0;font-size:14px;color:var(--ink2)} .alert p strong{color:var(--ink)}
+
+/* tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;min-height:40px}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.panel{display:none} .panel.active{display:block}
+
+/* footer sources */
+.sources{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.sources h2{margin:0 0 10px;font-size:18px}
+.sources ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);columns:2;column-gap:28px}
+@media(max-width:700px){.sources ul{columns:1}}
+.sources li{margin:6px 0;break-inside:avoid}
+.foot{margin-top:18px;font-size:12.5px;color:var(--ink3);text-align:center}
+.checkline{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.checkline span{font-size:12px;background:var(--surface2);border:1px solid var(--line);padding:6px 8px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><span>开源知识库选型 · 为你的两个场景做的对照</span><span class="badge">核查日期 2026-11-10 · GitHub 官方仓库 / 官方文档</span></div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>PipesHub <span class="vs">vs</span> <em>OpenViking</em></h1>
+    <p class="lede">名字像、都开源、都能喂给 Agent —— 但<strong>它们不是同类产品</strong>。PipesHub 是给公司用的企业搜索，OpenViking 是给 Agent 用的记忆与上下文数据库。选错方向，试用一周也试不出结果。</p>
+    <div class="verdict">
+      <div><b>场景 B · 公司知识库 / 企业搜索</b><p><strong>PipesHub 完胜。</strong> 50+ SaaS 连接器、权限继承、块级引用、Apache-2.0 —— 这正是它设计来做的事。</p></div>
+      <div class="ov"><b>场景 A · 个人 Obsidian 7000+ 笔记</b><p><strong>看你要什么。</strong> 要 Agent 长期记忆选 <strong>OpenViking</strong>；要真人搜索界面 + Drive 实时同步，选 PipesHub。</p></div>
+    </div>
+    <div class="checkline"><span>✓ 都支持本地 Markdown</span><span>✓ 都支持 Ollama / 本地模型</span><span>✓ 都暴露 MCP</span><span>✕ 都没有 Obsidian 专用连接器</span><span>⚠ Wikilink / Frontmatter 保真度均未验证</span></div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><label>PipesHub Stars</label><strong>4,068</strong><span>659 forks · 2025-03-06 创建 · v1.0.0（2026-10-27）</span></div>
+    <div class="kpi"><label>OpenViking Stars</label><strong>41,931</strong><span>3,433 forks · 2026-01-05 创建 · 0.5.4（2026-11-09）</span></div>
+    <div class="kpi"><label>许可证差异</label><strong>Apache vs AGPL</strong><span>PipesHub Apache-2.0 可商用嵌入；OpenViking 主项目 AGPL-3.0</span></div>
+    <div class="kpi"><label>部署重量</label><strong>16 GB vs 轻量</strong><span>PipesHub 安装下限 15,000 MB；OpenViking 单服务 :1933</span></div>
+  </div>
+
+  <div class="duo">
+    <article class="card">
+      <div class="card-head ph">
+        <h2>PipesHub</h2>
+        <p>开源版 Glean —— 企业上下文层 + 企业搜索平台。连接器把每个数据源连同它的权限一起同步，回答走 Agent 循环：计划 → 调工具 → 读结果 → 再迭代，不是单次检索生成。</p>
+        <div class="pills"><span class="pill teal">Apache-2.0</span><span class="pill">v1.0.0 Stable</span><span class="pill">localhost:3000</span><span class="pill">Neo4j / ArangoDB + Qdrant</span></div>
+      </div>
+      <div class="card-body">
+        <h3>它强在哪</h3>
+        <ul>
+          <li><strong>50+ 连接器：</strong>Google Drive、Gmail、Slack、GitHub、Notion、Jira、Confluence、M365、SharePoint、Salesforce、Zendesk 等，实时 + 定时索引，只读不改源。</li>
+          <li><strong>权限继承：</strong>“在 Drive 里看不到的文档，在 PipesHub 里也搜不到。” Agent 以具体个人 PAT 身份连接。</li>
+          <li><strong>块级引用：</strong>精确到页码、段落、原文链接；<span class="mono">POST /api/v1/retrieve</span> 返回带引用的 chunk。</li>
+          <li><strong>混合检索：</strong>语义 + 关键词 + grep 精确匹配 + 知识图谱导航 + 全文阅读；1.0 新增 GitHub/GitLab 代码图谱。</li>
+        </ul>
+        <h3>本地 / Obsidian 怎么接</h3>
+        <ul>
+          <li>无 Obsidian 连接器。两条路：① UI 里 Knowledge Base 直接上传少量 <span class="mono">.md / .txt / PDF</span>；② Local FS 连接器 + Docker bind-mount（如 <span class="mono">/data/demo</span>）。</li>
+          <li>Drive 里的库可走 Google Drive 连接器（Markdown 是可索引格式），但 wikilink / backlink 处理未在任何来源中验证。</li>
+        </ul>
+        <h3>试用命令</h3>
+        <div class="code">curl -fsSL https://get.pipeshub.com/install | bash</div>
+        <p class="meta">来源：github.com/pipeshub-ai/pipeshub-ai README；docs.pipeshub.com（系统概览 2026-11-04 更新，连接器概览 2026-11-03 更新，1.0.0 更新日志 2026-10-27）</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head ov">
+        <h2>OpenViking</h2>
+        <p>给 AI Agent 用的上下文数据库 —— “Agent 所知的一切，一个文件系统装下：知识、记忆、技能”。内容组织成可浏览的 <span class="mono">viking://</span> 虚拟文件系统，人可以打开任意目录检查、编辑 Agent 到底知道什么。</p>
+        <div class="pills"><span class="pill amber">AGPL-3.0 主项目</span><span class="pill">0.5.4 · pre-1.0</span><span class="pill">localhost:1933</span><span class="pill">火山引擎 / ByteDance 维护</span></div>
+      </div>
+      <div class="card-body">
+        <h3>它强在哪</h3>
+        <ul>
+          <li><strong>三级分层加载（核心思想）：</strong>L0 摘要约 100 tokens → L1 概览约 2,000 tokens → L2 全文按需加载。Agent 先扫 L0，只在相关处下钻。</li>
+          <li><strong>目录递归检索（TrieHI）：</strong>先定目录范围、再在范围内做向量排序；<span class="mono">find</span> 直接查，<span class="mono">search</span> 结合会话上下文规划检索。</li>
+          <li><strong>记忆自进化：</strong>会话提交后自动归档并抽取记忆为 Markdown，写入 <span class="mono">viking://agent/memories/</span>，无需人工整理。</li>
+          <li><strong>Agent 集成最广：</strong>Claude Code、Codex、Cursor、TRAE、OpenClaw、Hermes（内置）、OpenCode、LangChain 等。</li>
+        </ul>
+        <h3>本地 / Obsidian 怎么接</h3>
+        <ul>
+          <li><span class="mono">ov add-resource ./&lt;folder&gt;</span> 原生导入 Markdown 文件夹，结构保留。</li>
+          <li><strong>致命 caveat：本地导入是静态快照</strong>，不支持 <span class="mono">watch_interval &gt; 0</span>，源文件变了必须重新导入 —— 每天在变的 7000 篇库没有实时同步。</li>
+        </ul>
+        <h3>试用命令</h3>
+        <div class="code">uv tool install openviking &amp;&amp; openviking-server init</div>
+        <p class="meta">来源：github.com/volcengine/OpenViking README（2026-11-10 读取）；docs.openviking.ai 资源文档；PyPI openviking 0.5.4（2026-11-09 上传）。厂商基准（LoCoMo 等 80–83%）为厂商自报，未独立复现。</p>
+      </div>
+    </article>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2>逐项对照表</h2><p>手机上自动堆叠 · 点上方标签可只看差异</p></div>
+    <div class="tabs" role="tablist" aria-label="表格筛选">
+      <button class="tab" role="tab" aria-selected="true" data-filter="all">全部维度</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="diff">只看关键差异</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="deploy">部署与成本</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>维度</th><th>PipesHub</th><th>OpenViking</th></tr></thead>
+        <tbody id="cmpBody">
+          <tr data-cat="core diff"><th>核心定位</th><td data-label="PipesHub">企业上下文层 / Glean 替代：跨公司 SaaS 的权限感知搜索 + 带引用回答，给人和 Agent 用</td><td data-label="OpenViking">Agent 上下文数据库：知识 + 记忆 + 技能统一为可浏览的 <span class="mono">viking://</span> 文件系统</td></tr>
+          <tr data-cat="core"><th>主要用户</th><td data-label="PipesHub">搜公司知识的员工；在受治理上下文上建 Agent 的开发者</td><td data-label="OpenViking">需要跨会话持久记忆的编码 Agent 及其开发者</td></tr>
+          <tr data-cat="core diff"><th>许可证</th><td data-label="PipesHub"><strong>Apache-2.0</strong> —— 宽松，可嵌入专有商业软件</td><td data-label="OpenViking"><strong>AGPL-3.0</strong> 主项目（CLI / examples 为 Apache-2.0）；另有付费 Self-Managed 商业版</td></tr>
+          <tr data-cat="core"><th>架构</th><td data-label="PipesHub">Next.js + Node.js API + Python 服务；Neo4j/ArangoDB 图 + Qdrant 向量 + MongoDB + Redis/Kafka</td><td data-label="OpenViking">Python 服务 + Rust CLI；AGFS 文件存储 + 向量索引；HTTP/MCP :1933；Web Studio</td></tr>
+          <tr data-cat="core diff"><th>检索方式</th><td data-label="PipesHub">Agent 循环：混合（语义+关键词）+ grep + 图谱导航 + 全文阅读；1.0 代码图谱</td><td data-label="OpenViking">分层 L0 (~100 tok) / L1 (~2k tok) / L2 全文；目录定域（TrieHI）后向量排序</td></tr>
+          <tr data-cat="diff"><th>Google Drive</th><td data-label="PipesHub"><span class="yes">✓ 原生连接器</span>，权限感知，实时/定时同步</td><td data-label="OpenViking"><span class="no">✕ 无连接器</span>，只能当本地磁盘文件夹导入</td></tr>
+          <tr data-cat="diff"><th>Slack / Gmail</th><td data-label="PipesHub"><span class="yes">✓ 原生连接器</span></td><td data-label="OpenViking"><span class="no">✕ 无连接器</span></td></tr>
+          <tr data-cat="diff"><th>GitHub</th><td data-label="PipesHub"><span class="yes">✓ 连接器</span>（仓库、Issue、PR、代码搜索 + 代码图谱）</td><td data-label="OpenViking"><span class="yes">✓ Git URL 导入</span>（只读资源，遵守 .gitignore）</td></tr>
+          <tr data-cat="diff"><th>Notion</th><td data-label="PipesHub"><span class="yes">✓ 连接器</span>（工作区 + 个人）</td><td data-label="OpenViking"><span class="no">✕ 无连接器</span></td></tr>
+          <tr data-cat="diff"><th>其他 SaaS</th><td data-label="PipesHub"><span class="yes">✓ 50+</span>：M365、Jira、Confluence、SharePoint、Salesforce、Zendesk 等</td><td data-label="OpenViking"><span class="warn">⚠ 仅飞书/Lark</span> 一个云文档源；其余靠网页爬取 / Sitemap / RSS</td></tr>
+          <tr data-cat="diff"><th>本地 Markdown 文件夹</th><td data-label="PipesHub"><span class="yes">✓</span> KB 上传（小批量）或 Local FS bind-mount 同步；或走 Drive 连接器</td><td data-label="OpenViking"><span class="warn">⚠ 可导入但静态快照</span>，无 watch/同步，变更需重新 <span class="mono">add-resource</span></td></tr>
+          <tr data-cat="diff"><th>权限感知搜索</th><td data-label="PipesHub"><span class="yes">✓ 继承源权限</span>，查询时强制，按用户 PAT</td><td data-label="OpenViking"><span class="warn">⚠ 账号隔离 + 可选资源 ACL</span>（手动授权）；无 SaaS 权限可继承</td></tr>
+          <tr data-cat="diff"><th>引用 / 出处</th><td data-label="PipesHub"><span class="yes">✓ 块级精确引用</span>，页码/段落 + 直达链接</td><td data-label="OpenViking"><span class="warn">⚠ URI 级可追溯</span>（<span class="mono">viking://</span> URI + 分数）；未发现块级引用产品</td></tr>
+          <tr data-cat="core"><th>MCP / Agent</th><td data-label="PipesHub">MCP <span class="mono">{instance}/mcp</span>；Claude Code、Cursor、Codex、Gemini CLI、Windsurf；SDK Python/TS/Go；无代码 Agent 搭建器</td><td data-label="OpenViking">MCP <span class="mono">:1933/mcp</span>（find/search/read/list/tree/grep/write…）；Claude Code、Codex、Cursor、TRAE、Hermes、LangChain；Gateway（beta）</td></tr>
+          <tr data-cat="diff"><th>Agent 记忆 / 技能</th><td data-label="PipesHub">有 Agent 与自定义动作，但无持久记忆/技能库这一产品原语</td><td data-label="OpenViking"><span class="yes">✓ 一等公民</span>：会话记忆抽取、<span class="mono">agent/memories|skills</span>、自进化、<span class="mono">ov compile</span> 生成 Wiki/图谱/报告</td></tr>
+          <tr data-cat="deploy"><th>部署</th><td data-label="PipesHub">Docker Compose (:3000)、K8s/Helm HA、本地/私有云/气隙、PipesHub Cloud 托管</td><td data-label="OpenViking">uv/Python、Docker (:1933)、K8s/Helm、Railway、桌面端 Beta、火山引擎托管（北京端点）</td></tr>
+          <tr data-cat="deploy diff"><th>自带模型 / 本地</th><td data-label="PipesHub">任意 LLM（OpenAI/Anthropic/Google/Mistral 等 + OpenAI 兼容端点）；<strong>Ollama 可全本地</strong>（LLM+嵌入）；但未配 LLM 前搜索/聊天报 HTTP 500</td><td data-label="OpenViking">火山/OpenAI/Codex/Kimi/GLM/Ollama + OpenAI 兼容；<strong>必须同时配嵌入模型 + VLM</strong>，无仅嵌入模式</td></tr>
+          <tr data-cat="deploy"><th>价格</th><td data-label="PipesHub">Community $0 永久（<span class="small">二手来源；2026-11-10 未找到官方价格页</span>）；Enterprise 询价。基础设施 + 模型费用另计</td><td data-label="OpenViking">开源 $0 无激活码；托管前 50 文件免费， beyond / Self-Managed 均为询价，无公开价</td></tr>
+          <tr data-cat="deploy"><th>成熟度（2026-11-10）</th><td data-label="PipesHub">4,068 ⭐ · 2025-03 创建 · <strong>v1.0.0（2026-10-27）</strong>；1.0 为破坏性升级（图迁移单向、移除 SAML）需锁版本</td><td data-label="OpenViking">41,931 ⭐ · 2026-01 创建 · <strong>0.5.4（2026-11-09）</strong>，pre-1.0、周更、含 Beta 组件，需锁版本</td></tr>
+          <tr data-cat="deploy diff"><th>重量</th><td data-label="PipesHub"><span class="warn">重：</span>Neo4j+Qdrant+Mongo+Redis，16 GB 内存下限，首次安装 30–60 分钟</td><td data-label="OpenViking">单服务较轻，但需 VLM+嵌入；7000 文件的摘要成本未量化</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:10px">重叠点：两者都开源可自托管、都走 MCP、都支持本地文件/Markdown、GitHub、Ollama、Docker/K8s、Claude Code/Cursor/Codex 类 Agent，也都主张“不要朴素的扁平向量 RAG”。根本差异只有一句：<strong>PipesHub 回答“公司知道什么、我有没有权限看”，OpenViking 回答“我的 Agent 记得什么、下一步该读什么又不浪费 token”。</strong></p>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>放到你的两个场景里</h2><p>结论按你的实际用法排，不是按功能多少排</p></div>
+    <div class="fit">
+      <div class="fit-card">
+        <h3>A · 个人 Obsidian 库（7000+ 篇，Google Drive 同步）</h3>
+        <p class="sub">两者都不是开箱即用：都没有 Obsidian 连接器，wikilink / backlink / frontmatter 保真度都未验证 —— 必须先拿样本测。</p>
+        <div class="rank win"><div class="rank-num">1</div><p><strong>OpenViking —— 若你要的是 Agent 记忆</strong>本地文件夹是它的原生路径，L0/L1 摘要正是为“快速扫 7000 篇而不全量加载”设计的；安装也轻得多。代价：只能指向磁盘上的 Drive 同步文件夹（无 Drive 连接器）、导入是快照要定期重导、每篇都要 VLM 生成摘要（7000 篇的成本/时间未量化）、AGPL 个人内部用没问题。</p></div>
+        <div class="rank alt"><div class="rank-num">2</div><p><strong>PipesHub —— 若你要真人搜索界面</strong>Drive 连接器是两者中唯一的实时同步路径，还带搜索 UI + 块级引用。代价：为一个人的本地笔记问题扛起 16 GB 的多数据库重栈；Local FS 还要 Docker bind-mount。若 A、B 共用一个实例，才值得。</p></div>
+      </div>
+      <div class="fit-card">
+        <h3>B · 小公司知识库 / 企业搜索（给客户做定制软件）</h3>
+        <p class="sub">这一项没有悬念，类别差距，不是功能差距。</p>
+        <div class="rank win"><div class="rank-num">1</div><p><strong>PipesHub —— 明确首选</strong>50+ 连接器（Drive/Slack/Gmail/GitHub/Notion）、权限继承（多人/多客户时是刚需）、块级引用（客户-facing 回答必须可核查）、给非技术员工的搜索 UI、Apache-2.0 可安全嵌入你卖给客户的专有软件。Community 自托管 $0（二手来源）可把客户数据留在自己 VPC。</p></div>
+        <div class="rank alt"><div class="rank-num">—</div><p><strong>OpenViking —— 不适合做公司 KB 本体</strong>无 Slack/Gmail/Drive/Notion 连接器，公司知识只能手工导出再导入；权限是手动 ACL 而非继承；Studio 是给开发者看上下文的，不是企业搜索 UI；AGPL-3.0 在“通过网络向客户提供专有软件”时会触发源码开放义务，需商业版或许可证审查。它正确的位置是在 PipesHub 之上，给你自己造的 Agent 当记忆层。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>试用路线：有空照这个顺序试</h2><p>不要第一天就拿真库试</p></div>
+    <div class="steps">
+      <div class="step"><i>STEP 1</i><h3>先定优先级</h3><p>B 优先（或库在 Drive 且想要 UI+引用）→ 先试 PipesHub。A 的 Agent 记忆优先、且习惯终端/Claude Code → 先试 OpenViking。</p></div>
+      <div class="step"><i>STEP 2</i><h3>只用样本文件夹</h3><p>复制 <strong>50–200 篇有代表性的笔记</strong>（长短不一、带 wikilink、frontmatter、附件，再加几个 PDF/图片）到临时文件夹。PipesHub 用 KB 上传最简单；OpenViking 用 <span class="mono">ov add-resource ./sample --to viking://resources/sample --wait</span>。</p></div>
+      <div class="step"><i>STEP 3</i><h3>测四件事</h3><p>① 索引耗时 + 模型成本；② wikilink / frontmatter 是否存活；③ 一个已知事实能否被检回；④（PipesHub）引用是否指到正确的块。测不过，换另一个，不要硬调真库。</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px" class="alerts-grid">
+      <div class="alert red"><div>⚠</div><div><h3>许可证坑：OpenViking AGPL-3.0</h3><p>个人/内部自托管没问题；<strong>一旦把它作为网络服务嵌进卖给客户的专有软件，就会触发 AGPL 的源码共享义务</strong>，或需要付费 Self-Managed 商业版。PipesHub Apache-2.0 无此问题。README 还注明：整体改写/重新开源被禁止，大段翻译需火山引擎书面授权（二手报道称其 2026-03 由 Apache 改为 AGPL）。</p></div></div>
+      <div class="alert amber2"><div>◐</div><div><h3>装之前先过的三关</h3><p><strong>Docker：</strong>PipesHub 必须 Docker + Compose v2 且约 16 GB 内存，先查 <span class="mono">docker info</span> 与空闲内存；OpenViking 可不用 Docker（uv 安装）。<strong>模型：</strong>PipesHub 先把 Ollama 配好（端点 <span class="mono">http://host.docker.internal:11434</span>），否则搜索报 500；OpenViking 需嵌入 + VLM 都配。<strong>版本：</strong>两者都锁版本试 —— PipesHub 锁 1.0.0，OpenViking 按 PyPI 的 0.5.4 锁。</p></div></div>
+    </div>
+    <style>@media(max-width:760px){.alerts-grid{grid-template-columns:1fr!important}}</style>
+    <div class="note" style="margin-top:12px"><strong>另外两个提醒：</strong>① PipesHub 的 Drive/Slack/Gmail 连接器需要逐个走浏览器 OAuth —— 等样本试用证明检索质量后再连真实工作区，不要先连。② 若考虑 OpenViking 托管版，其服务端点在北京（<span class="mono">api.vikingdb.cn-beijing.volces.com</span>），README 称中国以外托管（BytePlus）仍在规划中 —— 在新加坡用要考虑数据驻留；自托管可绕开。PipesHub Cloud 的数据位置在已读来源中未说明，自托管同样可绕开。</div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>还没查清的（别当结论用）</h2></div>
+    <div class="table-wrap" style="padding:6px 18px">
+      <ul style="margin:8px 0;padding-left:18px;font-size:14.5px;color:var(--ink2)">
+        <li><strong style="color:var(--ink)">价格：</strong>PipesHub 2026-11-10 未找到官方价格页，Community $0 / Enterprise 询价来自二手目录（数据核查于 2026-09-21）；OpenViking 超过 50 文件的托管价与 Self-Managed 价均无公开数字。预算前需向官网/销售确认。</li>
+        <li><strong style="color:var(--ink)">Obsidian 保真度：</strong>两家都未文档说明 wikilink、backlink、frontmatter、<span class="mono">.obsidian/</span> 的处理 —— 只能靠样本试用实测。</li>
+        <li><strong style="color:var(--ink)">7000 篇的规模成本：</strong>两家都未公布 7000 文件的索引时间/成本；PipesHub 的 16 GB 下限与 OpenViking 的逐文件 VLM 摘要都要在样本上实测外推。</li>
+        <li><strong style="color:var(--ink)">OpenViking 版本线：</strong>仓库有 110 个 release、多条版本线（追踪站还出现过 0.2.0）；已核实的核心最新版以 PyPI 0.5.4（2026-11-09）为准，锁版本时认 PyPI/GitHub tag，不要认“latest”追踪站。</li>
+        <li><strong style="color:var(--ink)">厂商基准：</strong>PipesHub 的 EnterpriseRAG-Bench #1/39（93.24）与 OpenViking 的 LoCoMo 80–83% 均为厂商/相关方报告，未独立复现，只作上限参考。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section sources">
+    <h2>来源（2026-11-10 核查）</h2>
+    <ul>
+      <li>PipesHub 仓库：<a href="https://github.com/pipeshub-ai/pipeshub-ai" target="_blank" rel="noopener">github.com/pipeshub-ai/pipeshub-ai</a></li>
+      <li>OpenViking 仓库：<a href="https://github.com/volcengine/OpenViking" target="_blank" rel="noopener">github.com/volcengine/OpenViking</a></li>
+      <li>PipesHub 1.0.0 更新日志：<a href="https://docs.pipeshub.com/changelog/platform/1.0.0" target="_blank" rel="noopener">docs.pipeshub.com/changelog/platform/1.0.0</a></li>
+      <li>PipesHub 连接器概览：<a href="https://docs.pipeshub.com/connectors/overview" target="_blank" rel="noopener">docs.pipeshub.com/connectors/overview</a></li>
+      <li>PipesHub 本地演示 / Local FS：<a href="https://docs.pipeshub.com/for-agents-local-demo" target="_blank" rel="noopener">docs.pipeshub.com/for-agents-local-demo</a></li>
+      <li>PipesHub 系统概览：<a href="https://docs.pipeshub.com/system-overview" target="_blank" rel="noopener">docs.pipeshub.com/system-overview</a></li>
+      <li>PipesHub 官网：<a href="https://pipeshub.com/" target="_blank" rel="noopener">pipeshub.com</a></li>
+      <li>OpenViking 资源文档：<a href="https://docs.openviking.ai/en/api/02-resources" target="_blank" rel="noopener">docs.openviking.ai/en/api/02-resources</a></li>
+      <li>OpenViking PyPI 0.5.4：<a href="https://pypi.org/project/openviking/" target="_blank" rel="noopener">pypi.org/project/openviking</a></li>
+      <li>OpenViking 官网/文档：<a href="https://openviking.ai" target="_blank" rel="noopener">openviking.ai</a> · <a href="https://docs.openviking.ai" target="_blank" rel="noopener">docs.openviking.ai</a></li>
+      <li>PipesHub 价格（二手，无官方页）：<a href="https://www.exploreai.directory/open-source-alternatives/pipeshub" target="_blank" rel="noopener">exploreai.directory</a> · <a href="https://www.itechguides.com/products/pipeshub/" target="_blank" rel="noopener">itechguides.com</a></li>
+    </ul>
+    <p class="small" style="margin:12px 0 0">除标注二手来源外，以上事实均来自两项目官方 GitHub README 与官方文档，读取于 2026-11-10。</p>
+  </section>
+
+  <p class="foot">为 Bin 的两个场景整理：个人 Obsidian 知识库（方向 #3 RAG）与小公司定制软件的知识库层（方向 #4）。有空试用时从样本文件夹开始。</p>
+</div>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var rows = document.querySelectorAll('#cmpBody tr');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected','false'); });
+      tab.setAttribute('aria-selected','true');
+      var f = tab.getAttribute('data-filter');
+      rows.forEach(function(r){
+        var cat = r.getAttribute('data-cat') || '';
+        var show = (f==='all') || cat.indexOf(f) !== -1;
+        r.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

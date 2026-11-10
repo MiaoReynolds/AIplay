@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../workbuddy/" class="md-tabs__link">
+        <a href="../pipeshub-vs-openviking/" class="md-tabs__link">
           
   
   
@@ -443,6 +443,29 @@
             AI Agent
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeshub-vs-openviking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PipesHub vs OpenViking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2135,11 +2158,11 @@
 <h2 id="3-ssh-authentication-setup-one-time-human-step">3. SSH Authentication Setup (One-Time, Human Step)</h2>
 <p>This only needs to be done once per machine.</p>
 <h3 id="31-generate-ssh-key">3.1 Generate SSH Key</h3>
-<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_email@example.com"</span>
 </code></pre></div>
 <p>Default location: <code>~/.ssh/id_ed25519</code></p>
 <h3 id="32-start-ssh-agent-and-add-key">3.2 Start SSH Agent and Add Key</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">eval</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">"</span>
 ssh-add<span class="w"> </span>~/.ssh/id_ed25519
 </code></pre></div>
 <p>On Windows (PowerShell):</p>
@@ -2153,7 +2176,7 @@ ssh-add<span class="w"> </span>~/.ssh/id_ed25519
 <p>Then on GitHub: <strong>Settings → SSH and GPG Keys → New SSH Key</strong> → paste and save.</p>
 <h3 id="34-test-the-connection">3.4 Test the Connection</h3>
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-<span class="c1"># Expected: Hi USERNAME! You&#39;ve successfully authenticated...</span>
+<span class="c1"># Expected: Hi USERNAME! You've successfully authenticated...</span>
 </code></pre></div>
 <hr />
 <h2 id="4-configure-repository-remote-ssh">4. Configure Repository Remote (SSH)</h2>
@@ -2203,7 +2226,7 @@ This builds the site and force-pushes to the <code>gh-pages</code> branch in one
 <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
 <span class="k">cd</span> /d C:\Users\YourName\mkdocs-site
 git add .
-git commit -m <span class="s2">&quot;update site content&quot;</span>
+git commit -m <span class="s2">"update site content"</span>
 git pull --rebase origin main
 git push origin main
 <span class="k">echo</span> Deployment complete.
@@ -2219,11 +2242,11 @@ mkdocs gh-deploy --clean
 <hr />
 <h2 id="8-typical-agent-workflow">8. Typical Agent Workflow</h2>
 <p>A standard content update session looks like this:</p>
-<div class="highlight"><pre><span></span><code>1. Agent receives task: &quot;Add a new project page about X&quot;
+<div class="highlight"><pre><span></span><code>1. Agent receives task: "Add a new project page about X"
 2. Agent creates: docs/projects/x.md
 3. Agent updates: mkdocs.yml  (adds entry under nav)
 4. Agent runs:    git add .
-5. Agent runs:    git commit -m &quot;add project page: X&quot;
+5. Agent runs:    git commit -m "add project page: X"
 6. Agent runs:    git push origin main  (or mkdocs gh-deploy)
 7. GitHub Pages rebuilds and publishes automatically
 </code></pre></div>
@@ -2250,7 +2273,7 @@ mkdocs gh-deploy --clean
 <span class="k">-</span><span class="w"> </span>All content pages live under docs/
 <span class="k">-</span><span class="w"> </span>Navigation is controlled by mkdocs.yml (nav: section)
 <span class="k">-</span><span class="w"> </span>Images go to docs/assets/images/
-<span class="k">-</span><span class="w"> </span>After any change, run: git add . &amp;&amp; git commit -m &quot;...&quot; &amp;&amp; git push origin main
+<span class="k">-</span><span class="w"> </span>After any change, run: git add . &amp;&amp; git commit -m "..." &amp;&amp; git push origin main
 <span class="k">-</span><span class="w"> </span>Never modify .git/ or .ssh/
 <span class="k">-</span><span class="w"> </span>Site URL: https://USERNAME.github.io/REPO
 </code></pre></div>
