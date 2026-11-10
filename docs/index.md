@@ -42,6 +42,14 @@ hide:
       <span id="project-count" role="status" aria-live="polite"></span>
     </div>
   <div class="bento-grid">
+    <a href="projects/ai-infrastructure-landscape/" class="bento-card">
+      <div class="bento-content-wrapper">
+        <span class="bento-tag">AI Infrastructure</span>
+        <h3 class="bento-title">AI Infrastructure Landscape</h3>
+        <p class="bento-desc">A visual map from inference engines to Agent OS: seven layers, twelve sectors, and five areas to explore.</p>
+        <div class="bento-image-wrapper"><img loading="lazy" decoding="async" src="assets/images/ai-infrastructure-landscape-cover.svg" alt="Colorful layers of the AI infrastructure landscape"></div>
+      </div>
+    </a>
     <a href="projects/pipeshub-vs-openviking/" class="bento-card">
       <div class="bento-content-wrapper">
         <span class="bento-tag">Knowledge AI</span>

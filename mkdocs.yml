@@ -39,6 +39,7 @@ nav:
           # - Firmware Code: projects/screen-project/code.md
           # - Build Steps: projects/screen-project/build.md
       - AI Agent:
+          - AI Infrastructure Landscape: projects/ai-infrastructure-landscape.md
           - PipesHub vs OpenViking: projects/pipeshub-vs-openviking.md
           - WorkBuddy AI Invite: projects/workbuddy.md
           - Reachy Mini x Hermes Agent: projects/reachy-mini-hermes-agent.md
